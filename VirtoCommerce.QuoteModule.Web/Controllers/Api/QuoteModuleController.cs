@@ -5,7 +5,7 @@ using System.Web.Http.Description;
 using VirtoCommerce.Domain.Quote.Services;
 using VirtoCommerce.Domain.Shipping.Model;
 using VirtoCommerce.Domain.Store.Services;
-using VirtoCommerce.Platform.Core.Security;
+using VirtoCommerce.Platform.Core.Web.Security;
 using VirtoCommerce.QuoteModule.Data.Converters;
 using VirtoCommerce.QuoteModule.Web.Converters;
 using VirtoCommerce.QuoteModule.Web.Security;
@@ -33,8 +33,8 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
         /// </summary>
         /// <param name="criteria">criteria</param>
         [HttpPost]
-        [ResponseType(typeof(webModel.QuoteRequestSearchResult))]
         [Route("search")]
+        [ResponseType(typeof(webModel.QuoteRequestSearchResult))]
         public IHttpActionResult Search(coreModel.QuoteRequestSearchCriteria criteria)
         {
             var retVal = _quoteRequestService.Search(criteria);
@@ -51,16 +51,18 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
         /// <remarks>Return a single RFQ</remarks>
         /// <param name="id">RFQ id</param>
         [HttpGet]
-        [ResponseType(typeof(webModel.QuoteRequest))]
         [Route("{id}")]
+        [ResponseType(typeof(webModel.QuoteRequest))]
         public IHttpActionResult GetById(string id)
         {
             var quote = _quoteRequestService.GetByIds(id).FirstOrDefault();
+
             if (quote == null)
             {
                 quote = _quoteRequestService.Search(new Domain.Quote.Model.QuoteRequestSearchCriteria { Number = id }).QuoteRequests.FirstOrDefault();
             }
-            if(quote == null)
+
+            if (quote == null)
             {
                 return NotFound();
             }
@@ -75,8 +77,8 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
         /// </summary>
         /// <param name="quoteRequest">RFQ</param>
         [HttpPost]
-        [ResponseType(typeof(webModel.QuoteRequest))]
         [Route("")]
+        [ResponseType(typeof(webModel.QuoteRequest))]
         [CheckPermission(Permission = QuotePredefinedPermissions.Create)]
         public IHttpActionResult Create(webModel.QuoteRequest quoteRequest)
         {
@@ -90,8 +92,8 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
         /// </summary>
         /// <param name="quoteRequest">RFQ</param>
         [HttpPut]
-        [ResponseType(typeof(void))]
         [Route("")]
+        [ResponseType(typeof(void))]
         [CheckPermission(Permission = QuotePredefinedPermissions.Update)]
         public IHttpActionResult Update(webModel.QuoteRequest quoteRequest)
         {
@@ -106,8 +108,8 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
 		/// <remarks>Return totals for selected tier prices</remarks>
 		/// <param name="quoteRequest">RFQ</param>
         [HttpPut]
-        [ResponseType(typeof(webModel.QuoteRequest))]
         [Route("recalculate")]
+        [ResponseType(typeof(webModel.QuoteRequest))]
         public IHttpActionResult CalculateTotals(webModel.QuoteRequest quoteRequest)
         {
             var coreQuote = quoteRequest.ToCoreModel();
@@ -121,8 +123,8 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
 		/// </summary>
 		/// <param name="id">RFQ id</param>
         [HttpGet]
-        [ResponseType(typeof(webModel.ShipmentMethod[]))]
         [Route("{id}/shipmentmethods")]
+        [ResponseType(typeof(webModel.ShipmentMethod[]))]
         public IHttpActionResult GetShipmentMethods(string id)
         {
             var quote = _quoteRequestService.GetByIds(id).FirstOrDefault();
@@ -156,8 +158,8 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
         /// </summary>
         /// <param name="ids">The quotes ids.</param>
         [HttpDelete]
-        [ResponseType(typeof(void))]
         [Route("")]
+        [ResponseType(typeof(void))]
         [CheckPermission(Permission = QuotePredefinedPermissions.Delete)]
         public IHttpActionResult Delete([FromUri] string[] ids)
         {
