@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <module>
     <id>VirtoCommerce.Quote</id>
-    <version>2.10.0</version>
-    <platformVersion>2.10.0</platformVersion>
+    <version>2.11.0</version>
+    <platformVersion>2.11.0</platformVersion>
     <dependencies>
-        <dependency id="VirtoCommerce.Core" version="2.10.0" />
+        <dependency id="VirtoCommerce.Core" version="2.11.0" />
     </dependencies>
 
     <title>Quote module</title>
@@ -23,12 +23,14 @@
 
     <assemblyFile>VirtoCommerce.QuoteModule.Web.dll</assemblyFile>
     <moduleType>VirtoCommerce.QuoteModule.Web.Module, VirtoCommerce.QuoteModule.Web</moduleType>
+
     <styles>
         <directory virtualPath="$/Content/css" searchPattern="*.css" searchSubdirectories="true" />
     </styles>
     <scripts>
         <directory virtualPath="$/Scripts" searchPattern="*.js" searchSubdirectories="true" />
     </scripts>
+
     <settings>
         <group name="Quotes|General">
             <setting>
@@ -67,6 +69,7 @@
             </setting>
         </group>
     </settings>
+
     <permissions>
         <group name="Quote">
             <permission id="quote:access" name="Open quotes menu"/>
