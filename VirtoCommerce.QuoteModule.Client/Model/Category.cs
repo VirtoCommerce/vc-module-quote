@@ -78,6 +78,12 @@ namespace VirtoCommerce.QuoteModule.Client.Model
         public List<Category> Parents { get; set; }
 
         /// <summary>
+        /// Gets or Sets PackageType
+        /// </summary>
+        [DataMember(Name="packageType", EmitDefaultValue=false)]
+        public string PackageType { get; set; }
+
+        /// <summary>
         /// Gets or Sets Priority
         /// </summary>
         [DataMember(Name="priority", EmitDefaultValue=false)]
@@ -185,6 +191,7 @@ namespace VirtoCommerce.QuoteModule.Client.Model
             sb.Append("  IsVirtual: ").Append(IsVirtual).Append("\n");
             sb.Append("  Level: ").Append(Level).Append("\n");
             sb.Append("  Parents: ").Append(Parents).Append("\n");
+            sb.Append("  PackageType: ").Append(PackageType).Append("\n");
             sb.Append("  Priority: ").Append(Priority).Append("\n");
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");
             sb.Append("  Children: ").Append(Children).Append("\n");
@@ -285,6 +292,11 @@ namespace VirtoCommerce.QuoteModule.Client.Model
                     this.Parents == other.Parents ||
                     this.Parents != null &&
                     this.Parents.SequenceEqual(other.Parents)
+                ) && 
+                (
+                    this.PackageType == other.PackageType ||
+                    this.PackageType != null &&
+                    this.PackageType.Equals(other.PackageType)
                 ) && 
                 (
                     this.Priority == other.Priority ||
@@ -404,6 +416,9 @@ namespace VirtoCommerce.QuoteModule.Client.Model
 
                 if (this.Parents != null)
                     hash = hash * 59 + this.Parents.GetHashCode();
+
+                if (this.PackageType != null)
+                    hash = hash * 59 + this.PackageType.GetHashCode();
 
                 if (this.Priority != null)
                     hash = hash * 59 + this.Priority.GetHashCode();

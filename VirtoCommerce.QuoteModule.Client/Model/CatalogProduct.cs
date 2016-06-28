@@ -120,6 +120,12 @@ namespace VirtoCommerce.QuoteModule.Client.Model
         public string ProductType { get; set; }
 
         /// <summary>
+        /// Gets or Sets PackageType
+        /// </summary>
+        [DataMember(Name="packageType", EmitDefaultValue=false)]
+        public string PackageType { get; set; }
+
+        /// <summary>
         /// Gets or Sets WeightUnit
         /// </summary>
         [DataMember(Name="weightUnit", EmitDefaultValue=false)]
@@ -348,6 +354,7 @@ namespace VirtoCommerce.QuoteModule.Client.Model
             sb.Append("  MaxQuantity: ").Append(MaxQuantity).Append("\n");
             sb.Append("  MinQuantity: ").Append(MinQuantity).Append("\n");
             sb.Append("  ProductType: ").Append(ProductType).Append("\n");
+            sb.Append("  PackageType: ").Append(PackageType).Append("\n");
             sb.Append("  WeightUnit: ").Append(WeightUnit).Append("\n");
             sb.Append("  Weight: ").Append(Weight).Append("\n");
             sb.Append("  MeasureUnit: ").Append(MeasureUnit).Append("\n");
@@ -502,6 +509,11 @@ namespace VirtoCommerce.QuoteModule.Client.Model
                     this.ProductType == other.ProductType ||
                     this.ProductType != null &&
                     this.ProductType.Equals(other.ProductType)
+                ) && 
+                (
+                    this.PackageType == other.PackageType ||
+                    this.PackageType != null &&
+                    this.PackageType.Equals(other.PackageType)
                 ) && 
                 (
                     this.WeightUnit == other.WeightUnit ||
@@ -737,6 +749,9 @@ namespace VirtoCommerce.QuoteModule.Client.Model
 
                 if (this.ProductType != null)
                     hash = hash * 59 + this.ProductType.GetHashCode();
+
+                if (this.PackageType != null)
+                    hash = hash * 59 + this.PackageType.GetHashCode();
 
                 if (this.WeightUnit != null)
                     hash = hash * 59 + this.WeightUnit.GetHashCode();
