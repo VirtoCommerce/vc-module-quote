@@ -71,6 +71,7 @@
     <Compile Include="Model\DynamicPropertyName.cs" />
     <Compile Include="Model\DynamicPropertyObjectValue.cs" />
     <Compile Include="Model\EditorialReview.cs" />
+    <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\Image.cs" />
     <Compile Include="Model\InventoryInfo.cs" />
     <Compile Include="Model\OperationLog.cs" />

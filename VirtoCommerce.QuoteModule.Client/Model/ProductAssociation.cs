@@ -18,16 +18,10 @@ namespace VirtoCommerce.QuoteModule.Client.Model
     public partial class ProductAssociation :  IEquatable<ProductAssociation>
     {
         /// <summary>
-        /// Gets or Sets Name
+        /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Description
-        /// </summary>
-        [DataMember(Name="description", EmitDefaultValue=false)]
-        public string Description { get; set; }
+        [DataMember(Name="type", EmitDefaultValue=false)]
+        public string Type { get; set; }
 
         /// <summary>
         /// Gets or Sets Priority
@@ -36,22 +30,22 @@ namespace VirtoCommerce.QuoteModule.Client.Model
         public int? Priority { get; set; }
 
         /// <summary>
-        /// Gets or Sets Type
+        /// Gets or Sets AssociatedObjectId
         /// </summary>
-        [DataMember(Name="type", EmitDefaultValue=false)]
-        public string Type { get; set; }
+        [DataMember(Name="associatedObjectId", EmitDefaultValue=false)]
+        public string AssociatedObjectId { get; set; }
 
         /// <summary>
-        /// Gets or Sets AssociatedProductId
+        /// Gets or Sets AssociatedObjectType
         /// </summary>
-        [DataMember(Name="associatedProductId", EmitDefaultValue=false)]
-        public string AssociatedProductId { get; set; }
+        [DataMember(Name="associatedObjectType", EmitDefaultValue=false)]
+        public string AssociatedObjectType { get; set; }
 
         /// <summary>
-        /// Gets or Sets AssociatedProduct
+        /// Gets or Sets AssociatedObject
         /// </summary>
-        [DataMember(Name="associatedProduct", EmitDefaultValue=false)]
-        public CatalogProduct AssociatedProduct { get; set; }
+        [DataMember(Name="associatedObject", EmitDefaultValue=false)]
+        public Entity AssociatedObject { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -61,12 +55,11 @@ namespace VirtoCommerce.QuoteModule.Client.Model
         {
             var sb = new StringBuilder();
             sb.Append("class ProductAssociation {\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  Priority: ").Append(Priority).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
-            sb.Append("  AssociatedProductId: ").Append(AssociatedProductId).Append("\n");
-            sb.Append("  AssociatedProduct: ").Append(AssociatedProduct).Append("\n");
+            sb.Append("  Priority: ").Append(Priority).Append("\n");
+            sb.Append("  AssociatedObjectId: ").Append(AssociatedObjectId).Append("\n");
+            sb.Append("  AssociatedObjectType: ").Append(AssociatedObjectType).Append("\n");
+            sb.Append("  AssociatedObject: ").Append(AssociatedObject).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -104,14 +97,9 @@ namespace VirtoCommerce.QuoteModule.Client.Model
 
             return 
                 (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
-                ) && 
-                (
-                    this.Description == other.Description ||
-                    this.Description != null &&
-                    this.Description.Equals(other.Description)
+                    this.Type == other.Type ||
+                    this.Type != null &&
+                    this.Type.Equals(other.Type)
                 ) && 
                 (
                     this.Priority == other.Priority ||
@@ -119,19 +107,19 @@ namespace VirtoCommerce.QuoteModule.Client.Model
                     this.Priority.Equals(other.Priority)
                 ) && 
                 (
-                    this.Type == other.Type ||
-                    this.Type != null &&
-                    this.Type.Equals(other.Type)
+                    this.AssociatedObjectId == other.AssociatedObjectId ||
+                    this.AssociatedObjectId != null &&
+                    this.AssociatedObjectId.Equals(other.AssociatedObjectId)
                 ) && 
                 (
-                    this.AssociatedProductId == other.AssociatedProductId ||
-                    this.AssociatedProductId != null &&
-                    this.AssociatedProductId.Equals(other.AssociatedProductId)
+                    this.AssociatedObjectType == other.AssociatedObjectType ||
+                    this.AssociatedObjectType != null &&
+                    this.AssociatedObjectType.Equals(other.AssociatedObjectType)
                 ) && 
                 (
-                    this.AssociatedProduct == other.AssociatedProduct ||
-                    this.AssociatedProduct != null &&
-                    this.AssociatedProduct.Equals(other.AssociatedProduct)
+                    this.AssociatedObject == other.AssociatedObject ||
+                    this.AssociatedObject != null &&
+                    this.AssociatedObject.Equals(other.AssociatedObject)
                 );
         }
 
@@ -147,23 +135,20 @@ namespace VirtoCommerce.QuoteModule.Client.Model
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
 
-                if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
-
-                if (this.Description != null)
-                    hash = hash * 59 + this.Description.GetHashCode();
+                if (this.Type != null)
+                    hash = hash * 59 + this.Type.GetHashCode();
 
                 if (this.Priority != null)
                     hash = hash * 59 + this.Priority.GetHashCode();
 
-                if (this.Type != null)
-                    hash = hash * 59 + this.Type.GetHashCode();
+                if (this.AssociatedObjectId != null)
+                    hash = hash * 59 + this.AssociatedObjectId.GetHashCode();
 
-                if (this.AssociatedProductId != null)
-                    hash = hash * 59 + this.AssociatedProductId.GetHashCode();
+                if (this.AssociatedObjectType != null)
+                    hash = hash * 59 + this.AssociatedObjectType.GetHashCode();
 
-                if (this.AssociatedProduct != null)
-                    hash = hash * 59 + this.AssociatedProduct.GetHashCode();
+                if (this.AssociatedObject != null)
+                    hash = hash * 59 + this.AssociatedObject.GetHashCode();
 
                 return hash;
             }
