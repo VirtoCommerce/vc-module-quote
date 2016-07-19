@@ -48,6 +48,12 @@ namespace VirtoCommerce.QuoteModule.Client.Model
         public Entity AssociatedObject { get; set; }
 
         /// <summary>
+        /// Gets or Sets Tags
+        /// </summary>
+        [DataMember(Name="tags", EmitDefaultValue=false)]
+        public List<string> Tags { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -60,6 +66,7 @@ namespace VirtoCommerce.QuoteModule.Client.Model
             sb.Append("  AssociatedObjectId: ").Append(AssociatedObjectId).Append("\n");
             sb.Append("  AssociatedObjectType: ").Append(AssociatedObjectType).Append("\n");
             sb.Append("  AssociatedObject: ").Append(AssociatedObject).Append("\n");
+            sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -120,6 +127,11 @@ namespace VirtoCommerce.QuoteModule.Client.Model
                     this.AssociatedObject == other.AssociatedObject ||
                     this.AssociatedObject != null &&
                     this.AssociatedObject.Equals(other.AssociatedObject)
+                ) && 
+                (
+                    this.Tags == other.Tags ||
+                    this.Tags != null &&
+                    this.Tags.SequenceEqual(other.Tags)
                 );
         }
 
@@ -149,6 +161,9 @@ namespace VirtoCommerce.QuoteModule.Client.Model
 
                 if (this.AssociatedObject != null)
                     hash = hash * 59 + this.AssociatedObject.GetHashCode();
+
+                if (this.Tags != null)
+                    hash = hash * 59 + this.Tags.GetHashCode();
 
                 return hash;
             }
