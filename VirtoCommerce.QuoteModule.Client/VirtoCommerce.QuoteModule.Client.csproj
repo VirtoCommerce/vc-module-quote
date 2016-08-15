@@ -74,10 +74,13 @@
     <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\Image.cs" />
     <Compile Include="Model\InventoryInfo.cs" />
+    <Compile Include="Model\ModelObject.cs" />
     <Compile Include="Model\OperationLog.cs" />
     <Compile Include="Model\Outline.cs" />
     <Compile Include="Model\OutlineItem.cs" />
     <Compile Include="Model\Price.cs" />
+    <Compile Include="Model\Pricelist.cs" />
+    <Compile Include="Model\PricelistAssignment.cs" />
     <Compile Include="Model\ProductAssociation.cs" />
     <Compile Include="Model\Property.cs" />
     <Compile Include="Model\PropertyAttribute.cs" />

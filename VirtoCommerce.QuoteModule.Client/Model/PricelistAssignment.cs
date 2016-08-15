@@ -12,11 +12,23 @@ using Newtonsoft.Json.Converters;
 namespace VirtoCommerce.QuoteModule.Client.Model
 {
     /// <summary>
-    /// Price
+    /// PricelistAssignment
     /// </summary>
     [DataContract]
-    public partial class Price :  IEquatable<Price>
+    public partial class PricelistAssignment :  IEquatable<PricelistAssignment>
     {
+        /// <summary>
+        /// Gets or Sets CatalogId
+        /// </summary>
+        [DataMember(Name="catalogId", EmitDefaultValue=false)]
+        public string CatalogId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Catalog
+        /// </summary>
+        [DataMember(Name="catalog", EmitDefaultValue=false)]
+        public Catalog Catalog { get; set; }
+
         /// <summary>
         /// Gets or Sets PricelistId
         /// </summary>
@@ -30,46 +42,52 @@ namespace VirtoCommerce.QuoteModule.Client.Model
         public Pricelist Pricelist { get; set; }
 
         /// <summary>
-        /// Gets or Sets Currency
+        /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name="currency", EmitDefaultValue=false)]
-        public string Currency { get; set; }
+        [DataMember(Name="name", EmitDefaultValue=false)]
+        public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Product
+        /// Gets or Sets Description
         /// </summary>
-        [DataMember(Name="product", EmitDefaultValue=false)]
-        public CatalogProduct Product { get; set; }
+        [DataMember(Name="description", EmitDefaultValue=false)]
+        public string Description { get; set; }
 
         /// <summary>
-        /// Gets or Sets ProductId
+        /// Gets or Sets Priority
         /// </summary>
-        [DataMember(Name="productId", EmitDefaultValue=false)]
-        public string ProductId { get; set; }
+        [DataMember(Name="priority", EmitDefaultValue=false)]
+        public int? Priority { get; set; }
 
         /// <summary>
-        /// Gets or Sets Sale
+        /// Gets or Sets StartDate
         /// </summary>
-        [DataMember(Name="sale", EmitDefaultValue=false)]
-        public double? Sale { get; set; }
+        [DataMember(Name="startDate", EmitDefaultValue=false)]
+        public DateTime? StartDate { get; set; }
 
         /// <summary>
-        /// Gets or Sets List
+        /// Gets or Sets EndDate
         /// </summary>
-        [DataMember(Name="list", EmitDefaultValue=false)]
-        public double? List { get; set; }
+        [DataMember(Name="endDate", EmitDefaultValue=false)]
+        public DateTime? EndDate { get; set; }
 
         /// <summary>
-        /// Gets or Sets MinQuantity
+        /// Gets or Sets ConditionExpression
         /// </summary>
-        [DataMember(Name="minQuantity", EmitDefaultValue=false)]
-        public int? MinQuantity { get; set; }
+        [DataMember(Name="conditionExpression", EmitDefaultValue=false)]
+        public string ConditionExpression { get; set; }
 
         /// <summary>
-        /// Gets or Sets EffectiveValue
+        /// Gets or Sets PredicateVisualTreeSerialized
         /// </summary>
-        [DataMember(Name="effectiveValue", EmitDefaultValue=false)]
-        public double? EffectiveValue { get; private set; }
+        [DataMember(Name="predicateVisualTreeSerialized", EmitDefaultValue=false)]
+        public string PredicateVisualTreeSerialized { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Condition
+        /// </summary>
+        [DataMember(Name="condition", EmitDefaultValue=false)]
+        public Object Condition { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedDate
@@ -108,16 +126,19 @@ namespace VirtoCommerce.QuoteModule.Client.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Price {\n");
+            sb.Append("class PricelistAssignment {\n");
+            sb.Append("  CatalogId: ").Append(CatalogId).Append("\n");
+            sb.Append("  Catalog: ").Append(Catalog).Append("\n");
             sb.Append("  PricelistId: ").Append(PricelistId).Append("\n");
             sb.Append("  Pricelist: ").Append(Pricelist).Append("\n");
-            sb.Append("  Currency: ").Append(Currency).Append("\n");
-            sb.Append("  Product: ").Append(Product).Append("\n");
-            sb.Append("  ProductId: ").Append(ProductId).Append("\n");
-            sb.Append("  Sale: ").Append(Sale).Append("\n");
-            sb.Append("  List: ").Append(List).Append("\n");
-            sb.Append("  MinQuantity: ").Append(MinQuantity).Append("\n");
-            sb.Append("  EffectiveValue: ").Append(EffectiveValue).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  Priority: ").Append(Priority).Append("\n");
+            sb.Append("  StartDate: ").Append(StartDate).Append("\n");
+            sb.Append("  EndDate: ").Append(EndDate).Append("\n");
+            sb.Append("  ConditionExpression: ").Append(ConditionExpression).Append("\n");
+            sb.Append("  PredicateVisualTreeSerialized: ").Append(PredicateVisualTreeSerialized).Append("\n");
+            sb.Append("  Condition: ").Append(Condition).Append("\n");
             sb.Append("  CreatedDate: ").Append(CreatedDate).Append("\n");
             sb.Append("  ModifiedDate: ").Append(ModifiedDate).Append("\n");
             sb.Append("  CreatedBy: ").Append(CreatedBy).Append("\n");
@@ -144,21 +165,31 @@ namespace VirtoCommerce.QuoteModule.Client.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Price);
+            return this.Equals(obj as PricelistAssignment);
         }
 
         /// <summary>
-        /// Returns true if Price instances are equal
+        /// Returns true if PricelistAssignment instances are equal
         /// </summary>
-        /// <param name="other">Instance of Price to be compared</param>
+        /// <param name="other">Instance of PricelistAssignment to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Price other)
+        public bool Equals(PricelistAssignment other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
                 return false;
 
             return 
+                (
+                    this.CatalogId == other.CatalogId ||
+                    this.CatalogId != null &&
+                    this.CatalogId.Equals(other.CatalogId)
+                ) && 
+                (
+                    this.Catalog == other.Catalog ||
+                    this.Catalog != null &&
+                    this.Catalog.Equals(other.Catalog)
+                ) && 
                 (
                     this.PricelistId == other.PricelistId ||
                     this.PricelistId != null &&
@@ -170,39 +201,44 @@ namespace VirtoCommerce.QuoteModule.Client.Model
                     this.Pricelist.Equals(other.Pricelist)
                 ) && 
                 (
-                    this.Currency == other.Currency ||
-                    this.Currency != null &&
-                    this.Currency.Equals(other.Currency)
+                    this.Name == other.Name ||
+                    this.Name != null &&
+                    this.Name.Equals(other.Name)
                 ) && 
                 (
-                    this.Product == other.Product ||
-                    this.Product != null &&
-                    this.Product.Equals(other.Product)
+                    this.Description == other.Description ||
+                    this.Description != null &&
+                    this.Description.Equals(other.Description)
                 ) && 
                 (
-                    this.ProductId == other.ProductId ||
-                    this.ProductId != null &&
-                    this.ProductId.Equals(other.ProductId)
+                    this.Priority == other.Priority ||
+                    this.Priority != null &&
+                    this.Priority.Equals(other.Priority)
                 ) && 
                 (
-                    this.Sale == other.Sale ||
-                    this.Sale != null &&
-                    this.Sale.Equals(other.Sale)
+                    this.StartDate == other.StartDate ||
+                    this.StartDate != null &&
+                    this.StartDate.Equals(other.StartDate)
                 ) && 
                 (
-                    this.List == other.List ||
-                    this.List != null &&
-                    this.List.Equals(other.List)
+                    this.EndDate == other.EndDate ||
+                    this.EndDate != null &&
+                    this.EndDate.Equals(other.EndDate)
                 ) && 
                 (
-                    this.MinQuantity == other.MinQuantity ||
-                    this.MinQuantity != null &&
-                    this.MinQuantity.Equals(other.MinQuantity)
+                    this.ConditionExpression == other.ConditionExpression ||
+                    this.ConditionExpression != null &&
+                    this.ConditionExpression.Equals(other.ConditionExpression)
                 ) && 
                 (
-                    this.EffectiveValue == other.EffectiveValue ||
-                    this.EffectiveValue != null &&
-                    this.EffectiveValue.Equals(other.EffectiveValue)
+                    this.PredicateVisualTreeSerialized == other.PredicateVisualTreeSerialized ||
+                    this.PredicateVisualTreeSerialized != null &&
+                    this.PredicateVisualTreeSerialized.Equals(other.PredicateVisualTreeSerialized)
+                ) && 
+                (
+                    this.Condition == other.Condition ||
+                    this.Condition != null &&
+                    this.Condition.Equals(other.Condition)
                 ) && 
                 (
                     this.CreatedDate == other.CreatedDate ||
@@ -243,32 +279,41 @@ namespace VirtoCommerce.QuoteModule.Client.Model
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
 
+                if (this.CatalogId != null)
+                    hash = hash * 59 + this.CatalogId.GetHashCode();
+
+                if (this.Catalog != null)
+                    hash = hash * 59 + this.Catalog.GetHashCode();
+
                 if (this.PricelistId != null)
                     hash = hash * 59 + this.PricelistId.GetHashCode();
 
                 if (this.Pricelist != null)
                     hash = hash * 59 + this.Pricelist.GetHashCode();
 
-                if (this.Currency != null)
-                    hash = hash * 59 + this.Currency.GetHashCode();
+                if (this.Name != null)
+                    hash = hash * 59 + this.Name.GetHashCode();
 
-                if (this.Product != null)
-                    hash = hash * 59 + this.Product.GetHashCode();
+                if (this.Description != null)
+                    hash = hash * 59 + this.Description.GetHashCode();
 
-                if (this.ProductId != null)
-                    hash = hash * 59 + this.ProductId.GetHashCode();
+                if (this.Priority != null)
+                    hash = hash * 59 + this.Priority.GetHashCode();
 
-                if (this.Sale != null)
-                    hash = hash * 59 + this.Sale.GetHashCode();
+                if (this.StartDate != null)
+                    hash = hash * 59 + this.StartDate.GetHashCode();
 
-                if (this.List != null)
-                    hash = hash * 59 + this.List.GetHashCode();
+                if (this.EndDate != null)
+                    hash = hash * 59 + this.EndDate.GetHashCode();
 
-                if (this.MinQuantity != null)
-                    hash = hash * 59 + this.MinQuantity.GetHashCode();
+                if (this.ConditionExpression != null)
+                    hash = hash * 59 + this.ConditionExpression.GetHashCode();
 
-                if (this.EffectiveValue != null)
-                    hash = hash * 59 + this.EffectiveValue.GetHashCode();
+                if (this.PredicateVisualTreeSerialized != null)
+                    hash = hash * 59 + this.PredicateVisualTreeSerialized.GetHashCode();
+
+                if (this.Condition != null)
+                    hash = hash * 59 + this.Condition.GetHashCode();
 
                 if (this.CreatedDate != null)
                     hash = hash * 59 + this.CreatedDate.GetHashCode();

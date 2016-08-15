@@ -18,6 +18,12 @@ namespace VirtoCommerce.QuoteModule.Client.Model
     public partial class CategoryLink :  IEquatable<CategoryLink>
     {
         /// <summary>
+        /// Gets or Sets Priority
+        /// </summary>
+        [DataMember(Name="priority", EmitDefaultValue=false)]
+        public int? Priority { get; set; }
+
+        /// <summary>
         /// Gets or Sets CatalogId
         /// </summary>
         [DataMember(Name="catalogId", EmitDefaultValue=false)]
@@ -49,6 +55,7 @@ namespace VirtoCommerce.QuoteModule.Client.Model
         {
             var sb = new StringBuilder();
             sb.Append("class CategoryLink {\n");
+            sb.Append("  Priority: ").Append(Priority).Append("\n");
             sb.Append("  CatalogId: ").Append(CatalogId).Append("\n");
             sb.Append("  Catalog: ").Append(Catalog).Append("\n");
             sb.Append("  CategoryId: ").Append(CategoryId).Append("\n");
@@ -90,6 +97,11 @@ namespace VirtoCommerce.QuoteModule.Client.Model
 
             return 
                 (
+                    this.Priority == other.Priority ||
+                    this.Priority != null &&
+                    this.Priority.Equals(other.Priority)
+                ) && 
+                (
                     this.CatalogId == other.CatalogId ||
                     this.CatalogId != null &&
                     this.CatalogId.Equals(other.CatalogId)
@@ -122,6 +134,9 @@ namespace VirtoCommerce.QuoteModule.Client.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
+
+                if (this.Priority != null)
+                    hash = hash * 59 + this.Priority.GetHashCode();
 
                 if (this.CatalogId != null)
                     hash = hash * 59 + this.CatalogId.GetHashCode();

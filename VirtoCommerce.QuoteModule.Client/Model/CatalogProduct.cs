@@ -222,6 +222,12 @@ namespace VirtoCommerce.QuoteModule.Client.Model
         public DateTime? EndDate { get; set; }
 
         /// <summary>
+        /// Gets or Sets Priority
+        /// </summary>
+        [DataMember(Name="priority", EmitDefaultValue=false)]
+        public int? Priority { get; set; }
+
+        /// <summary>
         /// Gets or Sets Properties
         /// </summary>
         [DataMember(Name="properties", EmitDefaultValue=false)]
@@ -371,6 +377,7 @@ namespace VirtoCommerce.QuoteModule.Client.Model
             sb.Append("  Vendor: ").Append(Vendor).Append("\n");
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
             sb.Append("  EndDate: ").Append(EndDate).Append("\n");
+            sb.Append("  Priority: ").Append(Priority).Append("\n");
             sb.Append("  Properties: ").Append(Properties).Append("\n");
             sb.Append("  PropertyValues: ").Append(PropertyValues).Append("\n");
             sb.Append("  Images: ").Append(Images).Append("\n");
@@ -596,6 +603,11 @@ namespace VirtoCommerce.QuoteModule.Client.Model
                     this.EndDate.Equals(other.EndDate)
                 ) && 
                 (
+                    this.Priority == other.Priority ||
+                    this.Priority != null &&
+                    this.Priority.Equals(other.Priority)
+                ) && 
+                (
                     this.Properties == other.Properties ||
                     this.Properties != null &&
                     this.Properties.SequenceEqual(other.Properties)
@@ -800,6 +812,9 @@ namespace VirtoCommerce.QuoteModule.Client.Model
 
                 if (this.EndDate != null)
                     hash = hash * 59 + this.EndDate.GetHashCode();
+
+                if (this.Priority != null)
+                    hash = hash * 59 + this.Priority.GetHashCode();
 
                 if (this.Properties != null)
                     hash = hash * 59 + this.Properties.GetHashCode();
