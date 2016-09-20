@@ -35,7 +35,7 @@ namespace VirtoCommerce.QuoteModule.Data.Converters
             retVal.Sku = quoteItem.Sku;
             if (quoteItem.SelectedTierPrice != null)
             {
-                retVal.PlacedPrice = quoteItem.SelectedTierPrice.Price;
+                retVal.SalePrice = quoteItem.SelectedTierPrice.Price;
                 retVal.Quantity = (int)quoteItem.SelectedTierPrice.Quantity;
              }
             return retVal;
