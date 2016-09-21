@@ -40,7 +40,7 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
             var retVal = _quoteRequestService.Search(criteria);
             return Ok(new webModel.QuoteRequestSearchResult
             {
-                QuoteRequests = retVal.QuoteRequests.Select(x => x.ToWebModel()).ToList(),
+                QuoteRequests = retVal.Results.Select(x => x.ToWebModel()).ToList(),
                 TotalCount = retVal.TotalCount
             });
         }
@@ -59,7 +59,7 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
 
             if (quote == null)
             {
-                quote = _quoteRequestService.Search(new Domain.Quote.Model.QuoteRequestSearchCriteria { Number = id }).QuoteRequests.FirstOrDefault();
+                quote = _quoteRequestService.Search(new Domain.Quote.Model.QuoteRequestSearchCriteria { Number = id }).Results.FirstOrDefault();
             }
 
             if (quote == null)

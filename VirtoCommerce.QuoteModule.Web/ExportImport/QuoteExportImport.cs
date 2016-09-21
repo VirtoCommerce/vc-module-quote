@@ -47,12 +47,12 @@ namespace VirtoCommerce.QuoteModule.Web.ExportImport
             var retVal = new BackupObject();
             var progressInfo = new ExportImportProgressInfo();
        
-            var searchResponse = _quoteRequestService.Search(new QuoteRequestSearchCriteria { Count = int.MaxValue });
+            var searchResponse = _quoteRequestService.Search(new QuoteRequestSearchCriteria { Take = int.MaxValue });
 
-            progressInfo.Description = String.Format("{0} RFQs loading", searchResponse.QuoteRequests.Count());
+            progressInfo.Description = String.Format("{0} RFQs loading", searchResponse.Results.Count());
             progressCallback(progressInfo);
 
-            retVal.QuoteRequests = _quoteRequestService.GetByIds(searchResponse.QuoteRequests.Select(x => x.Id).ToArray()).ToList();
+            retVal.QuoteRequests = _quoteRequestService.GetByIds(searchResponse.Results.Select(x => x.Id).ToArray()).ToList();
 
             return retVal;
         }

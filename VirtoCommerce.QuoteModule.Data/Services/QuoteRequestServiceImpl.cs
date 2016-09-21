@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VirtoCommerce.Domain.Commerce.Model.Search;
 using VirtoCommerce.Domain.Common;
 using VirtoCommerce.Domain.Quote.Events;
 using VirtoCommerce.Domain.Quote.Model;
@@ -109,9 +110,9 @@ namespace VirtoCommerce.QuoteModule.Data.Services
 			}
 		}
 
-        public QuoteRequestSearchResult Search(QuoteRequestSearchCriteria criteria)
+        public GenericSearchResult<QuoteRequest> Search(QuoteRequestSearchCriteria criteria)
         {
-            QuoteRequestSearchResult retVal = null;
+            var retVal = new GenericSearchResult<QuoteRequest>();           
             using (var repository = _repositoryFactory())
             {
                 var query = repository.QuoteRequests;
@@ -141,18 +142,19 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                 {
                     query = query.Where(x => x.Status == criteria.Status);
                 }
-                var ids = query.OrderByDescending(x => x.CreatedDate)
-                               .Skip(criteria.Start)
-                               .Take(criteria.Count)
-                               .Select(x => x.Id)
-                               .ToArray();
-
-                retVal = new QuoteRequestSearchResult
+                var sortInfos = criteria.SortInfos;
+                if (sortInfos.IsNullOrEmpty())
                 {
-                    TotalCount = query.Count(),
-                    QuoteRequests = GetByIds(ids).ToList()
-                };
+                    sortInfos = new[] { new SortInfo { SortColumn = ReflectionUtility.GetPropertyName<QuoteRequest>(x => x.CreatedDate), SortDirection = SortDirection.Descending } };
+                }
+                query = query.OrderBySortInfos(sortInfos);
 
+                retVal.TotalCount = query.Count();
+
+                var ids = query.Select(x => x.Id).Skip(criteria.Skip).Take(criteria.Take).ToArray();
+
+                var quotes = GetByIds(ids);
+                retVal.Results = quotes.AsQueryable<QuoteRequest>().OrderBySortInfos(sortInfos).ToList(); 
             }
             return retVal;
         }

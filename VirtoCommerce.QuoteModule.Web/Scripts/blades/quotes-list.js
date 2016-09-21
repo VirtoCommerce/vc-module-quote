@@ -10,8 +10,8 @@
             quotes.search({
                 keyword: filter.keyword,
                 sort: uiGridHelper.getSortExpression($scope),
-                start: ($scope.pageSettings.currentPage - 1) * $scope.pageSettings.itemsPerPageCount,
-                count: $scope.pageSettings.itemsPerPageCount
+                skip: ($scope.pageSettings.currentPage - 1) * $scope.pageSettings.itemsPerPageCount,
+                take: $scope.pageSettings.itemsPerPageCount
             }, function (data) {
                 blade.isLoading = false;
 
