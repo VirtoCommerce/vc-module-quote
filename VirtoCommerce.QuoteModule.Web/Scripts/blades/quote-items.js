@@ -27,7 +27,7 @@
                     var newLineItem =
                     {
                         productId: data.id,
-                        product: { code: data.code },
+                        sku: data.code,
                         catalogId: data.catalogId,
                         categoryId: data.categoryId,
                         name: data.name,
