@@ -1,0 +1,145 @@
+{
+  "quotes": {
+	"main-menu-title": "Kostenvoranschläge",
+    "blades": {
+      "quotes-assets": {
+        "subtitle": "Anhänge",
+        "labels": {
+          "drag-note": "Anzuhängende Dateien hier hin ziehen",
+          "select-files": "Dateien auswählen",
+          "progress": "Fortschritt",
+          "type": "Typ",
+          "name": "Name",
+          "actions": "Aktionen"
+        }
+      },
+      "quote-detail": {
+        "subtitle": "Details zum Kostenvoranschlag",
+        "labels": {
+          "customer": "Kunde",
+          "created": "Erstellt",
+          "customer-organization": "Organisation",
+          "last-updated": "Letzte Aktualisierung",
+          "status": "Status",
+          "expiry-date": "Verfalldatum",
+          "assigned-to": "Zugewiesen zu",
+          "rfq-from": "Angebotsanforderung von",
+          "reminder-date": "Mahndatum",
+          "general-comment": "Allgemeine Bemerkung",
+          "internal-comment": "Interne Bemerkung"
+        },
+        "placeholders": {
+          "status": "Wählen Sie aus...",
+          "expiry-date": "Datum auswählen",
+          "assigned-to": "Wählen Sie aus...",
+          "rfq-from": "Shop auswählen",
+          "reminder-date": "Datum auswählen",
+          "general-comment": "Allgemeine Anmerkung",
+          "internal-comment": "Interne Bemerkung"
+        }
+      },
+      "quote-items": {
+        "title": "{{title}} Positionen",
+        "subtitle": "Positionen bearbeiten",
+        "labels": {
+          "new-subtotal": "Neue Zwischensumme",
+          "relative-discount": "Rabatt",
+          "shipping-method": "Versandart",
+          "manual-shipping-total": "Manueller Versand gesamt",
+          "sub-total-placed": "Zwischensumme (gesetzt).",
+          "adjustment-quote": "Justierung",
+          "sub-total": "Zwischensumme",
+          "shipping": "Versand",
+          "discount": "Rabatt",
+          "grand-total": "Gesamtsumme",
+          "taxes": "Steuern",
+          "grand-total-incl-tax": "Gesamtbetrag (Inkl. Steuern)",
+          "picture": "Bild",
+          "comment": "Kommentar mit Produkt",
+          "list-price": "Listenpreis",
+          "sale-price": "Sonderangebot",
+          "quantity": "Menge",
+          "proposed-price": "Vorgeschlagener Preis",
+          "margin": "Marge (GP)",
+          "product": "Produkt",
+          "sku": "Art.-Nr."
+        },
+        "placeholders": {
+          "shipping-method": "Wählen Sie aus...",
+          "comment": "Kommentar eingeben"
+        }
+      },
+      "quotes-list": {
+        "title": "Kostenvoranschläge",
+        "labels": {
+          "quote-number": "Angebot Nr.",
+          "status": "Status",
+          "items-count": "Anzahl Artikel",
+          "customer": "Kunde",
+          "created": "Erstellt",
+          "no-quotes": "Keine Angebote noch"
+        }
+      },
+      "catalog-items-select": {
+        "title": "Artikel zum Angebot einfügen"
+      }
+    },
+    "widgets": {
+      "quote-address": {
+        "address-type": "Adresse eingeben",
+        "no-address": "Keine Adresse",
+        "blade-subtitle": "Adressen verwalten"
+      },
+      "quotes-assets": {
+        "title": "Anhänge"
+      },
+      "quote-items": {
+        "title": "Posten"
+      },
+      "quote-totals": {
+        "sub-total": "Zwischensumme",
+        "shipping": "Versand",
+        "discount": "Rabatt",
+        "grand-total": "Gesamtsumme"
+      }
+    },
+    "dialogs": {
+      "quote-requests-delete": {
+        "title": "Bestätigung löschen",
+        "message": "Sind Sie sicher, dass Sie ausgewählte Angebotanfragen löschen möchten?"
+      },
+      "quote-delete": {
+        "title": "Bestätigung löschen",
+        "message": "Möchten Sie dieses Angebot wirklich löschen?"
+      },
+      "quote-save": {
+        "title": "Änderungen speichern",
+        "message": "Der Kostenvoranschlag wurde geändert. Möchten Sie die Änderungen speichern?"
+      },
+      "quote-cancel": {
+        "title": "Angebot stornieren",
+        "message": "Möchten Sie dieses Angebot wirklich abbrechen?",
+        "placeholders": {
+          "reason": "Ein Grund, hier abzubrechen..."
+        }
+      },
+      "proposal-delete": {
+        "title": "Vorschlag bestätigen",
+        "message": "Nur begrenzte Änderungen sind verfügbar, nachdem der Antrag gesendet wurde. Sind Sie sicher, dass Sie diesen Vorschlag an den Kunden schicken möchten?"
+      },
+      "hold-confirmation": {
+        "title": "Warteschleifen Bestätigung",
+        "message-release": "Bist du sicher, dass die Pausierung aus diesem Angebot freigeben willst?",
+        "message-place": "Bist du sicher, dass die Pausierung aus diesem Angebot einsetzen willst?"
+      }
+    },
+    "commands": {
+      "release-hold": "Pausierung aufheben",
+      "place-on-hold": "Pausieren",
+      "submit-proposal": "Vorschlag senden",
+      "cancel-document": "Beleg stornieren",
+      "add-selected": "Ausgewählte hinzufügen",
+      "add-item": "Artikel hinzufügen"
+    }
+  }
+}
