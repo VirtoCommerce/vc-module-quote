@@ -45,6 +45,8 @@
           "new-subtotal": "New subtotal",
           "relative-discount": "Relative discount",
           "shipping-method": "Shipping method",
+          "enter-relative-discount": "Enter relative discount",
+          "enter-new-subtotal": "Enter new subtotal",
           "manual-shipping-total": "Manual shipping total",
           "sub-total-placed": "Sub Total (placed)",
           "adjustment-quote": "Adjustment Quote",

@@ -20,7 +20,7 @@
                             <ul class="list __info">
                                 <li class="list-item">
                                     <div class="list-t">{{ 'quotes.blades.quote-detail.labels.created' | translate }}</div>
-                                    <div class="list-descr">{{blade.currentEntity.createdDate}}</div>
+                                    <div class="list-descr">{{blade.currentEntity.createdDate | amParse | date:'medium'}}</div>
                                 </li>
                             </ul>
                         </div>
@@ -38,7 +38,7 @@
                             <ul class="list __info">
                                 <li class="list-item">
                                     <div class="list-t">{{ 'quotes.blades.quote-detail.labels.last-updated' | translate }}</div>
-                                    <div class="list-descr">{{blade.currentEntity.modifiedDate}}</div>
+                                    <div class="list-descr">{{blade.currentEntity.modifiedDate | amParse | date:'medium'}}</div>
                                 </li>
                             </ul>
                         </div>
@@ -59,7 +59,7 @@
                             <div class="form-group">
                                 <label class="form-label">{{ 'quotes.blades.quote-detail.labels.expiry-date' | translate }}</label>
                                 <div class="form-input __calendar">
-                                    <input placeholder="{{ 'quotes.blades.quote-detail.placeholders.expiry-date' | translate }}" ng-model="blade.currentEntity.expirationDate" datepicker-popup="shortDate" is-open="datepickers.exp" close-text="Close" min-date="today" />
+                                    <input placeholder="{{ 'quotes.blades.quote-detail.placeholders.expiry-date' | translate }}" ng-model="blade.currentEntity.expirationDate" datepicker-popup="" is-open="datepickers.exp" min-date="today" />
                                     <button class="btn" type="button" ng-click="open($event,'exp')">
                                         <i class="btn-ico fa fa-calendar"></i>
                                     </button>
@@ -92,7 +92,7 @@
                             <div class="form-group">
                                 <label class="form-label">{{ 'quotes.blades.quote-detail.labels.reminder-date' | translate }}</label>
                                 <div class="form-input __calendar">
-                                    <input placeholder="{{ 'quotes.blades.quote-detail.placeholders.reminder-date' | translate }}" ng-model="blade.currentEntity.reminderDate" datepicker-popup="shortDate" is-open="datepickers.rmd" close-text="Close" min-date="today" />
+                                    <input placeholder="{{ 'quotes.blades.quote-detail.placeholders.reminder-date' | translate }}" ng-model="blade.currentEntity.reminderDate" datepicker-popup="" is-open="datepickers.rmd" min-date="today" />
                                     <button class="btn" type="button" ng-click="open($event,'rmd')">
                                         <i class="btn-ico fa fa-calendar"></i>
                                     </button>

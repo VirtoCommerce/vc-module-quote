@@ -50,10 +50,13 @@ angular.module(moduleName, [])
           template: 'Modules/$(VirtoCommerce.Quote)/Scripts/widgets/quote-address-widget.tpl.html'
       }, 'quoteDetail');
       widgetService.registerWidget({
+          controller: 'virtoCommerce.quoteModule.quoteItemsWidgetController',
+          template: 'Modules/$(VirtoCommerce.Quote)/Scripts/widgets/quote-items-widget.tpl.html'
+      }, 'quoteDetail');
+      widgetService.registerWidget({
           size: [2, 1],
           controller: 'virtoCommerce.quoteModule.quoteItemsWidgetController',
           template: 'Modules/$(VirtoCommerce.Quote)/Scripts/widgets/quote-totals-widget.tpl.html'
-          //template: 'Modules/$(VirtoCommerce.Quote)/Scripts/widgets/quote-items-widget.tpl.html'
       }, 'quoteDetail');
       widgetService.registerWidget({
           controller: 'virtoCommerce.quoteModule.quoteAssetWidgetController',

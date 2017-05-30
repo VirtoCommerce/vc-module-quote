@@ -165,6 +165,7 @@
     <Content Include="Scripts\blades\quotes-list.tpl.html" />
     <Content Include="Scripts\dialogs\cancelQuote-dialog.tpl.html" />
     <Content Include="Scripts\resources\quotes.js" />
+    <Content Include="Scripts\widgets\quote-totals-widget.js" />
     <Content Include="Scripts\widgets\quote-totals-widget.tpl.html" />
     <Content Include="Scripts\widgets\quote-asset-widget.js" />
     <Content Include="Scripts\widgets\quote-asset-widget.tpl.html" />

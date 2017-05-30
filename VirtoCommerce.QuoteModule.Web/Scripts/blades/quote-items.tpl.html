@@ -3,28 +3,30 @@
         <div class="column">
             <fieldset ng-disabled="blade.isLocked()">
                 <div class="quote-discount">
-                    <div class="quote-t" ng-show="totals.isDiscountAbsolute">{{'quotes.blades.quote-items.labels.new-subtotal' | translate}},  {{ blade.currentEntity.currency}}</div>
+                    <div class="quote-t" ng-show="totals.isDiscountAbsolute">{{'quotes.blades.quote-items.labels.new-subtotal' | translate}}</div>
                     <div class="quote-t" ng-hide="totals.isDiscountAbsolute">{{ 'quotes.blades.quote-items.labels.relative-discount' | translate }}</div>
-                    <div class="form-input __mini __inline">
+                    <div class="form-input __inline __currency">
+                        <span class="currency">{{blade.currentEntity.currency}}</span>
                         <input money required ng-model="blade.currentEntity.manualSubTotal" ng-change="recalculate()" ng-hide="!totals.isDiscountAbsolute">
                         <input money required ng-model="blade.currentEntity.manualRelDiscountAmount" ng-change="recalculate()" ng-hide="totals.isDiscountAbsolute">
                     </div>
-                    <button class="btn" ng-click="blade.currentEntity.manualSubTotal=blade.currentEntity.manualRelDiscountAmount=0;totals.isDiscountAbsolute=!totals.isDiscountAbsolute">{{totals.isDiscountAbsolute ? 'Enter relative discount': 'Enter new subtotal'}}</button>
+                    <button class="btn" ng-click="blade.currentEntity.manualSubTotal=blade.currentEntity.manualRelDiscountAmount=0;totals.isDiscountAbsolute=!totals.isDiscountAbsolute">{{(totals.isDiscountAbsolute ? 'quotes.blades.quote-items.labels.enter-new-subtotal' : 'quotes.blades.quote-items.labels.enter-relative-discount') | translate}}</button>
                 </div>
                 <div class="form-group">
                     <label class="form-label">{{ 'quotes.blades.quote-items.labels.shipping-method' | translate }}</label>
                     <div class="form-input">
                         <ui-select ng-model="blade.currentEntity.shipmentMethod" ng-change="recalculate()">
-                            <ui-select-match placeholder="{{ 'quotes.blades.quote-items.placeholders.shipping-method' | translate }}" allow-clear>{{$select.selected.name}} - {{$select.selected.price}} {{$select.selected.currency}}</ui-select-match>
+                            <ui-select-match placeholder="{{ 'quotes.blades.quote-items.placeholders.shipping-method' | translate }}" allow-clear>{{$select.selected.name ? $select.selected.name + '&nbsp;-&nbsp;' : ''}}{{$select.selected.price | currency:$select.selected.currency}}</ui-select-match>
                             <ui-select-choices repeat="x in blade.shippingMethods | filter: { name: $select.search }">
-                                <span ng-bind-html="x.name +' - '+ x.price+' '+ x.currency | highlight: $select.search"></span>
+                                <span ng-bind-html="(x.name ? x.name + '&nbsp;-&nbsp;' : '') + (x.price | currency:x.currency) | highlight: $select.search"></span>
                             </ui-select-choices>
                         </ui-select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">{{ 'quotes.blades.quote-items.labels.manual-shipping-total' | translate }}, {{blade.currentEntity.currency}}</label>
-                    <div class="form-input">
+                    <label class="form-label">{{ 'quotes.blades.quote-items.labels.manual-shipping-total' | translate }}</label>
+                    <div class="form-input __currency">
+                        <span class="currency">{{blade.currentEntity.currency}}</span>
                         <input money ng-model="blade.currentEntity.manualShippingTotal" ng-change="recalculate()">
                     </div>
                 </div>
@@ -34,35 +36,35 @@
             <table class="table __collapsed">
                 <tr class="table-item">
                     <td class="table-col">{{ 'quotes.blades.quote-items.labels.sub-total-placed' | translate }}</td>
-                    <td class="table-col __price">{{blade.currentEntity.totals.originalSubTotalExlTax | number:2}}&nbsp;{{blade.currentEntity.currency}}</td>
+                    <td class="table-col __price">{{blade.currentEntity.totals.originalSubTotalExlTax | currency:blade.currentEntity.currency}}</td>
                 </tr>
                 <tr class="table-item">
                     <td class="table-col">{{ 'quotes.blades.quote-items.labels.adjustment-quote' | translate }}</td>
-                    <td class="table-col __price">{{blade.currentEntity.totals.adjustmentQuoteExlTax | number:2}}&nbsp;{{blade.currentEntity.currency}}</td>
+                    <td class="table-col __price">{{blade.currentEntity.totals.adjustmentQuoteExlTax | currency:blade.currentEntity.currency}}</td>
                 </tr>
                 <tr class="table-item">
                     <td class="table-col">{{ 'quotes.blades.quote-items.labels.sub-total' | translate }}</td>
-                    <td class="table-col __price">{{blade.currentEntity.totals.subTotalExlTax | number:2}}&nbsp;{{blade.currentEntity.currency}}</td>
+                    <td class="table-col __price">{{blade.currentEntity.totals.subTotalExlTax | currency:blade.currentEntity.currency}}</td>
                 </tr>
                 <tr class="table-item">
                     <td class="table-col">{{ 'quotes.blades.quote-items.labels.shipping' | translate }}</td>
-                    <td class="table-col __price">{{blade.currentEntity.totals.shippingTotal | number:2}}&nbsp;{{blade.currentEntity.currency}}</td>
+                    <td class="table-col __price">{{blade.currentEntity.totals.shippingTotal | currency:blade.currentEntity.currency}}</td>
                 </tr>
                 <tr class="table-item">
                     <td class="table-col">{{ 'quotes.blades.quote-items.labels.discount' | translate }}</td>
-                    <td class="table-col __price">{{blade.currentEntity.totals.discountTotal | number:2}}&nbsp;{{blade.currentEntity.currency}}</td>
+                    <td class="table-col __price">{{blade.currentEntity.totals.discountTotal | currency:blade.currentEntity.currency}}</td>
                 </tr>
                 <tr class="table-item __total">
                     <td class="table-col">{{ 'quotes.blades.quote-items.labels.grand-total' | translate }}</td>
-                    <td class="table-col __price">{{blade.currentEntity.totals.grandTotalExlTax | number:2}}&nbsp;{{blade.currentEntity.currency}}</td>
+                    <td class="table-col __price">{{blade.currentEntity.totals.grandTotalExlTax | currency:blade.currentEntity.currency}}</td>
                 </tr>
                 <tr class="table-item">
                     <td class="table-col">{{ 'quotes.blades.quote-items.labels.taxes' | translate }}</td>
-                    <td class="table-col __price">{{blade.currentEntity.totals.taxTotal | number:2}}&nbsp;{{blade.currentEntity.currency}}</td>
+                    <td class="table-col __price">{{blade.currentEntity.totals.taxTotal | currency:blade.currentEntity.currency}}</td>
                 </tr>
                 <tr class="table-item __total">
                     <td class="table-col">{{ 'quotes.blades.quote-items.labels.grand-total-incl-tax' | translate }}</td>
-                    <td class="table-col __price">{{blade.currentEntity.totals.grandTotalInclTax | number:2}}&nbsp;{{blade.currentEntity.currency}}</td>
+                    <td class="table-col __price">{{blade.currentEntity.totals.grandTotalInclTax | currency:blade.currentEntity.currency}}</td>
                 </tr>
             </table>
         </div>
@@ -111,10 +113,10 @@
                                     </div>
                                 </td>
                                 <td class="table-col">
-                                    <span>{{data.listPrice}}</span>
+                                    <span>{{data.listPrice | currency:blade.currentEntity.currency}}</span>
                                 </td>
                                 <td class="table-col">
-                                    <span>{{data.salePrice}}</span>
+                                    <span>{{data.salePrice | currency:blade.currentEntity.currency}}</span>
                                 </td>
                                 <td class="table-col">
                                     <a class="list-link" ng-click="addProposalTier(data, $index)">{{'platform.commands.add' | translate}}</a>
@@ -139,7 +141,7 @@
                                 <td class="table-col">
                                     <div class="table-space"></div>
                                     <div class="form-input" ng-repeat="p in data.proposalPrices | orderBy:['quantity','price']">
-                                        <p class="form-text">{{getMargin(data, p)}} %</p>
+                                        <p class="form-text">{{getMargin(data, p) | number}} %</p>
                                     </div>
                                 </td>
                             </tr>
