@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VirtoCommerce.Platform.Core.Common;
 
 namespace VirtoCommerce.QuoteModule.Data.Model
 {
-	public class AddressEntity : Entity
+    public class AddressEntity : Entity
 	{
 		[StringLength(32)]
 		public string AddressType { get; set; }
@@ -43,8 +39,79 @@ namespace VirtoCommerce.QuoteModule.Data.Model
 		[StringLength(64)]
 		public string Email { get; set; }
 
-		public virtual QuoteRequestEntity QuoteRequest { get; set; }
-		public string QuoteRequestId { get; set; }
+        #region Navigation Properties
 
-	}
+        public string QuoteRequestId { get; set; }
+        public virtual QuoteRequestEntity QuoteRequest { get; set; }
+        
+        #endregion
+       
+        public virtual AddressEntity ToModel(AddressEntity address)
+        {
+            if (address == null)
+              throw new ArgumentNullException(nameof(address));
+
+            address.Id = this.Id;
+            address.AddressType = this.AddressType;
+            address.Organization = this.Organization;
+            address.CountryCode = this.CountryCode;
+            address.CountryName = this.CountryName;
+            address.City = this.City;
+            address.PostalCode = this.PostalCode;
+            address.Line1 = this.Line1;
+            address.Line2 = this.Line2;
+            address.RegionId = this.RegionId;
+            address.RegionName = this.RegionName;
+            address.FirstName = this.FirstName;
+            address.LastName = this.LastName;
+            address.Phone = this.Phone;
+            address.Email = this.Email;
+            address.QuoteRequestId = this.QuoteRequestId;
+
+            return address;
+        }
+
+        public virtual AddressEntity FromModel(AddressEntity address)
+        {
+            if (address == null)
+              throw new ArgumentNullException(nameof(address));
+
+            this.Id = address.Id;
+            this.AddressType = address.AddressType;
+            this.Organization = address.Organization;
+            this.CountryCode = address.CountryCode;
+            this.CountryName = address.CountryName;
+            this.City = address.City;
+            this.PostalCode = address.PostalCode;
+            this.Line1 = address.Line1;
+            this.Line2 = address.Line2;
+            this.RegionId = address.RegionId;
+            this.RegionName = address.RegionName;
+            this.FirstName = address.FirstName;
+            this.LastName = address.LastName;
+            this.Phone = address.Phone;
+            this.Email = address.Email;
+            this.QuoteRequestId = address.QuoteRequestId;
+           
+            return this;
+        }
+      
+        public virtual void Patch(AddressEntity target)
+        {
+            target.AddressType= this.AddressType;
+            target.Organization = this.Organization;
+            target.CountryCode = this.CountryCode;
+            target.CountryName = this.CountryName;
+            target.City = this.City;
+            target.PostalCode = this.PostalCode;
+            target.Line1 = this.Line1;
+            target.Line2 = this.Line2;
+            target.RegionId = this.RegionId;
+            target.RegionName = this.RegionName;
+            target.FirstName = this.FirstName;
+            target.LastName = this.LastName;
+            target.Phone = this.Phone;
+            target.Email = this.Email;
+        }
+    }
 }
