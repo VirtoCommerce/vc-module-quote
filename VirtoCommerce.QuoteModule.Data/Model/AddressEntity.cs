@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using VirtoCommerce.Domain.Commerce.Model;
 using VirtoCommerce.Platform.Core.Common;
 
 namespace VirtoCommerce.QuoteModule.Data.Model
@@ -46,13 +47,12 @@ namespace VirtoCommerce.QuoteModule.Data.Model
         
         #endregion
        
-        public virtual AddressEntity ToModel(AddressEntity address)
+        public virtual Address ToModel(Address address)
         {
             if (address == null)
               throw new ArgumentNullException(nameof(address));
 
-            address.Id = this.Id;
-            address.AddressType = this.AddressType;
+            address.AddressType = (AddressType)Enum.Parse(typeof(AddressType), this.AddressType);
             address.Organization = this.Organization;
             address.CountryCode = this.CountryCode;
             address.CountryName = this.CountryName;
@@ -66,18 +66,16 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             address.LastName = this.LastName;
             address.Phone = this.Phone;
             address.Email = this.Email;
-            address.QuoteRequestId = this.QuoteRequestId;
 
             return address;
         }
 
-        public virtual AddressEntity FromModel(AddressEntity address)
+        public virtual AddressEntity FromModel(Address address)
         {
             if (address == null)
               throw new ArgumentNullException(nameof(address));
 
-            this.Id = address.Id;
-            this.AddressType = address.AddressType;
+            this.AddressType = address.AddressType.ToString();
             this.Organization = address.Organization;
             this.CountryCode = address.CountryCode;
             this.CountryName = address.CountryName;
@@ -91,7 +89,6 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             this.LastName = address.LastName;
             this.Phone = address.Phone;
             this.Email = address.Email;
-            this.QuoteRequestId = address.QuoteRequestId;
            
             return this;
         }

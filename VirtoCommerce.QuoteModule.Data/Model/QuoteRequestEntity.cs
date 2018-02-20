@@ -3,6 +3,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using VirtoCommerce.Domain.Commerce.Model;
+using VirtoCommerce.Domain.Quote.Model;
 using VirtoCommerce.Platform.Core.Common;
 
 namespace VirtoCommerce.QuoteModule.Data.Model
@@ -79,7 +81,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
 
         #endregion
 
-        public virtual QuoteRequestEntity ToModel(QuoteRequestEntity quoteRequest)
+        public virtual QuoteRequest ToModel(QuoteRequest quoteRequest)
         {
           if (quoteRequest == null)
             throw new ArgumentNullException(nameof(quoteRequest));
@@ -87,7 +89,6 @@ namespace VirtoCommerce.QuoteModule.Data.Model
           quoteRequest.Id = this.Id;
           quoteRequest.Number = this.Number;
           quoteRequest.StoreId = this.StoreId;
-          quoteRequest.StoreName = this.StoreName;
           quoteRequest.ChannelId = this.ChannelId;
           quoteRequest.OrganizationId = this.OrganizationId;
           quoteRequest.OrganizationName = this.OrganizationName;
@@ -104,11 +105,14 @@ namespace VirtoCommerce.QuoteModule.Data.Model
           quoteRequest.Comment = this.Comment;
           quoteRequest.InnerComment = this.InnerComment;
           quoteRequest.Tag = this.Tag;
-          quoteRequest.IsSubmitted = this.IsSubmitted;
           quoteRequest.Currency = this.Currency;
           quoteRequest.LanguageCode = this.LanguageCode;
           quoteRequest.Coupon = this.Coupon;
-          quoteRequest.ShipmentMethodCode = this.ShipmentMethodCode;
+          quoteRequest.ShipmentMethod= new ShipmentMethod
+          {
+            OptionName = this.ShipmentMethodOption,
+            ShipmentMethodCode = this.ShipmentMethodCode
+          };
           quoteRequest.IsCancelled = this.IsCancelled;
           quoteRequest.CancelledDate = this.CancelledDate;
           quoteRequest.CancelReason = this.CancelReason;
@@ -116,22 +120,23 @@ namespace VirtoCommerce.QuoteModule.Data.Model
           quoteRequest.ManualRelDiscountAmount = this.ManualRelDiscountAmount;
           quoteRequest.ManualShippingTotal = this.ManualShippingTotal;
        
-          quoteRequest.Addresses = new ObservableCollection<AddressEntity>(this.Addresses.Select(x => x.ToModel(AbstractTypeFactory<AddressEntity>.TryCreateInstance())));
-          quoteRequest.Items = new ObservableCollection<QuoteItemEntity>(this.Items.Select(x => x.ToModel(AbstractTypeFactory<QuoteItemEntity>.TryCreateInstance())));
-          quoteRequest.Attachments = new ObservableCollection<AttachmentEntity>(this.Attachments.Select(x => x.ToModel(AbstractTypeFactory<AttachmentEntity>.TryCreateInstance())));
+          quoteRequest.Addresses = new ObservableCollection<Address>(this.Addresses.Select(x => x.ToModel(AbstractTypeFactory<Address>.TryCreateInstance())));
+          quoteRequest.Items = new ObservableCollection<QuoteItem>(this.Items.Select(x => x.ToModel(AbstractTypeFactory<QuoteItem>.TryCreateInstance())));
+          quoteRequest.Attachments = new ObservableCollection<QuoteAttachment>(this.Attachments.Select(x => x.ToModel(AbstractTypeFactory<QuoteAttachment>.TryCreateInstance())));
        
           return quoteRequest;
         }
        
-        public virtual QuoteRequestEntity FromModel(QuoteRequestEntity quoteRequest)
+        public virtual QuoteRequestEntity FromModel(QuoteRequest quoteRequest, PrimaryKeyResolvingMap pkMap)
         {
           if (quoteRequest == null)
             throw new ArgumentNullException(nameof(quoteRequest));
-       
+
+          pkMap.AddPair(quoteRequest, this);
+      
           this.Id = quoteRequest.Id;
           this.Number = quoteRequest.Number;
           this.StoreId = quoteRequest.StoreId;
-          this.StoreName = quoteRequest.StoreName;
           this.ChannelId = quoteRequest.ChannelId;
           this.OrganizationId = quoteRequest.OrganizationId;
           this.OrganizationName = quoteRequest.OrganizationName;
@@ -148,11 +153,14 @@ namespace VirtoCommerce.QuoteModule.Data.Model
           this.Comment = quoteRequest.Comment;
           this.InnerComment = quoteRequest.InnerComment;
           this.Tag = quoteRequest.Tag;
-          this.IsSubmitted = quoteRequest.IsSubmitted;
           this.Currency = quoteRequest.Currency;
           this.LanguageCode = quoteRequest.LanguageCode;
           this.Coupon = quoteRequest.Coupon;
-          this.ShipmentMethodCode = quoteRequest.ShipmentMethodCode;
+          if (quoteRequest.ShipmentMethod != null)
+          {
+            this.ShipmentMethodCode = quoteRequest.ShipmentMethod.ShipmentMethodCode;
+            this.ShipmentMethodOption = quoteRequest.ShipmentMethod.OptionName;
+          }
           this.IsCancelled = quoteRequest.IsCancelled;
           this.CancelledDate = quoteRequest.CancelledDate;
           this.CancelReason = quoteRequest.CancelReason;
@@ -166,11 +174,11 @@ namespace VirtoCommerce.QuoteModule.Data.Model
           }
           if (quoteRequest.Items != null)
           {
-            this.Items = new ObservableCollection<QuoteItemEntity>(quoteRequest.Items.Select(x => AbstractTypeFactory<QuoteItemEntity>.TryCreateInstance().FromModel(x)));
+            this.Items = new ObservableCollection<QuoteItemEntity>(quoteRequest.Items.Select(x => AbstractTypeFactory<QuoteItemEntity>.TryCreateInstance().FromModel(x, pkMap)));
           }
           if (quoteRequest.Attachments != null)
           {
-            this.Attachments = new ObservableCollection<AttachmentEntity>(quoteRequest.Attachments.Select(x => AbstractTypeFactory<AttachmentEntity>.TryCreateInstance().FromModel(x)));
+            this.Attachments = new ObservableCollection<AttachmentEntity>(quoteRequest.Attachments.Select(x => AbstractTypeFactory<AttachmentEntity>.TryCreateInstance().FromModel(x, pkMap)));
           }
        
           return this;

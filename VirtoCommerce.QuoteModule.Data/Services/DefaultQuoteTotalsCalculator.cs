@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using VirtoCommerce.Domain.Quote.Model;
 using VirtoCommerce.Domain.Quote.Services;
 using VirtoCommerce.Domain.Shipping.Model;
 using VirtoCommerce.Domain.Store.Services;
-using VirtoCommerce.Domain.Tax.Model;
 using VirtoCommerce.QuoteModule.Data.Converters;
 
 namespace VirtoCommerce.QuoteModule.Data.Services
 {
-    public class DefaultQuoteTotalsCalculator : IQuoteTotalsCalculator
+  public class DefaultQuoteTotalsCalculator : IQuoteTotalsCalculator
     {
         private readonly IStoreService _storeService;
         public DefaultQuoteTotalsCalculator(IStoreService storeService)
@@ -67,7 +62,6 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                     retVal.DiscountTotal = retVal.SubTotalExlTax * quote.ManualRelDiscountAmount * 0.01m;
                 }
             }
-
             return retVal;
         }
         #endregion

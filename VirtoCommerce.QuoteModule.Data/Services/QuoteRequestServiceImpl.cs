@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VirtoCommerce.Domain.Commerce.Model.Search;
 using VirtoCommerce.Domain.Common;
 using VirtoCommerce.Domain.Quote.Events;
@@ -15,13 +13,12 @@ using VirtoCommerce.Platform.Core.DynamicProperties;
 using VirtoCommerce.Platform.Core.Events;
 using VirtoCommerce.Platform.Core.Settings;
 using VirtoCommerce.Platform.Data.Infrastructure;
-using VirtoCommerce.QuoteModule.Data.Converters;
 using VirtoCommerce.QuoteModule.Data.Model;
 using VirtoCommerce.QuoteModule.Data.Repositories;
 
 namespace VirtoCommerce.QuoteModule.Data.Services
 {
-	public class QuoteRequestServiceImpl : ServiceBase, IQuoteRequestService
+    public class QuoteRequestServiceImpl : ServiceBase, IQuoteRequestService
 	{
 		private readonly Func<IQuoteRepository> _repositoryFactory;
 		private readonly IUniqueNumberGenerator _uniqueNumberGenerator;
@@ -46,7 +43,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
 		{
             using (var repository = _repositoryFactory())
             {
-                var retVal = repository.GetQuoteRequestByIds(ids).Select(x => x.ToCoreModel()).ToArray();
+                var retVal = repository.GetQuoteRequestByIds(ids).Select(x => x.ToModel(AbstractTypeFactory<QuoteRequest>.TryCreateInstance())).ToArray();
                 foreach(var quote in retVal)
                 {
                     _dynamicPropertyService.LoadDynamicPropertyValues(quote);
@@ -60,9 +57,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
 		public IEnumerable<QuoteRequest> SaveChanges(QuoteRequest[] quoteRequests)
 		{
 			if (quoteRequests == null)
-			{
 				throw new ArgumentNullException("quoteRequests");
-			}
 		
 			//Generate Number
 			EnsureThatQuoteHasNumber(quoteRequests);
@@ -81,7 +76,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
 						// Do business logic on  quote request
 						_eventPublisher.Publish(new QuoteRequestChangeEvent(EntryState.Modified, GetByIds(new[] { origDbQuote.Id }).First(), changedQuote));
                      
-                        var changedDbQuote = changedQuote.ToDataModel(pkMap);
+                        var changedDbQuote = AbstractTypeFactory<QuoteRequestEntity>.TryCreateInstance().FromModel(changedQuote, pkMap);
                         changeTracker.Attach(origDbQuote);
 						changedDbQuote.Patch(origDbQuote);
 					}
@@ -92,11 +87,11 @@ namespace VirtoCommerce.QuoteModule.Data.Services
 					{
                         // Do business logic on  quote request
                         _eventPublisher.Publish(new QuoteRequestChangeEvent(EntryState.Added, newQuote, newQuote));
-						var newDbQuote = newQuote.ToDataModel(pkMap);
-						repository.Add(newDbQuote);
+						var newDbQuote = AbstractTypeFactory<QuoteRequestEntity>.TryCreateInstance().FromModel(newQuote, pkMap);
+                        repository.Add(newDbQuote);
                     
                     }
-                    repository.UnitOfWork.Commit();
+                    CommitChanges(repository);
                     //Copy generated id from dbEntities to model
                     pkMap.ResolvePrimaryKeys();
 				}
@@ -174,7 +169,6 @@ namespace VirtoCommerce.QuoteModule.Data.Services
             }
         } 
 		#endregion
-
    
 		private void EnsureThatQuoteHasNumber(QuoteRequest[] quoteRequests)
 		{

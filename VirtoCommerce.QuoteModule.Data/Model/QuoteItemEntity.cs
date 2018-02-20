@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using VirtoCommerce.Domain.Quote.Model;
 using VirtoCommerce.Platform.Core.Common;
 
 namespace VirtoCommerce.QuoteModule.Data.Model
@@ -50,7 +51,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
 
        #endregion
      
-       public virtual QuoteItemEntity ToModel(QuoteItemEntity quoteItem)
+       public virtual QuoteItem ToModel(QuoteItem quoteItem)
        {
          if (quoteItem == null)
            throw new ArgumentNullException(nameof(quoteItem));
@@ -67,18 +68,19 @@ namespace VirtoCommerce.QuoteModule.Data.Model
          quoteItem.Comment= this.Comment;
          quoteItem.ImageUrl = this.ImageUrl;
          quoteItem.TaxType = this.TaxType;
-         quoteItem.QuoteRequestId = this.QuoteRequestId;
 
-         quoteItem.ProposalPrices = new ObservableCollection<TierPriceEntity>(this.ProposalPrices.Select(x => x.ToModel(AbstractTypeFactory<TierPriceEntity>.TryCreateInstance())));
+         quoteItem.ProposalPrices = new ObservableCollection<TierPrice>(this.ProposalPrices.Select(x => x.ToModel(AbstractTypeFactory<TierPrice>.TryCreateInstance())));
 
-      return quoteItem;
+         return quoteItem;
        }
      
-       public virtual QuoteItemEntity FromModel(QuoteItemEntity quoteItem)
+       public virtual QuoteItemEntity FromModel(QuoteItem quoteItem, PrimaryKeyResolvingMap pkMap)
        {
          if (quoteItem == null)
            throw new ArgumentNullException(nameof(quoteItem));
-     
+
+         pkMap.AddPair(quoteItem, this);
+        
          this.Id = quoteItem.Id;
          this.Currency = quoteItem.Currency;
          this.ListPrice = quoteItem.ListPrice;
@@ -91,7 +93,6 @@ namespace VirtoCommerce.QuoteModule.Data.Model
          this.Comment = quoteItem.Comment;
          this.ImageUrl = quoteItem.ImageUrl;
          this.TaxType = quoteItem.TaxType;
-         this.QuoteRequestId = quoteItem.QuoteRequestId;
 
          if (quoteItem.ProposalPrices != null)
          {
@@ -117,8 +118,9 @@ namespace VirtoCommerce.QuoteModule.Data.Model
 
          if (!this.ProposalPrices.IsNullCollection())
          {
-           this.ProposalPrices.Patch(target.ProposalPrices, (sourceProposalPrices, targetProposalPrices) => sourceProposalPrices.Patch(targetProposalPrices));
+           var tierPriceComparer = AnonymousComparer.Create((TierPriceEntity x) => x.Quantity + "-" + x.Price);
+           this.ProposalPrices.Patch(target.ProposalPrices, tierPriceComparer, (sourceProposalPrices, targetProposalPrices) => sourceProposalPrices.Patch(targetProposalPrices));
          }
-       }
+    }
     }
 }

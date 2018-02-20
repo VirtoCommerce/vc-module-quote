@@ -88,11 +88,9 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Converters\AddressConverter.cs" />
+    <Compile Include="Converters\AddressComparer.cs" />
     <Compile Include="Converters\QuoteItemConverter.cs" />
-    <Compile Include="Converters\AttachmentConverter.cs" />
     <Compile Include="Converters\QuoteRequestConverter.cs" />
-    <Compile Include="Converters\TierPriceConverter.cs" />
     <Compile Include="Migrations\201509110838465_Initial.cs" />
     <Compile Include="Migrations\201509110838465_Initial.Designer.cs">
       <DependentUpon>201509110838465_Initial.cs</DependentUpon>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using VirtoCommerce.Domain.Quote.Model;
 using VirtoCommerce.Platform.Core.Common;
 
 namespace VirtoCommerce.QuoteModule.Data.Model
@@ -22,7 +23,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
 
         #endregion
        
-        public virtual AttachmentEntity ToModel(AttachmentEntity attachment)
+        public virtual QuoteAttachment ToModel(QuoteAttachment attachment)
         {
           if (attachment == null)
             throw new ArgumentNullException(nameof(attachment));
@@ -32,22 +33,22 @@ namespace VirtoCommerce.QuoteModule.Data.Model
           attachment.Name = this.Name;
           attachment.MimeType = this.MimeType;
           attachment.Size = this.Size;
-          attachment.QuoteRequestId = this.QuoteRequestId;
        
           return attachment;
         }
        
-        public virtual AttachmentEntity FromModel(AttachmentEntity attachment)
+        public virtual AttachmentEntity FromModel(QuoteAttachment attachment, PrimaryKeyResolvingMap pkMap)
         {
           if (attachment == null)
             throw new ArgumentNullException(nameof(attachment));
-       
+
+          pkMap.AddPair(attachment, this);
+
           this.Id = attachment.Id;
           this.Url = attachment.Url;
           this.Name = attachment.Name;
           this.MimeType = attachment.MimeType;
           this.Size = attachment.Size;
-          this.QuoteRequestId = attachment.QuoteRequestId;
        
           return this;
         }

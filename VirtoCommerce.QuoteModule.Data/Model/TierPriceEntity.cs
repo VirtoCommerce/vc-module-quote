@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using VirtoCommerce.Domain.Quote.Model;
 using VirtoCommerce.Platform.Core.Common;
 
 namespace VirtoCommerce.QuoteModule.Data.Model
@@ -17,28 +18,24 @@ namespace VirtoCommerce.QuoteModule.Data.Model
 
         #endregion
        
-        public virtual TierPriceEntity ToModel(TierPriceEntity tierPrice)
+        public virtual TierPrice ToModel(TierPrice tierPrice)
         {
           if (tierPrice == null)
             throw new ArgumentNullException(nameof(tierPrice));
        
-          tierPrice.Id = this.Id;
           tierPrice.Price = this.Price;
           tierPrice.Quantity = this.Quantity;
-          tierPrice.QuoteItemId = this.QuoteItemId;
        
           return tierPrice;
         }
        
-        public virtual TierPriceEntity FromModel(TierPriceEntity tierPrice)
+        public virtual TierPriceEntity FromModel(TierPrice tierPrice)
         {
           if (tierPrice == null)
             throw new ArgumentNullException(nameof(tierPrice));
-       
-          this.Id = tierPrice.Id;
+         
           this.Price = tierPrice.Price;
           this.Quantity = tierPrice.Quantity;
-          this.QuoteItemId = tierPrice.QuoteItemId;
        
           return this;
         }
