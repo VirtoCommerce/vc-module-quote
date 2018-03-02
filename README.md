@@ -68,7 +68,7 @@ A record of the RFQ is maintained in the RFQ request list for a predetermined pe
 
 **RFQ states**
 
-![](https://user-images.githubusercontent.com/23373328/36911111-3e1af342-1e4b-11e8-82ea-0ce9dd2ea300.png)
+![](https://user-images.githubusercontent.com/23373328/36911979-f5a1eae6-1e4d-11e8-8d40-0c5a6d7b8b08.png)
 
 **Enable quotes for store**
 
