@@ -23,33 +23,31 @@ Quotation extension for VirtoCommerce helps store owners to easily manage quotes
 * Edit form fields
 * Customers/Managers can upload multiple attachments
 
-**Merchant Benefits:**
+**Merchant Benefits**
 
-**Automated Process**
+Automated Process:
 
 It enhances the Request for Quote process from the traditional process in which the customers has to make a proposal by hand and send it to the site owner by taking pictures of it or scanning the pages. It gives an online RFQ form which the customers have to fill and send it directly to the admin. You can also set predefined emails to further automate the process.
 
-**RFQ Manager**
+RFQ Manager:
 
 It sends admin email notifications each time a request for quote is made. The admin can find any quote from the RFQ manager with name and details of the client. You can update the status of the quote from here and send the estimate price of the product or service.
 
-**Customer Benefits:**
+**Customer Benefits**
 
-**RFQ form**
+RFQ form:
 
 Customers can now easily enter details in the required fields and send a request for quote instead of the traditional method where the proposal had to be made by hand. It also allows customers to upload files and elaborate the quote further while filling the form.
 
-**Email Alerts**
+Email Alerts:
 
 It facilitates easy and fast track process of acquiring cost estimate without the need for any personal messages to the site owner. Email notifications inform the customer when the proposal has been received or updated by the admin. When the quote status is changed by the admin, the customers will be notified as well.
 
 **Main workflow overview**
 
-![]()/schema/
+![](https://user-images.githubusercontent.com/23373328/36895674-6f160f64-1e18-11e8-98a9-7afc9c463af4.png)
   
 A buyer in VirtoCommerce store can create a Request for Quote (RFQ) for unique variations of goods and services that are offered in the catalog. A buyer can create an RFQ as simple as adding items to regular shopping cart.
-
-![](https://user-images.githubusercontent.com/23373328/36867522-12e4a702-1d9e-11e8-8386-4f3663c0390e.png)
 
 A requisition list is used by buyers to add products to RFQs. Buyers can include multiple products in one RFQ and define unique specifications for each product. They can include attachments on the RFQ or product specification level. They can also specify the terms and conditions for the transaction. When the buyer submits an RFQ request, it is placed into a "Processing" state. A seller can view the RFQ in VirtoCommerce manager and submit a response when the request is in an "active" state. The buyer can also change or cancel the RFQ.
 
@@ -74,17 +72,25 @@ A record of the RFQ is maintained in the RFQ request list for a predetermined pe
 
 **Enable quotes for store**
 
-To enable quotes functionality in your store, switch it on in Commerce manager -> Stores -> /select store/ -> Settings -> EnableQuotes.
+To enable quotes functionality in your store, switch EnableQuotes on in Commerce manager Settings of selected Store.
+
+![](https://user-images.githubusercontent.com/23373328/36892520-a68c15fc-1e0d-11e8-93c9-a0b4aca69e94.png)
 
 **How to use Quotes in the example of VirtoCommerce Storefront**
+
+1. Add product to quote.
 
 ![](https://user-images.githubusercontent.com/23373328/36863170-9e8817ec-1d91-11e8-8f37-4f0da63145e7.png)
 
 ![](https://user-images.githubusercontent.com/23373328/36868793-1fc634c8-1da2-11e8-819f-c117b20afa43.png)
 
+2. Create and submit RFQ.
+
 ![](https://user-images.githubusercontent.com/23373328/36867522-12e4a702-1d9e-11e8-8386-4f3663c0390e.png)
 
-![](https://user-images.githubusercontent.com/23373328/36863285-ec0eea40-1d91-11e8-8fd0-1113bed09db9.png)
+3. Accept/reject proposed offers.
+
+![](https://user-images.githubusercontent.com/23373328/36897976-7e3e6d02-1e21-11e8-92b1-c9ceb44690ab.png)
 
 # Installation
 Installing the module:
