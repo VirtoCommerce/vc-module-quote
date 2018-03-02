@@ -68,7 +68,7 @@ A record of the RFQ is maintained in the RFQ request list for a predetermined pe
 
 **RFQ states**
 
-![](https://user-images.githubusercontent.com/23373328/36860202-50106888-1d89-11e8-8b68-58ad9429d90b.png)
+![](https://user-images.githubusercontent.com/23373328/36903630-f5d253fa-1e36-11e8-91a8-34347380256c.png)
 
 **Enable quotes for store**
 
@@ -86,7 +86,7 @@ To enable quotes functionality in your store, switch EnableQuotes on in Commerce
 
 2. Create and submit RFQ.
 
-![](https://user-images.githubusercontent.com/23373328/36867522-12e4a702-1d9e-11e8-8386-4f3663c0390e.png)
+![](https://user-images.githubusercontent.com/23373328/36898195-76a10ee6-1e22-11e8-824f-8b5cb2854b8e.png)
 
 3. Accept/reject proposed offers.
 
