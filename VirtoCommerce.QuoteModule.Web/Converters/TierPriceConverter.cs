@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Omu.ValueInjecter;
 using coreModel = VirtoCommerce.Domain.Quote.Model;
 using webModel = VirtoCommerce.QuoteModule.Web.Model;
-using VirtoCommerce.Domain.Commerce.Model;
 
 namespace VirtoCommerce.QuoteModule.Web.Converters
 {
@@ -24,7 +19,5 @@ namespace VirtoCommerce.QuoteModule.Web.Converters
             retVal.InjectFrom(tierPrice);
             return retVal;
         }
-
-
     }
 }

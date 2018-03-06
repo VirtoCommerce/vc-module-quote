@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -119,7 +119,12 @@ namespace VirtoCommerce.QuoteModule.Data.Model
           quoteRequest.ManualSubTotal = this.ManualSubTotal;
           quoteRequest.ManualRelDiscountAmount = this.ManualRelDiscountAmount;
           quoteRequest.ManualShippingTotal = this.ManualShippingTotal;
-       
+
+          quoteRequest.CreatedDate = this.CreatedDate;
+          quoteRequest.ModifiedDate = this.ModifiedDate;
+          quoteRequest.CreatedBy = this.CreatedBy;
+          quoteRequest.ModifiedBy = this.ModifiedBy;
+
           quoteRequest.Addresses = new ObservableCollection<Address>(this.Addresses.Select(x => x.ToModel(AbstractTypeFactory<Address>.TryCreateInstance())));
           quoteRequest.Items = new ObservableCollection<QuoteItem>(this.Items.Select(x => x.ToModel(AbstractTypeFactory<QuoteItem>.TryCreateInstance())));
           quoteRequest.Attachments = new ObservableCollection<QuoteAttachment>(this.Attachments.Select(x => x.ToModel(AbstractTypeFactory<QuoteAttachment>.TryCreateInstance())));
@@ -167,8 +172,13 @@ namespace VirtoCommerce.QuoteModule.Data.Model
           this.ManualSubTotal = quoteRequest.ManualSubTotal;
           this.ManualRelDiscountAmount = quoteRequest.ManualRelDiscountAmount;
           this.ManualShippingTotal = quoteRequest.ManualShippingTotal;
-       
-          if (quoteRequest.Addresses != null)
+
+          this.CreatedDate  = quoteRequest.CreatedDate;
+          this.ModifiedDate = quoteRequest.ModifiedDate;
+          this.CreatedBy    = quoteRequest.CreatedBy;
+          this.ModifiedBy   = quoteRequest.ModifiedBy;
+
+            if (quoteRequest.Addresses != null)
           {
             this.Addresses = new ObservableCollection<AddressEntity>(quoteRequest.Addresses.Select(x => AbstractTypeFactory<AddressEntity>.TryCreateInstance().FromModel(x)));
           }
@@ -210,14 +220,20 @@ namespace VirtoCommerce.QuoteModule.Data.Model
           target.LanguageCode = this.LanguageCode;
           target.Coupon = this.Coupon;
           target.ShipmentMethodCode = this.ShipmentMethodCode;
+          target.ShipmentMethodOption = this.ShipmentMethodOption;
           target.IsCancelled = this.IsCancelled;
           target.CancelledDate = this.CancelledDate;
           target.CancelReason = this.CancelReason;
           target.ManualSubTotal = this.ManualSubTotal;
           target.ManualRelDiscountAmount = this.ManualRelDiscountAmount;
           target.ManualShippingTotal = this.ManualShippingTotal;
-       
-          if (!this.Addresses.IsNullCollection())
+
+          target.CreatedDate = this.CreatedDate;
+          target.ModifiedDate = this.ModifiedDate;
+          target.CreatedBy = this.CreatedBy;
+          target.ModifiedBy = this.ModifiedBy;
+
+            if (!this.Addresses.IsNullCollection())
           {
             this.Addresses.Patch(target.Addresses, (sourceAddresses, targetAddresses) => sourceAddresses.Patch(targetAddresses));
           }

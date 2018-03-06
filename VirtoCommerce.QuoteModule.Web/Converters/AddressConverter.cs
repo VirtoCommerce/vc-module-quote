@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Omu.ValueInjecter;
-using coreModel = VirtoCommerce.Domain.Quote.Model;
-using webModel = VirtoCommerce.QuoteModule.Web.Model;
 using VirtoCommerce.Domain.Commerce.Model;
+using webModel = VirtoCommerce.QuoteModule.Web.Model;
 
 namespace VirtoCommerce.QuoteModule.Web.Converters
 {
-	public static class AddressConverter
+    public static class AddressConverter
 	{
 		public static webModel.Address ToWebModel(this Address address)
 		{
@@ -26,7 +21,5 @@ namespace VirtoCommerce.QuoteModule.Web.Converters
             retVal.AddressType = address.AddressType;
             return retVal;
 		}
-
-
 	}
 }

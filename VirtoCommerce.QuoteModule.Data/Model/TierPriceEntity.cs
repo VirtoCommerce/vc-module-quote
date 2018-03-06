@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using VirtoCommerce.Domain.Quote.Model;
 using VirtoCommerce.Platform.Core.Common;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,7 +9,7 @@ using VirtoCommerce.Platform.Core.Common;
 namespace VirtoCommerce.QuoteModule.Data.Model
 {
     public class QuoteItemEntity : Entity
-	{
+    {
 		public QuoteItemEntity()
 		{
 			ProposalPrices = new NullCollection<TierPriceEntity>();

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using VirtoCommerce.Domain.Quote.Model;
 using VirtoCommerce.Platform.Core.Common;
@@ -33,24 +33,34 @@ namespace VirtoCommerce.QuoteModule.Data.Model
           attachment.Name = this.Name;
           attachment.MimeType = this.MimeType;
           attachment.Size = this.Size;
-       
+
+          attachment.CreatedDate = this.CreatedDate;
+          attachment.ModifiedDate = this.ModifiedDate;
+          attachment.CreatedBy = this.CreatedBy;
+          attachment.ModifiedBy = this.ModifiedBy;
+
           return attachment;
         }
-       
+
         public virtual AttachmentEntity FromModel(QuoteAttachment attachment, PrimaryKeyResolvingMap pkMap)
         {
-          if (attachment == null)
-            throw new ArgumentNullException(nameof(attachment));
+            if (attachment == null)
+                throw new ArgumentNullException(nameof(attachment));
 
-          pkMap.AddPair(attachment, this);
+            pkMap.AddPair(attachment, this);
 
-          this.Id = attachment.Id;
-          this.Url = attachment.Url;
-          this.Name = attachment.Name;
-          this.MimeType = attachment.MimeType;
-          this.Size = attachment.Size;
-       
-          return this;
+            this.Id = attachment.Id;
+            this.Url = attachment.Url;
+            this.Name = attachment.Name;
+            this.MimeType = attachment.MimeType;
+            this.Size = attachment.Size;
+
+            this.CreatedDate = attachment.CreatedDate;
+            this.ModifiedDate = attachment.ModifiedDate;
+            this.CreatedBy = attachment.CreatedBy;
+            this.ModifiedBy = attachment.ModifiedBy;
+
+            return this;
         }
        
         public virtual void Patch(AttachmentEntity target)
@@ -59,6 +69,11 @@ namespace VirtoCommerce.QuoteModule.Data.Model
           target.Name = this.Name;
           target.MimeType = this.MimeType;
           target.Size = this.Size;
+
+          target.CreatedDate = this.CreatedDate;
+          target.ModifiedDate = this.ModifiedDate;
+          target.CreatedBy = this.CreatedBy;
+          target.ModifiedBy = this.ModifiedBy;
         }       
     }
 }
