@@ -163,9 +163,14 @@ namespace VirtoCommerce.QuoteModule.Data.Model
           this.Coupon = quoteRequest.Coupon;
           if (quoteRequest.ShipmentMethod != null)
           {
-            this.ShipmentMethodCode = quoteRequest.ShipmentMethod.ShipmentMethodCode;
-            this.ShipmentMethodOption = quoteRequest.ShipmentMethod.OptionName;
+              this.ShipmentMethodCode = quoteRequest.ShipmentMethod.ShipmentMethodCode;
+              this.ShipmentMethodOption = quoteRequest.ShipmentMethod.OptionName;
           }
+          else quoteRequest.ShipmentMethod = new ShipmentMethod
+          {
+              ShipmentMethodCode = "",
+              OptionName = ""
+          };
           this.IsCancelled = quoteRequest.IsCancelled;
           this.CancelledDate = quoteRequest.CancelledDate;
           this.CancelReason = quoteRequest.CancelReason;
