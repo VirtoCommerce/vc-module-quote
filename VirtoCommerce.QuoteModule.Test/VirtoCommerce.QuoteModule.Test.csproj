@@ -74,6 +74,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
     <Reference Include="VirtoCommerce.CoreModule.Data">
       <HintPath>..\packages\VirtoCommerce.CoreModule.Data.2.24.16\lib\net461\VirtoCommerce.CoreModule.Data.dll</HintPath>
     </Reference>
