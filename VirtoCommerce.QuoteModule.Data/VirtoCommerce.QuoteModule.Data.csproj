@@ -117,6 +117,10 @@
     <Compile Include="Migrations\201509231419381_SkuForQuoteItem.Designer.cs">
       <DependentUpon>201509231419381_SkuForQuoteItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804161351421_LongerEmailAddress.cs" />
+    <Compile Include="Migrations\201804161351421_LongerEmailAddress.Designer.cs">
+      <DependentUpon>201804161351421_LongerEmailAddress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\AddressEntity.cs" />
     <Compile Include="Model\AttachmentEntity.cs" />
@@ -160,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509231419381_SkuForQuoteItem.resx">
       <DependentUpon>201509231419381_SkuForQuoteItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804161351421_LongerEmailAddress.resx">
+      <DependentUpon>201804161351421_LongerEmailAddress.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
