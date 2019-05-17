@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,7 +8,7 @@ using VirtoCommerce.Domain.Commerce.Model;
 
 namespace VirtoCommerce.QuoteModule.Web.Model
 {
-	public class Address
+	public class QuoteAddress
 	{
 		[JsonConverter(typeof(StringEnumConverter))]
 		public AddressType AddressType { get; set; }

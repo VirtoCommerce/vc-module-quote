@@ -188,7 +188,7 @@
     <Compile Include="Converters\QuoteRequestConverter.cs" />
     <Compile Include="Converters\AddressConverter.cs" />
     <Compile Include="ExportImport\QuoteExportImport.cs" />
-    <Compile Include="Model\Address.cs" />
+    <Compile Include="Model\QuoteAddress.cs" />
     <Compile Include="Model\QuoteAttachment.cs" />
     <Compile Include="Model\QuoteItem.cs" />
     <Compile Include="Model\QuoteRequest.cs" />
