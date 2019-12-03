@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using VirtoCommerce.Domain.Commerce.Model.Search;
 using VirtoCommerce.Domain.Common;
+using VirtoCommerce.Domain.Common.Events;
 using VirtoCommerce.Domain.Quote.Events;
 using VirtoCommerce.Domain.Quote.Model;
 using VirtoCommerce.Domain.Quote.Services;
@@ -23,11 +24,11 @@ namespace VirtoCommerce.QuoteModule.Data.Services
         private readonly Func<IQuoteRepository> _repositoryFactory;
         private readonly IUniqueNumberGenerator _uniqueNumberGenerator;
         private readonly IDynamicPropertyService _dynamicPropertyService;
-        private readonly IEventPublisher<QuoteRequestChangeEvent> _eventPublisher;
+        private readonly IEventPublisher _eventPublisher;
         private readonly IChangeLogService _changeLogService;
         private readonly IStoreService _storeService;
 
-        public QuoteRequestServiceImpl(Func<IQuoteRepository> quoteRepositoryFactory, IUniqueNumberGenerator uniqueNumberGenerator, IDynamicPropertyService dynamicPropertyService, IEventPublisher<QuoteRequestChangeEvent> eventPublisher, IChangeLogService changeLogService, IStoreService storeService)
+        public QuoteRequestServiceImpl(Func<IQuoteRepository> quoteRepositoryFactory, IUniqueNumberGenerator uniqueNumberGenerator, IDynamicPropertyService dynamicPropertyService, IEventPublisher eventPublisher, IChangeLogService changeLogService, IStoreService storeService)
         {
             _repositoryFactory = quoteRepositoryFactory;
             _uniqueNumberGenerator = uniqueNumberGenerator;
@@ -48,7 +49,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                 {
                     _dynamicPropertyService.LoadDynamicPropertyValues(quote);
                     _changeLogService.LoadChangeLogs(quote);
-                    _eventPublisher.Publish(new QuoteRequestChangeEvent(EntryState.Unchanged, quote, quote));
+                    //_eventPublisher.Publish(new QuoteRequestChangeEvent(EntryState.Unchanged, quote, quote));
                 }
                 return retVal;
             }
@@ -64,6 +65,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
             //Generate Number
             EnsureThatQuoteHasNumber(quoteRequests);
             var pkMap = new PrimaryKeyResolvingMap();
+            var changedEntries = new List<GenericChangedEntry<QuoteRequest>>();
             using (var repository = _repositoryFactory())
             {
                 var ids = quoteRequests.Where(x => x.Id != null).Select(x => x.Id).Distinct().ToArray();
@@ -76,7 +78,8 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                     {
                         var changedQuote = quoteRequests.First(x => x.Id == origDbQuote.Id);
                         // Do business logic on  quote request
-                        _eventPublisher.Publish(new QuoteRequestChangeEvent(EntryState.Modified, GetByIds(new[] { origDbQuote.Id }).First(), changedQuote));
+                        changedEntries.Add(new GenericChangedEntry<QuoteRequest>(changedQuote, origDbQuote.ToCoreModel(), EntryState.Modified));
+                        //_eventPublisher.Publish(new QuoteRequestChangeEvent(EntryState.Modified, GetByIds(new[] { origDbQuote.Id }).First(), changedQuote));
 
                         var changedDbQuote = changedQuote.ToDataModel(pkMap);
                         changeTracker.Attach(origDbQuote);
@@ -88,14 +91,17 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                     foreach (var newQuote in newQuotes)
                     {
                         // Do business logic on  quote request
-                        _eventPublisher.Publish(new QuoteRequestChangeEvent(EntryState.Added, newQuote, newQuote));
+                        changedEntries.Add(new GenericChangedEntry<QuoteRequest>(newQuote, EntryState.Added));
+                        //_eventPublisher.Publish(new QuoteRequestChangeEvent(EntryState.Added, newQuote, newQuote));
                         var newDbQuote = newQuote.ToDataModel(pkMap);
                         repository.Add(newDbQuote);
 
                     }
+                    _eventPublisher.Publish(new QuoteRequestChangeEvent(changedEntries));
                     repository.UnitOfWork.Commit();
                     //Copy generated id from dbEntities to model
                     pkMap.ResolvePrimaryKeys();
+                    _eventPublisher.Publish(new QuoteRequestChangeEvent(changedEntries));
                 }
 
                 //Save dynamic properties
@@ -160,14 +166,18 @@ namespace VirtoCommerce.QuoteModule.Data.Services
         {
             using (var repository = _repositoryFactory())
             {
+                var changedEntries = new List<GenericChangedEntry<QuoteRequest>>();
                 var dbQuotes = repository.GetQuoteRequestByIds(ids);
-                var quotes = GetByIds(ids);
+                //var quotes = GetByIds(ids);
                 foreach (var dbQuote in dbQuotes)
                 {
-                    _eventPublisher.Publish(new QuoteRequestChangeEvent(Platform.Core.Common.EntryState.Deleted, quotes.First(x => x.Id == dbQuote.Id), null));
+                    changedEntries.Add(new GenericChangedEntry<QuoteRequest>(dbQuote.ToCoreModel(), EntryState.Deleted));
+                    //_eventPublisher.Publish(new QuoteRequestChangeEvent(Platform.Core.Common.EntryState.Deleted, quotes.First(x => x.Id == dbQuote.Id), null));
                     repository.Remove(dbQuote);
                 }
+                _eventPublisher.Publish(new QuoteRequestChangeEvent(changedEntries));
                 repository.UnitOfWork.Commit();
+                _eventPublisher.Publish(new QuoteRequestChangeEvent(changedEntries));
             }
         }
         #endregion
