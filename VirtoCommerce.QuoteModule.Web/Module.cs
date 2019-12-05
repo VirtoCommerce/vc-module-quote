@@ -50,7 +50,6 @@ namespace VirtoCommerce.QuoteModule.Web
             _container.RegisterType<IQuoteRepository>(new InjectionFactory(c => new QuoteRepositoryImpl(_connectionStringName, new EntityPrimaryKeyGeneratorInterceptor(), _container.Resolve<AuditableInterceptor>())));
             _container.RegisterType<IQuoteRequestService, QuoteRequestServiceImpl>();
 
-            //_container.RegisterType<IEventPublisher<QuoteRequestChangeEvent>, EventPublisher<QuoteRequestChangeEvent>>();
             //Log quote request changes
             _container.RegisterType<IObserver<QuoteRequestChangeEvent>, LogQuoteChangesObserver>("LogQuoteChangesObserver");
         }
