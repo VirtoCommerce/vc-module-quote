@@ -42,6 +42,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
 
         public IEnumerable<QuoteRequest> GetByIds(params string[] ids)
         {
+            var changedEntries = new List<GenericChangedEntry<QuoteRequest>>();
             using (var repository = _repositoryFactory())
             {
                 var retVal = repository.GetQuoteRequestByIds(ids).Select(x => x.ToCoreModel()).ToArray();
@@ -49,8 +50,9 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                 {
                     _dynamicPropertyService.LoadDynamicPropertyValues(quote);
                     _changeLogService.LoadChangeLogs(quote);
-
+                    changedEntries.Add(new GenericChangedEntry<QuoteRequest>(quote, quote, EntryState.Unchanged));
                 }
+                _eventPublisher.Publish(new QuoteRequestChangeEvent(changedEntries));
                 return retVal;
             }
         }
@@ -99,7 +101,6 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                     repository.UnitOfWork.Commit();
                     //Copy generated id from dbEntities to model
                     pkMap.ResolvePrimaryKeys();
-                    _eventPublisher.Publish(new QuoteRequestChangeEvent(changedEntries));
                 }
 
                 //Save dynamic properties
@@ -173,7 +174,6 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                 }
                 _eventPublisher.Publish(new QuoteRequestChangeEvent(changedEntries));
                 repository.UnitOfWork.Commit();
-                _eventPublisher.Publish(new QuoteRequestChangeEvent(changedEntries));
             }
         }
         #endregion
