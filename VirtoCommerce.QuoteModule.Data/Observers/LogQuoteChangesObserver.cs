@@ -29,61 +29,36 @@ namespace VirtoCommerce.QuoteModule.Data.Observers
 
         public void OnNext(QuoteRequestChangeEvent value)
         {
-            //var origQuote = value.OrigQuote;
-            var origQuote = value.ChangedEntries.Select(x => x.OldEntry);
-
-            var modifiedQuote = value.ChangedEntries.Select(x => x.NewEntry);
-            //var modifiedQuote = value.ModifiedQuote;
-
-            if (value.ChangedEntries.Select(x => x.EntryState).Equals(Platform.Core.Common.EntryState.Modified)
+            var changedEntries = value.ChangedEntries;
+            foreach (var item in changedEntries)
             {
-                var operationLog = new OperationLog
-                {
-                    ObjectId = value.ChangedEntries.Select(x => x.NewEntry.Id).ToString(),
-                    ObjectType = typeof(QuoteRequest).Name,
-                    OperationType = value.ChangedEntries.Select(x => x.EntryState)
-                };
+                var origQuote = item.OldEntry;
+                var modifiedQuote = item.NewEntry;
 
-                if (value.ChangedEntries.Select(x => x.OldEntry.Status).ToString() != value.ChangedEntries.Select(x => x.NewEntry.Status).ToString())
+                if (item.EntryState == Platform.Core.Common.EntryState.Modified)
                 {
-                    operationLog.Detail += String.Format("status changed from {0} -> {1} ", origQuote.Select(x => x.Status).ToString() ?? "undef", modifiedQuote.Select(x => x.Status).ToString() ?? "undef");
+                    var operationLog = new OperationLog
+                    {
+                        ObjectId = item.NewEntry.Id,
+                        ObjectType = typeof(QuoteRequest).Name,
+                        OperationType = item.EntryState
+                    };
+
+                    if (origQuote.Status != modifiedQuote.Status)
+                    {
+                        operationLog.Detail += String.Format("status changed from {0} -> {1} ", origQuote.Status ?? "undef", modifiedQuote.Status ?? "undef");
+                    }
+                    if (origQuote.Comment != modifiedQuote.Comment)
+                    {
+                        operationLog.Detail += String.Format("comment changed ");
+                    }
+                    if (origQuote.IsLocked != modifiedQuote.IsLocked)
+                    {
+                        operationLog.Detail += modifiedQuote.IsLocked ? "lock " : "unlock ";
+                    }
+                    _changeLogService.SaveChanges(operationLog);
                 }
-                if (value.ChangedEntries.Select(x => x.OldEntry.Comment).ToString() != value.ChangedEntries.Select(x => x.NewEntry.Comment).ToString())
-                {
-                    operationLog.Detail += String.Format("comment changed ");
-                }
-                if (Convert.ToBoolean(value.ChangedEntries.Select(x => x.OldEntry.IsLocked)) != Convert.ToBoolean(value.ChangedEntries.Select(x => x.NewEntry.IsLocked)))
-                {
-                    operationLog.Detail += Convert.ToBoolean(modifiedQuote.Select(x => x.IsLocked)) ? "lock " : "unlock ";
-                }
-                _changeLogService.SaveChanges(operationLog);
             }
-
-            //if(value.ChangeState == Platform.Core.Common.EntryState.Modified)
-            //{
-            //    var operationLog = new OperationLog
-            //    {
-            //        ObjectId = value.ModifiedQuote.Id,
-            //        ObjectType = typeof(QuoteRequest).Name,
-            //        OperationType = value.ChangeState
-            //    };
-
-            //    if (origQuote.Status != modifiedQuote.Status)
-            //    {
-            //        operationLog.Detail += String.Format("status changed from {0} -> {1} ", origQuote.Status ?? "undef", modifiedQuote.Status ?? "undef");
-            //    }
-            //    if (origQuote.Comment != modifiedQuote.Comment)
-            //    {
-            //        operationLog.Detail += String.Format("comment changed ");
-            //    }
-
-            //    if(origQuote.IsLocked != modifiedQuote.IsLocked)
-            //    {
-            //        operationLog.Detail += modifiedQuote.IsLocked ? "lock " : "unlock ";
-            //    }
-
-            //    _changeLogService.SaveChanges(operationLog);
-            //}
 
         }
 

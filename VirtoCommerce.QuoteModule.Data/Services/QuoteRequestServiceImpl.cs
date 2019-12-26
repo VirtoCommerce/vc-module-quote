@@ -80,7 +80,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                     {
                         var changedQuote = quoteRequests.First(x => x.Id == origDbQuote.Id);
                         // Do business logic on  quote request
-                        changedEntries.Add(new GenericChangedEntry<QuoteRequest>(changedQuote, origDbQuote.ToCoreModel(), EntryState.Modified));
+                        changedEntries.Add(new GenericChangedEntry<QuoteRequest>(changedQuote, GetByIds(new[] { origDbQuote.Id }).First(), EntryState.Modified));
 
                         var changedDbQuote = changedQuote.ToDataModel(pkMap);
                         changeTracker.Attach(origDbQuote);
@@ -92,15 +92,15 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                     foreach (var newQuote in newQuotes)
                     {
                         // Do business logic on  quote request
-                        changedEntries.Add(new GenericChangedEntry<QuoteRequest>(newQuote, EntryState.Added));
+                        changedEntries.Add(new GenericChangedEntry<QuoteRequest>(newQuote, newQuote, EntryState.Added));
                         var newDbQuote = newQuote.ToDataModel(pkMap);
                         repository.Add(newDbQuote);
 
                     }
-                    _eventPublisher.Publish(new QuoteRequestChangeEvent(changedEntries));
                     repository.UnitOfWork.Commit();
                     //Copy generated id from dbEntities to model
                     pkMap.ResolvePrimaryKeys();
+                    _eventPublisher.Publish(new QuoteRequestChangeEvent(changedEntries));
                 }
 
                 //Save dynamic properties
@@ -167,13 +167,14 @@ namespace VirtoCommerce.QuoteModule.Data.Services
             {
                 var changedEntries = new List<GenericChangedEntry<QuoteRequest>>();
                 var dbQuotes = repository.GetQuoteRequestByIds(ids);
+                var quotes = GetByIds(ids);
                 foreach (var dbQuote in dbQuotes)
                 {
-                    changedEntries.Add(new GenericChangedEntry<QuoteRequest>(dbQuote.ToCoreModel(), EntryState.Deleted));
+                    changedEntries.Add(new GenericChangedEntry<QuoteRequest>(null, quotes.First(x => x.Id == dbQuote.Id), EntryState.Deleted));
                     repository.Remove(dbQuote);
                 }
-                _eventPublisher.Publish(new QuoteRequestChangeEvent(changedEntries));
                 repository.UnitOfWork.Commit();
+                _eventPublisher.Publish(new QuoteRequestChangeEvent(changedEntries));
             }
         }
         #endregion
