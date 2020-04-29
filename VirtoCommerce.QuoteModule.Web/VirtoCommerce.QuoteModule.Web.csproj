@@ -186,9 +186,9 @@
     <Compile Include="Converters\TierPriceConverter.cs" />
     <Compile Include="Converters\QuoteItemConverter.cs" />
     <Compile Include="Converters\QuoteRequestConverter.cs" />
-    <Compile Include="Converters\AddressConverter.cs" />
+    <Compile Include="Converters\QuoteAddressConverter.cs" />
     <Compile Include="ExportImport\QuoteExportImport.cs" />
-    <Compile Include="Model\Address.cs" />
+    <Compile Include="Model\QuoteAddress.cs" />
     <Compile Include="Model\QuoteAttachment.cs" />
     <Compile Include="Model\QuoteItem.cs" />
     <Compile Include="Model\QuoteRequest.cs" />
