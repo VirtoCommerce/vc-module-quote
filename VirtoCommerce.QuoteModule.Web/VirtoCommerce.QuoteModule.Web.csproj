@@ -90,7 +90,6 @@
     <Reference Include="Omu.ValueInjecter">
       <HintPath>..\packages\valueinjecter.2.3.3\lib\net35\Omu.ValueInjecter.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -177,9 +176,9 @@
     <Compile Include="Converters\TierPriceConverter.cs" />
     <Compile Include="Converters\QuoteItemConverter.cs" />
     <Compile Include="Converters\QuoteRequestConverter.cs" />
-    <Compile Include="Converters\AddressConverter.cs" />
+    <Compile Include="Converters\QuoteAddressConverter.cs" />
     <Compile Include="ExportImport\QuoteExportImport.cs" />
-    <Compile Include="Model\Address.cs" />
+    <Compile Include="Model\QuoteAddress.cs" />
     <Compile Include="Model\QuoteAttachment.cs" />
     <Compile Include="Model\QuoteItem.cs" />
     <Compile Include="Model\QuoteRequest.cs" />
