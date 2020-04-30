@@ -95,7 +95,7 @@ namespace VirtoCommerce.QuoteModule.Web.Model
         /// Predefined shipment method used for delivery order created from current RFQ
         /// </summary>
 		public ShipmentMethod ShipmentMethod { get; set; }
-		public ICollection<Address> Addresses { get; set; }
+		public ICollection<QuoteAddress> Addresses { get; set; }
         /// <summary>
         /// RFQ items
         /// </summary>

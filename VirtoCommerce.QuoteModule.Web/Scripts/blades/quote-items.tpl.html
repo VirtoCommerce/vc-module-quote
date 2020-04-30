@@ -145,7 +145,7 @@
                             </tr>
                             <tr ng-repeat-end class="table-item" ng-class="{'__selected': data.id === selectedNodeId}" ng-click='selectItem(data)'>
                                 <td class="table-head" colspan="8" ng-click="openItemDetail(data)">
-                                    <span>{{ 'quotes.blades.quote-items.labels.sku' | translate }}: {{data.product.code}}. {{ 'quotes.blades.quote-items.labels.product' | translate }}: {{data.name}}</span>
+                                    <span>{{ 'quotes.blades.quote-items.labels.sku' | translate }}: {{data.sku}}. {{ 'quotes.blades.quote-items.labels.product' | translate }}: {{data.name}}</span>
                                 </td>
                             </tr>
                         </tbody>
