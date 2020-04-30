@@ -50,7 +50,6 @@ namespace VirtoCommerce.QuoteModule.Web
             _container.RegisterType<IQuoteRepository>(new InjectionFactory(c => new QuoteRepositoryImpl(_connectionStringName, new EntityPrimaryKeyGeneratorInterceptor(), _container.Resolve<AuditableInterceptor>())));
             _container.RegisterType<IQuoteRequestService, QuoteRequestServiceImpl>();
 
-            _container.RegisterType<IEventPublisher<QuoteRequestChangeEvent>, EventPublisher<QuoteRequestChangeEvent>>();
             //Log quote request changes
             _container.RegisterType<IObserver<QuoteRequestChangeEvent>, LogQuoteChangesObserver>("LogQuoteChangesObserver");
         }
@@ -62,8 +61,8 @@ namespace VirtoCommerce.QuoteModule.Web
 
             var settingManager = _container.Resolve<ISettingsManager>();
             var storeSettings = new[] { "Quotes.QuoteRequestNewNumberTemplate", "Quotes.EnableQuotes" };
-            settingManager.RegisterModuleSettings("VirtoCommerce.Store", settingManager.GetModuleSettings("VirtoCommerce.Quote").Where(x=> storeSettings.Contains(x.Name)).ToArray());
-        
+            settingManager.RegisterModuleSettings("VirtoCommerce.Store", settingManager.GetModuleSettings("VirtoCommerce.Quote").Where(x => storeSettings.Contains(x.Name)).ToArray());
+
         }
         #endregion
 
