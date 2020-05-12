@@ -49,6 +49,7 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
         /// <param name="id">RFQ id</param>
         [HttpGet]
         [Route("{id}")]
+        [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<QuoteRequest>> GetById(string id)
         {
             var quote = (await _quoteRequestService.GetByIdsAsync(new[] { id })).FirstOrDefault();
