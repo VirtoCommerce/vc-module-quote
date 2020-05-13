@@ -1,0 +1,146 @@
+﻿{
+  "quotes": {
+    "main-menu-title": "Котировки",
+    "blades": {
+      "quotes-assets": {
+        "subtitle": "Назначенные котировки",
+        "labels": {
+          "drag-note": "Перетащите файлы сюда",
+          "select-files": "Выбрать файлы",
+          "progress": "Прогресс",
+          "type": "Тип",
+          "name": "Название",
+          "actions": "Действия"
+        }
+      },
+      "quote-detail": {
+        "subtitle": "Детали котировок",
+        "labels": {
+          "customer": "Покупатель",
+          "created": "Создан",
+          "customer-organization": "Организация клиентов",
+          "last-updated": "Последнее обновление",
+          "status": "Статус",
+          "expiry-date": "Срок действия",
+          "assigned-to": "Назначено",
+          "rfq-from": "RFQ от",
+          "reminder-date": "Дата напоминания",
+          "general-comment": "Общий комментарий",
+          "internal-comment": "Внутренний комментарий"
+        },
+        "placeholders": {
+          "status": "Выбрать...",
+          "expiry-date": "Выбрать дату",
+          "assigned-to": "Выбрать...",
+          "rfq-from": "Выбрать магазин",
+          "reminder-date": "Выбрать дату",
+          "general-comment": "Публичный комментарий",
+          "internal-comment": "Внутренний  комментарий"
+        }
+      },
+      "quote-items": {
+        "title": "{{title}} позиции",
+        "subtitle": "Редактировать позиции",
+        "labels": {
+          "new-subtotal": "Новый предварительный итог",
+          "relative-discount": "Относительная скидка",
+          "shipping-method": "Метод доставки",
+          "manual-shipping-total": "Общая стоимость доставки",
+          "sub-total-placed": "Итог (размещенный)",
+          "adjustment-quote": "Установка Котировки",
+          "sub-total": "Промежуточный итог",
+          "shipping": "Доставка",
+          "discount": "Скидка",
+          "grand-total": "Общая сумма",
+          "taxes": "Налоги",
+          "grand-total-incl-tax": "Общая сумма (с учетом налогов)",
+          "picture": "Картинка",
+          "comment": "Комментарий к продукту",
+          "list-price": "Цена по прайс-листу",
+          "sale-price": "Цена со скидкой",
+          "quantity": "Количество",
+          "proposed-price": "Предлагаемая цена",
+          "margin": "Маржа (GP)",
+          "product": "Продукт",
+          "sku": "SKU"
+        },
+        "placeholders": {
+          "shipping-method": "Выбрать...",
+          "comment": "Введите комментарий"
+        }
+      },
+      "quotes-list": {
+        "title": "Котировки",
+        "labels": {
+          "quote-number": "Котировка #",
+          "status": "Статус",
+          "items-count": "Количество позиций",
+          "customer": "Покупатель",
+          "created": "Создано",
+          "no-quotes": "Пока нет котировок"
+        }
+      },
+      "catalog-items-select": {
+        "title": "Добавить позиции котировки"
+      }
+    },
+    "widgets": {
+      "quote-address": {
+        "address-type": "Тип адреса",
+        "no-address": "Нет адреса",
+        "blade-subtitle": "Управление адресами"
+      },
+      "quotes-assets": {
+        "title": "Вложения"
+      },
+      "quote-items": {
+        "title": "Позиции"
+      },
+      "quote-totals": {
+        "sub-total": "Промежуточный итог",
+        "shipping": "Доставка",
+        "discount": "Скидка",
+        "grand-total": "Общая сумма"
+      }
+    },
+    "dialogs": {
+      "quote-requests-delete": {
+        "title": "Подтверждение удаления",
+        "message": "Вы уверены, что хотите удалить выбранные Запросы Котировок?"
+      },
+      "quote-delete": {
+        "title": "Подтверждение удаления",
+        "message": "Вы уверены, что хотите удалить эту Котировку?"
+      },
+      "quote-save": {
+        "title": "Сохранение изменений",
+        "message": "Котировка была изменена. Вы хотите сохранить изменения?"
+      },
+      "quote-cancel": {
+        "title": "Аннулирование Котировки",
+        "message": "Вы уверены, что хотите аннулировать эту котировку?",
+        "placeholders": {
+          "reason": "Введите причину аннулирования..."
+        }
+
+      },
+      "proposal-delete": {
+        "title": "Подтверждение предложения",
+        "message": "После отправления предложения будут доступны лишь незначительные правки. Вы действительно хотите отправить это предложение покупателю?"
+      },
+      "hold-confirmation": {
+        "title": "Ожидание подтверждения",
+        "message-release": "Вы уверены, что хотите исключить это из квоты?",
+        "message-place": "Вы уверены, что хотите переместить в Ожидание эту квоту?"
+      }
+    },
+    "commands": {
+      "release-hold": "Отменить Ожидание",
+      "place-on-hold": "Переместить В Ожидание",
+      "submit-proposal": "Отправить предложение",
+      "cancel-document": "Аннулировать документ",
+      "add-selected": "Добавить выбранные",
+      "add-item": "Добавить позиции"
+    }
+  }
+}
