@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<package>
+    <metadata>
+        <id>$id$</id>
+        <version>3.0.0</version>
+        <title>$title$</title>
+        <authors>VirtoCommerce</authors>
+        <owners>VirtoCommerce</owners>
+        <licenseUrl>https://github.com/VirtoCommerce/vc-module-quote/raw/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/VirtoCommerce/vc-module-quote</projectUrl>
+        <iconUrl>https://github.com/VirtoCommerce/vc-module-quote/raw/master/NuGet/icon.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Quotes implementation</description>
+        <copyright>Copyright © VirtoCommerce 2011-2020</copyright>
+    </metadata>
+</package>
