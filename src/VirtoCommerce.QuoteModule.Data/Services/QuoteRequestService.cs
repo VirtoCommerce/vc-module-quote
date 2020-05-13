@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using VirtoCommerce.CoreModule.Core.Common;
 using VirtoCommerce.Platform.Core.Caching;
-using VirtoCommerce.Platform.Core.ChangeLog;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.Events;
 using VirtoCommerce.Platform.Core.Settings;
@@ -186,7 +185,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                     repository.Remove(dbQuote);
                 }
                 repository.UnitOfWork.Commit();
-                _eventPublisher.Publish(new QuoteRequestChangeEvent(changedEntries));
+                await _eventPublisher.Publish(new QuoteRequestChangeEvent(changedEntries));
             }
 
             ClearCache(quotes);
