@@ -1,67 +1,79 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.ExportImport;
+using VirtoCommerce.Platform.Data.ExportImport;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
 
 namespace VirtoCommerce.QuoteModule.Web.ExportImport
 {
-    public sealed class BackupObject
-    {
-        public ICollection<QuoteRequest> QuoteRequests { get; set; }
-    }
-
     public sealed class QuoteExportImport
     {
         private readonly IQuoteRequestService _quoteRequestService;
+        private readonly JsonSerializer _serializer;
+        private readonly int _batchSize = 50;
 
-        public QuoteExportImport(IQuoteRequestService quoteRequestService)
+        public QuoteExportImport(IQuoteRequestService quoteRequestService, JsonSerializer serializer)
         {
             _quoteRequestService = quoteRequestService;
+            _serializer = serializer;
         }
 
         public async Task DoExportAsync(Stream outStream, Action<ExportImportProgressInfo> progressCallback, ICancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-
-            var progressInfo = new ExportImportProgressInfo { Description = "Quotes are loading" };
+            var progressInfo = new ExportImportProgressInfo { Description = "loading data..." };
             progressCallback(progressInfo);
 
-            var backupObject = await GetBackupObject(progressCallback);
-            backupObject.SerializeJson(outStream);
+            using (var sw = new StreamWriter(outStream, System.Text.Encoding.UTF8))
+            using (var writer = new JsonTextWriter(sw))
+            {
+                await writer.WriteStartObjectAsync();
+                await writer.WritePropertyNameAsync("QuoteRequests");
+
+                await writer.SerializeJsonArrayWithPagingAsync(_serializer, _batchSize, async (skip, take) =>
+                        (GenericSearchResult<QuoteRequest>)await _quoteRequestService.SearchAsync(new QuoteRequestSearchCriteria { Skip = skip, Take = take })
+                    , (processedCount, totalCount) =>
+                    {
+                        progressInfo.Description = $"{ processedCount } of { totalCount } quote requests have been exported";
+                        progressCallback(progressInfo);
+                    }, cancellationToken);
+
+                await writer.WriteEndObjectAsync();
+                await writer.FlushAsync();
+            }
         }
 
         public async Task DoImportAsync(Stream inputStream, Action<ExportImportProgressInfo> progressCallback, ICancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var backupObject = inputStream.DeserializeJson<BackupObject>();
-
-            var progressInfo = new ExportImportProgressInfo();
-            progressInfo.Description = $"{backupObject.QuoteRequests.Count} RFQs importing";
-            progressCallback(progressInfo);
-            await _quoteRequestService.SaveChangesAsync(backupObject.QuoteRequests.ToArray());
-        }
-
-
-        private async Task<BackupObject> GetBackupObject(Action<ExportImportProgressInfo> progressCallback)
-        {
-            var retVal = new BackupObject();
-            var progressInfo = new ExportImportProgressInfo();
-
-            var searchResponse = await _quoteRequestService.SearchAsync(new QuoteRequestSearchCriteria { Take = int.MaxValue });
-
-            progressInfo.Description = $"{searchResponse.Results.Count()} RFQs loading";
+            var progressInfo = new ExportImportProgressInfo {Description = "quote requests importing..."};
             progressCallback(progressInfo);
 
-            retVal.QuoteRequests = (await _quoteRequestService.GetByIdsAsync(searchResponse.Results.Select(x => x.Id).ToArray())).ToList();
-
-            return retVal;
+            using (var streamReader = new StreamReader(inputStream))
+            using (var reader = new JsonTextReader(streamReader))
+            {
+                while (reader.Read())
+                {
+                    if (reader.TokenType != JsonToken.PropertyName) continue;
+                    if (reader.Value.ToString() == "QuoteRequests")
+                    {
+                        await reader.DeserializeJsonArrayWithPagingAsync<QuoteRequest>(_serializer, _batchSize, async items =>
+                        {
+                            await _quoteRequestService.SaveChangesAsync(items.ToArray());
+                        }, processedCount =>
+                        {
+                            progressInfo.Description = $"{processedCount} Quote requests have been imported";
+                            progressCallback(progressInfo);
+                        }, cancellationToken);
+                    }
+                }
+            }
         }
-
     }
 }
