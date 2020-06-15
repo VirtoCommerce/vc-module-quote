@@ -15,13 +15,13 @@
   <title>Quote module</title>
   <description>Quoter enables business users to execute quote requests online. Once initiated, an online conversation takes place with internal users who interact with the business user's request. The internal user can set prices for quantity breaks or discounts. The quote is then made available to the business user online. The business user can accept the quote and place the order, continue the conversation, or reject the quote.</description>
   <authors>
-    <author>Egidijus MaЕѕeika</author>
+    <author>Egidijus Mažeika</author>
   </authors>
   <owners>
     <owner>Virto Commerce</owner>
   </owners>
   <projectUrl>https://virtocommerce.com/apps/extensions/quote-module</projectUrl>
-  <iconUrl>https://raw.githubusercontent.com/VirtoCommerce/vc-module-quote/master/VirtoCommerce.QuoteModule.Web/Content/logo.png</iconUrl>
+  <iconUrl>Modules/$(VirtoCommerce.Quote)/Content/logo.png</iconUrl>
   <releaseNotes>First version.</releaseNotes>
   <copyright>Copyright В© 2011-2020 Virto Commerce. All rights reserved</copyright>
   <tags>b2b quotes</tags>
