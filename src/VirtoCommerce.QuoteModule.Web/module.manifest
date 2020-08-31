@@ -16,7 +16,7 @@
   <iconUrl>Modules/$(VirtoCommerce.Quote)/Content/logo.png</iconUrl>
   <requireLicenseAcceptance>false</requireLicenseAcceptance>
   <releaseNotes>First version.</releaseNotes>
-  <copyright>Copyright В© 2011-2020 Virto Commerce. All rights reserved</copyright>
+  <copyright>Copyright © 2011-2020 Virto Commerce. All rights reserved</copyright>
   <tags>b2b quotes</tags>
   <assemblyFile>VirtoCommerce.QuoteModule.Web.dll</assemblyFile>
   <moduleType>VirtoCommerce.QuoteModule.Web.Module, VirtoCommerce.QuoteModule.Web</moduleType>
