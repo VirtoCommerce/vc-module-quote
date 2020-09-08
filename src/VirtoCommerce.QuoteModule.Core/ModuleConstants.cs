@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using VirtoCommerce.Platform.Core.Settings;
 
 namespace VirtoCommerce.QuoteModule.Core
@@ -32,14 +32,15 @@ namespace VirtoCommerce.QuoteModule.Core
                     DefaultValue = "New",
                     AllowedValues = new object[] { "New", "Processing", "Proposal sent", "Ordered" }
                 };
+
                 public static SettingDescriptor QuoteRequestNewNumberTemplate { get; } = new SettingDescriptor
                 {
                     Name = "Quotes.QuoteRequestNewNumberTemplate",
                     GroupName = "Quotes|General",
                     ValueType = SettingValueType.ShortText,
-                    DefaultValue = "RFQ{0:yyMMdd}-{1:D5}",
-                    AllowedValues = new object[] { "New", "Processing", "Proposal sent", "Ordered" }
+                    DefaultValue = "RFQ{0:yyMMdd}-{1:D5}"
                 };
+
                 public static SettingDescriptor EnableQuotes { get; } = new SettingDescriptor
                 {
                     Name = "Quotes.EnableQuotes",
