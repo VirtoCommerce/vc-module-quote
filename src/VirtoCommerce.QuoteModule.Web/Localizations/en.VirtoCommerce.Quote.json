@@ -1,4 +1,4 @@
-﻿{
+{
   "quotes": {
     "main-menu-title": "Quotes",
     "blades": {
@@ -164,6 +164,11 @@
         "title": "Enable quotes",
         "description": "Flag to activate quotes in store"
       }
+    }
+  },
+  "module": {
+    "VirtoCommerce.Quote": {
+      "description": "Export/Import Request for quotes (RFQs)" 
     }
   }
 }

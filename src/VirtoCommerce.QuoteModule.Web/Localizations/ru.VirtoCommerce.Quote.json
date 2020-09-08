@@ -1,4 +1,4 @@
-﻿{
+{
   "quotes": {
     "main-menu-title": "Котировки",
     "blades": {
@@ -142,5 +142,10 @@
       "add-selected": "Добавить выбранные",
       "add-item": "Добавить позиции"
     }
-  }
+  },
+  "module": {
+    "VirtoCommerce.Quote": {
+      "description": "Экспорт/Импорт запросов котировок (RFQ)" 
+    }
+  } 
 }
