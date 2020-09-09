@@ -58,7 +58,7 @@ namespace VirtoCommerce.QuoteModule.Data.Migrations
                         UPDATE [PlatformDynamicProperty] SET ObjectType = 'VirtoCommerce.QuoteModule.Core.Models.QuoteRequest' WHERE ObjectType = 'VirtoCommerce.Domain.Quote.Model.QuoteRequest'
                         UPDATE [PlatformDynamicPropertyObjectValue] SET ObjectType = 'VirtoCommerce.QuoteModule.Core.Models.QuoteRequest' WHERE ObjectType = 'VirtoCommerce.Domain.Quote.Model.QuoteRequest'
 
-                        INSERT INTO [dbo].[QuoteDynamicPropertyObjectValue] ([Id],[CreatedDate],[ModifiedDate],[CreatedBy],[ModifiedBy],[ObjectType],[ObjectId],[Locale],[ValueType],[ShortTextValue],[LongTextValue],[DecimalValue],[IntegerValue],[BooleanValue],[DateTimeValue],[PropertyId],[DictionaryItemId], [PropertyName])
+                        INSERT INTO [QuoteDynamicPropertyObjectValue] ([Id],[CreatedDate],[ModifiedDate],[CreatedBy],[ModifiedBy],[ObjectType],[ObjectId],[Locale],[ValueType],[ShortTextValue],[LongTextValue],[DecimalValue],[IntegerValue],[BooleanValue],[DateTimeValue],[PropertyId],[DictionaryItemId], [PropertyName])
                         SELECT OV.[Id],OV.[CreatedDate],OV.[ModifiedDate],OV.[CreatedBy],OV.[ModifiedBy],OV.[ObjectType],OV.[ObjectId],[Locale],OV.[ValueType],[ShortTextValue],[LongTextValue],[DecimalValue],[IntegerValue],[BooleanValue],[DateTimeValue],[PropertyId],[DictionaryItemId], PDP.[Name]
                         FROM [PlatformDynamicPropertyObjectValue] OV
                         INNER JOIN [PlatformDynamicProperty] PDP ON PDP.Id = OV.PropertyId
