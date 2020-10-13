@@ -108,10 +108,11 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                 await repository.UnitOfWork.CommitAsync();
                 //Copy generated id from dbEntities to model
                 pkMap.ResolvePrimaryKeys();
+
+                ClearCache(quoteRequests);
+
                 await _eventPublisher.Publish(new QuoteRequestChangeEvent(changedEntries));
             }
-
-            ClearCache(quoteRequests);
         }
 
         public async Task<QuoteRequestSearchResult> SearchAsync(QuoteRequestSearchCriteria criteria)
@@ -185,10 +186,11 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                     repository.Remove(dbQuote);
                 }
                 repository.UnitOfWork.Commit();
+
+                ClearCache(quotes);
+
                 await _eventPublisher.Publish(new QuoteRequestChangeEvent(changedEntries));
             }
-
-            ClearCache(quotes);
         }
         #endregion
 
