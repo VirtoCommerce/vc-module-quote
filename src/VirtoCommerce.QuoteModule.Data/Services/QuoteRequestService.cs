@@ -141,8 +141,8 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                     else if (criteria.Keyword != null)
                     {
                         query = query.Where(x => x.Number.Contains(criteria.Keyword)
-                            || x.CustomerName.Contains( criteria.Keyword)
-                            || x.Status.Contains(criteria.Keyword));
+                            || ( x.CustomerName != null && x.CustomerName.Contains( criteria.Keyword) )
+                            || ( x.Status != null && x.Status.Contains(criteria.Keyword) ));
                     }
 
                     if (criteria.Tag != null)
