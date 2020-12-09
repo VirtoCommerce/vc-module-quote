@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -272,11 +272,11 @@ namespace VirtoCommerce.QuoteModule.Data.Model
 
             if (!Addresses.IsNullCollection())
             {
-                Addresses.Patch(target.Addresses, (sourceAddress, targetAddress) => { });
+                Addresses.Patch(target.Addresses, (sourceAddress, targetAddress) => { sourceAddress.Patch(targetAddress); });
             }
             if (!Attachments.IsNullCollection())
             {
-                Attachments.Patch(target.Attachments, (sourceAttachment, targetAttachment) => { });
+                Attachments.Patch(target.Attachments, (sourceAttachment, targetAttachment) => { sourceAttachment.Patch(targetAttachment);});
             }
             if (!Items.IsNullCollection())
             {
