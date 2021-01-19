@@ -1,6 +1,6 @@
-﻿angular.module('virtoCommerce.quoteModule')
-    .controller('virtoCommerce.quoteModule.quoteDetailController', ['$scope', '$timeout', 'platformWebApp.bladeNavigationService', 'virtoCommerce.quoteModule.quotes', 'virtoCommerce.storeModule.stores', 'platformWebApp.settings', 'platformWebApp.dialogService', 'platformWebApp.accounts',
-        function ($scope, $timeout, bladeNavigationService, quotes, stores, settings, dialogService, accounts) {
+angular.module('virtoCommerce.quoteModule')
+    .controller('virtoCommerce.quoteModule.quoteDetailController', ['$scope', '$timeout', 'platformWebApp.bladeNavigationService', 'virtoCommerce.quoteModule.quotes', 'virtoCommerce.storeModule.stores', 'platformWebApp.settings', 'platformWebApp.dialogService', 'virtoCommerce.customerModule.members',
+        function ($scope, $timeout, bladeNavigationService, quotes, stores, settings, dialogService, members) {
             var blade = $scope.blade;
             blade.updatePermission = 'quote:update';
 
@@ -226,12 +226,18 @@
             $scope.quoteStatuses = settings.getValues({ id: 'Quotes.Status' });
             $scope.stores = stores.query();
             blade.shippingMethods = quotes.getShippingMethods({ id: blade.currentEntityId }, initShipmentMethod);
-            accounts.search({
-                takeCount: 100,
-                accountTypes: ['Manager', 'Administrator']
-            }, function (data) {
-                $scope.employees = data.users;
-            });
+
+            // load employees
+            members.search(
+                {
+                    memberType: 'Employee',
+                    //memberId: parent org. ID,
+                    sort: 'fullName:asc',
+                    take: 1000
+                },
+                function (data) {
+                    $scope.employees = data.results;
+                });
 
             function initShipmentMethod() {
                 if (blade.currentEntity && blade.currentEntity.shipmentMethod && blade.shippingMethods.$resolved) {
