@@ -1,4 +1,4 @@
-﻿<div class="blade-content __medium-wide">
+<div class="blade-content __medium-wide">
     <div class="blade-inner">
         <div class="inner-block">
             <div class="quote-status canceled" ng-if="blade.currentEntity.status">
@@ -69,9 +69,9 @@
                                 <label class="form-label">{{ 'quotes.blades.quote-detail.labels.assigned-to' | translate }}</label>
                                 <div class="form-input">
                                     <ui-select ng-model="blade.currentEntity.employeeId" ng-disabled="blade.isLocked()">
-                                        <ui-select-match placeholder="{{ 'quotes.blades.quote-detail.placeholders.assigned-to' | translate }}">{{$select.selected.userName}}</ui-select-match>
-                                        <ui-select-choices repeat="x.id as x in employees | filter: { userName: $select.search }">
-                                            <span ng-bind-html="x.userName | highlight: $select.search"></span>
+                                        <ui-select-match placeholder="{{ 'quotes.blades.quote-detail.placeholders.assigned-to' | translate }}">{{$select.selected.fullName}}</ui-select-match>
+                                        <ui-select-choices repeat="x.id as x in employees | filter: { fullName: $select.search }">
+                                            <span ng-bind-html="x.fullName | highlight: $select.search"></span>
                                         </ui-select-choices>
                                     </ui-select>
                                 </div>
