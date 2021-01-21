@@ -111,10 +111,10 @@
                                     </div>
                                 </td>
                                 <td class="table-col">
-                                    <span>{{data.listPrice}}</span>
+                                    <span>{{data.listPrice | number:2}}&nbsp;{{blade.currentEntity.currency}}</span>
                                 </td>
                                 <td class="table-col">
-                                    <span>{{data.salePrice}}</span>
+                                    <span>{{data.salePrice | number:2}}&nbsp;{{blade.currentEntity.currency}}</span>
                                 </td>
                                 <td class="table-col">
                                     <a class="list-link" ng-click="addProposalTier(data, $index)">{{'platform.commands.add' | translate}}</a>
