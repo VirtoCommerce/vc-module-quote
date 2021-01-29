@@ -79,14 +79,9 @@
                         </div>
                         <div class="column">
                             <div class="form-group">
-                                <label class="form-label"></label>
+                                <label class="form-label">{{ 'quotes.blades.quote-detail.labels.rfq-from' | translate }}</label>
                                 <div class="form-input">
-                                    <ui-select ng-model="blade.currentEntity.storeId" required ng-disabled="blade.isLocked()">
-                                        <ui-select-match placeholder="{{ 'quotes.blades.quote-detail.placeholders.rfq-from' | translate }}">{{$select.selected.name}}</ui-select-match>
-                                        <ui-select-choices repeat="store.id as store in stores | filter: { name: $select.search }">
-                                            <span ng-bind-html="store.name | highlight: $select.search"></span>
-                                        </ui-select-choices>
-                                    </ui-select>
+                                    <va-store-selector ng-model="blade.currentEntity.storeId" required disabled="blade.isLocked()" placeholder="'quotes.blades.quote-detail.placeholders.rfq-from'" ></va-store-selector>
                                 </div>
                             </div>
                             <div class="form-group">
