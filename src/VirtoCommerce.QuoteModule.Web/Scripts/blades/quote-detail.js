@@ -1,6 +1,6 @@
 angular.module('virtoCommerce.quoteModule')
-    .controller('virtoCommerce.quoteModule.quoteDetailController', ['$scope', '$timeout', 'platformWebApp.bladeNavigationService', 'virtoCommerce.quoteModule.quotes', 'virtoCommerce.storeModule.stores', 'platformWebApp.settings', 'platformWebApp.dialogService', 'virtoCommerce.customerModule.members',
-        function ($scope, $timeout, bladeNavigationService, quotes, stores, settings, dialogService, members) {
+    .controller('virtoCommerce.quoteModule.quoteDetailController', ['$scope', '$timeout', 'platformWebApp.bladeNavigationService', 'virtoCommerce.quoteModule.quotes', 'platformWebApp.settings', 'platformWebApp.dialogService', 'virtoCommerce.customerModule.members',
+        function ($scope, $timeout, bladeNavigationService, quotes, settings, dialogService, members) {
             var blade = $scope.blade;
             blade.updatePermission = 'quote:update';
 
@@ -224,7 +224,6 @@ angular.module('virtoCommerce.quoteModule')
             blade.refresh(false);
 
             $scope.quoteStatuses = settings.getValues({ id: 'Quotes.Status' });
-            $scope.stores = stores.query();
             blade.shippingMethods = quotes.getShippingMethods({ id: blade.currentEntityId }, initShipmentMethod);
 
             // load employees
