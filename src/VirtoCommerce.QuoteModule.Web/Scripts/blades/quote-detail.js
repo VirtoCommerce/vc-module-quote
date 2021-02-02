@@ -134,7 +134,7 @@ angular.module('virtoCommerce.quoteModule')
             blade.toolbarCommands = [
                 {
                     name: "platform.commands.save",
-                    icon: 'fa fa-save',
+                    icon: 'fas fa-save',
                     executeMethod: saveChanges,
                     canExecuteMethod: canSave,
                     permission: blade.updatePermission
@@ -193,7 +193,7 @@ angular.module('virtoCommerce.quoteModule')
                     permission: blade.updatePermission
                 },
                 {
-                    name: "platform.commands.delete", icon: 'fa fa-trash-o',
+                    name: "platform.commands.delete", icon: 'fas fa-trash-alt',
                     executeMethod: deleteEntry,
                     canExecuteMethod: function () { return true; },
                     permission: 'quote:delete'
