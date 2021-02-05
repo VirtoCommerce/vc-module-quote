@@ -65,7 +65,7 @@
                     }
                 },
                 //{
-                //    name: "Add", icon: 'fa fa-plus',
+                //    name: "Add", icon: 'fas fa-plus',
                 //    executeMethod: function () {
                 //        openBladeNew();
                 //    },
@@ -75,7 +75,7 @@
                 //    permission: 'quote:create'
                 //}
                 {
-                    name: "platform.commands.delete", icon: 'fa fa-trash-o',
+                    name: "platform.commands.delete", icon: 'fas fa-trash-alt',
                     executeMethod: function () {
                         $scope.deleteList($scope.gridApi.selection.getSelectedRows());
                     },
