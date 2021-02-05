@@ -36,7 +36,7 @@ namespace VirtoCommerce.QuoteModule.Core
                 public static SettingDescriptor QuoteRequestNewNumberTemplate { get; } = new SettingDescriptor
                 {
                     Name = "Quotes.QuoteRequestNewNumberTemplate",
-                    GroupName = "Quotes|General",
+                    GroupName = "Quotes|Quotes",
                     ValueType = SettingValueType.ShortText,
                     DefaultValue = "RFQ{0:yyMMdd}-{1:D5}"
                 };
@@ -44,7 +44,7 @@ namespace VirtoCommerce.QuoteModule.Core
                 public static SettingDescriptor EnableQuotes { get; } = new SettingDescriptor
                 {
                     Name = "Quotes.EnableQuotes",
-                    GroupName = "Quotes|General",
+                    GroupName = "Quotes|Quotes",
                     ValueType = SettingValueType.Boolean,
                     DefaultValue = false
                 };
