@@ -15,9 +15,11 @@
                     <label class="form-label">{{ 'quotes.blades.quote-items.labels.shipping-method' | translate }}</label>
                     <div class="form-input">
                         <ui-select ng-model="blade.currentEntity.shipmentMethod" ng-change="recalculate()">
-                            <ui-select-match placeholder="{{ 'quotes.blades.quote-items.placeholders.shipping-method' | translate }}" allow-clear>{{$select.selected.shipmentMethodCode}} - {{$select.selected.price}} {{$select.selected.currency}}</ui-select-match>
-                            <ui-select-choices repeat="x in blade.shippingMethods | filter: { shipmentMethodCode: $select.search }">
-                                <span ng-bind-html="x.shipmentMethodCode +' - '+ x.price+' '+ x.currency | highlight: $select.search"></span>
+                            <ui-select-match placeholder="{{ 'quotes.blades.quote-items.placeholders.shipping-method' | translate }}" allow-clear>
+                                {{"shipping.labels." + $select.selected.typeName + ".name" | translate }} - {{$select.selected.price}} {{$select.selected.currency}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="x in blade.shippingMethods | filter: { typeName: $select.search }">
+                                <span ng-bind-html="('shipping.labels.'+x.typeName+'.name' | translate)+' - '+ x.price+' '+ x.currency | highlight: $select.search"></span>
                             </ui-select-choices>
                         </ui-select>
                     </div>

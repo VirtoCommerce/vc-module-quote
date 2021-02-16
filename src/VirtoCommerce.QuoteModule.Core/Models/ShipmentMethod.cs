@@ -7,6 +7,7 @@ namespace VirtoCommerce.QuoteModule.Core.Models
         public string ShipmentMethodCode { get; set; }
         public string OptionName { get; set; }
         public string LogoUrl { get; set; }
+        public string TypeName { get; set; }
         public string Currency { get; set; }
         public decimal Price { get; set; }
     }
