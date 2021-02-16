@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -36,7 +36,7 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
         /// <param name="criteria">criteria</param>
         [HttpPost]
         [Route("search")]
-        public async Task<ActionResult<QuoteRequestSearchResult>> Search([FromBody]QuoteRequestSearchCriteria criteria)
+        public async Task<ActionResult<QuoteRequestSearchResult>> Search([FromBody] QuoteRequestSearchCriteria criteria)
         {
             var retVal = await _quoteRequestService.SearchAsync(criteria);
             return Ok(retVal);
@@ -75,7 +75,7 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
         [HttpPost]
         [Route("")]
         [Authorize(Core.ModuleConstants.Security.Permissions.Create)]
-        public async Task<ActionResult<QuoteRequest>> Create([FromBody]QuoteRequest quoteRequest)
+        public async Task<ActionResult<QuoteRequest>> Create([FromBody] QuoteRequest quoteRequest)
         {
             await _quoteRequestService.SaveChangesAsync(new[] { quoteRequest });
             return Ok(quoteRequest);
@@ -89,7 +89,7 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
         [Route("")]
         [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
         [Authorize(Core.ModuleConstants.Security.Permissions.Update)]
-        public async Task<ActionResult> Update([FromBody]QuoteRequest quoteRequest)
+        public async Task<ActionResult> Update([FromBody] QuoteRequest quoteRequest)
         {
             await _quoteRequestService.SaveChangesAsync(new[] { quoteRequest });
             return NoContent();
@@ -102,7 +102,7 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
         /// <param name="quoteRequest">RFQ</param>
         [HttpPut]
         [Route("recalculate")]
-        public async Task<ActionResult<QuoteRequest>> CalculateTotals([FromBody]QuoteRequest quoteRequest)
+        public async Task<ActionResult<QuoteRequest>> CalculateTotals([FromBody] QuoteRequest quoteRequest)
         {
             quoteRequest.Totals = await _totalsCalculator.CalculateTotalsAsync(quoteRequest);
             return Ok(quoteRequest);
@@ -129,6 +129,7 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
                     var searchCriteria = AbstractTypeFactory<ShippingMethodsSearchCriteria>.TryCreateInstance();
                     searchCriteria.StoreId = quote.StoreId;
                     searchCriteria.IsActive = true;
+                    searchCriteria.WithoutTransient = true;
                     var storeShippingMethods = await _shippingMethodsSearchService.SearchShippingMethodsAsync(searchCriteria);
                     var rates = storeShippingMethods.Results
                         .SelectMany(x => x.CalculateRates(evalContext))
@@ -140,6 +141,7 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
                         Price = x.Rate,
                         OptionName = x.OptionName,
                         ShipmentMethodCode = x.ShippingMethod.Code,
+                        TypeName = x.ShippingMethod.TypeName,
                         LogoUrl = x.ShippingMethod.LogoUrl
                     }).ToArray();
 
