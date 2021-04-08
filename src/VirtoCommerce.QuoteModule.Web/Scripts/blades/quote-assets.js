@@ -44,8 +44,6 @@ angular.module('virtoCommerce.quoteModule')
         window.prompt("Copy to clipboard: Ctrl+C, Enter", data.url);
     };
 
-    blade.headIcon = 'fa fa-file-text-o';
-
     initialize();
     blade.isLoading = false;
 }]);

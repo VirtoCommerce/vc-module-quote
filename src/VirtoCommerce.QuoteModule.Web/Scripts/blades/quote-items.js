@@ -98,8 +98,6 @@ angular.module('virtoCommerce.quoteModule')
         bladeNavigationService.showBlade(newBlade, blade);
     }
 
-    blade.headIcon = 'fa fa-file-text-o';
-
     blade.toolbarCommands = [
         {
             name: "quotes.commands.add-item", icon: 'fas fa-plus',
