@@ -1,4 +1,4 @@
-﻿angular.module('virtoCommerce.quoteModule')
+angular.module('virtoCommerce.quoteModule')
 .controller('virtoCommerce.quoteModule.quoteAssetController', ['$scope', 'virtoCommerce.catalogModule.items', 'platformWebApp.bladeNavigationService', '$filter', 'FileUploader', 'platformWebApp.dialogService', '$injector', function ($scope, items, bladeNavigationService, $filter, FileUploader, dialogService, $injector) {
     var blade = $scope.blade;
     blade.updatePermission = 'quote:update';
@@ -43,8 +43,6 @@
     $scope.copyUrl = function (data) {
         window.prompt("Copy to clipboard: Ctrl+C, Enter", data.url);
     };
-
-    blade.headIcon = 'fa-file-text-o';
 
     initialize();
     blade.isLoading = false;
