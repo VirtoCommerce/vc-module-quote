@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.QuoteModule.Core.Models;
 
 namespace VirtoCommerce.QuoteModule.Data.Model
 {
-    public class AddressEntity : Entity
+    public class AddressEntity : Entity, IHasOuterId
     {
         [StringLength(32)]
         public string AddressType { get; set; }
@@ -39,6 +39,8 @@ namespace VirtoCommerce.QuoteModule.Data.Model
         public string Phone { get; set; }
         [StringLength(254)]
         public string Email { get; set; }
+        [StringLength(128)]
+        public string OuterId { get; set; }
 
         public virtual QuoteRequestEntity QuoteRequest { get; set; }
         public string QuoteRequestId { get; set; }
@@ -63,6 +65,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             target.Phone = Phone;
             target.AddressType = EnumUtility.SafeParseFlags(AddressType, VirtoCommerce.CoreModule.Core.Common.AddressType.BillingAndShipping);
             target.Organization = Organization;
+            target.OuterId = OuterId;
             return target;
         }
 
@@ -87,6 +90,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             Phone = address.Phone;
             AddressType = address.AddressType.ToString();
             Organization = address.Organization;
+            OuterId = address.OuterId;
 
             return this;
         }
@@ -107,6 +111,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             target.Line1 = Line1;
             target.Line2 = Line2;
             target.Organization = Organization;
+            target.OuterId = OuterId;
         }
     }
 }

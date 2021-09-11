@@ -23,7 +23,7 @@
   <dependencies>
     <dependency id="VirtoCommerce.Cart" version="3.0.0" />
     <dependency id="VirtoCommerce.Catalog" version="3.0.0" />
-    <dependency id="VirtoCommerce.Core" version="3.0.0" />
+    <dependency id="VirtoCommerce.Core" version="3.22.0" />
     <dependency id="VirtoCommerce.Store" version="3.10.0" />
     <dependency id="VirtoCommerce.Tax" version="3.0.1" />
   </dependencies>
