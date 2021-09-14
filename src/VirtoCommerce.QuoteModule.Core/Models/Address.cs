@@ -1,4 +1,4 @@
-﻿using VirtoCommerce.Platform.Core.Swagger;
+using VirtoCommerce.Platform.Core.Swagger;
 
 namespace VirtoCommerce.QuoteModule.Core.Models
 {
@@ -23,6 +23,7 @@ namespace VirtoCommerce.QuoteModule.Core.Models
             target.Phone = Phone;
             target.AddressType = AddressType;
             target.Organization = Organization;
+            target.OuterId = OuterId;
 
             return target;
         }
