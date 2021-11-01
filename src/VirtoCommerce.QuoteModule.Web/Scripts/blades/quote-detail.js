@@ -4,12 +4,6 @@ angular.module('virtoCommerce.quoteModule')
             var blade = $scope.blade;
             blade.updatePermission = 'quote:update';
 
-            var openItemsListOnce = _.once(function () {
-                $timeout(function () {
-                    blade.openItemsBlade();
-                }, 0, false);
-            });
-
             blade.refresh = function (parentRefresh) {
                 quotes.get({ id: blade.currentEntityId }, function (data) {
                     initializeBlade(data);
