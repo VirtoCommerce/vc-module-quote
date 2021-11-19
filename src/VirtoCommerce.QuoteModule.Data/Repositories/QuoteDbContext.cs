@@ -1,4 +1,4 @@
-﻿using EntityFrameworkCore.Triggers;
+using EntityFrameworkCore.Triggers;
 using Microsoft.EntityFrameworkCore;
 using VirtoCommerce.QuoteModule.Data.Model;
 
@@ -66,7 +66,7 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
                 .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<QuoteDynamicPropertyObjectValueEntity>().HasIndex(x => new { x.ObjectType, x.ObjectId })
                 .IsUnique(false)
-                .HasName("IX_ObjectType_ObjectId");
+                .HasDatabaseName("IX_ObjectType_ObjectId");
             #endregion
 
             base.OnModelCreating(modelBuilder);
