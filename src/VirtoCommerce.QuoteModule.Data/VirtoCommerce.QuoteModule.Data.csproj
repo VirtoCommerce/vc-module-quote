@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <noWarn>1591</noWarn>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
@@ -8,14 +8,14 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Hangfire.Core" Version="1.7.9" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.13">
+        <PackageReference Include="Hangfire.Core" Version="1.7.14" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-        <PackageReference Include="VirtoCommerce.Platform.Data" Version="3.81.0" />
-        <PackageReference Include="VirtoCommerce.StoreModule.Core" Version="3.1.0" />
+        <PackageReference Include="VirtoCommerce.Platform.Data" Version="3.200.0" />
+        <PackageReference Include="VirtoCommerce.StoreModule.Core" Version="3.200.0" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\VirtoCommerce.QuoteModule.Core\VirtoCommerce.QuoteModule.Core.csproj" />
