@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.QuoteModule.Core.Models;
@@ -19,7 +19,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
 
         #endregion
 
-        public TierPrice ToModel(TierPrice item)
+        public virtual TierPrice ToModel(TierPrice item)
         {
             if (item == null)
                 throw new ArgumentNullException(nameof(item));
@@ -33,7 +33,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
         }
 
 
-        public TierPriceEntity FromModel(TierPrice item)
+        public virtual TierPriceEntity FromModel(TierPrice item)
         {
             if (item == null)
                 throw new ArgumentNullException(nameof(item));

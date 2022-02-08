@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
@@ -40,7 +41,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
 
         #region IQuoteRequestService Members
 
-        public async Task<IEnumerable<QuoteRequest>> GetByIdsAsync(params string[] ids)
+        public virtual async Task<IEnumerable<QuoteRequest>> GetByIdsAsync(params string[] ids)
         {
             var cacheKey = CacheKey.With(GetType(), nameof(GetByIdsAsync), string.Join("-", ids));
             return await _platformMemoryCache.GetOrCreateExclusiveAsync(cacheKey, async (cacheEntry) =>
@@ -66,7 +67,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
             });
         }
 
-        public async Task SaveChangesAsync(QuoteRequest[] quoteRequests)
+        public virtual async Task SaveChangesAsync(QuoteRequest[] quoteRequests)
         {
             if (quoteRequests == null)
             {
@@ -115,7 +116,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
             }
         }
 
-        public async Task<QuoteRequestSearchResult> SearchAsync(QuoteRequestSearchCriteria criteria)
+        public virtual async Task<QuoteRequestSearchResult> SearchAsync(QuoteRequestSearchCriteria criteria)
         {
             var result = new QuoteRequestSearchResult();
             var cacheKey = CacheKey.With(GetType(), nameof(SearchAsync), criteria.GetCacheKey());
@@ -124,40 +125,8 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                 cacheEntry.AddExpirationToken(QuoteSearchCacheRegion.CreateChangeToken());
                 using (var repository = _repositoryFactory())
                 {
-                    var query = repository.QuoteRequests;
-                    if (criteria.CustomerId != null)
-                    {
-                        query = query.Where(x => x.CustomerId == criteria.CustomerId);
-                    }
-                    if (criteria.StoreId != null)
-                    {
-                        query = query.Where(x => x.StoreId == criteria.StoreId);
-                    }
-
-                    if (criteria.Number != null)
-                    {
-                        query = query.Where(x => x.Number == criteria.Number);
-                    }
-                    else if (criteria.Keyword != null)
-                    {
-                        query = query.Where(x => x.Number.Contains(criteria.Keyword)
-                            || ( x.CustomerName != null && x.CustomerName.Contains( criteria.Keyword) )
-                            || ( x.Status != null && x.Status.Contains(criteria.Keyword) ));
-                    }
-
-                    if (criteria.Tag != null)
-                    {
-                        query = query.Where(x => x.Tag == criteria.Tag);
-                    }
-                    if (criteria.Status != null)
-                    {
-                        query = query.Where(x => x.Status == criteria.Status);
-                    }
-                    var sortInfos = criteria.SortInfos;
-                    if (sortInfos.IsNullOrEmpty())
-                    {
-                        sortInfos = new[] { new SortInfo { SortColumn = ReflectionUtility.GetPropertyName<QuoteRequest>(x => x.CreatedDate), SortDirection = SortDirection.Descending } };
-                    }
+                    var sortInfos = BuildSortExpression(criteria);
+                    var query = BuildQuery(repository, criteria);
 
                     result.TotalCount = await query.CountAsync();
                     if (criteria.Take > 0)
@@ -174,7 +143,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
             });
         }
 
-        public async Task DeleteAsync(string[] ids)
+        public virtual async Task DeleteAsync(string[] ids)
         {
             var quotes = await GetByIdsAsync(ids);
 
@@ -197,7 +166,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
         #endregion
 
 
-        private async Task EnsureThatQuoteHasNumber(QuoteRequest[] quoteRequests)
+        protected virtual async Task EnsureThatQuoteHasNumber(QuoteRequest[] quoteRequests)
         {
             var stores = await _storeService.GetByIdsAsync(quoteRequests.Select(x => x.StoreId).Distinct().ToArray());
             foreach (var quoteRequest in quoteRequests)
@@ -225,5 +194,66 @@ namespace VirtoCommerce.QuoteModule.Data.Services
             }
         }
 
+        protected virtual IQueryable<QuoteRequestEntity> BuildQuery(IQuoteRepository repository, QuoteRequestSearchCriteria criteria)
+        {
+            var query = repository.QuoteRequests;
+
+            if (criteria.CustomerId != null)
+            {
+                query = query.Where(x => x.CustomerId == criteria.CustomerId);
+            }
+
+            if (criteria.StoreId != null)
+            {
+                query = query.Where(x => x.StoreId == criteria.StoreId);
+            }
+
+            if (criteria.Number != null)
+            {
+                query = query.Where(x => x.Number == criteria.Number);
+            }
+            else if (criteria.Keyword != null)
+            {
+                query = query.Where(GetKeywordPredicate(criteria));
+            }
+
+            if (criteria.Tag != null)
+            {
+                query = query.Where(x => x.Tag == criteria.Tag);
+            }
+
+            if (criteria.Status != null)
+            {
+                query = query.Where(x => x.Status == criteria.Status);
+            }
+
+            return query;
+        }
+
+        protected virtual Expression<Func<QuoteRequestEntity, bool>> GetKeywordPredicate(QuoteRequestSearchCriteria criteria)
+        {
+            return quote => quote.Number.Contains(criteria.Keyword) ||
+                quote.CustomerName != null && quote.CustomerName.Contains(criteria.Keyword) ||
+                quote.Status != null && quote.Status.Contains(criteria.Keyword);
+        }
+
+        protected virtual IList<SortInfo> BuildSortExpression(QuoteRequestSearchCriteria criteria)
+        {
+            var sortInfos = criteria.SortInfos;
+
+            if (sortInfos.IsNullOrEmpty())
+            {
+                sortInfos = new[]
+                {
+                    new SortInfo
+                    {
+                        SortColumn = nameof(QuoteRequest.CreatedDate),
+                        SortDirection = SortDirection.Descending,
+                    },
+                };
+            }
+
+            return sortInfos;
+        }
     }
 }

@@ -5,7 +5,7 @@ namespace VirtoCommerce.QuoteModule.Core.Models
     [SwaggerSchemaId("QuoteAddress")]
     public class Address : CoreModule.Core.Common.Address
     {
-        public TaxModule.Core.Model.Address ToTaxModel(TaxModule.Core.Model.Address target)
+        public virtual TaxModule.Core.Model.Address ToTaxModel(TaxModule.Core.Model.Address target)
         {
             target.Key = Key;
 

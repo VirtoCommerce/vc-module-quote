@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using VirtoCommerce.CartModule.Core.Model;
@@ -83,7 +83,7 @@ namespace VirtoCommerce.QuoteModule.Core.Models
         public ICollection<DynamicObjectProperty> DynamicProperties { get; set; }
         #endregion
 
-        public ShoppingCart ToCartModel(ShoppingCart target)
+        public virtual ShoppingCart ToCartModel(ShoppingCart target)
         {
             var _ = this;
             target.Id = _.Id;
@@ -123,7 +123,7 @@ namespace VirtoCommerce.QuoteModule.Core.Models
             return target;
         }
 
-        public TaxEvaluationContext ToTaxEvalContext(TaxEvaluationContext target)
+        public virtual TaxEvaluationContext ToTaxEvalContext(TaxEvaluationContext target)
         {
             target.Id = Id;
             target.Code = Number;

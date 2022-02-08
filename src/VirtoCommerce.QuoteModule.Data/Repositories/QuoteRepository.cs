@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +15,7 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
         }
 
         #region IQuoteRepository Members
-        public async Task<QuoteRequestEntity[]> GetQuoteRequestByIdsAsync(params string[] ids)
+        public virtual async Task<QuoteRequestEntity[]> GetQuoteRequestByIdsAsync(params string[] ids)
         {
             var result = await QuoteRequests.Where(x => ids.Contains(x.Id)).ToArrayAsync();
 

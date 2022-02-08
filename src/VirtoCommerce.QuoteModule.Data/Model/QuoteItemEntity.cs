@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -59,7 +59,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
 
         #endregion
 
-        public QuoteItem ToModel(QuoteItem target)
+        public virtual QuoteItem ToModel(QuoteItem target)
         {
             if (target == null)
                 throw new ArgumentNullException(nameof(target));
@@ -84,7 +84,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             return target;
         }
 
-        public QuoteItemEntity FromModel(QuoteItem _, PrimaryKeyResolvingMap pkMap)
+        public virtual QuoteItemEntity FromModel(QuoteItem _, PrimaryKeyResolvingMap pkMap)
         {
             if (_ == null)
                 throw new ArgumentNullException(nameof(_));
@@ -114,7 +114,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             return this;
         }
 
-        public void Patch(QuoteItemEntity target)
+        public virtual void Patch(QuoteItemEntity target)
         {
             if (target == null)
                 throw new ArgumentNullException("target");

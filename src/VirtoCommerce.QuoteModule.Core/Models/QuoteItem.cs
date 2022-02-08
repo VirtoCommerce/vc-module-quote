@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.CatalogModule.Core.Model;
@@ -53,7 +53,7 @@ namespace VirtoCommerce.QuoteModule.Core.Models
 
         public ICollection<TierPrice> ProposalPrices { get; set; }
 
-        public LineItem ToCartModel(LineItem target)
+        public virtual LineItem ToCartModel(LineItem target)
         {
             var _ = this;
             target.Id = _.Id;
