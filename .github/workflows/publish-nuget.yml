@@ -36,7 +36,7 @@ jobs:
         id: image
 
       - name: Packaging
-        run: vc-build pack
+        run: vc-build pack -skip Test
       
       - name: Publish Nuget
         uses: VirtoCommerce/vc-github-actions/publish-nuget@master
