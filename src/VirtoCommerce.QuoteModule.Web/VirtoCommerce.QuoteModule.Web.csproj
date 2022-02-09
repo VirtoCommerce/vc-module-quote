@@ -3,6 +3,10 @@
     <TargetFramework>net6.0</TargetFramework>
     <OutputType>Library</OutputType>
   </PropertyGroup>
+  <PropertyGroup>
+      <!-- Project is not a test project -->
+      <SonarQubeTestProject>false</SonarQubeTestProject>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Remove="dist\**" />
     <EmbeddedResource Remove="dist\**" />
