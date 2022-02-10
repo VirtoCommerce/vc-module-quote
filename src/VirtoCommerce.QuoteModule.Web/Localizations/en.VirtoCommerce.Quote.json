@@ -5,7 +5,7 @@
       "quotes-assets": {
         "subtitle": "Quote attachments",
         "labels": {
-          "drag-note": "Drag and drop files here",
+          "drag-note": "Drag and drop your files here",
           "select-files": "Select files",
           "progress": "Progress",
           "type": "Type",
@@ -18,7 +18,7 @@
         "labels": {
           "customer": "Customer",
           "created": "Created",
-          "customer-organization": "Customer organization",
+          "customer-organization": "Customer's company",
           "last-updated": "Last updated",
           "status": "Status",
           "expiry-date": "Expiry date",
@@ -29,11 +29,11 @@
           "internal-comment": "Internal comment"
         },
         "placeholders": {
-          "status": "Select...",
-          "expiry-date": "Choose date",
-          "assigned-to": "Select...",
-          "rfq-from": "Select a store",
-          "reminder-date": "Choose date",
+          "status": "Please select...",
+          "expiry-date": "Select date",
+          "assigned-to": "Please select...",
+          "rfq-from": "Please select store...",
+          "reminder-date": "Please select date",
           "general-comment": "Public comment",
           "internal-comment": "Internal comment"
         }
@@ -45,17 +45,17 @@
           "new-subtotal": "New subtotal",
           "relative-discount": "Relative discount",
           "shipping-method": "Shipping method",
-          "manual-shipping-total": "Manual shipping total",
-          "sub-total-placed": "Sub Total (placed)",
-          "adjustment-quote": "Adjustment Quote",
-          "sub-total": "Sub Total",
+          "manual-shipping-total": "Total shipping (manual)",
+          "sub-total-placed": "Subtotal (placed)",
+          "adjustment-quote": "Adjustment",
+          "sub-total": "Subtotal",
           "shipping": "Shipping",
           "discount": "Discount",
           "grand-total": "Grand Total",
           "taxes": "Taxes",
           "grand-total-incl-tax": "Grand Total (Incl. Taxes)",
-          "picture": "Pic",
-          "comment": "Comment with product",
+          "picture": "Image",
+          "comment": "Product comment",
           "list-price": "List price",
           "sale-price": "Sale price",
           "quantity": "Quantity",
@@ -65,7 +65,7 @@
           "sku": "SKU"
         },
         "placeholders": {
-          "shipping-method": "Select...",
+          "shipping-method": "Please select...",
           "comment": "Enter comment"
         }
       },
@@ -74,10 +74,10 @@
         "labels": {
           "quote-number": "Quote #",
           "status": "Status",
-          "items-count": "Items count",
+          "items-count": "Item count",
           "customer": "Customer",
           "created": "Created",
-          "no-quotes": "No Quotes yet"
+          "no-quotes": "No quotes yet"
         }
       },
       "catalog-items-select": {
@@ -97,7 +97,7 @@
         "title": "Line items"
       },
       "quote-totals": {
-        "sub-total": "Sub total",
+        "sub-total": "Subtotal",
         "shipping": "Shipping",
         "discount": "Discount",
         "grand-total": "Grand Total"
@@ -105,47 +105,46 @@
     },
     "dialogs": {
       "quote-requests-delete": {
-        "title": "Delete confirmation",
-        "message": "Are you sure you want to delete selected Quote Requests?"
+        "title": "Confirm Delete",
+        "message": "Are you sure you want to delete the selected quote request(s)?"
       },
       "quote-delete": {
-        "title": "Delete confirmation",
-        "message": "Are you sure you want to delete this Quote?"
+        "title": "Confirm Delete",
+        "message": "Are you sure you want to delete this quote?"
       },
       "quote-save": {
         "title": "Save changes",
-        "message": "The Quote has been modified. Do you want to save changes?"
+        "message": "The quote has been modified. Do you want to save changes?"
       },
       "quote-cancel": {
-        "title": "Cancel Quote",
-        "message": "Are you sure you want to cancel this quote?",
+        "title": "Remove quote",
+        "message": "Are you sure you want to delete this quote?",
         "placeholders": {
-          "reason": "Enter cancel reason here..."
+          "reason": "Please enter reason here..."
         }
-
       },
       "proposal-delete": {
-        "title": "Proposal confirmation",
-        "message": "Only limited modifications are available after proposal is sent. Are you sure you want to send this proposal to customer?"
+        "title": "Confirm proposal",
+        "message": "After you send a proposal, you will not be able to modify some parts of your quote. Are you sure you want to proceed?"
       },
       "hold-confirmation": {
-        "title": "On Hold confirmation",
-        "message-release": "Are you sure you want to release Hold from this quote?",
-        "message-place": "Are you sure you want to place On Hold this quote?"
+        "title": "Confirm put on hold",
+        "message-release": "Are you sure you want to reactivate this quote?",
+        "message-place": "Are you sure you want to put this quote on hold?"
       }
     },
     "commands": {
-      "release-hold": "Release Hold",
-      "place-on-hold": "Place On Hold",
+      "release-hold": "Reactivate",
+      "place-on-hold": "Put on hold",
       "submit-proposal": "Submit proposal",
-      "cancel-document": "Cancel document",
+      "cancel-document": "Remove document",
       "add-selected": "Add selected",
       "add-item": "Add item"
     }
   },
   "permissions": {
-    "quote:access": "Open quotes menu",
-    "quote:create": "Create quotes",
+    "quote:access": "Open quote menu",
+    "quote:create": "Create quote",
     "quote:read": "View quotes",
     "quote:update": "Update quotes",
     "quote:delete": "Delete quotes"
@@ -154,21 +153,21 @@
     "Quotes": {
       "Status": {
         "title": "Quote statuses",
-        "description": "Dictionary of possible Statuses that a quote can be in"
+        "description": "List of valid quote statuses"
       },
       "QuoteRequestNewNumberTemplate": {
         "title": "RFQ number template",
-        "description": "The template (pattern) that will be used to generate the number for new Quote Request. Parameters: 0 - date (the UTC time of number generation); 1 - the sequence number."
+        "description": "This template or pattern will be used to generate numbers for new quote requests. 0 means date and time (UTC) the number gets generated, while 1 stands for the sequence number."
       },
       "EnableQuotes": {
         "title": "Enable quotes",
-        "description": "Flag to activate quotes in store"
+        "description": "Tick the check box to activate quotes in the store"
       }
     }
   },
   "module": {
     "VirtoCommerce.Quote": {
-      "description": "Export/Import Request for quotes (RFQs)" 
+      "description": "Export or import quote requests (RFQs)"
     }
   }
 }
