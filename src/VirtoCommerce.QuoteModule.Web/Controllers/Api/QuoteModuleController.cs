@@ -50,7 +50,7 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
         [HttpGet]
         [Route("{id}")]
         [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(QuoteRequest), StatusCodes.Status200OK)]
         public async Task<ActionResult<QuoteRequest>> GetById(string id)
         {
             var quote = (await _quoteRequestService.GetByIdsAsync(new[] { id })).FirstOrDefault();
