@@ -39,6 +39,7 @@ namespace VirtoCommerce.QuoteModule.Web
                 options.UseSqlServer(configuration.GetConnectionString(ModuleInfo.Id) ?? configuration.GetConnectionString("VirtoCommerce"));
             });
 
+            serviceCollection.AddTransient<IQuoteRepository, QuoteRepository>();
             serviceCollection.AddTransient<Func<IQuoteRepository>>(provider => () => provider.CreateScope().ServiceProvider.GetRequiredService<IQuoteRepository>());
             serviceCollection.AddTransient<IQuoteRequestService, QuoteRequestService>();
 
