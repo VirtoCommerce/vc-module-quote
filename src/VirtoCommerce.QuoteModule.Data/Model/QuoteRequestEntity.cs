@@ -162,7 +162,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             return target;
         }
 
-        public QuoteRequestEntity FromModel(QuoteRequest _, PrimaryKeyResolvingMap pkMap)
+        public virtual QuoteRequestEntity FromModel(QuoteRequest _, PrimaryKeyResolvingMap pkMap)
         {
             if (_ == null)
                 throw new ArgumentNullException(nameof(_));
@@ -231,7 +231,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             return this;
         }
 
-        public void Patch(QuoteRequestEntity target)
+        public virtual void Patch(QuoteRequestEntity target)
         {
             if (target == null)
                 throw new ArgumentNullException("target");
