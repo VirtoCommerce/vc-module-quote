@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading.Tasks;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.Platform.Core.Common;
@@ -24,7 +24,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
         }
 
         #region IQuoteTotalsCalculator Members
-        public async Task<QuoteRequestTotals> CalculateTotalsAsync(QuoteRequest quote)
+        public virtual async Task<QuoteRequestTotals> CalculateTotalsAsync(QuoteRequest quote)
         {
             var retVal = new QuoteRequestTotals();
             var cartFromQuote = quote.ToCartModel(AbstractTypeFactory<ShoppingCart>.TryCreateInstance());
