@@ -122,7 +122,7 @@ jobs:
         uses: VirtoCommerce/vc-github-actions/publish-artifact-link@master
         with:
           artifactUrl: ${{ steps.blobRelease.outputs.packageUrl }}
-          downloadComment: 'Artifact URL:'
+          downloadComment: 'Sample Artifact URL:'
 
       - name: Publish Github Release
         if: ${{ github.ref == 'refs/heads/master' }}
