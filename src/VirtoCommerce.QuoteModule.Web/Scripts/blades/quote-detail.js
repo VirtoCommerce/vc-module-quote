@@ -7,7 +7,7 @@ angular.module('virtoCommerce.quoteModule')
 
                 var onHoldCommand = {
                     updateName: function () {
-                        return this.name = (blade.currentEntity && blade.currentEntity.isLocked) ? 'quotes.commands.release-hold' : 'quotes.commands.place-on-hold';
+                        this.name = (blade.currentEntity && blade.currentEntity.isLocked) ? 'quotes.commands.release-hold' : 'quotes.commands.place-on-hold';
                     },
                     // name: this.updateName(),
                     icon: 'fa fa-lock', // icon: 'fa fa-hand-paper-o',
