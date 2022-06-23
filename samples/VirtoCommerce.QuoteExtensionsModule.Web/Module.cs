@@ -15,13 +15,14 @@ namespace VirtoCommerce.QuoteExtensionsModule.Web
 
         public void Initialize(IServiceCollection serviceCollection)
         {
-
+            // do nothing in here
         }
 
         public void PostInitialize(IApplicationBuilder appBuilder)
         {
+            var shippingCost = 100.0m;
             AbstractTypeFactory<QuoteRequest>.OverrideType<QuoteRequest, QuoteRequestExt>()
-                .WithFactory(() => new QuoteRequestExt { ShippingCost = 100.0m });
+                .WithFactory(() => new QuoteRequestExt { ShippingCost = shippingCost });
         }
 
         public void Uninstall()
