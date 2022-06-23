@@ -81,7 +81,7 @@
                             <div class="form-group">
                                 <label class="form-label">{{ 'quotes.blades.quote-detail.labels.rfq-from' | translate }}</label>
                                 <div class="form-input">
-                                    <va-store-selector ng-model="blade.currentEntity.storeId" required disabled="blade.isLocked()" placeholder="'quotes.blades.quote-detail.placeholders.rfq-from'" ></va-store-selector>
+                                    <va-store-selector ng-model="blade.currentEntity.storeId" required disabled="blade.isLocked()" placeholder="'quotes.blades.quote-detail.placeholders.rfq-from'"></va-store-selector>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -108,6 +108,8 @@
                         </div>
                     </div>
                 </fieldset>
+
+                <va-metaform blade="blade" registered-inputs="blade.metaFields"></va-metaform>
             </form>
 
             <va-widget-container group="quoteDetail" blade="blade" gridster-opts="{width: 526}"></va-widget-container>

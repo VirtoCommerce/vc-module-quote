@@ -1,8 +1,10 @@
 angular.module('virtoCommerce.quoteModule')
-    .controller('virtoCommerce.quoteModule.quoteDetailController', ['$scope', '$timeout', 'platformWebApp.bladeNavigationService', 'virtoCommerce.quoteModule.quotes', 'platformWebApp.settings', 'platformWebApp.dialogService', 'virtoCommerce.customerModule.members',
-        function ($scope, $timeout, bladeNavigationService, quotes, settings, dialogService, members) {
+    .controller('virtoCommerce.quoteModule.quoteDetailController', ['$scope', '$timeout', 'platformWebApp.bladeNavigationService', 'virtoCommerce.quoteModule.quotes', 'platformWebApp.settings', 'platformWebApp.dialogService', 'virtoCommerce.customerModule.members', 'platformWebApp.metaFormsService',
+        function ($scope, $timeout, bladeNavigationService, quotes, settings, dialogService, members, metaFormsService) {
             var blade = $scope.blade;
             blade.updatePermission = 'quote:update';
+
+            blade.metaFields = blade.metaFields ? blade.metaFields : metaFormsService.getMetaFields('quoteDetails');
 
             blade.refresh = function (parentRefresh) {
                 quotes.get({ id: blade.currentEntityId }, function (data) {
