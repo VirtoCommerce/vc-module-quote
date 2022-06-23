@@ -4,8 +4,34 @@ angular.module('virtoCommerce.quoteModule')
         'virtoCommerce.quoteModule.quotes', 'virtoCommerce.customerModule.members',
             function ($scope, bladeNavigationService, settings, dialogService, metaFormsService, quotes, members) {
                 var blade = $scope.blade;
-                blade.updatePermission = 'quote:update';
 
+                var onHoldCommand = {
+                    updateName: function () {
+                        return this.name = (blade.currentEntity && blade.currentEntity.isLocked) ? 'quotes.commands.release-hold' : 'quotes.commands.place-on-hold';
+                    },
+                    // name: this.updateName(),
+                    icon: 'fa fa-lock', // icon: 'fa fa-hand-paper-o',
+                    executeMethod: function () {
+                        var dialog = {
+                            id: "confirmDialog",
+                            title: "quotes.dialogs.hold-confirmation.title",
+                            message: (blade.currentEntity.isLocked ? 'quotes.dialogs.hold-confirmation.message-release' : 'quotes.dialogs.hold-confirmation.message-place'),
+                            callback: function (ok) {
+                                if (ok) {
+                                    blade.currentEntity.isLocked = !blade.currentEntity.isLocked;
+                                    saveChanges();
+                                }
+                            }
+                        };
+                        dialogService.showConfirmationDialog(dialog);
+                    },
+                    canExecuteMethod: function () {
+                        return true;
+                    },
+                    permission: blade.updatePermission
+                };
+
+                blade.updatePermission = 'quote:update';
                 blade.metaFields = blade.metaFields ? blade.metaFields : metaFormsService.getMetaFields('quoteDetails');
 
                 blade.refresh = function (parentRefresh) {
@@ -100,32 +126,6 @@ angular.module('virtoCommerce.quoteModule')
 
                 blade.isLocked = function () {
                     return blade.currentEntity && blade.currentEntity.isLocked;
-                };
-
-                var onHoldCommand = {
-                    updateName: function () {
-                        return this.name = (blade.currentEntity && blade.currentEntity.isLocked) ? 'quotes.commands.release-hold' : 'quotes.commands.place-on-hold';
-                    },
-                    // name: this.updateName(),
-                    icon: 'fa fa-lock', // icon: 'fa fa-hand-paper-o',
-                    executeMethod: function () {
-                        var dialog = {
-                            id: "confirmDialog",
-                            title: "quotes.dialogs.hold-confirmation.title",
-                            message: (blade.currentEntity.isLocked ? 'quotes.dialogs.hold-confirmation.message-release' : 'quotes.dialogs.hold-confirmation.message-place'),
-                            callback: function (ok) {
-                                if (ok) {
-                                    blade.currentEntity.isLocked = !blade.currentEntity.isLocked;
-                                    saveChanges();
-                                }
-                            }
-                        };
-                        dialogService.showConfirmationDialog(dialog);
-                    },
-                    canExecuteMethod: function () {
-                        return true;
-                    },
-                    permission: blade.updatePermission
                 };
 
                 blade.toolbarCommands = [
