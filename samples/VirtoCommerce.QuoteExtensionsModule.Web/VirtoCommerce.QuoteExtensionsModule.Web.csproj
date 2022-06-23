@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <OutputType>Library</OutputType>
@@ -9,8 +9,8 @@
         <SonarQubeTestProject>false</SonarQubeTestProject>
     </PropertyGroup>
     <ItemGroup>
-        <None Update="_module.manifest">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        <None Update="module.manifest">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
         </None>
     </ItemGroup>
     <ItemGroup>
