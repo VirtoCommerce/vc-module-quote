@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+    <id>VirtoCommerce.QuoteExtensionsModule</id>
+    <version>3.200.0</version>
+    <version-tag></version-tag>
+    <platformVersion>3.200.0</platformVersion>
+    <dependencies>
+        <dependency id="VirtoCommerce.Quote" version="3.203.0" />
+    </dependencies>
+
+    <title>VirtoCommerce QuoteExtensionsModule extension module</title>
+    <description>VirtoCommerce QuoteExtensionsModule extension module</description>
+
+    <authors>
+        <author>Konstantin Savosteev</author>
+    </authors>
+    <owners>
+        <owner>VirtoCommerce</owner>
+    </owners>
+
+    <iconUrl>Modules/$(VirtoCommerce.QuoteExtensionsModule)/Content/logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+    <assemblyFile>VirtoCommerce.QuoteExtensionsModule.Web.dll</assemblyFile>
+    <moduleType>VirtoCommerce.QuoteExtensionsModule.Web.Module, VirtoCommerce.QuoteExtensionsModule.Web</moduleType>
+
+    <releaseNotes>First version.</releaseNotes>
+    <copyright>Copyright © 2022 VirtoCommerce. All rights reserved</copyright>
+    <tags>extension module</tags>
+    <useFullTypeNameInSwagger>false</useFullTypeNameInSwagger>
+
+</module>
+
+

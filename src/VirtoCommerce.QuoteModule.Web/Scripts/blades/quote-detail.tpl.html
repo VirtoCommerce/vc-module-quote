@@ -81,7 +81,7 @@
                             <div class="form-group">
                                 <label class="form-label">{{ 'quotes.blades.quote-detail.labels.rfq-from' | translate }}</label>
                                 <div class="form-input">
-                                    <va-store-selector ng-model="blade.currentEntity.storeId" required disabled="blade.isLocked()" placeholder="'quotes.blades.quote-detail.placeholders.rfq-from'" ></va-store-selector>
+                                    <va-store-selector ng-model="blade.currentEntity.storeId" required disabled="blade.isLocked()" placeholder="'quotes.blades.quote-detail.placeholders.rfq-from'"></va-store-selector>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -107,6 +107,8 @@
                             <textarea class="form-control" ng-model="blade.currentEntity.innerComment" placeholder="{{ 'quotes.blades.quote-detail.placeholders.internal-comment' | translate }}"></textarea>
                         </div>
                     </div>
+
+                    <va-metaform blade="blade" registered-inputs="blade.metaFields"></va-metaform>
                 </fieldset>
             </form>
 

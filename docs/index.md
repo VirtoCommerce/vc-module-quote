@@ -109,3 +109,20 @@ These example demonstrates how to use quotes with VirtoCommerce Storefront.
 * **Quote.QuoteRequestNewNumberTemplate** - template for new Quote number generation.
 
 
+## How to extend Quote details blade
+ 
+The quote details blade uses metaform, so it can be extended with additional fields from the model. Quote details blade uses mixed metaform mode (native fields + metaform fields). 
+To use metaform inject `platformWebApp.metaFormsService` add the following code to the extension's module.js `run` function:
+  
+```js
+metaFormsService.registerMetaFields("quoteDetails",               
+[                    
+  {
+      name: "shippingCost",
+      title: "Total Shipping Cost",
+      valueType: "Decimal"
+  }
+]);
+```
+
+![quote-detail-metaform](media/quote-detail-metaform.png)
