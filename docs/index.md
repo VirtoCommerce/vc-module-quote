@@ -126,5 +126,3 @@ metaFormsService.registerMetaFields("quoteDetails",
 ```
 
 ![quote-detail-metaform](media/quote-detail-metaform.png)
-
-
