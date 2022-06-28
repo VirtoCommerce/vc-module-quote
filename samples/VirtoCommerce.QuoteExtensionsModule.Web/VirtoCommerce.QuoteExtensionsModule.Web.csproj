@@ -9,7 +9,7 @@
         <SonarQubeTestProject>false</SonarQubeTestProject>
     </PropertyGroup>
     <ItemGroup>
-        <None Update="module.manifest">
+        <None Update="_module.manifest">
             <CopyToOutputDirectory>Never</CopyToOutputDirectory>
         </None>
     </ItemGroup>
