@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -162,7 +162,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             return target;
         }
 
-        public QuoteRequestEntity FromModel(QuoteRequest _, PrimaryKeyResolvingMap pkMap)
+        public virtual QuoteRequestEntity FromModel(QuoteRequest _, PrimaryKeyResolvingMap pkMap)
         {
             if (_ == null)
                 throw new ArgumentNullException(nameof(_));
@@ -231,7 +231,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             return this;
         }
 
-        public void Patch(QuoteRequestEntity target)
+        public virtual void Patch(QuoteRequestEntity target)
         {
             if (target == null)
                 throw new ArgumentNullException("target");
@@ -272,11 +272,11 @@ namespace VirtoCommerce.QuoteModule.Data.Model
 
             if (!Addresses.IsNullCollection())
             {
-                Addresses.Patch(target.Addresses, (sourceAddress, targetAddress) => { });
+                Addresses.Patch(target.Addresses, (sourceAddress, targetAddress) => { sourceAddress.Patch(targetAddress); });
             }
             if (!Attachments.IsNullCollection())
             {
-                Attachments.Patch(target.Attachments, (sourceAttachment, targetAttachment) => { });
+                Attachments.Patch(target.Attachments, (sourceAttachment, targetAttachment) => { sourceAttachment.Patch(targetAttachment);});
             }
             if (!Items.IsNullCollection())
             {

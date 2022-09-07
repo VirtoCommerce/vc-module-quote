@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,10 +33,13 @@ namespace VirtoCommerce.QuoteModule.Web
 
         public void Initialize(IServiceCollection serviceCollection)
         {
-            var configuration = serviceCollection.BuildServiceProvider().GetRequiredService<IConfiguration>();
+            serviceCollection.AddDbContext<QuoteDbContext>((provider, options) =>
+            {
+                var configuration = provider.GetRequiredService<IConfiguration>();
+                options.UseSqlServer(configuration.GetConnectionString(ModuleInfo.Id) ?? configuration.GetConnectionString("VirtoCommerce"));
+            });
+
             serviceCollection.AddTransient<IQuoteRepository, QuoteRepository>();
-            var connectionString = configuration.GetConnectionString("VirtoCommerce.Quote") ?? configuration.GetConnectionString("VirtoCommerce");
-            serviceCollection.AddDbContext<QuoteDbContext>(options => options.UseSqlServer(connectionString));
             serviceCollection.AddTransient<Func<IQuoteRepository>>(provider => () => provider.CreateScope().ServiceProvider.GetRequiredService<IQuoteRepository>());
             serviceCollection.AddTransient<IQuoteRequestService, QuoteRequestService>();
 

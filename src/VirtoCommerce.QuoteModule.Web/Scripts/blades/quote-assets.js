@@ -1,4 +1,4 @@
-﻿angular.module('virtoCommerce.quoteModule')
+angular.module('virtoCommerce.quoteModule')
 .controller('virtoCommerce.quoteModule.quoteAssetController', ['$scope', 'virtoCommerce.catalogModule.items', 'platformWebApp.bladeNavigationService', '$filter', 'FileUploader', 'platformWebApp.dialogService', '$injector', function ($scope, items, bladeNavigationService, $filter, FileUploader, dialogService, $injector) {
     var blade = $scope.blade;
     blade.updatePermission = 'quote:update';
@@ -10,7 +10,7 @@
             var uploader = $scope.uploader = new FileUploader({
                 scope: $scope,
                 headers: { Accept: 'application/json' },
-                url: 'api/platform/assets?folderUrl=quote/' + blade.currentEntity.id,
+                url: 'api/assets?folderUrl=quote/' + blade.currentEntity.id,
                 method: 'POST',
                 autoUpload: true,
                 removeAfterUpload: true
@@ -43,8 +43,6 @@
     $scope.copyUrl = function (data) {
         window.prompt("Copy to clipboard: Ctrl+C, Enter", data.url);
     };
-
-    blade.headIcon = 'fa-file-text-o';
 
     initialize();
     blade.isLoading = false;

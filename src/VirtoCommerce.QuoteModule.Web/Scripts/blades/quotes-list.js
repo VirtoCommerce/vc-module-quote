@@ -1,4 +1,4 @@
-﻿angular.module('virtoCommerce.quoteModule')
+angular.module('virtoCommerce.quoteModule')
     .controller('virtoCommerce.quoteModule.quotesListController', ['$scope', 'virtoCommerce.quoteModule.quotes', 'platformWebApp.dialogService', 'platformWebApp.uiGridHelper', 'platformWebApp.bladeUtils',
         function ($scope, quotes, dialogService, uiGridHelper, bladeUtils) {
             $scope.uiGridConstants = uiGridHelper.uiGridConstants;
@@ -54,7 +54,7 @@
                 dialogService.showConfirmationDialog(dialog);
             }
 
-            blade.headIcon = 'fa-file-text-o';
+            blade.headIcon = 'fa fa-file-text-o';
 
             blade.toolbarCommands = [
                 {
@@ -65,7 +65,7 @@
                     }
                 },
                 //{
-                //    name: "Add", icon: 'fa fa-plus',
+                //    name: "Add", icon: 'fas fa-plus',
                 //    executeMethod: function () {
                 //        openBladeNew();
                 //    },
@@ -75,7 +75,7 @@
                 //    permission: 'quote:create'
                 //}
                 {
-                    name: "platform.commands.delete", icon: 'fa fa-trash-o',
+                    name: "platform.commands.delete", icon: 'fas fa-trash-alt',
                     executeMethod: function () {
                         $scope.deleteList($scope.gridApi.selection.getSelectedRows());
                     },

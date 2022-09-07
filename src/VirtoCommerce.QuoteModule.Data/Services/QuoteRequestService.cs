@@ -40,7 +40,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
 
         #region IQuoteRequestService Members
 
-        public async Task<IEnumerable<QuoteRequest>> GetByIdsAsync(params string[] ids)
+        public virtual async Task<IEnumerable<QuoteRequest>> GetByIdsAsync(params string[] ids)
         {
             var cacheKey = CacheKey.With(GetType(), nameof(GetByIdsAsync), string.Join("-", ids));
             return await _platformMemoryCache.GetOrCreateExclusiveAsync(cacheKey, async (cacheEntry) =>
@@ -66,7 +66,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
             });
         }
 
-        public async Task SaveChangesAsync(QuoteRequest[] quoteRequests)
+        public virtual async Task SaveChangesAsync(QuoteRequest[] quoteRequests)
         {
             if (quoteRequests == null)
             {
@@ -115,7 +115,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
             }
         }
 
-        public async Task<QuoteRequestSearchResult> SearchAsync(QuoteRequestSearchCriteria criteria)
+        public virtual async Task<QuoteRequestSearchResult> SearchAsync(QuoteRequestSearchCriteria criteria)
         {
             var result = new QuoteRequestSearchResult();
             var cacheKey = CacheKey.With(GetType(), nameof(SearchAsync), criteria.GetCacheKey());
@@ -175,7 +175,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
             });
         }
 
-        public async Task DeleteAsync(string[] ids)
+        public virtual async Task DeleteAsync(string[] ids)
         {
             var quotes = await GetByIdsAsync(ids);
 
@@ -198,7 +198,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
         #endregion
 
 
-        private async Task EnsureThatQuoteHasNumber(QuoteRequest[] quoteRequests)
+        protected virtual async Task EnsureThatQuoteHasNumber(QuoteRequest[] quoteRequests)
         {
             var stores = await _storeService.GetByIdsAsync(quoteRequests.Select(x => x.StoreId).Distinct().ToArray());
             foreach (var quoteRequest in quoteRequests)

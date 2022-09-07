@@ -1,4 +1,4 @@
-﻿angular.module('virtoCommerce.quoteModule')
+angular.module('virtoCommerce.quoteModule')
 .controller('virtoCommerce.quoteModule.quoteItemsController', ['$scope', 'focus', 'platformWebApp.bladeNavigationService', 'platformWebApp.dialogService', 'virtoCommerce.quoteModule.quotes', 'virtoCommerce.catalogModule.items', 'virtoCommerce.pricingModule.prices', function ($scope, focus, bladeNavigationService, dialogService, quotes, items, prices) {
     var blade = $scope.blade;
     blade.updatePermission = 'quote:update';
@@ -83,7 +83,7 @@
             breadcrumbs: [],
             toolbarCommands: [
 			  {
-			      name: "quotes.commands.add-selected", icon: 'fa fa-plus',
+			      name: "quotes.commands.add-selected", icon: 'fas fa-plus',
 			      executeMethod: function (blade) {
 			          addProducts(selectedProducts);
 			          selectedProducts.length = 0;
@@ -98,11 +98,9 @@
         bladeNavigationService.showBlade(newBlade, blade);
     }
 
-    blade.headIcon = 'fa-file-text-o';
-
     blade.toolbarCommands = [
         {
-            name: "quotes.commands.add-item", icon: 'fa fa-plus',
+            name: "quotes.commands.add-item", icon: 'fas fa-plus',
             executeMethod: function () {
                 openAddEntityWizard();
             },
@@ -112,7 +110,7 @@
             permission: blade.updatePermission
         },
         {
-            name: "platform.commands.remove", icon: 'fa fa-trash-o',
+            name: "platform.commands.remove", icon: 'fas fa-trash-alt',
             executeMethod: function () {
                 var lineItems = blade.currentEntity.items;
                 blade.currentEntity.items = _.difference(lineItems, _.filter(lineItems, function (x) { return x.$selected }));
