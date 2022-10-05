@@ -53,6 +53,7 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
             #region QuoteRequestEntity
             modelBuilder.Entity<QuoteRequestEntity>().ToTable("QuoteRequest").HasKey(x => x.Id);
             modelBuilder.Entity<QuoteRequestEntity>().Property(x => x.Id).HasMaxLength(128).ValueGeneratedOnAdd();
+            modelBuilder.Entity<QuoteRequestEntity>().Property(x => x.ManualRelDiscountAmount).HasPrecision(18, 2);
 
             #endregion
 
