@@ -6,6 +6,7 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
 {
     public class QuoteDbContext : DbContextWithTriggers
     {
+#pragma warning disable S109
         public QuoteDbContext(DbContextOptions<QuoteDbContext> options)
             : base(options)
         {
@@ -53,6 +54,7 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
             #region QuoteRequestEntity
             modelBuilder.Entity<QuoteRequestEntity>().ToTable("QuoteRequest").HasKey(x => x.Id);
             modelBuilder.Entity<QuoteRequestEntity>().Property(x => x.Id).HasMaxLength(128).ValueGeneratedOnAdd();
+            modelBuilder.Entity<QuoteRequestEntity>().Property(x => x.ManualRelDiscountAmount).HasPrecision(18, 2);
 
             #endregion
 
@@ -71,5 +73,6 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
 
             base.OnModelCreating(modelBuilder);
         }
+#pragma warning restore S109
     }
 }
