@@ -6,6 +6,7 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
 {
     public class QuoteDbContext : DbContextWithTriggers
     {
+#pragma warning disable S109
         public QuoteDbContext(DbContextOptions<QuoteDbContext> options)
             : base(options)
         {
@@ -72,5 +73,6 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
 
             base.OnModelCreating(modelBuilder);
         }
+#pragma warning restore S109
     }
 }
