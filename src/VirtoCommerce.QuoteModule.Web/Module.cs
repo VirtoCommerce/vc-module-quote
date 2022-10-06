@@ -42,6 +42,7 @@ namespace VirtoCommerce.QuoteModule.Web
             serviceCollection.AddTransient<IQuoteRepository, QuoteRepository>();
             serviceCollection.AddTransient<Func<IQuoteRepository>>(provider => () => provider.CreateScope().ServiceProvider.GetRequiredService<IQuoteRepository>());
             serviceCollection.AddTransient<IQuoteRequestService, QuoteRequestService>();
+            serviceCollection.AddTransient<IQuoteConverter, QuoteConverter>();
 
             serviceCollection.AddSingleton<PriceConditionTreePrototype>();
 
@@ -63,26 +64,23 @@ namespace VirtoCommerce.QuoteModule.Web
 
             var permissionsProvider = appBuilder.ApplicationServices.GetRequiredService<IPermissionsRegistrar>();
             permissionsProvider.RegisterPermissions(Core.ModuleConstants.Security.Permissions.AllPermissions.Select(x =>
-                new Permission()
+                new Permission
                 {
                     GroupName = "Quotes",
                     ModuleId = ModuleInfo.Id,
                     Name = x
                 }).ToArray());
 
+            var handlerRegistrar = appBuilder.ApplicationServices.GetRequiredService<IHandlerRegistrar>();
+            handlerRegistrar.RegisterHandler<QuoteRequestChangeEvent>((message, _) => appBuilder.ApplicationServices.GetRequiredService<LogChangesEventHandler>().Handle(message));
 
-            var inProcessBus = appBuilder.ApplicationServices.GetService<IHandlerRegistrar>();
-            inProcessBus.RegisterHandler<QuoteRequestChangeEvent>((message, token) => appBuilder.ApplicationServices.GetService<LogChangesEventHandler>().Handle(message));
-
-
-            using (var serviceScope = appBuilder.ApplicationServices.CreateScope())
-            {
-                var dbContext = serviceScope.ServiceProvider.GetRequiredService<QuoteDbContext>();
-                dbContext.Database.MigrateIfNotApplied(MigrationName.GetUpdateV2MigrationName(ModuleInfo.Id));
-                dbContext.Database.EnsureCreated();
-                dbContext.Database.Migrate();
-            }
+            using var serviceScope = appBuilder.ApplicationServices.CreateScope();
+            var dbContext = serviceScope.ServiceProvider.GetRequiredService<QuoteDbContext>();
+            dbContext.Database.MigrateIfNotApplied(MigrationName.GetUpdateV2MigrationName(ModuleInfo.Id));
+            dbContext.Database.EnsureCreated();
+            dbContext.Database.Migrate();
         }
+
         public void Uninstall()
         {
             // Method intentionally left empty.

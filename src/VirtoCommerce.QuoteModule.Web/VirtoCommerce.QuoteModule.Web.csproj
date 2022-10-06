@@ -13,6 +13,10 @@
     <None Remove="dist\**" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="VirtoCommerce.OrdersModule.Data" Version="3.200.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VirtoCommerce.QuoteModule.Core\VirtoCommerce.QuoteModule.Core.csproj" />
     <ProjectReference Include="..\VirtoCommerce.QuoteModule.Data\VirtoCommerce.QuoteModule.Data.csproj" />
   </ItemGroup>
 </Project>
