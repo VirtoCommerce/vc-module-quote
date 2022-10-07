@@ -36,7 +36,7 @@ public class QuoteConverter : IQuoteConverter
 
         result.Items = cart.Items?.Convert(FromCartItems);
         result.TaxDetails = cart.TaxDetails?.Convert(FromCartTaxDetails);
-        result.DynamicProperties = cart.DynamicProperties?.Convert(FromCartDynamicProperties);
+        result.DynamicProperties = cart.DynamicProperties?.Convert(ToDynamicProperties);
 
         result.Addresses = FromCartAddresses(cart);
         result.ShipmentMethod = cart.Shipments?.FirstOrDefault()?.Convert(FromCartShipment);
@@ -60,7 +60,7 @@ public class QuoteConverter : IQuoteConverter
 
         result.Items = quote.Items?.Convert(ToCartItems);
         result.TaxDetails = quote.TaxDetails?.Convert(ToCartTaxDetails);
-        result.DynamicProperties = quote.DynamicProperties?.Convert(ToCartDynamicProperties);
+        result.DynamicProperties = quote.DynamicProperties?.Convert(ToDynamicProperties);
 
         result.Addresses = quote.Addresses?.Convert(ToCartAddresses);
         result.Shipments = quote.ShipmentMethod?.Convert(x => ToCartShipments(x, result));
@@ -158,25 +158,6 @@ public class QuoteConverter : IQuoteConverter
         return details;
     }
 
-    protected virtual IList<DynamicObjectProperty> FromCartDynamicProperties(ICollection<DynamicObjectProperty> properties)
-    {
-        return properties
-            .Select(FromCartDynamicProperty)
-            .ToList();
-    }
-
-    protected virtual DynamicObjectProperty FromCartDynamicProperty(DynamicObjectProperty property)
-    {
-        var result = AbstractTypeFactory<DynamicObjectProperty>.TryCreateInstance();
-
-        result.Name = property.Name;
-        result.IsDictionary = property.IsDictionary;
-        result.ValueType = property.ValueType;
-        result.Values = property.Values;
-
-        return result;
-    }
-
     protected virtual QuoteShipmentMethod FromCartShipment(Shipment shipment)
     {
         var result = AbstractTypeFactory<QuoteShipmentMethod>.TryCreateInstance();
@@ -267,25 +248,6 @@ public class QuoteConverter : IQuoteConverter
         return details;
     }
 
-    protected virtual IList<DynamicObjectProperty> ToCartDynamicProperties(ICollection<DynamicObjectProperty> properties)
-    {
-        return properties
-            .Select(ToCartDynamicProperty)
-            .ToList();
-    }
-
-    protected virtual DynamicObjectProperty ToCartDynamicProperty(DynamicObjectProperty property)
-    {
-        var result = AbstractTypeFactory<DynamicObjectProperty>.TryCreateInstance();
-
-        result.Name = property.Name;
-        result.IsDictionary = property.IsDictionary;
-        result.ValueType = property.ValueType;
-        result.Values = property.Values;
-
-        return result;
-    }
-
     protected virtual IList<Shipment> ToCartShipments(QuoteShipmentMethod shipmentMethod, ShoppingCart cart)
     {
         var shipment = AbstractTypeFactory<Shipment>.TryCreateInstance();
@@ -307,5 +269,24 @@ public class QuoteConverter : IQuoteConverter
         payment.BillingAddress = addresses.FirstOrDefault(x => x.AddressType.HasFlag(AddressType.Billing));
 
         return new List<Payment> { payment };
+    }
+
+    protected virtual IList<DynamicObjectProperty> ToDynamicProperties(ICollection<DynamicObjectProperty> properties)
+    {
+        return properties
+            .Select(ToDynamicProperty)
+            .ToList();
+    }
+
+    protected virtual DynamicObjectProperty ToDynamicProperty(DynamicObjectProperty property)
+    {
+        var result = AbstractTypeFactory<DynamicObjectProperty>.TryCreateInstance();
+
+        result.Name = property.Name;
+        result.IsDictionary = property.IsDictionary;
+        result.ValueType = property.ValueType;
+        result.Values = property.Values;
+
+        return result;
     }
 }
