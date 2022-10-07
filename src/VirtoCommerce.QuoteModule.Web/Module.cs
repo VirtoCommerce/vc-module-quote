@@ -2,10 +2,16 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using GraphQL.Server;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using VirtoCommerce.ExperienceApiModule.Core.Extensions;
+using VirtoCommerce.ExperienceApiModule.Core.Infrastructure;
 using VirtoCommerce.Platform.Core.Bus;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.DynamicProperties;
@@ -21,6 +27,9 @@ using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.QuoteModule.Data.Handlers;
 using VirtoCommerce.QuoteModule.Data.Repositories;
 using VirtoCommerce.QuoteModule.Data.Services;
+using VirtoCommerce.QuoteModule.ExperienceApi;
+using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
+using VirtoCommerce.QuoteModule.ExperienceApi.Authorization;
 using VirtoCommerce.QuoteModule.Web.ExportImport;
 using VirtoCommerce.StoreModule.Core.Model;
 
@@ -49,6 +58,16 @@ namespace VirtoCommerce.QuoteModule.Web
             serviceCollection.AddTransient<IQuoteTotalsCalculator, DefaultQuoteTotalsCalculator>();
             serviceCollection.AddTransient<QuoteExportImport>();
             serviceCollection.AddTransient<LogChangesEventHandler>();
+
+            // GraphQL
+            var assemblyMarker = typeof(AssemblyMarker);
+            var graphQlBuilder = new CustomGraphQLBuilder(serviceCollection);
+            graphQlBuilder.AddGraphTypes(assemblyMarker);
+            serviceCollection.AddMediatR(assemblyMarker);
+            serviceCollection.AddAutoMapper(assemblyMarker);
+            serviceCollection.AddSchemaBuilders(assemblyMarker);
+            serviceCollection.AddTransient<IQuoteAggregateRepository, QuoteAggregateRepository>();
+            serviceCollection.AddSingleton<IAuthorizationHandler, QuoteAuthorizationHandler>();
         }
 
         public void PostInitialize(IApplicationBuilder appBuilder)
