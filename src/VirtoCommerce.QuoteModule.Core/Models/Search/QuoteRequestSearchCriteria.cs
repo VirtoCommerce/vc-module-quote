@@ -12,5 +12,6 @@ namespace VirtoCommerce.QuoteModule.Core.Models
         public DateTime? EndDate { get; set; }
         public string Status { get; set; }
         public string Tag { get; set; }
+        public string Currency { get; set; }
     }
 }

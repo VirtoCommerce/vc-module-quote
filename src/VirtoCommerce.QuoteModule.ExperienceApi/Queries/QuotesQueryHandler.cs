@@ -33,11 +33,13 @@ public class QuotesQueryHandler : IQueryHandler<QuotesQuery, QuoteAggregateSearc
         return result;
     }
 
-
     protected virtual QuoteRequestSearchCriteria GetSearchCriteria(QuotesQuery request)
     {
         var criteria = request.GetSearchCriteria<QuoteRequestSearchCriteria>();
-        criteria.CustomerId = request.CustomerId;
+        criteria.StoreId = request.StoreId;
+        criteria.CustomerId = request.UserId;
+        criteria.Currency = request.CurrencyCode;
+        criteria.LanguageCode = request.CultureName;
 
         return criteria;
     }

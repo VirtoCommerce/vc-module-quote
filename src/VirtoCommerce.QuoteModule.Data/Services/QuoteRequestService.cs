@@ -1,9 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Memory;
 using VirtoCommerce.CoreModule.Core.Common;
 using VirtoCommerce.Platform.Core.Caching;
 using VirtoCommerce.Platform.Core.Common;
@@ -125,19 +125,32 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                 using (var repository = _repositoryFactory())
                 {
                     var query = repository.QuoteRequests;
+
                     if (criteria.CustomerId != null)
                     {
                         query = query.Where(x => x.CustomerId == criteria.CustomerId);
                     }
+
                     if (criteria.StoreId != null)
                     {
                         query = query.Where(x => x.StoreId == criteria.StoreId);
+                    }
+
+                    if (criteria.Currency != null)
+                    {
+                        query = query.Where(x => x.Currency == criteria.Currency);
+                    }
+
+                    if (criteria.LanguageCode != null)
+                    {
+                        query = query.Where(x => x.LanguageCode == criteria.LanguageCode);
                     }
 
                     if (criteria.Number != null)
                     {
                         query = query.Where(x => x.Number == criteria.Number);
                     }
+
                     else if (criteria.Keyword != null)
                     {
                         query = query.Where(x => x.Number.Contains(criteria.Keyword)
@@ -150,10 +163,12 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                     {
                         query = query.Where(x => x.Tag == criteria.Tag);
                     }
+
                     if (criteria.Status != null)
                     {
                         query = query.Where(x => x.Status == criteria.Status);
                     }
+
                     var sortInfos = criteria.SortInfos;
                     if (sortInfos.IsNullOrEmpty())
                     {
