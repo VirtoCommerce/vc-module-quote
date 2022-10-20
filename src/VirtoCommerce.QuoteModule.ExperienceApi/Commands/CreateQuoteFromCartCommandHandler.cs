@@ -64,7 +64,8 @@ public class CreateQuoteFromCartCommandHandler : IRequestHandler<CreateQuoteFrom
         var cartAggregate = await _cartRepository.GetCartForShoppingCartAsync(cart);
         var context = await _cartValidationContextFactory.CreateValidationContextAsync(cartAggregate);
 
-        await cartAggregate.ValidateAsync(context, "*");
+        // do not validate items, shipments, payments; only basic validation
+        await cartAggregate.ValidateAsync(context, "default");
 
         if (cartAggregate.ValidationErrors.Any() || cartAggregate.ValidationWarnings.Any())
         {
