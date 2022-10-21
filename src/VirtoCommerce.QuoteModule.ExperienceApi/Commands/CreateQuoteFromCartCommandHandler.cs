@@ -1,13 +1,17 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentValidation.Results;
 using GraphQL;
 using MediatR;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.ExperienceApiModule.Core.Helpers;
+using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.GenericCrud;
 using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
+using VirtoCommerce.QuoteModule.ExperienceApi.Validation;
 using VirtoCommerce.XPurchase;
 using VirtoCommerce.XPurchase.Validators;
 
@@ -64,13 +68,29 @@ public class CreateQuoteFromCartCommandHandler : IRequestHandler<CreateQuoteFrom
         var cartAggregate = await _cartRepository.GetCartForShoppingCartAsync(cart);
         var context = await _cartValidationContextFactory.CreateValidationContextAsync(cartAggregate);
 
-        // do not validate items, shipments, payments; only basic validation
+        // do not validate items, shipments, payments; only basic validation using default cart validator
         await cartAggregate.ValidateAsync(context, "default");
 
-        if (cartAggregate.ValidationErrors.Any() || cartAggregate.ValidationWarnings.Any())
+        // custom validate cart line items (for deleted products)
+        var lineItemValidationErros = new List<ValidationFailure>();
+        var lineItemValidator = AbstractTypeFactory<CartToQuoteLineItemValidator>.TryCreateInstance();
+        cartAggregate.Cart.Items?.Apply(item =>
+        {
+            var lineItemContext = new CartToQuoteLineItemValidationContext
+            {
+                LineItem = item,
+                AllCartProducts = context.AllCartProducts ?? context.CartAggregate.CartProducts.Values
+            };
+            var result = lineItemValidator.Validate(lineItemContext);
+            lineItemValidationErros.AddRange(result.Errors);
+        });
+
+        // combine all errors
+        if (cartAggregate.ValidationErrors.Any() || cartAggregate.ValidationWarnings.Any() || lineItemValidationErros.Any())
         {
             var errors = cartAggregate.ValidationErrors
                 .Union(cartAggregate.ValidationWarnings)
+                .Union(lineItemValidationErros)
                 .GroupBy(x => x.ErrorCode)
                 .ToDictionary(x => x.Key, x => x.First().ErrorMessage);
 
