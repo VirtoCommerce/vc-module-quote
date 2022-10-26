@@ -24,8 +24,8 @@ public class QuoteAuthorizationHandler : AuthorizationHandler<QuoteAuthorization
                     result = quote.Model.CustomerId == currentUserId;
                     break;
                 case QuotesQuery query:
-                    query.CustomerId = currentUserId;
-                    result = query.CustomerId != null;
+                    query.UserId = currentUserId;
+                    result = query.UserId != null;
                     break;
             }
         }
