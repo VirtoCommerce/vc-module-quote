@@ -7,7 +7,6 @@ angular.module('virtoCommerce.quoteModule')
             blade.refresh = function (parentRefresh) {
                 quotes.get({ id: blade.currentEntityId }, function (data) {
                     initializeBlade(data);
-                    openItemsListOnce();
                     if (parentRefresh) {
                         blade.parentBlade.refresh();
                     }
