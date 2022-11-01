@@ -71,7 +71,7 @@ public class QuotesQueryHandler : IQueryHandler<QuotesQuery, QuoteAggregateSearc
                 criteria.StartDate = startDate;
             }
 
-            if (DateTime.TryParse(range.Lower, out var endDate))
+            if (DateTime.TryParse(range.Upper, out var endDate))
             {
                 criteria.EndDate = endDate;
             }
