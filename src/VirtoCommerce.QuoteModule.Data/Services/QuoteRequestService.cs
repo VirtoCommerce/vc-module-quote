@@ -1,9 +1,9 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using VirtoCommerce.CoreModule.Core.Common;
 using VirtoCommerce.Platform.Core.Caching;
 using VirtoCommerce.Platform.Core.Common;
@@ -164,9 +164,19 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                         query = query.Where(x => x.Tag == criteria.Tag);
                     }
 
-                    if (criteria.Status != null)
+                    if (!criteria.Statuses.IsNullOrEmpty())
                     {
-                        query = query.Where(x => x.Status == criteria.Status);
+                        query = query.Where(x => criteria.Statuses.Contains(x.Status));
+                    }
+
+                    if (criteria.StartDate != null)
+                    {
+                        query = query.Where(x => x.CreatedDate >= criteria.StartDate);
+                    }
+
+                    if (criteria.EndDate != null)
+                    {
+                        query = query.Where(x => x.CreatedDate <= criteria.EndDate);
                     }
 
                     var sortInfos = criteria.SortInfos;

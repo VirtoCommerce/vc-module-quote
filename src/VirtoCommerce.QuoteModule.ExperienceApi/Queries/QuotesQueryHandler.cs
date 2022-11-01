@@ -1,10 +1,15 @@
+using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using VirtoCommerce.ExperienceApiModule.Core.Index;
 using VirtoCommerce.ExperienceApiModule.Core.Infrastructure;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
+using VirtoCommerce.SearchModule.Core.Model;
+using VirtoCommerce.SearchModule.Core.Services;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Queries;
 
@@ -12,13 +17,16 @@ public class QuotesQueryHandler : IQueryHandler<QuotesQuery, QuoteAggregateSearc
 {
     private readonly IQuoteRequestService _quoteRequestService;
     private readonly IQuoteAggregateRepository _quoteAggregateRepository;
+    private readonly ISearchPhraseParser _phraseParser;
 
     public QuotesQueryHandler(
         IQuoteRequestService quoteRequestService,
-        IQuoteAggregateRepository quoteAggregateRepository)
+        IQuoteAggregateRepository quoteAggregateRepository,
+        ISearchPhraseParser phraseParser)
     {
         _quoteRequestService = quoteRequestService;
         _quoteAggregateRepository = quoteAggregateRepository;
+        _phraseParser = phraseParser;
     }
 
     public virtual async Task<QuoteAggregateSearchResult> Handle(QuotesQuery request, CancellationToken cancellationToken)
@@ -40,6 +48,34 @@ public class QuotesQueryHandler : IQueryHandler<QuotesQuery, QuoteAggregateSearc
         criteria.CustomerId = request.UserId;
         criteria.Currency = request.CurrencyCode;
         criteria.LanguageCode = request.CultureName;
+
+        // parse Filter argument
+        var parseResult = _phraseParser.Parse(request.Filter);
+
+        criteria.Keyword = !string.IsNullOrEmpty(parseResult.Keyword)
+            ? parseResult.Keyword
+            : request.Keyword;
+
+        foreach (var term in parseResult.Filters.OfType<TermFilter>())
+        {
+            term.MapTo(criteria);
+        }
+
+        // custom CreatedDate filter
+        var createdDateRange = parseResult.Filters.OfType<RangeFilter>().FirstOrDefault(x => x.FieldName.EqualsInvariant("CreatedDate"));
+        var range = createdDateRange?.Values?.FirstOrDefault();
+        if (range != null)
+        {
+            if (DateTime.TryParse(range.Lower, out var startDate))
+            {
+                criteria.StartDate = startDate;
+            }
+
+            if (DateTime.TryParse(range.Lower, out var endDate))
+            {
+                criteria.EndDate = endDate;
+            }
+        }
 
         return criteria;
     }
