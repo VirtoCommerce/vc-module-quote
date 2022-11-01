@@ -50,6 +50,11 @@ public class QuotesQueryHandler : IQueryHandler<QuotesQuery, QuoteAggregateSearc
         criteria.LanguageCode = request.CultureName;
 
         // parse Filter argument
+        if (string.IsNullOrEmpty(request.Filter))
+        {
+            return criteria;
+        }
+
         var parseResult = _phraseParser.Parse(request.Filter);
 
         criteria.Keyword = !string.IsNullOrEmpty(parseResult.Keyword)
