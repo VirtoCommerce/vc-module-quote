@@ -7,7 +7,12 @@ namespace VirtoCommerce.QuoteModule.Core.Models
     {
         private string[] _statuses;
 
+        // strict number search
         public string Number { get; set; }
+
+        // search number by contains keyword
+        public string NumberKeyword { get; set; }
+
         public string CustomerId { get; set; }
         public string StoreId { get; set; }
         public DateTime? StartDate { get; set; }

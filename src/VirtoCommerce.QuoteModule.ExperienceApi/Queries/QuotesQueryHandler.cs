@@ -57,9 +57,8 @@ public class QuotesQueryHandler : IQueryHandler<QuotesQuery, QuoteAggregateSearc
 
         var parseResult = _phraseParser.Parse(request.Filter);
 
-        criteria.Keyword = !string.IsNullOrEmpty(parseResult.Keyword)
-            ? parseResult.Keyword
-            : request.Keyword;
+        // search keyword only in number
+        criteria.NumberKeyword = parseResult.Keyword;
 
         foreach (var term in parseResult.Filters.OfType<TermFilter>())
         {

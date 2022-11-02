@@ -159,6 +159,11 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                             || (x.Tag != null && x.Tag.Contains(criteria.Keyword)));
                     }
 
+                    else if (!string.IsNullOrEmpty(criteria.NumberKeyword))
+                    {
+                        query = query.Where(x => x.Number.Contains(criteria.NumberKeyword));
+                    }
+
                     if (criteria.Tag != null)
                     {
                         query = query.Where(x => x.Tag == criteria.Tag);
