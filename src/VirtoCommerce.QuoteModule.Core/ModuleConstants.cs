@@ -3,6 +3,13 @@ using VirtoCommerce.Platform.Core.Settings;
 
 namespace VirtoCommerce.QuoteModule.Core
 {
+    public static class QuoteStatus
+    {
+        public const string Draft = "Draft";
+        public const string Processing = "Processing";
+        public const string Cancelled = "Cancelled";
+    }
+
     public static class ModuleConstants
     {
         public static class Security
@@ -30,13 +37,21 @@ namespace VirtoCommerce.QuoteModule.Core
                     ValueType = SettingValueType.ShortText,
                     IsDictionary = true,
                     DefaultValue = "New",
-                    AllowedValues = new object[] { "New", "Processing", "Proposal sent", "Ordered" }
+                    AllowedValues = new object[] { QuoteStatus.Draft, "New", QuoteStatus.Processing, "Proposal sent", "Ordered", QuoteStatus.Cancelled }
+                };
+
+                public static SettingDescriptor DefaultStatus { get; } = new SettingDescriptor
+                {
+                    Name = "Quotes.DefaultStatus",
+                    GroupName = "Quotes|General",
+                    ValueType = SettingValueType.ShortText,
+                    DefaultValue = QuoteStatus.Draft,
                 };
 
                 public static SettingDescriptor QuoteRequestNewNumberTemplate { get; } = new SettingDescriptor
                 {
                     Name = "Quotes.QuoteRequestNewNumberTemplate",
-                    GroupName = "Quotes|Quotes",
+                    GroupName = "Quotes|General",
                     ValueType = SettingValueType.ShortText,
                     DefaultValue = "RFQ{0:yyMMdd}-{1:D5}"
                 };
@@ -44,7 +59,7 @@ namespace VirtoCommerce.QuoteModule.Core
                 public static SettingDescriptor EnableQuotes { get; } = new SettingDescriptor
                 {
                     Name = "Quotes.EnableQuotes",
-                    GroupName = "Quotes|Quotes",
+                    GroupName = "Quotes|General",
                     ValueType = SettingValueType.Boolean,
                     DefaultValue = false
                 };
@@ -54,9 +69,10 @@ namespace VirtoCommerce.QuoteModule.Core
             {
                 get
                 {
-                    yield return General.Status;
-                    yield return General.QuoteRequestNewNumberTemplate;
                     yield return General.EnableQuotes;
+                    yield return General.Status;
+                    yield return General.DefaultStatus;
+                    yield return General.QuoteRequestNewNumberTemplate;
                 }
             }
 

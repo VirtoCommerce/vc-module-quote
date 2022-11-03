@@ -1,26 +1,34 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.CoreModule.Core.Common;
 using VirtoCommerce.CoreModule.Core.Tax;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.DynamicProperties;
+using VirtoCommerce.Platform.Core.Settings;
 using VirtoCommerce.QuoteModule.Core.Extensions;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
 using CartAddress = VirtoCommerce.CartModule.Core.Model.Address;
 using CartLineItem = VirtoCommerce.CartModule.Core.Model.LineItem;
 using QuoteAddress = VirtoCommerce.QuoteModule.Core.Models.Address;
+using QuoteSettings = VirtoCommerce.QuoteModule.Core.ModuleConstants.Settings.General;
 using QuoteShipmentMethod = VirtoCommerce.QuoteModule.Core.Models.ShipmentMethod;
 
 namespace VirtoCommerce.QuoteModule.Data.Services;
 
 public class QuoteConverter : IQuoteConverter
 {
-    protected virtual string InitialQuoteStatus => "Processing";
+    private readonly ISettingsManager _settingsManager;
 
-    public virtual QuoteRequest ConvertFromCart(ShoppingCart cart)
+    public QuoteConverter(ISettingsManager settingsManager)
+    {
+        _settingsManager = settingsManager;
+    }
+
+    public virtual async Task<QuoteRequest> ConvertFromCart(ShoppingCart cart)
     {
         var result = AbstractTypeFactory<QuoteRequest>.TryCreateInstance();
 
@@ -31,7 +39,7 @@ public class QuoteConverter : IQuoteConverter
         result.CustomerName = cart.CustomerName;
         result.LanguageCode = cart.LanguageCode;
         result.OrganizationId = cart.OrganizationId;
-        result.Status = InitialQuoteStatus;
+        result.Status = await GetInitialQuoteStatus();
         result.StoreId = cart.StoreId;
 
         result.Items = cart.Items?.Convert(FromCartItems);
@@ -55,7 +63,6 @@ public class QuoteConverter : IQuoteConverter
         result.CustomerName = quote.CustomerName;
         result.LanguageCode = quote.LanguageCode;
         result.OrganizationId = quote.OrganizationId;
-        result.Status = InitialQuoteStatus;
         result.StoreId = quote.StoreId;
 
         result.Items = quote.Items?.Convert(ToCartItems);
@@ -69,6 +76,11 @@ public class QuoteConverter : IQuoteConverter
         return result;
     }
 
+
+    protected virtual Task<string> GetInitialQuoteStatus()
+    {
+        return _settingsManager.GetValueByDescriptorAsync<string>(QuoteSettings.DefaultStatus);
+    }
 
     protected virtual IList<QuoteItem> FromCartItems(ICollection<CartLineItem> items)
     {

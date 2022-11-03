@@ -25,7 +25,7 @@ public class QuoteQueryHandler : IQueryHandler<QuoteQuery, QuoteAggregate>
             return await _quoteAggregateRepository.GetById(request.Id);
         }
 
-        var quotesQuery = new QuotesQuery()
+        var quotesQuery = new QuotesQuery
         {
             Take = 1,
             UserId = request.UserId,
@@ -35,6 +35,7 @@ public class QuoteQueryHandler : IQueryHandler<QuoteQuery, QuoteAggregate>
         };
 
         var searchResult = await _mediator.Send(quotesQuery, cancellationToken);
+
         return searchResult.Results.FirstOrDefault();
     }
 }

@@ -155,6 +155,10 @@
         "title": "Quote statuses",
         "description": "List of valid quote statuses"
       },
+      "DefaultStatus": {
+        "title": "Default quote status",
+        "description": "This status will be assigned to the quote created from the shopping cart"
+      },
       "QuoteRequestNewNumberTemplate": {
         "title": "RFQ number template",
         "description": "This template or pattern will be used to generate numbers for new quote requests. 0 means date and time (UTC) the number gets generated, while 1 stands for the sequence number."
