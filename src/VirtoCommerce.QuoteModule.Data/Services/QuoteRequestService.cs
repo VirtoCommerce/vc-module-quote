@@ -87,6 +87,8 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                 //Update
                 foreach (var origDbQuote in origDbQuotes)
                 {
+                    repository.TrackModifiedAsAddedForNewChildEntities(origDbQuote);
+
                     var changedQuote = quoteRequests.First(x => x.Id == origDbQuote.Id);
                     // Do business logic on quote request
                     changedEntries.Add(new GenericChangedEntry<QuoteRequest>(changedQuote, (await GetByIdsAsync(new[] { origDbQuote.Id })).First(), EntryState.Modified));
