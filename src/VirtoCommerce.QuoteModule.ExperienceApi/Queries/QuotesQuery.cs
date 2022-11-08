@@ -12,6 +12,7 @@ public class QuotesQuery : SearchQuery<QuoteAggregateSearchResult>
     public string UserId { get; set; }
     public string CurrencyCode { get; set; }
     public string CultureName { get; set; }
+    public string Filter { get; set; }
 
     public override IEnumerable<QueryArgument> GetArguments()
     {
@@ -24,6 +25,7 @@ public class QuotesQuery : SearchQuery<QuoteAggregateSearchResult>
         yield return Argument<StringGraphType>(nameof(UserId));
         yield return Argument<StringGraphType>(nameof(CurrencyCode));
         yield return Argument<StringGraphType>(nameof(CultureName));
+        yield return Argument<StringGraphType>(nameof(Filter));
     }
 
     public override void Map(IResolveFieldContext context)
@@ -34,5 +36,6 @@ public class QuotesQuery : SearchQuery<QuoteAggregateSearchResult>
         UserId = context.GetArgument<string>(nameof(UserId));
         CurrencyCode = context.GetArgument<string>(nameof(CurrencyCode));
         CultureName = context.GetArgument<string>(nameof(CultureName));
+        Filter = context.GetArgument<string>(nameof(Filter));
     }
 }
