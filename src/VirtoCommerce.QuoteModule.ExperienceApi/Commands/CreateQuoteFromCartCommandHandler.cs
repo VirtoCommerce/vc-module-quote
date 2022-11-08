@@ -54,7 +54,7 @@ public class CreateQuoteFromCartCommandHandler : IRequestHandler<CreateQuoteFrom
         await ValidateCart(cart);
 
         // Create quote
-        var quote = _quoteConverter.ConvertFromCart(cart);
+        var quote = await _quoteConverter.ConvertFromCart(cart);
         quote.Comment = request.Comment;
         await _quoteRequestService.SaveChangesAsync(new[] { quote });
 
@@ -72,7 +72,7 @@ public class CreateQuoteFromCartCommandHandler : IRequestHandler<CreateQuoteFrom
         await cartAggregate.ValidateAsync(context, "default");
 
         // custom validate cart line items (for deleted products)
-        var lineItemValidationErros = new List<ValidationFailure>();
+        var lineItemValidationErrors = new List<ValidationFailure>();
         var lineItemValidator = AbstractTypeFactory<CartToQuoteLineItemValidator>.TryCreateInstance();
         cartAggregate.Cart.Items?.Apply(item =>
         {
@@ -82,15 +82,15 @@ public class CreateQuoteFromCartCommandHandler : IRequestHandler<CreateQuoteFrom
                 AllCartProducts = context.AllCartProducts ?? context.CartAggregate.CartProducts.Values
             };
             var result = lineItemValidator.Validate(lineItemContext);
-            lineItemValidationErros.AddRange(result.Errors);
+            lineItemValidationErrors.AddRange(result.Errors);
         });
 
         // combine all errors
-        if (cartAggregate.ValidationErrors.Any() || cartAggregate.ValidationWarnings.Any() || lineItemValidationErros.Any())
+        if (cartAggregate.ValidationErrors.Any() || cartAggregate.ValidationWarnings.Any() || lineItemValidationErrors.Any())
         {
             var errors = cartAggregate.ValidationErrors
                 .Union(cartAggregate.ValidationWarnings)
-                .Union(lineItemValidationErros)
+                .Union(lineItemValidationErrors)
                 .GroupBy(x => x.ErrorCode)
                 .ToDictionary(x => x.Key, x => x.First().ErrorMessage);
 
