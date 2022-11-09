@@ -18,6 +18,7 @@ public class QuoteItemType : ExtendableGraphType<QuoteItemAggregate>
 {
     public QuoteItemType(IMediator mediator, IDataLoaderContextAccessor dataLoader)
     {
+        Field(x => x.Model.Id, nullable: false);
         Field(x => x.Model.Sku, nullable: false);
         Field(x => x.Model.ProductId, nullable: false);
         Field(x => x.Model.CatalogId, nullable: false);

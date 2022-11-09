@@ -73,46 +73,54 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                 throw new ArgumentNullException(nameof(quoteRequests));
             }
 
-            //Generate Number
+            // Generate Number
             await EnsureThatQuoteHasNumber(quoteRequests);
 
             var pkMap = new PrimaryKeyResolvingMap();
             var changedEntries = new List<GenericChangedEntry<QuoteRequest>>();
+            var changedEntities = new List<QuoteRequestEntity>();
 
             using (var repository = _repositoryFactory())
             {
                 var ids = quoteRequests.Where(x => x.Id != null).Select(x => x.Id).Distinct().ToArray();
-                var origDbQuotes = await repository.GetQuoteRequestByIdsAsync(ids);
+                var existingEntities = await repository.GetQuoteRequestByIdsAsync(ids);
 
-                //Update
-                foreach (var origDbQuote in origDbQuotes)
+                foreach (var model in quoteRequests)
                 {
-                    var changedQuote = quoteRequests.First(x => x.Id == origDbQuote.Id);
-                    // Do business logic on quote request
-                    changedEntries.Add(new GenericChangedEntry<QuoteRequest>(changedQuote, (await GetByIdsAsync(new[] { origDbQuote.Id })).First(), EntryState.Modified));
+                    var originalEntity = existingEntities.FirstOrDefault(x => x.Id == model.Id);
+                    var modifiedEntity = AbstractTypeFactory<QuoteRequestEntity>.TryCreateInstance().FromModel(model, pkMap);
 
-                    var changedDbQuote = AbstractTypeFactory<QuoteRequestEntity>.TryCreateInstance().FromModel(changedQuote, pkMap);
-                    changedDbQuote.Patch(origDbQuote);
+                    if (originalEntity != null)
+                    {
+                        repository.TrackModifiedAsAddedForNewChildEntities(originalEntity);
+
+                        var originalModel = originalEntity.ToModel(AbstractTypeFactory<QuoteRequest>.TryCreateInstance());
+                        modifiedEntity.Patch(originalEntity);
+
+                        changedEntries.Add(new GenericChangedEntry<QuoteRequest>(model, originalModel, EntryState.Modified));
+                        changedEntities.Add(originalEntity);
+                    }
+                    else
+                    {
+                        repository.Add(modifiedEntity);
+
+                        changedEntries.Add(new GenericChangedEntry<QuoteRequest>(model, EntryState.Added));
+                        changedEntities.Add(modifiedEntity);
+                    }
                 }
 
-                //Create
-                var newQuotes = quoteRequests.Where(x => !origDbQuotes.Any(y => y.Id == x.Id));
-                foreach (var newQuote in newQuotes)
-                {
-                    // Do business logic on quote request
-                    changedEntries.Add(new GenericChangedEntry<QuoteRequest>(newQuote, EntryState.Added));
-                    var newDbQuote = AbstractTypeFactory<QuoteRequestEntity>.TryCreateInstance().FromModel(newQuote, pkMap);
-                    repository.Add(newDbQuote);
-
-                }
                 await repository.UnitOfWork.CommitAsync();
-                //Copy generated id from dbEntities to model
-                pkMap.ResolvePrimaryKeys();
-
-                ClearCache(quoteRequests);
-
-                await _eventPublisher.Publish(new QuoteRequestChangeEvent(changedEntries));
             }
+
+            pkMap.ResolvePrimaryKeys();
+            ClearCache(quoteRequests);
+
+            foreach (var (changedEntry, i) in changedEntries.Select((x, i) => (x, i)))
+            {
+                changedEntry.NewEntry = changedEntities[i].ToModel(AbstractTypeFactory<QuoteRequest>.TryCreateInstance());
+            }
+
+            await _eventPublisher.Publish(new QuoteRequestChangeEvent(changedEntries));
         }
 
         public virtual async Task<QuoteRequestSearchResult> SearchAsync(QuoteRequestSearchCriteria criteria)

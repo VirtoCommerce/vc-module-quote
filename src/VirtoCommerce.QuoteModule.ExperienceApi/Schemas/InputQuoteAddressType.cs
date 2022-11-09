@@ -3,11 +3,11 @@ using VirtoCommerce.QuoteModule.Core.Models;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
 
-public class QuoteAddressType : ObjectGraphType<Address>
+public class InputQuoteAddressType : InputObjectGraphType<Address>
 {
-    public QuoteAddressType()
+    public InputQuoteAddressType()
     {
-        Field<IntGraphType>(nameof(Address.AddressType), resolve: context => (int)context.Source.AddressType);
+        Field<IntGraphType>(nameof(Address.AddressType));
 
         Field(x => x.Key, nullable: true);
         Field(x => x.OuterId, nullable: true);
