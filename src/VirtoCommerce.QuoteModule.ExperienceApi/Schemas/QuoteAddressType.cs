@@ -8,7 +8,7 @@ public class QuoteAddressType : ObjectGraphType<Address>
     public QuoteAddressType()
     {
         Field<IntGraphType>(nameof(Address.AddressType), resolve: context => (int)context.Source.AddressType);
-        Field<StringGraphType>("id", resolve: context => context.Source.Key, description: "Id");
+        Field<StringGraphType>("id", resolve: context => context.Source.Key, description: "ID");
 
         Field(x => x.Key, nullable: true);
         Field(x => x.OuterId, nullable: true);
