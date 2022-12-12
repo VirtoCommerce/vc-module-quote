@@ -8,6 +8,7 @@ public class InputQuoteAddressType : InputObjectGraphType<Address>
     public InputQuoteAddressType()
     {
         Field<IntGraphType>(nameof(Address.AddressType));
+        Field<StringGraphType>("id", resolve: context => context.Source.Key, description: "ID");
 
         Field(x => x.Key, nullable: true);
         Field(x => x.OuterId, nullable: true);
