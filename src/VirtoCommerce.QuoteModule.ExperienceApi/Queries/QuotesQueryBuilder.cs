@@ -3,6 +3,7 @@ using GraphQL;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using VirtoCommerce.ExperienceApiModule.Core.BaseQueries;
+using VirtoCommerce.ExperienceApiModule.Core.Extensions;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.QuoteModule.ExperienceApi.Authorization;
 using VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
@@ -22,5 +23,6 @@ public class QuotesQueryBuilder : SearchQueryBuilder<QuotesQuery, QuoteAggregate
     {
         await base.BeforeMediatorSend(context, request);
         await Authorize(context, request, new QuoteAuthorizationRequirement());
+        context.CopyArgumentsToUserContext();
     }
 }
