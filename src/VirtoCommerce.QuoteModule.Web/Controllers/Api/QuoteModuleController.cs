@@ -14,6 +14,7 @@ using VirtoCommerce.ShippingModule.Core.Model;
 using VirtoCommerce.ShippingModule.Core.Model.Search;
 using VirtoCommerce.ShippingModule.Core.Services;
 using VirtoCommerce.StoreModule.Core.Model;
+using VirtoCommerce.StoreModule.Core.Services;
 using OrderPermissions = VirtoCommerce.OrdersModule.Core.ModuleConstants.Security.Permissions;
 using QuotePermissions = VirtoCommerce.QuoteModule.Core.ModuleConstants.Security.Permissions;
 using ShipmentMethod = VirtoCommerce.QuoteModule.Core.Models.ShipmentMethod;
@@ -34,14 +35,14 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
         public QuoteModuleController(
             IQuoteRequestService quoteRequestService,
             IQuoteTotalsCalculator totalsCalculator,
-            ICrudService<Store> storeService,
+            IStoreService storeService,
             IShippingMethodsSearchService shippingMethodsSearchService,
             IQuoteConverter quoteConverter,
             ICustomerOrderBuilder customerOrderBuilder)
         {
             _quoteRequestService = quoteRequestService;
             _totalsCalculator = totalsCalculator;
-            _storeService = storeService;
+            _storeService = (ICrudService<Store>)storeService;
             _shippingMethodsSearchService = (ISearchService<ShippingMethodsSearchCriteria, ShippingMethodsSearchResult, ShippingMethod>)shippingMethodsSearchService;
             _quoteConverter = quoteConverter;
             _customerOrderBuilder = customerOrderBuilder;

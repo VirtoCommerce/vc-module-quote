@@ -18,6 +18,7 @@ using VirtoCommerce.QuoteModule.Data.Caching;
 using VirtoCommerce.QuoteModule.Data.Model;
 using VirtoCommerce.QuoteModule.Data.Repositories;
 using VirtoCommerce.StoreModule.Core.Model;
+using VirtoCommerce.StoreModule.Core.Services;
 
 namespace VirtoCommerce.QuoteModule.Data.Services
 {
@@ -34,13 +35,13 @@ namespace VirtoCommerce.QuoteModule.Data.Services
             Func<IQuoteRepository> quoteRepositoryFactory,
             IUniqueNumberGenerator uniqueNumberGenerator,
             IEventPublisher eventPublisher,
-            ICrudService<Store> storeService,
+            IStoreService storeService,
             IPlatformMemoryCache platformMemoryCache)
         {
             _repositoryFactory = quoteRepositoryFactory;
             _uniqueNumberGenerator = uniqueNumberGenerator;
             _eventPublisher = eventPublisher;
-            _storeService = storeService;
+            _storeService = (ICrudService<Store>)storeService;
             _platformMemoryCache = platformMemoryCache;
         }
 
