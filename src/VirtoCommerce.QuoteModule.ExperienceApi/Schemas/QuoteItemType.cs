@@ -49,7 +49,7 @@ public class QuoteItemType : ExtendableGraphType<QuoteItemAggregate>
                         StoreId = quote.StoreId,
                         CurrencyCode = quote.Currency,
                         ObjectIds = ids.ToArray(),
-                        IncludeFields = context.SubFields.Values.GetAllNodesPaths().ToArray(),
+                        IncludeFields = context.SubFields.Values.GetAllNodesPaths(context).ToArray(),
                     };
 
                     var response = await mediator.Send(request);
