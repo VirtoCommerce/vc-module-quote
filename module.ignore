@@ -18,8 +18,10 @@ MediatR.Extensions.Microsoft.DependencyInjection.dll
 Microsoft.Data.SqlClient.SNI.dll
 Nager.Country.dll
 PipelineNet.dll
+SixLabors.ImageSharp.dll
 sni.dll
 TimeZoneConverter.dll
+VirtoCommerce.ImageTools.ImageAbstractions.dll
 VirtoCommerce.Tools.dll
 VirtoCommerce.XDigitalCatalog.dll
 VirtoCommerce.XPurchase.dll
