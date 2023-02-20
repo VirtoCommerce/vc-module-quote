@@ -75,7 +75,7 @@ public class QuoteAuthorizationHandler : AuthorizationHandler<QuoteAuthorization
     {
         Contact contact = null;
 
-        var userManager = _userManagerFactory();
+        using var userManager = _userManagerFactory();
         var user = await userManager.FindByIdAsync(userId);
 
         if (!string.IsNullOrEmpty(user?.MemberId))
