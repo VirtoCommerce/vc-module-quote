@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <id>VirtoCommerce.Quote</id>
   <version>3.215.0</version>
@@ -15,7 +15,7 @@
     <dependency id="VirtoCommerce.Store" version="3.200.0" />
     <dependency id="VirtoCommerce.Tax" version="3.200.0" />
   </dependencies>
-  <title>Quote module</title>
+  <title>Quotes</title>
   <description>Quoter enables business users to execute quote requests online. Once initiated, an online conversation takes place with internal users who interact with the business user's request. The internal user can set prices for quantity breaks or discounts. The quote is then made available to the business user online. The business user can accept the quote and place the order, continue the conversation, or reject the quote.</description>
   <authors>
     <author>Artem Dudarev</author>

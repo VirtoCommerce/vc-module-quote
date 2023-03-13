@@ -14,6 +14,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VirtoCommerce.QuoteModule.Core\VirtoCommerce.QuoteModule.Core.csproj" />
+    <ProjectReference Include="..\VirtoCommerce.QuoteModule.Data.MySql\VirtoCommerce.QuoteModule.Data.MySql.csproj" />
+    <ProjectReference Include="..\VirtoCommerce.QuoteModule.Data.PostgreSql\VirtoCommerce.QuoteModule.Data.PostgreSql.csproj" />
+    <ProjectReference Include="..\VirtoCommerce.QuoteModule.Data.SqlServer\VirtoCommerce.QuoteModule.Data.SqlServer.csproj" />
     <ProjectReference Include="..\VirtoCommerce.QuoteModule.Data\VirtoCommerce.QuoteModule.Data.csproj" />
     <ProjectReference Include="..\VirtoCommerce.QuoteModule.ExperienceApi\VirtoCommerce.QuoteModule.ExperienceApi.csproj" />
   </ItemGroup>

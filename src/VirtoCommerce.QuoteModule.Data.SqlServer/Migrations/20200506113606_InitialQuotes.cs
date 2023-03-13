@@ -1,7 +1,6 @@
-﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace VirtoCommerce.QuoteModule.Data.Migrations
+namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
 {
     public partial class InitialQuotes : Migration
     {
