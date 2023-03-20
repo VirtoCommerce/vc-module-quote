@@ -8,6 +8,7 @@ using VirtoCommerce.CoreModule.Core.Common;
 using VirtoCommerce.Platform.Core.Caching;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.Events;
+using VirtoCommerce.Platform.Core.GenericCrud;
 using VirtoCommerce.Platform.Core.Settings;
 using VirtoCommerce.Platform.Data.Infrastructure;
 using VirtoCommerce.QuoteModule.Core.Events;
@@ -16,6 +17,7 @@ using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.QuoteModule.Data.Caching;
 using VirtoCommerce.QuoteModule.Data.Model;
 using VirtoCommerce.QuoteModule.Data.Repositories;
+using VirtoCommerce.StoreModule.Core.Model;
 using VirtoCommerce.StoreModule.Core.Services;
 
 namespace VirtoCommerce.QuoteModule.Data.Services
@@ -25,16 +27,21 @@ namespace VirtoCommerce.QuoteModule.Data.Services
         private readonly Func<IQuoteRepository> _repositoryFactory;
         private readonly IUniqueNumberGenerator _uniqueNumberGenerator;
         private readonly IEventPublisher _eventPublisher;
-        private readonly IStoreService _storeService;
+        private readonly ICrudService<Store> _storeService;
         private readonly IPlatformMemoryCache _platformMemoryCache;
 
 
-        public QuoteRequestService(Func<IQuoteRepository> quoteRepositoryFactory, IUniqueNumberGenerator uniqueNumberGenerator, IEventPublisher eventPublisher, IStoreService storeService, IPlatformMemoryCache platformMemoryCache)
+        public QuoteRequestService(
+            Func<IQuoteRepository> quoteRepositoryFactory,
+            IUniqueNumberGenerator uniqueNumberGenerator,
+            IEventPublisher eventPublisher,
+            IStoreService storeService,
+            IPlatformMemoryCache platformMemoryCache)
         {
             _repositoryFactory = quoteRepositoryFactory;
             _uniqueNumberGenerator = uniqueNumberGenerator;
             _eventPublisher = eventPublisher;
-            _storeService = storeService;
+            _storeService = (ICrudService<Store>)storeService;
             _platformMemoryCache = platformMemoryCache;
         }
 
@@ -238,7 +245,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
 
         protected virtual async Task EnsureThatQuoteHasNumber(QuoteRequest[] quoteRequests)
         {
-            var stores = await _storeService.GetByIdsAsync(quoteRequests.Select(x => x.StoreId).Distinct().ToArray());
+            var stores = await _storeService.GetAsync(quoteRequests.Select(x => x.StoreId).Distinct().ToList());
             foreach (var quoteRequest in quoteRequests)
             {
                 if (string.IsNullOrEmpty(quoteRequest.Number))
