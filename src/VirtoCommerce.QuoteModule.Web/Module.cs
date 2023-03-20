@@ -25,8 +25,11 @@ using VirtoCommerce.QuoteModule.Core.Events;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.QuoteModule.Data.Handlers;
+using VirtoCommerce.QuoteModule.Data.MySql;
+using VirtoCommerce.QuoteModule.Data.PostgreSql;
 using VirtoCommerce.QuoteModule.Data.Repositories;
 using VirtoCommerce.QuoteModule.Data.Services;
+using VirtoCommerce.QuoteModule.Data.SqlServer;
 using VirtoCommerce.QuoteModule.ExperienceApi;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.QuoteModule.ExperienceApi.Authorization;
@@ -35,17 +38,32 @@ using VirtoCommerce.StoreModule.Core.Model;
 
 namespace VirtoCommerce.QuoteModule.Web
 {
-    public class Module : IModule, IExportSupport, IImportSupport
+    public class Module : IModule, IExportSupport, IImportSupport, IHasConfiguration
     {
         public ManifestModuleInfo ModuleInfo { get; set; }
         private IApplicationBuilder _appBuilder;
+        public IConfiguration Configuration { get; set; }
+
 
         public void Initialize(IServiceCollection serviceCollection)
         {
             serviceCollection.AddDbContext<QuoteDbContext>((provider, options) =>
             {
-                var configuration = provider.GetRequiredService<IConfiguration>();
-                options.UseSqlServer(configuration.GetConnectionString(ModuleInfo.Id) ?? configuration.GetConnectionString("VirtoCommerce"));
+                var databaseProvider = Configuration.GetValue("DatabaseProvider", "SqlServer");
+                var connectionString = Configuration.GetConnectionString(ModuleInfo.Id) ?? Configuration.GetConnectionString("VirtoCommerce");
+
+                switch (databaseProvider)
+                {
+                    case "MySql":
+                        options.UseMySqlDatabase(connectionString);
+                        break;
+                    case "PostgreSql":
+                        options.UsePostgreSqlDatabase(connectionString);
+                        break;
+                    default:
+                        options.UseSqlServerDatabase(connectionString);
+                        break;
+                }
             });
 
             serviceCollection.AddTransient<IQuoteRepository, QuoteRepository>();
@@ -94,9 +112,12 @@ namespace VirtoCommerce.QuoteModule.Web
             handlerRegistrar.RegisterHandler<QuoteRequestChangeEvent>((message, _) => appBuilder.ApplicationServices.GetRequiredService<LogChangesEventHandler>().Handle(message));
 
             using var serviceScope = appBuilder.ApplicationServices.CreateScope();
+            var databaseProvider = Configuration.GetValue("DatabaseProvider", "SqlServer");
             var dbContext = serviceScope.ServiceProvider.GetRequiredService<QuoteDbContext>();
-            dbContext.Database.MigrateIfNotApplied(MigrationName.GetUpdateV2MigrationName(ModuleInfo.Id));
-            dbContext.Database.EnsureCreated();
+            if (databaseProvider == "SqlServer")
+            {
+                dbContext.Database.MigrateIfNotApplied(MigrationName.GetUpdateV2MigrationName(ModuleInfo.Id));
+            }
             dbContext.Database.Migrate();
         }
 
