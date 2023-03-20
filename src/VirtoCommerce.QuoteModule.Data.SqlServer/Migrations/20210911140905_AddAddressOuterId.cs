@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace VirtoCommerce.QuoteModule.Data.Migrations
+namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
 {
     public partial class AddAddressOuterId : Migration
     {
