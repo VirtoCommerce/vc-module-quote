@@ -79,7 +79,7 @@ public class QuoteConverter : IQuoteConverter
 
     protected virtual Task<string> GetInitialQuoteStatus()
     {
-        return _settingsManager.GetValueByDescriptorAsync<string>(QuoteSettings.DefaultStatus);
+        return _settingsManager.GetValueAsync<string>(QuoteSettings.DefaultStatus);
     }
 
     protected virtual IList<QuoteItem> FromCartItems(ICollection<CartLineItem> items)

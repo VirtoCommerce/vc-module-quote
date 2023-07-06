@@ -1,8 +1,6 @@
 using System;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using GraphQL.Server;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -21,6 +19,7 @@ using VirtoCommerce.Platform.Core.Security;
 using VirtoCommerce.Platform.Core.Settings;
 using VirtoCommerce.Platform.Data.Extensions;
 using VirtoCommerce.PricingModule.Core.Model.Conditions;
+using VirtoCommerce.QuoteModule.Core;
 using VirtoCommerce.QuoteModule.Core.Events;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
@@ -40,14 +39,14 @@ namespace VirtoCommerce.QuoteModule.Web
 {
     public class Module : IModule, IExportSupport, IImportSupport, IHasConfiguration
     {
-        public ManifestModuleInfo ModuleInfo { get; set; }
         private IApplicationBuilder _appBuilder;
-        public IConfiguration Configuration { get; set; }
 
+        public ManifestModuleInfo ModuleInfo { get; set; }
+        public IConfiguration Configuration { get; set; }
 
         public void Initialize(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddDbContext<QuoteDbContext>((provider, options) =>
+            serviceCollection.AddDbContext<QuoteDbContext>(options =>
             {
                 var databaseProvider = Configuration.GetValue("DatabaseProvider", "SqlServer");
                 var connectionString = Configuration.GetConnectionString(ModuleInfo.Id) ?? Configuration.GetConnectionString("VirtoCommerce");
@@ -96,17 +95,11 @@ namespace VirtoCommerce.QuoteModule.Web
             dynamicPropertyRegistrar.RegisterType<QuoteRequest>();
 
             var settingsRegistrar = appBuilder.ApplicationServices.GetRequiredService<ISettingsRegistrar>();
-            settingsRegistrar.RegisterSettings(Core.ModuleConstants.Settings.AllSettings, ModuleInfo.Id);
-            settingsRegistrar.RegisterSettingsForType(Core.ModuleConstants.Settings.StoreLevelSettings, nameof(Store));
+            settingsRegistrar.RegisterSettings(ModuleConstants.Settings.AllSettings, ModuleInfo.Id);
+            settingsRegistrar.RegisterSettingsForType(ModuleConstants.Settings.StoreLevelSettings, nameof(Store));
 
-            var permissionsProvider = appBuilder.ApplicationServices.GetRequiredService<IPermissionsRegistrar>();
-            permissionsProvider.RegisterPermissions(Core.ModuleConstants.Security.Permissions.AllPermissions.Select(x =>
-                new Permission
-                {
-                    GroupName = "Quotes",
-                    ModuleId = ModuleInfo.Id,
-                    Name = x
-                }).ToArray());
+            var permissionsRegistrar = appBuilder.ApplicationServices.GetRequiredService<IPermissionsRegistrar>();
+            permissionsRegistrar.RegisterPermissions(ModuleInfo.Id, "Quotes", ModuleConstants.Security.Permissions.AllPermissions);
 
             var handlerRegistrar = appBuilder.ApplicationServices.GetRequiredService<IHandlerRegistrar>();
             handlerRegistrar.RegisterHandler<QuoteRequestChangeEvent>((message, _) => appBuilder.ApplicationServices.GetRequiredService<LogChangesEventHandler>().Handle(message));

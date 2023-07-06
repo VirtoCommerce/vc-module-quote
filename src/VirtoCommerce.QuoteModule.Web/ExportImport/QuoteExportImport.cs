@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.ExportImport;
-using VirtoCommerce.Platform.Data.ExportImport;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
 
@@ -35,11 +34,11 @@ namespace VirtoCommerce.QuoteModule.Web.ExportImport
                 await writer.WriteStartObjectAsync();
                 await writer.WritePropertyNameAsync("QuoteRequests");
 
-                await writer.SerializeJsonArrayWithPagingAsync(_serializer, _batchSize, async (skip, take) =>
+                await writer.SerializeArrayWithPagingAsync(_serializer, _batchSize, async (skip, take) =>
                         (GenericSearchResult<QuoteRequest>)await _quoteRequestService.SearchAsync(new QuoteRequestSearchCriteria { Skip = skip, Take = take })
                     , (processedCount, totalCount) =>
                     {
-                        progressInfo.Description = $"{ processedCount } of { totalCount } quote requests have been exported";
+                        progressInfo.Description = $"{processedCount} of {totalCount} quote requests have been exported";
                         progressCallback(progressInfo);
                     }, cancellationToken);
 
@@ -52,18 +51,22 @@ namespace VirtoCommerce.QuoteModule.Web.ExportImport
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var progressInfo = new ExportImportProgressInfo {Description = "quote requests importing..."};
+            var progressInfo = new ExportImportProgressInfo { Description = "quote requests importing..." };
             progressCallback(progressInfo);
 
             using (var streamReader = new StreamReader(inputStream))
             using (var reader = new JsonTextReader(streamReader))
             {
-                while (reader.Read())
+                while (await reader.ReadAsync())
                 {
-                    if (reader.TokenType != JsonToken.PropertyName) continue;
+                    if (reader.TokenType != JsonToken.PropertyName)
+                    {
+                        continue;
+                    }
+
                     if (reader.Value.ToString() == "QuoteRequests")
                     {
-                        await reader.DeserializeJsonArrayWithPagingAsync<QuoteRequest>(_serializer, _batchSize, async items =>
+                        await reader.DeserializeArrayWithPagingAsync<QuoteRequest>(_serializer, _batchSize, async items =>
                         {
                             await _quoteRequestService.SaveChangesAsync(items.ToArray());
                         }, processedCount =>

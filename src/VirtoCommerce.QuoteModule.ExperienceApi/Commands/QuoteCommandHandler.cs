@@ -38,7 +38,7 @@ public abstract class QuoteCommandHandler<TCommand> : IRequestHandler<TCommand, 
             return null;
         }
 
-        var defaultStatus = await _settingsManager.GetValueByDescriptorAsync<string>(QuoteSettings.DefaultStatus);
+        var defaultStatus = await _settingsManager.GetValueAsync<string>(QuoteSettings.DefaultStatus);
 
         if (quote.Status != defaultStatus)
         {
