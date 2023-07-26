@@ -6,9 +6,9 @@ using FluentValidation.Results;
 using GraphQL;
 using MediatR;
 using VirtoCommerce.CartModule.Core.Model;
+using VirtoCommerce.CartModule.Core.Services;
 using VirtoCommerce.ExperienceApiModule.Core.Helpers;
 using VirtoCommerce.Platform.Core.Common;
-using VirtoCommerce.Platform.Core.GenericCrud;
 using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.QuoteModule.ExperienceApi.Validation;
@@ -19,7 +19,7 @@ namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
 
 public class CreateQuoteFromCartCommandHandler : IRequestHandler<CreateQuoteFromCartCommand, QuoteAggregate>
 {
-    private readonly ICrudService<ShoppingCart> _cartService;
+    private readonly IShoppingCartService _cartService;
     private readonly ICartAggregateRepository _cartRepository;
     private readonly ICartValidationContextFactory _cartValidationContextFactory;
     private readonly IQuoteConverter _quoteConverter;
@@ -27,7 +27,7 @@ public class CreateQuoteFromCartCommandHandler : IRequestHandler<CreateQuoteFrom
     private readonly IQuoteAggregateRepository _quoteAggregateRepository;
 
     public CreateQuoteFromCartCommandHandler(
-        ICrudService<ShoppingCart> cartService,
+        IShoppingCartService cartService,
         ICartAggregateRepository cartRepository,
         ICartValidationContextFactory cartValidationContextFactory,
         IQuoteConverter quoteConverter,

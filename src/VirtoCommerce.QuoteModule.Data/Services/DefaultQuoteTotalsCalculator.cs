@@ -2,10 +2,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.Platform.Core.Common;
-using VirtoCommerce.Platform.Core.GenericCrud;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
-using VirtoCommerce.ShippingModule.Core.Model;
 using VirtoCommerce.ShippingModule.Core.Model.Search;
 using VirtoCommerce.ShippingModule.Core.Services;
 using VirtoCommerce.TaxModule.Core.Model;
@@ -16,18 +14,17 @@ namespace VirtoCommerce.QuoteModule.Data.Services
 {
     public class DefaultQuoteTotalsCalculator : IQuoteTotalsCalculator
     {
-        private readonly ISearchService<ShippingMethodsSearchCriteria, ShippingMethodsSearchResult, ShippingMethod> _shippingMethodsSearchService;
-        private readonly ISearchService<TaxProviderSearchCriteria, TaxProviderSearchResult, TaxProvider> _taxProviderSearchService;
+        private readonly IShippingMethodsSearchService _shippingMethodsSearchService;
+        private readonly ITaxProviderSearchService _taxProviderSearchService;
 
         public DefaultQuoteTotalsCalculator(
             IShippingMethodsSearchService shippingMethodsSearchService,
             ITaxProviderSearchService taxProviderSearchService)
         {
-            _shippingMethodsSearchService = (ISearchService<ShippingMethodsSearchCriteria, ShippingMethodsSearchResult, ShippingMethod>)shippingMethodsSearchService;
-            _taxProviderSearchService = (ISearchService<TaxProviderSearchCriteria, TaxProviderSearchResult, TaxProvider>)taxProviderSearchService;
+            _shippingMethodsSearchService = shippingMethodsSearchService;
+            _taxProviderSearchService = taxProviderSearchService;
         }
 
-        #region IQuoteTotalsCalculator Members
         public virtual async Task<QuoteRequestTotals> CalculateTotalsAsync(QuoteRequest quote)
         {
             var retVal = new QuoteRequestTotals();
@@ -84,6 +81,5 @@ namespace VirtoCommerce.QuoteModule.Data.Services
 
             return retVal;
         }
-        #endregion
     }
 }

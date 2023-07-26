@@ -5,15 +5,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.OrdersModule.Core.Model;
-using VirtoCommerce.OrdersModule.Data.Services;
+using VirtoCommerce.OrdersModule.Core.Services;
 using VirtoCommerce.Platform.Core.Common;
-using VirtoCommerce.Platform.Core.GenericCrud;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
-using VirtoCommerce.ShippingModule.Core.Model;
 using VirtoCommerce.ShippingModule.Core.Model.Search;
 using VirtoCommerce.ShippingModule.Core.Services;
-using VirtoCommerce.StoreModule.Core.Model;
 using VirtoCommerce.StoreModule.Core.Services;
 using OrderPermissions = VirtoCommerce.OrdersModule.Core.ModuleConstants.Security.Permissions;
 using QuotePermissions = VirtoCommerce.QuoteModule.Core.ModuleConstants.Security.Permissions;
@@ -27,8 +24,8 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
     {
         private readonly IQuoteRequestService _quoteRequestService;
         private readonly IQuoteTotalsCalculator _totalsCalculator;
-        private readonly ICrudService<Store> _storeService;
-        private readonly ISearchService<ShippingMethodsSearchCriteria, ShippingMethodsSearchResult, ShippingMethod> _shippingMethodsSearchService;
+        private readonly IStoreService _storeService;
+        private readonly IShippingMethodsSearchService _shippingMethodsSearchService;
         private readonly IQuoteConverter _quoteConverter;
         private readonly ICustomerOrderBuilder _customerOrderBuilder;
 
@@ -42,8 +39,8 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
         {
             _quoteRequestService = quoteRequestService;
             _totalsCalculator = totalsCalculator;
-            _storeService = (ICrudService<Store>)storeService;
-            _shippingMethodsSearchService = (ISearchService<ShippingMethodsSearchCriteria, ShippingMethodsSearchResult, ShippingMethod>)shippingMethodsSearchService;
+            _storeService = storeService;
+            _shippingMethodsSearchService = shippingMethodsSearchService;
             _quoteConverter = quoteConverter;
             _customerOrderBuilder = customerOrderBuilder;
         }
@@ -138,7 +135,7 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
             var quote = (await _quoteRequestService.GetByIdsAsync(id)).FirstOrDefault();
             if (quote != null)
             {
-                var store = await _storeService.GetByIdAsync(quote.StoreId);
+                var store = await _storeService.GetNoCloneAsync(quote.StoreId);
 
                 if (store != null)
                 {
