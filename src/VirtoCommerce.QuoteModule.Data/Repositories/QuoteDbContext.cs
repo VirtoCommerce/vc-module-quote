@@ -1,11 +1,11 @@
 using System.Reflection;
-using EntityFrameworkCore.Triggers;
 using Microsoft.EntityFrameworkCore;
+using VirtoCommerce.Platform.Data.Infrastructure;
 using VirtoCommerce.QuoteModule.Data.Model;
 
 namespace VirtoCommerce.QuoteModule.Data.Repositories
 {
-    public class QuoteDbContext : DbContextWithTriggers
+    public class QuoteDbContext : DbContextBase
     {
 #pragma warning disable S109
         public QuoteDbContext(DbContextOptions<QuoteDbContext> options)

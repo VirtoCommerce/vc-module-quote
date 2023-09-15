@@ -10,6 +10,7 @@ using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.Events;
 using VirtoCommerce.Platform.Core.Settings;
 using VirtoCommerce.Platform.Data.Infrastructure;
+using VirtoCommerce.QuoteModule.Core;
 using VirtoCommerce.QuoteModule.Core.Events;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
@@ -126,11 +127,11 @@ namespace VirtoCommerce.QuoteModule.Data.Services
             await _eventPublisher.Publish(new QuoteRequestChangeEvent(changedEntries));
         }
 
-        public virtual async Task<QuoteRequestSearchResult> SearchAsync(QuoteRequestSearchCriteria criteria)
+        public virtual Task<QuoteRequestSearchResult> SearchAsync(QuoteRequestSearchCriteria criteria)
         {
             var result = new QuoteRequestSearchResult();
             var cacheKey = CacheKey.With(GetType(), nameof(SearchAsync), criteria.GetCacheKey());
-            return await _platformMemoryCache.GetOrCreateExclusiveAsync(cacheKey, async cacheEntry =>
+            return _platformMemoryCache.GetOrCreateExclusiveAsync(cacheKey, async cacheEntry =>
             {
                 cacheEntry.AddExpirationToken(QuoteSearchCacheRegion.CreateChangeToken());
                 using (var repository = _repositoryFactory())
@@ -246,10 +247,10 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                 if (string.IsNullOrEmpty(quoteRequest.Number))
                 {
                     var store = stores.FirstOrDefault(x => x.Id == quoteRequest.StoreId);
-                    var numberTemplate = "RFQ{0:yyMMdd}-{1:D5}";
+                    var numberTemplate = (string)ModuleConstants.Settings.General.QuoteRequestNewNumberTemplate.DefaultValue;
                     if (store != null)
                     {
-                        numberTemplate = store.Settings.GetSettingValue("Quotes.QuoteRequestNewNumberTemplate", numberTemplate);
+                        numberTemplate = store.Settings.GetValue<string>(ModuleConstants.Settings.General.QuoteRequestNewNumberTemplate);
                     }
                     quoteRequest.Number = _uniqueNumberGenerator.GenerateNumber(numberTemplate);
                 }
