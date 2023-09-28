@@ -42,19 +42,27 @@ public class QuoteType : ExtendableGraphType<QuoteAggregate>
         Field(x => x.Model.StoreId, nullable: false);
         Field(x => x.Model.Tag, nullable: true);
 
-        Field<CurrencyType>(nameof(QuoteRequest.Currency), resolve: context => context.Source.Currency);
-        Field<MoneyType>(nameof(QuoteRequest.ManualRelDiscountAmount), resolve: context => context.Source.Model.ManualRelDiscountAmount.ToMoney(context.Source.Currency));
-        Field<MoneyType>(nameof(QuoteRequest.ManualShippingTotal), resolve: context => context.Source.Model.ManualShippingTotal.ToMoney(context.Source.Currency));
-        Field<MoneyType>(nameof(QuoteRequest.ManualSubTotal), resolve: context => context.Source.Model.ManualSubTotal.ToMoney(context.Source.Currency));
+        Field<NonNullGraphType<CurrencyType>>(nameof(QuoteRequest.Currency),
+            resolve: context => context.Source.Currency);
+        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequest.ManualRelDiscountAmount),
+            resolve: context => context.Source.Model.ManualRelDiscountAmount.ToMoney(context.Source.Currency));
+        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequest.ManualShippingTotal),
+            resolve: context => context.Source.Model.ManualShippingTotal.ToMoney(context.Source.Currency));
+        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequest.ManualSubTotal),
+            resolve: context => context.Source.Model.ManualSubTotal.ToMoney(context.Source.Currency));
 
-        ExtendableField<QuoteTotalsType>(nameof(QuoteRequest.Totals), resolve: context => context.Source.Totals);
-        ExtendableField<ListGraphType<QuoteItemType>>(nameof(QuoteRequest.Items), resolve: context => context.Source.Items);
-        ExtendableField<ListGraphType<QuoteAddressType>>(nameof(QuoteRequest.Addresses), resolve: context => context.Source.Model.Addresses);
-        ExtendableField<ListGraphType<QuoteAttachmentType>>(nameof(QuoteRequest.Attachments), resolve: context => context.Source.Model.Attachments);
+        ExtendableField<NonNullGraphType<QuoteTotalsType>>(nameof(QuoteRequest.Totals),
+            resolve: context => context.Source.Totals);
+        ExtendableField<NonNullGraphType<ListGraphType<NonNullGraphType<QuoteItemType>>>>(nameof(QuoteRequest.Items),
+            resolve: context => context.Source.Items);
+        ExtendableField<NonNullGraphType<ListGraphType<NonNullGraphType<QuoteAddressType>>>>(nameof(QuoteRequest.Addresses),
+            resolve: context => context.Source.Model.Addresses);
+        ExtendableField<NonNullGraphType<ListGraphType<NonNullGraphType<QuoteAttachmentType>>>>(nameof(QuoteRequest.Attachments),
+            resolve: context => context.Source.Model.Attachments);
         ExtendableField<QuoteShipmentMethodType>(nameof(QuoteRequest.ShipmentMethod), resolve: context => context.Source.ShipmentMethod);
-        ExtendableField<ListGraphType<QuoteTaxDetailType>>(nameof(QuoteRequest.TaxDetails), resolve: context => context.Source.TaxDetails);
+        ExtendableField<NonNullGraphType<ListGraphType<NonNullGraphType<QuoteTaxDetailType>>>>(nameof(QuoteRequest.TaxDetails), resolve: context => context.Source.TaxDetails);
 
-        ExtendableField<ListGraphType<DynamicPropertyValueType>>(
+        ExtendableField<NonNullGraphType<ListGraphType<NonNullGraphType<DynamicPropertyValueType>>>>(
             nameof(QuoteRequest.DynamicProperties),
             "Quote dynamic property values",
             QueryArgumentPresets.GetArgumentForDynamicProperties(),
