@@ -75,6 +75,7 @@ namespace VirtoCommerce.QuoteModule.Web
             serviceCollection.AddTransient<IQuoteTotalsCalculator, DefaultQuoteTotalsCalculator>();
             serviceCollection.AddTransient<QuoteExportImport>();
             serviceCollection.AddTransient<LogChangesEventHandler>();
+            serviceCollection.AddTransient<CancelQuoteEventHandler>();
 
             // GraphQL
             var assemblyMarker = typeof(AssemblyMarker);
@@ -103,6 +104,7 @@ namespace VirtoCommerce.QuoteModule.Web
 
             var handlerRegistrar = appBuilder.ApplicationServices.GetRequiredService<IHandlerRegistrar>();
             handlerRegistrar.RegisterHandler<QuoteRequestChangeEvent>((message, _) => appBuilder.ApplicationServices.GetRequiredService<LogChangesEventHandler>().Handle(message));
+            handlerRegistrar.RegisterHandler<QuoteRequestChangeEvent>((message, _) => appBuilder.ApplicationServices.GetRequiredService<CancelQuoteEventHandler>().Handle(message));
 
             using var serviceScope = appBuilder.ApplicationServices.CreateScope();
             var databaseProvider = Configuration.GetValue("DatabaseProvider", "SqlServer");
