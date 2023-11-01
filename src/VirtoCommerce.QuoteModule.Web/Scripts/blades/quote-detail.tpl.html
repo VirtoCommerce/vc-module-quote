@@ -20,7 +20,7 @@
                             <ul class="list __info">
                                 <li class="list-item">
                                     <div class="list-t">{{ 'quotes.blades.quote-detail.labels.created' | translate }}</div>
-                                    <div class="list-descr">{{blade.currentEntity.createdDate}}</div>
+                                    <div class="list-descr">{{blade.currentEntity.createdDate | date}}</div>
                                 </li>
                             </ul>
                         </div>
@@ -38,7 +38,7 @@
                             <ul class="list __info">
                                 <li class="list-item">
                                     <div class="list-t">{{ 'quotes.blades.quote-detail.labels.last-updated' | translate }}</div>
-                                    <div class="list-descr">{{blade.currentEntity.modifiedDate}}</div>
+                                    <div class="list-descr">{{blade.currentEntity.modifiedDate | date}}</div>
                                 </li>
                             </ul>
                         </div>
