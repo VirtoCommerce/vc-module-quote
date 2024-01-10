@@ -230,7 +230,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                 var dbQuotes = await repository.GetQuoteRequestByIdsAsync(ids);
                 foreach (var dbQuote in dbQuotes)
                 {
-                    changedEntries.Add(new GenericChangedEntry<QuoteRequest>(null, quotes.First(x => x.Id == dbQuote.Id), EntryState.Deleted));
+                    changedEntries.Add(new GenericChangedEntry<QuoteRequest>(quotes.First(x => x.Id == dbQuote.Id), EntryState.Deleted));
                     repository.Remove(dbQuote);
                 }
                 repository.UnitOfWork.Commit();
