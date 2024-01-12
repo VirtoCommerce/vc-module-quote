@@ -13,9 +13,6 @@
     <None Remove="dist\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="VirtoCommerce.OrdersModule.Core" Version="3.800.0-alpha.1200-pt-14740-net8" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\VirtoCommerce.QuoteModule.Core\VirtoCommerce.QuoteModule.Core.csproj" />
     <ProjectReference Include="..\VirtoCommerce.QuoteModule.Data.MySql\VirtoCommerce.QuoteModule.Data.MySql.csproj" />
     <ProjectReference Include="..\VirtoCommerce.QuoteModule.Data.PostgreSql\VirtoCommerce.QuoteModule.Data.PostgreSql.csproj" />
