@@ -5,10 +5,10 @@ using GraphQL;
 using MediatR;
 using VirtoCommerce.ExperienceApiModule.Core.Helpers;
 using VirtoCommerce.Platform.Core.Settings;
+using VirtoCommerce.QuoteModule.Core.Extensions;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
-using QuoteSettings = VirtoCommerce.QuoteModule.Core.ModuleConstants.Settings.General;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
 
@@ -38,17 +38,23 @@ public abstract class QuoteCommandHandler<TCommand> : IRequestHandler<TCommand, 
             return null;
         }
 
-        var defaultStatus = await _settingsManager.GetValueAsync<string>(QuoteSettings.DefaultStatus);
+        var defaultStatus = await _settingsManager.GetDefaultQuoteStatusAsync();
 
         if (quote.Status != defaultStatus)
         {
             throw new ExecutionError($"Quote status is not '{defaultStatus}'") { Code = Constants.ValidationErrorCode };
         }
 
-        UpdateQuote(quote, request);
+        await UpdateQuoteAsync(quote, request);
         await _quoteRequestService.SaveChangesAsync(new[] { quote });
 
         return await _quoteAggregateRepository.GetById(quote.Id);
+    }
+
+    protected virtual Task UpdateQuoteAsync(QuoteRequest quote, TCommand request)
+    {
+        UpdateQuote(quote, request);
+        return Task.CompletedTask;
     }
 
     protected abstract void UpdateQuote(QuoteRequest quote, TCommand request);

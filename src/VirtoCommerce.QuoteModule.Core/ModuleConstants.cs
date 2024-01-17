@@ -12,6 +12,8 @@ namespace VirtoCommerce.QuoteModule.Core
 
     public static class ModuleConstants
     {
+        public const string QuoteAttachmentsScope = "quote-attachments";
+
         public static class Security
         {
             public static class Permissions

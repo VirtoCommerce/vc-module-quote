@@ -41,6 +41,9 @@ public class QuoteAuthorizationHandler : AuthorizationHandler<QuoteAuthorization
 
             switch (context.Resource)
             {
+                case string userId when context.User.Identity?.IsAuthenticated == true:
+                    result = userId == currentUserId;
+                    break;
                 case QuoteAggregate quote:
                     result = quote.Model.CustomerId == currentUserId ||
                         await IsOrganizationMaintainer(context.User, currentUserId, quote.Model.OrganizationId);

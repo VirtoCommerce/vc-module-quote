@@ -14,7 +14,6 @@ using VirtoCommerce.QuoteModule.Core.Services;
 using CartAddress = VirtoCommerce.CartModule.Core.Model.Address;
 using CartLineItem = VirtoCommerce.CartModule.Core.Model.LineItem;
 using QuoteAddress = VirtoCommerce.QuoteModule.Core.Models.Address;
-using QuoteSettings = VirtoCommerce.QuoteModule.Core.ModuleConstants.Settings.General;
 using QuoteShipmentMethod = VirtoCommerce.QuoteModule.Core.Models.ShipmentMethod;
 
 namespace VirtoCommerce.QuoteModule.Data.Services;
@@ -79,7 +78,7 @@ public class QuoteConverter : IQuoteConverter
 
     protected virtual Task<string> GetInitialQuoteStatus()
     {
-        return _settingsManager.GetValueAsync<string>(QuoteSettings.DefaultStatus);
+        return _settingsManager.GetDefaultQuoteStatusAsync();
     }
 
     protected virtual IList<QuoteItem> FromCartItems(ICollection<CartLineItem> items)
