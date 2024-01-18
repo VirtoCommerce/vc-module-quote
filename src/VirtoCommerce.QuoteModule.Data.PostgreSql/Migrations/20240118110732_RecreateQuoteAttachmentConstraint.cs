@@ -10,7 +10,7 @@ namespace VirtoCommerce.QuoteModule.Data.PostgreSql.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql("DELETE FROM QuoteAttachment WHERE QuoteRequestId IS NULL;");
+            migrationBuilder.Sql(@"DELETE FROM ""QuoteAttachment"" WHERE ""QuoteRequestId"" IS NULL");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_QuoteAttachment_QuoteRequest_QuoteRequestId",
