@@ -5,6 +5,7 @@ using VirtoCommerce.FileExperienceApi.Core.Models;
 using VirtoCommerce.FileExperienceApi.Core.Services;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.Settings;
+using VirtoCommerce.QuoteModule.Core;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
@@ -30,6 +31,9 @@ public class UpdateQuoteAttachmentsCommandHandler : QuoteCommandHandler<UpdateQu
     {
         var fileIds = request.Urls.Select(GetFileId).Where(x => !string.IsNullOrEmpty(x)).ToList();
         var files = await _fileUploadService.GetFilesAsync(fileIds);
+
+        // Allow only file uploaded in the quote attachments scope
+        files = files.Where(x => x.Scope == ModuleConstants.QuoteAttachmentsScope).ToList();
 
         // Delete attachments
         var newFileIds = files.Select(x => x.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
