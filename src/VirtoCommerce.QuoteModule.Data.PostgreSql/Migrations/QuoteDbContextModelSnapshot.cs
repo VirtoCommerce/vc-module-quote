@@ -17,7 +17,7 @@ namespace VirtoCommerce.QuoteModule.Data.PostgreSql.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.0")
+                .HasAnnotation("ProductVersion", "6.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -134,6 +134,7 @@ namespace VirtoCommerce.QuoteModule.Data.PostgreSql.Migrations
                         .HasColumnType("character varying(1024)");
 
                     b.Property<string>("QuoteRequestId")
+                        .IsRequired()
                         .HasColumnType("character varying(128)");
 
                     b.Property<long>("Size")
@@ -475,7 +476,9 @@ namespace VirtoCommerce.QuoteModule.Data.PostgreSql.Migrations
                 {
                     b.HasOne("VirtoCommerce.QuoteModule.Data.Model.QuoteRequestEntity", "QuoteRequest")
                         .WithMany("Attachments")
-                        .HasForeignKey("QuoteRequestId");
+                        .HasForeignKey("QuoteRequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("QuoteRequest");
                 });
