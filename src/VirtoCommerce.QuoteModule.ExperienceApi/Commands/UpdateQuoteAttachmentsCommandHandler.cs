@@ -14,7 +14,7 @@ namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
 
 public class UpdateQuoteAttachmentsCommandHandler : QuoteCommandHandler<UpdateQuoteAttachmentsCommand>
 {
-    private const string _urlPrefix = "api/files/";
+    private const string _urlPrefix = "/api/files/";
     private readonly IFileUploadService _fileUploadService;
 
     public UpdateQuoteAttachmentsCommandHandler(
