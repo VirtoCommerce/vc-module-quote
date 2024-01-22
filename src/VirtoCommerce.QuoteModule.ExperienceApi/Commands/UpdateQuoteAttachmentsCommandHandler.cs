@@ -30,7 +30,7 @@ public class UpdateQuoteAttachmentsCommandHandler : QuoteCommandHandler<UpdateQu
     protected override async Task UpdateQuoteAsync(QuoteRequest quote, UpdateQuoteAttachmentsCommand request)
     {
         var fileIds = request.Urls.Select(GetFileId).Where(x => !string.IsNullOrEmpty(x)).ToList();
-        var files = await _fileUploadService.GetFilesAsync(fileIds);
+        var files = await _fileUploadService.GetAsync(fileIds);
 
         // Allow only file uploaded in the quote attachments scope
         files = files.Where(x => x.Scope == ModuleConstants.QuoteAttachmentsScope).ToList();
