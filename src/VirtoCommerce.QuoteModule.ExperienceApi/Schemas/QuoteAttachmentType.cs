@@ -8,7 +8,7 @@ public class QuoteAttachmentType : ExtendableGraphType<QuoteAttachment>
 {
     public QuoteAttachmentType()
     {
-        Field(x => x.Name, nullable: true);
+        Field(x => x.Name, nullable: false);
         Field(x => x.Url, nullable: false);
         Field<StringGraphType>("ContentType", resolve: context => context.Source.MimeType);
         Field(x => x.Size, nullable: false);
