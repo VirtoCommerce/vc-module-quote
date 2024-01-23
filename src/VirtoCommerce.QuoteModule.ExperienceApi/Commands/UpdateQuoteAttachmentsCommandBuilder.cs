@@ -7,7 +7,8 @@ public class UpdateQuoteAttachmentsCommandBuilder : QuoteCommandBuilder<UpdateQu
 {
     protected override string Name => "UpdateQuoteAttachments";
 
-    public UpdateQuoteAttachmentsCommandBuilder(IMediator mediator, IAuthorizationService authorizationService) : base(mediator, authorizationService)
+    public UpdateQuoteAttachmentsCommandBuilder(IMediator mediator, IAuthorizationService authorizationService)
+        : base(mediator, authorizationService)
     {
     }
 

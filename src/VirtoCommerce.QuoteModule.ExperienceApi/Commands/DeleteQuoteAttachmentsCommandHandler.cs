@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using VirtoCommerce.FileExperienceApi.Core.Services;
 using VirtoCommerce.Platform.Core.Settings;
@@ -7,9 +9,9 @@ using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
 
-public class UpdateQuoteAttachmentsCommandHandler : UpdateQuoteAttachmentsCommandHandlerBase<UpdateQuoteAttachmentsCommand>
+public class DeleteQuoteAttachmentsCommandHandler : UpdateQuoteAttachmentsCommandHandlerBase<DeleteQuoteAttachmentsCommand>
 {
-    public UpdateQuoteAttachmentsCommandHandler(
+    public DeleteQuoteAttachmentsCommandHandler(
         IQuoteRequestService quoteRequestService,
         IQuoteAggregateRepository quoteAggregateRepository,
         ISettingsManager settingsManager,
@@ -18,8 +20,13 @@ public class UpdateQuoteAttachmentsCommandHandler : UpdateQuoteAttachmentsComman
     {
     }
 
-    protected override Task UpdateQuoteAsync(QuoteRequest quote, UpdateQuoteAttachmentsCommand request)
+    protected override Task UpdateQuoteAsync(QuoteRequest quote, DeleteQuoteAttachmentsCommand request)
     {
-        return UpdateAttachmentsAsync(quote, request.Urls);
+        var urls = quote.Attachments
+            .Select(x => x.Url)
+            .Except(request.Urls, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        return UpdateAttachmentsAsync(quote, urls);
     }
 }
