@@ -18,6 +18,7 @@ public abstract class UpdateQuoteAttachmentsCommandHandlerBase<TCommand> : Quote
 {
     private const string _urlPrefix = "/api/files/";
     private readonly IFileUploadService _fileUploadService;
+    private readonly StringComparer _ignoreCase = StringComparer.OrdinalIgnoreCase;
 
     protected UpdateQuoteAttachmentsCommandHandlerBase(
         IQuoteRequestService quoteRequestService,
@@ -31,35 +32,72 @@ public abstract class UpdateQuoteAttachmentsCommandHandlerBase<TCommand> : Quote
 
     protected async Task UpdateAttachmentsAsync(QuoteRequest quote, IList<string> urls)
     {
-        var fileIds = urls.Select(GetFileId).Where(x => !string.IsNullOrEmpty(x)).ToList();
-        var files = await _fileUploadService.GetAsync(fileIds);
+        var oldUrls = quote.Attachments.Select(x => x.Url).ToHashSet(_ignoreCase);
+        var allFiles = await GetFiles(urls, oldUrls);
 
-        // Allow only file uploaded in the quote attachments scope
-        files = files.Where(x => x.Scope == ModuleConstants.QuoteAttachmentsScope).ToList();
+        var filesByUrls = allFiles
+            .Where(x =>
+                x.Scope == ModuleConstants.QuoteAttachmentsScope &&
+                (string.IsNullOrEmpty(x.OwnerEntityType) && string.IsNullOrEmpty(x.OwnerEntityId) ||
+                 x.OwnerEntityType == nameof(QuoteRequest) && x.OwnerEntityId == quote.Id))
+            .ToDictionary(x => GetFileUrl(x.Id), _ignoreCase);
 
-        // Delete attachments
-        var newFileIds = files.Select(x => x.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
-        var newUrls = newFileIds.Select(GetFileUrl).ToList();
-        var attachmentsToDelete = quote.Attachments.Where(x => !newUrls.Contains(x.Url)).ToList();
+        var changedFiles = new List<File>();
+
+        // Remove attachments
+        var attachmentsToDelete = quote.Attachments.Where(x => !urls.Contains(x.Url, _ignoreCase)).ToList();
 
         foreach (var attachment in attachmentsToDelete)
         {
             quote.Attachments.Remove(attachment);
+
+            if (filesByUrls.TryGetValue(attachment.Url, out var file))
+            {
+                file.OwnerEntityId = null;
+                file.OwnerEntityType = null;
+                changedFiles.Add(file);
+            }
         }
 
         // Add attachments
-        var oldUrls = quote.Attachments.Select(x => x.Url).ToHashSet(StringComparer.OrdinalIgnoreCase);
-        var filesToAdd = files.Where(x => !oldUrls.Contains(GetFileUrl(x.Id))).ToList();
+        var urlsToAdd = urls.Except(oldUrls, _ignoreCase).ToList();
 
-        foreach (var file in filesToAdd)
+        foreach (var url in urlsToAdd)
         {
-            quote.Attachments.Add(ConvertToAttachment(file));
+            if (filesByUrls.TryGetValue(url, out var file))
+            {
+                quote.Attachments.Add(ConvertToAttachment(file));
+
+                file.OwnerEntityId = quote.Id;
+                file.OwnerEntityType = nameof(QuoteRequest);
+                changedFiles.Add(file);
+            }
         }
+
+        // Update owner entity in files
+        if (changedFiles.Any())
+        {
+            await _fileUploadService.SaveChangesAsync(changedFiles);
+        }
+    }
+
+    private async Task<IList<File>> GetFiles(IEnumerable<string> newUrls, IEnumerable<string> oldUrls)
+    {
+        var ids = newUrls
+            .Concat(oldUrls)
+            .Distinct(_ignoreCase)
+            .Select(GetFileId)
+            .Where(x => !string.IsNullOrEmpty(x))
+            .ToList();
+
+        var files = await _fileUploadService.GetAsync(ids);
+
+        return files;
     }
 
     protected override void UpdateQuote(QuoteRequest quote, TCommand request)
     {
-        // Empty implementation of abstract method
+        // Empty implementation of obsolete abstract method
     }
 
     protected virtual QuoteAttachment ConvertToAttachment(File file)
