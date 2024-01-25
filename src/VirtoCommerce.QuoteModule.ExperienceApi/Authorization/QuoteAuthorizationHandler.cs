@@ -7,8 +7,13 @@ using Microsoft.AspNetCore.Identity;
 using VirtoCommerce.CustomerModule.Core.Model;
 using VirtoCommerce.CustomerModule.Core.Services;
 using VirtoCommerce.ExperienceApiModule.Core;
+using VirtoCommerce.FileExperienceApi.Core.Models;
 using VirtoCommerce.Platform.Core;
+using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.Security;
+using VirtoCommerce.QuoteModule.Core.Extensions;
+using VirtoCommerce.QuoteModule.Core.Models;
+using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.QuoteModule.ExperienceApi.Queries;
 
@@ -22,13 +27,16 @@ public class QuoteAuthorizationHandler : AuthorizationHandler<QuoteAuthorization
 {
     private readonly Func<UserManager<ApplicationUser>> _userManagerFactory;
     private readonly IMemberService _memberService;
+    private readonly IQuoteRequestService _quoteRequestService;
 
     public QuoteAuthorizationHandler(
         Func<UserManager<ApplicationUser>> userManagerFactory,
-        IMemberService memberService)
+        IMemberService memberService,
+        IQuoteRequestService quoteRequestService)
     {
         _userManagerFactory = userManagerFactory;
         _memberService = memberService;
+        _quoteRequestService = quoteRequestService;
     }
 
     protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, QuoteAuthorizationRequirement requirement)
@@ -37,16 +45,32 @@ public class QuoteAuthorizationHandler : AuthorizationHandler<QuoteAuthorization
 
         if (!result)
         {
+            var resource = context.Resource;
+
+            if (resource is File file)
+            {
+                result = string.IsNullOrEmpty(file.OwnerEntityId);
+
+                if (!result &&
+                    file.OwnerEntityType.EqualsInvariant(nameof(QuoteRequest)) &&
+                    !string.IsNullOrEmpty(file.OwnerEntityId))
+                {
+                    resource = await _quoteRequestService.GetByIdAsync(file.OwnerEntityId);
+                }
+            }
+
             var currentUserId = GetUserId(context);
 
-            switch (context.Resource)
+            switch (resource)
             {
                 case string userId when context.User.Identity?.IsAuthenticated == true:
                     result = userId == currentUserId;
                     break;
-                case QuoteAggregate quote:
-                    result = quote.Model.CustomerId == currentUserId ||
-                        await IsOrganizationMaintainer(context.User, currentUserId, quote.Model.OrganizationId);
+                case QuoteRequest quote:
+                    result = await CanAccessQuote(context, quote);
+                    break;
+                case QuoteAggregate quoteAggregate:
+                    result = await CanAccessQuote(context, quoteAggregate.Model);
                     break;
                 case QuotesQuery query:
                     query.UserId = currentUserId;
@@ -65,6 +89,13 @@ public class QuoteAuthorizationHandler : AuthorizationHandler<QuoteAuthorization
         }
     }
 
+    private async Task<bool> CanAccessQuote(AuthorizationHandlerContext context, QuoteRequest quote)
+    {
+        var currentUserId = GetUserId(context);
+
+        return quote.CustomerId == currentUserId ||
+               await IsOrganizationMaintainer(context.User, currentUserId, quote.OrganizationId);
+    }
 
     // TODO: Use scoped permission
     private async Task<bool> IsOrganizationMaintainer(ClaimsPrincipal principal, string userId, string organizationId)
