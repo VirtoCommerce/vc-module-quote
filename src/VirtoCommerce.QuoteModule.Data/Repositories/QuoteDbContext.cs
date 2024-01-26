@@ -31,7 +31,7 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
             #region AttachmentEntity
             modelBuilder.Entity<AttachmentEntity>().ToTable("QuoteAttachment").HasKey(x => x.Id);
             modelBuilder.Entity<AttachmentEntity>().Property(x => x.Id).HasMaxLength(128).ValueGeneratedOnAdd();
-            modelBuilder.Entity<AddressEntity>().HasOne(x => x.QuoteRequest).WithMany(x => x.Addresses)
+            modelBuilder.Entity<AttachmentEntity>().HasOne(x => x.QuoteRequest).WithMany(x => x.Attachments)
                         .HasForeignKey(x => x.QuoteRequestId).IsRequired().OnDelete(DeleteBehavior.Cascade);
 
             #endregion
