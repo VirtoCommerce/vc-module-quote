@@ -11,6 +11,4 @@ public class DeleteQuoteAttachmentsCommandBuilder : QuoteCommandBuilder<DeleteQu
         : base(mediator, authorizationService)
     {
     }
-
-    // Validate files
 }

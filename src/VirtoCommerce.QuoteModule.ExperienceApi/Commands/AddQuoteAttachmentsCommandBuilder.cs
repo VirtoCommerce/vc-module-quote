@@ -11,6 +11,4 @@ public class AddQuoteAttachmentsCommandBuilder : QuoteCommandBuilder<AddQuoteAtt
         : base(mediator, authorizationService)
     {
     }
-
-    // Validate files
 }

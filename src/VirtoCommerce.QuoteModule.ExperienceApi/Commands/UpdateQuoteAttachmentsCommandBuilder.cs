@@ -11,6 +11,4 @@ public class UpdateQuoteAttachmentsCommandBuilder : QuoteCommandBuilder<UpdateQu
         : base(mediator, authorizationService)
     {
     }
-
-    // Validate files
 }
