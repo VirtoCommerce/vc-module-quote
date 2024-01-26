@@ -17,10 +17,10 @@ namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.0")
+                .HasAnnotation("ProductVersion", "8.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.AddressEntity", b =>
                 {
@@ -134,6 +134,7 @@ namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
                         .HasColumnType("nvarchar(1024)");
 
                     b.Property<string>("QuoteRequestId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(128)");
 
                     b.Property<long>("Size")
@@ -475,7 +476,9 @@ namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
                 {
                     b.HasOne("VirtoCommerce.QuoteModule.Data.Model.QuoteRequestEntity", "QuoteRequest")
                         .WithMany("Attachments")
-                        .HasForeignKey("QuoteRequestId");
+                        .HasForeignKey("QuoteRequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("QuoteRequest");
                 });
