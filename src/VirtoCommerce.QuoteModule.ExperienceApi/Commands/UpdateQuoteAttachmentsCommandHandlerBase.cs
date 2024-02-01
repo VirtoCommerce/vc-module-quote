@@ -10,6 +10,7 @@ using VirtoCommerce.QuoteModule.Core;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
+using VirtoCommerce.QuoteModule.ExperienceApi.Extensions;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
 
@@ -38,8 +39,7 @@ public abstract class UpdateQuoteAttachmentsCommandHandlerBase<TCommand> : Quote
         var filesByUrls = allFiles
             .Where(x =>
                 x.Scope == ModuleConstants.QuoteAttachmentsScope &&
-                (string.IsNullOrEmpty(x.OwnerEntityType) && string.IsNullOrEmpty(x.OwnerEntityId) ||
-                 x.OwnerEntityType == nameof(QuoteRequest) && x.OwnerEntityId == quote.Id))
+                (x.OwnerIsEmpty() || x.OwnerIs(nameof(QuoteRequest), quote.Id)))
             .ToDictionary(x => GetFileUrl(x.Id), _ignoreCase);
 
         var changedFiles = new List<File>();
@@ -81,7 +81,12 @@ public abstract class UpdateQuoteAttachmentsCommandHandlerBase<TCommand> : Quote
         }
     }
 
-    private async Task<IList<File>> GetFiles(IEnumerable<string> newUrls, IEnumerable<string> oldUrls)
+    protected override void UpdateQuote(QuoteRequest quote, TCommand request)
+    {
+        // Empty implementation of obsolete abstract method
+    }
+
+    protected async Task<IList<File>> GetFiles(IEnumerable<string> newUrls, IEnumerable<string> oldUrls)
     {
         var ids = newUrls
             .Concat(oldUrls)
@@ -93,11 +98,6 @@ public abstract class UpdateQuoteAttachmentsCommandHandlerBase<TCommand> : Quote
         var files = await _fileUploadService.GetAsync(ids);
 
         return files;
-    }
-
-    protected override void UpdateQuote(QuoteRequest quote, TCommand request)
-    {
-        // Empty implementation of obsolete abstract method
     }
 
     protected virtual QuoteAttachment ConvertToAttachment(File file)
