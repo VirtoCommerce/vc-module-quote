@@ -11,14 +11,15 @@ using VirtoCommerce.QuoteModule.Data.Repositories;
 namespace VirtoCommerce.QuoteModule.Data.MySql.Migrations
 {
     [DbContext(typeof(QuoteDbContext))]
-    [Migration("20240118110924_FixAttachments")]
-    partial class FixAttachments
+    [Migration("20240118111920_RecreateQuoteAttachmentConstraint")]
+    partial class RecreateQuoteAttachmentConstraint
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.13")
+                .HasAnnotation("ProductVersion", "8.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.AddressEntity", b =>
@@ -261,7 +262,7 @@ namespace VirtoCommerce.QuoteModule.Data.MySql.Migrations
 
                     b.Property<decimal>("ListPrice")
                         .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
+                        .HasColumnType("decimal");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -279,7 +280,7 @@ namespace VirtoCommerce.QuoteModule.Data.MySql.Migrations
 
                     b.Property<decimal>("SalePrice")
                         .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
+                        .HasColumnType("decimal");
 
                     b.Property<string>("Sku")
                         .IsRequired()
@@ -381,11 +382,11 @@ namespace VirtoCommerce.QuoteModule.Data.MySql.Migrations
 
                     b.Property<decimal>("ManualShippingTotal")
                         .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
+                        .HasColumnType("decimal");
 
                     b.Property<decimal>("ManualSubTotal")
                         .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
+                        .HasColumnType("decimal");
 
                     b.Property<string>("ModifiedBy")
                         .HasMaxLength(64)
@@ -449,7 +450,7 @@ namespace VirtoCommerce.QuoteModule.Data.MySql.Migrations
 
                     b.Property<decimal>("Price")
                         .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
+                        .HasColumnType("decimal");
 
                     b.Property<long>("Quantity")
                         .HasColumnType("bigint");

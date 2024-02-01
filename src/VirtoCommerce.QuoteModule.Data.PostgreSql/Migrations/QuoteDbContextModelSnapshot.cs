@@ -17,7 +17,7 @@ namespace VirtoCommerce.QuoteModule.Data.PostgreSql.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.13")
+                .HasAnnotation("ProductVersion", "8.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -173,7 +173,7 @@ namespace VirtoCommerce.QuoteModule.Data.PostgreSql.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<decimal?>("DecimalValue")
-                        .HasColumnType("numeric(18,5)");
+                        .HasColumnType("decimal(18,5)");
 
                     b.Property<string>("DictionaryItemId")
                         .HasMaxLength(128)

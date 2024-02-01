@@ -4,11 +4,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
 {
-    public partial class FixAttachments : Migration
+    /// <inheritdoc />
+    public partial class RecreateQuoteAttachmentConstraint : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql("DELETE FROM QuoteAttachment WHERE QuoteRequestId IS NULL");
+            migrationBuilder.Sql("DELETE QuoteAttachment WHERE QuoteRequestId IS NULL");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_QuoteAttachment_QuoteRequest_QuoteRequestId",
@@ -33,6 +35,7 @@ namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
                 onDelete: ReferentialAction.Cascade);
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(

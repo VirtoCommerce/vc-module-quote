@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <id>VirtoCommerce.Quote</id>
-  <version>3.406.0</version>
+  <version>3.801.0</version>
   <version-tag />
-  <platformVersion>3.413.0</platformVersion>
+  
+  <platformVersion>3.800.0</platformVersion>
   <dependencies>
-    <dependency id="VirtoCommerce.Assets" version="3.400.0" />
-    <dependency id="VirtoCommerce.Cart" version="3.400.0" />
-    <dependency id="VirtoCommerce.Catalog" version="3.401.0" />
-    <dependency id="VirtoCommerce.Core" version="3.400.0" />
-    <dependency id="VirtoCommerce.ExperienceApi" version="3.411.6" />
-    <dependency id="VirtoCommerce.FileExperienceApi" version="3.400.0-alpha.16-vcst-121" />
-    <dependency id="VirtoCommerce.Orders" version="3.412.2" />
-    <dependency id="VirtoCommerce.Shipping" version="3.400.0" />
-    <dependency id="VirtoCommerce.Store" version="3.400.0" />
-    <dependency id="VirtoCommerce.Tax" version="3.400.0" />
+    <dependency id="VirtoCommerce.Assets" version="3.800.0" />
+    <dependency id="VirtoCommerce.Cart" version="3.800.0" />
+    <dependency id="VirtoCommerce.Catalog" version="3.800.0" />
+    <dependency id="VirtoCommerce.Core" version="3.800.0" />
+    <dependency id="VirtoCommerce.ExperienceApi" version="3.800.0" />
+    <dependency id="VirtoCommerce.FileExperienceApi" version="3.800.0-alpha.22-vcst-121" />
+    <dependency id="VirtoCommerce.Orders" version="3.800.0" />
+    <dependency id="VirtoCommerce.Shipping" version="3.800.0" />
+    <dependency id="VirtoCommerce.Store" version="3.800.0" />
+    <dependency id="VirtoCommerce.Tax" version="3.800.0" />
   </dependencies>
+  
   <title>Quotes</title>
   <description>Quoter enables business users to execute quote requests online. Once initiated, an online conversation takes place with internal users who interact with the business user's request. The internal user can set prices for quantity breaks or discounts. The quote is then made available to the business user online. The business user can accept the quote and place the order, continue the conversation, or reject the quote.</description>
   <authors>
@@ -30,7 +32,7 @@
   <iconUrl>Modules/$(VirtoCommerce.Quote)/Content/logo.png</iconUrl>
   <requireLicenseAcceptance>false</requireLicenseAcceptance>
   <releaseNotes>First version.</releaseNotes>
-  <copyright>Copyright © 2011–2023 Virto Commerce. All rights reserved</copyright>
+  <copyright>Copyright © 2011–2024 Virto Commerce. All rights reserved</copyright>
   <tags>b2b quotes</tags>
   <assemblyFile>VirtoCommerce.QuoteModule.Web.dll</assemblyFile>
   <moduleType>VirtoCommerce.QuoteModule.Web.Module, VirtoCommerce.QuoteModule.Web</moduleType>

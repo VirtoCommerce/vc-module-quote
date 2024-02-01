@@ -18,8 +18,6 @@ public class QuoteAttachmentOptionsQueryHandler : IQueryHandler<QuoteAttachmentO
 
     public Task<FileUploadScopeOptions> Handle(QuoteAttachmentOptionsQuery request, CancellationToken cancellationToken)
     {
-        var result = _fileUploadService.GetOptions(ModuleConstants.QuoteAttachmentsScope);
-
-        return Task.FromResult(result);
+        return _fileUploadService.GetOptionsAsync(ModuleConstants.QuoteAttachmentsScope);
     }
 }
