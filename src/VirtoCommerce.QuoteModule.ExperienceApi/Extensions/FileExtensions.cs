@@ -10,6 +10,7 @@ public static class FileExtensions
             string.IsNullOrEmpty(file.OwnerEntityId) &&
             string.IsNullOrEmpty(file.OwnerEntityType);
     }
+
     public static bool OwnerIs(this File file, string type, string id)
     {
         return
