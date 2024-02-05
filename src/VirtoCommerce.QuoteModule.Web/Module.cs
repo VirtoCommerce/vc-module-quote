@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using VirtoCommerce.ExperienceApiModule.Core.Extensions;
 using VirtoCommerce.ExperienceApiModule.Core.Infrastructure;
+using VirtoCommerce.FileExperienceApi.Core.Authorization;
 using VirtoCommerce.Platform.Core.Bus;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.DynamicProperties;
@@ -86,6 +87,7 @@ namespace VirtoCommerce.QuoteModule.Web
             serviceCollection.AddSchemaBuilders(assemblyMarker);
             serviceCollection.AddTransient<IQuoteAggregateRepository, QuoteAggregateRepository>();
             serviceCollection.AddSingleton<IAuthorizationHandler, QuoteAuthorizationHandler>();
+            serviceCollection.AddSingleton<IFileAuthorizationRequirementFactory, QuoteAuthorizationRequirementFactory>();
         }
 
         public void PostInitialize(IApplicationBuilder appBuilder)
