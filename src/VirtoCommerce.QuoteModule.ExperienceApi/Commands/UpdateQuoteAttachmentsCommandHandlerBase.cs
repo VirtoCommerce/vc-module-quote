@@ -75,7 +75,7 @@ public abstract class UpdateQuoteAttachmentsCommandHandlerBase<TCommand> : Quote
         }
 
         // Update owner entity in files
-        if (changedFiles.Any())
+        if (changedFiles.Count != 0)
         {
             await _fileUploadService.SaveChangesAsync(changedFiles);
         }
