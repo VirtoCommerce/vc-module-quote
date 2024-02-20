@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using VirtoCommerce.QuoteModule.Data.Repositories;
@@ -11,9 +12,11 @@ using VirtoCommerce.QuoteModule.Data.Repositories;
 namespace VirtoCommerce.QuoteModule.Data.PostgreSql.Migrations
 {
     [DbContext(typeof(QuoteDbContext))]
-    partial class QuoteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240220101054_AddQuoteItemQuantity")]
+    partial class AddQuoteItemQuantity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

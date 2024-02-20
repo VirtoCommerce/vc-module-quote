@@ -104,7 +104,7 @@ public class QuoteConverter : IQuoteConverter
         result.SalePrice = item.SalePrice;
         result.Sku = item.Sku;
         result.TaxType = item.TaxType;
-
+        result.Quantity = item.Quantity;
         var tierPrice = AbstractTypeFactory<TierPrice>.TryCreateInstance();
         tierPrice.Price = item.SalePrice;
         tierPrice.Quantity = item.Quantity;
@@ -201,7 +201,7 @@ public class QuoteConverter : IQuoteConverter
         result.SalePrice = item.SalePrice;
         result.Sku = item.Sku;
         result.TaxType = item.TaxType;
-
+        result.Quantity = item.Quantity;
         if (item.SelectedTierPrice != null)
         {
             result.SalePrice = item.SelectedTierPrice.Price;
