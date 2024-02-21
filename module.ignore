@@ -21,6 +21,8 @@ PipelineNet.dll
 SixLabors.ImageSharp.dll
 sni.dll
 TimeZoneConverter.dll
+VirtoCommerce.FileExperienceApi.Core.dll
+VirtoCommerce.FileExperienceApi.Data.dll
 VirtoCommerce.ImageTools.ImageAbstractions.dll
 VirtoCommerce.Tools.dll
 VirtoCommerce.XDigitalCatalog.dll
