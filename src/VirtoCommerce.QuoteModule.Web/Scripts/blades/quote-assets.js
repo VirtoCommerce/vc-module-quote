@@ -22,20 +22,27 @@ angular.module('virtoCommerce.quoteModule')
                     removeAfterUpload: true
                 });
 
-                uploader.onSuccessItem = function (fileItem, assets, status, headers) {
-                    angular.forEach(assets, function (asset) {
-                        asset.mimeType = asset.contentType;
-                        //ADD uploaded asset
-                        blade.currentEntities.push(asset);
+                // After selecting files, but before uploading them
+                uploader.onAfterAddingAll = function (items) {
+                    clearErrors();
+                };
+
+                uploader.onSuccessItem = function (item, response, status, headers) {
+                    angular.forEach(response, function (result) {
+                        if (result.succeeded === false) {
+                            addError(item._file.name, result.errorMessage, result.errorCode);
+                        }
+                        else {
+                            result.mimeType = result.contentType;
+
+                            //ADD uploaded asset
+                            blade.currentEntities.push(result);
+                        }
                     });
                 };
 
-                uploader.onAfterAddingAll = function (addedItems) {
-                    bladeNavigationService.setError(null, blade);
-                };
-
                 uploader.onErrorItem = function (item, response, status, headers) {
-                    bladeNavigationService.setError(item._file.name + ' failed: ' + (response.message ? response.message : status), blade);
+                    addError(item._file.name, response.message, status);
                 };
 
                 quotes.getAttachmentOptions(function (options) {
@@ -55,8 +62,27 @@ angular.module('virtoCommerce.quoteModule')
             };
 
             $scope.copyUrl = function (data) {
-                window.prompt("Copy to clipboard: Ctrl+C, Enter", data.url);
+                window.prompt('Copy to clipboard: Ctrl+C, Enter', data.url);
             };
+
+            const uploadError = {
+                status: 'Error',
+                statusText: 'File upload failed',
+                data: {
+                    errors: [],
+                },
+            };
+
+            function clearErrors() {
+                uploadError.data.errors.length = 0;
+                bladeNavigationService.clearError(blade);
+            }
+
+            function addError(fileName, message, status) {
+                const error = `${fileName} failed: ${message || status}`;
+                uploadError.data.errors.push(error);
+                bladeNavigationService.setError(uploadError, blade);
+            }
 
             initialize();
         }]);
