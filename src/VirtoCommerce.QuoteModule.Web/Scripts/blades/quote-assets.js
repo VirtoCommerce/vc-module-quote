@@ -131,7 +131,7 @@ angular.module('virtoCommerce.quoteModule')
             }
 
             function addFileError(fileName, code, parameter, message) {
-                if (code === 'INVALID_EXTENSION' && Array.isArray(parameter) && parameter.length > 0) {
+                if (code === 'INVALID_EXTENSION' && Array.isArray(parameter)) {
                     parameter = parameter.join(', ');
                 }
 
