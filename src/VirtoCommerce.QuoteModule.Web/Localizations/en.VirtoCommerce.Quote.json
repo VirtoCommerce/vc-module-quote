@@ -169,6 +169,16 @@
       }
     }
   },
+  "file-upload-error": {
+    "status": "Error",
+    "status-text": "File upload failed",
+    "invalid-configuration": "File upload scope is not configured",
+    "template": "{{fileName}}: {{errorMessage}}",
+    "duplicate-name": "File with the same name already exists",
+    "INVALID_SIZE": "File size exceeds {{parameter}} bytes",
+    "INVALID_EXTENSION": "File type is not one of the allowed types ({{parameter}})",
+    "UNKNOWN_ERROR": "Unknown error: {{message}}"
+  },
   "module": {
     "VirtoCommerce.Quote": {
       "description": "Export or import quote requests (RFQs)"

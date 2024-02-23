@@ -1,10 +1,25 @@
 angular.module('virtoCommerce.quoteModule')
     .controller('virtoCommerce.quoteModule.quoteAssetController', [
-        '$scope', 'platformWebApp.bladeNavigationService', 'virtoCommerce.quoteModule.quotes', 'FileUploader',
-        function ($scope, bladeNavigationService, quotes, FileUploader) {
+        '$scope', '$translate', 'platformWebApp.bladeNavigationService', 'virtoCommerce.quoteModule.quotes', 'FileUploader',
+        function ($scope, $translate, bladeNavigationService, quotes, FileUploader) {
             var blade = $scope.blade;
             blade.updatePermission = 'quote:update';
             $scope.currentEntities = blade.currentEntities = blade.currentEntity.attachments;
+
+            var _canUpload = true;
+            var _options = null;
+            const _fileErrors = [];
+            const _uploadError = {
+                status: translate('status'),
+                statusText: translate('status-text'),
+                data: {
+                    errors: _fileErrors,
+                },
+            };
+
+            $scope.canUpload = function () {
+                return _canUpload && blade.hasUpdatePermission();
+            }
 
             function initialize() {
                 if ($scope.uploader || !blade.hasUpdatePermission()) {
@@ -16,38 +31,51 @@ angular.module('virtoCommerce.quoteModule')
                 var uploader = $scope.uploader = new FileUploader({
                     scope: $scope,
                     headers: { Accept: 'application/json' },
-                    url: 'api/assets?folderUrl=quote/' + blade.currentEntity.id,
                     method: 'POST',
                     autoUpload: true,
                     removeAfterUpload: true
                 });
 
-                // After selecting files, but before uploading them
                 uploader.onAfterAddingAll = function (items) {
                     clearErrors();
+
+                    angular.forEach(items, function (item) {
+                        const result = validateFile(item.file);
+                        if (!result.succeeded) {
+                            addFileError(item.file.name, result.errorCode, result.errorParameter);
+                        }
+                    });
+
+                    if (_fileErrors.length > 0) {
+                        uploader.clearQueue();
+                    }
                 };
 
                 uploader.onSuccessItem = function (item, response, status, headers) {
                     angular.forEach(response, function (result) {
                         if (result.succeeded === false) {
-                            addError(item._file.name, result.errorMessage, result.errorCode);
+                            addFileError(item.file.name, result.errorCode, result.errorParameter, result.errorMessage);
                         }
                         else {
                             result.mimeType = result.contentType;
-
-                            //ADD uploaded asset
                             blade.currentEntities.push(result);
                         }
                     });
                 };
 
                 uploader.onErrorItem = function (item, response, status, headers) {
-                    addError(item._file.name, response.message, status);
+                    addFileError(item.file.name, 'UNKNOWN_ERROR', status, response.message);
                 };
 
                 quotes.getAttachmentOptions(function (options) {
-                    if (options.scope) {
+                    if (!options.scope) {
+                        _canUpload = false;
+                        bladeNavigationService.setError(translate('invalid-configuration'), blade);
+                    }
+                    else {
+                        options.allowedExtensions = options.allowedExtensions.map(x => x.toLowerCase());
                         uploader.url = `/api/files/${options.scope}`;
+                        _options = options;
                     }
 
                     blade.isLoading = false;
@@ -55,7 +83,7 @@ angular.module('virtoCommerce.quoteModule')
             }
 
             $scope.removeAction = function (asset) {
-                var idx = blade.currentEntities.indexOf(asset);
+                const idx = blade.currentEntities.indexOf(asset);
                 if (idx >= 0) {
                     blade.currentEntities.splice(idx, 1);
                 }
@@ -65,23 +93,61 @@ angular.module('virtoCommerce.quoteModule')
                 window.prompt('Copy to clipboard: Ctrl+C, Enter', data.url);
             };
 
-            const uploadError = {
-                status: 'Error',
-                statusText: 'File upload failed',
-                data: {
-                    errors: [],
-                },
-            };
+            function validateFile(file) {
+                const result = {
+                    succeeded: true,
+                };
+
+                const existingFileNames = blade.currentEntities.map(x => x.name.toLowerCase());
+
+                if (existingFileNames.includes(file.name.toLowerCase())) {
+                    result.succeeded = false;
+                    result.errorCode = 'duplicate-name';
+                }
+                else if (_options) {
+                    if (file.size > _options.maxFileSize) {
+                        result.succeeded = false;
+                        result.errorCode = 'INVALID_SIZE';
+                        result.errorParameter = _options.maxFileSize;
+                    }
+                    else {
+                        if (_options.allowedExtensions.length) {
+                            const fileExtension = /(\.[^.]+)?$/.exec(file.name)?.[1]?.toLowerCase();
+                            if (!_options.allowedExtensions.includes(fileExtension)) {
+                                result.succeeded = false;
+                                result.errorCode = 'INVALID_EXTENSION';
+                                result.errorParameter = _options.allowedExtensions;
+                            }
+                        }
+                    }
+                }
+
+                return result;
+            }
 
             function clearErrors() {
-                uploadError.data.errors.length = 0;
+                _fileErrors.length = 0;
                 bladeNavigationService.clearError(blade);
             }
 
-            function addError(fileName, message, status) {
-                const error = `${fileName} failed: ${message || status}`;
-                uploadError.data.errors.push(error);
-                bladeNavigationService.setError(uploadError, blade);
+            function addFileError(fileName, code, parameter, message) {
+                if (code === 'INVALID_EXTENSION' && Array.isArray(parameter) && parameter.length > 0) {
+                    parameter = parameter.join(', ');
+                }
+
+                var errorMessage = translateError(code, { parameter: parameter, message: message }) || message || parameter;
+                const error = translate('template', { fileName: fileName, errorMessage: errorMessage });
+                _fileErrors.push(error);
+                bladeNavigationService.setError(_uploadError, blade);
+            }
+
+            function translateError(key, parameters) {
+                const result = translate(key, parameters);
+                return result !== key ? result : null;
+            }
+
+            function translate(key, parameters) {
+                return $translate.instant(`file-upload-error.${key}`, parameters);
             }
 
             initialize();
