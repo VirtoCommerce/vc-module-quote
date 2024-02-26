@@ -4,9 +4,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VirtoCommerce.CartModule.Core.Model;
+using VirtoCommerce.FileExperienceApi.Core.Models;
+using VirtoCommerce.FileExperienceApi.Core.Services;
 using VirtoCommerce.OrdersModule.Core.Model;
 using VirtoCommerce.OrdersModule.Core.Services;
 using VirtoCommerce.Platform.Core.Common;
+using VirtoCommerce.QuoteModule.Core;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.ShippingModule.Core.Model.Search;
@@ -28,6 +31,7 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
         private readonly IShippingMethodsSearchService _shippingMethodsSearchService;
         private readonly IQuoteConverter _quoteConverter;
         private readonly ICustomerOrderBuilder _customerOrderBuilder;
+        private readonly IFileUploadService _fileUploadService;
 
         public QuoteModuleController(
             IQuoteRequestService quoteRequestService,
@@ -35,7 +39,8 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
             IStoreService storeService,
             IShippingMethodsSearchService shippingMethodsSearchService,
             IQuoteConverter quoteConverter,
-            ICustomerOrderBuilder customerOrderBuilder)
+            ICustomerOrderBuilder customerOrderBuilder,
+            IFileUploadService fileUploadService)
         {
             _quoteRequestService = quoteRequestService;
             _totalsCalculator = totalsCalculator;
@@ -43,6 +48,7 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
             _shippingMethodsSearchService = shippingMethodsSearchService;
             _quoteConverter = quoteConverter;
             _customerOrderBuilder = customerOrderBuilder;
+            _fileUploadService = fileUploadService;
         }
 
         /// <summary>
@@ -227,6 +233,12 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
             await _quoteRequestService.SaveChangesAsync(new[] { quote });
 
             return NoContent();
+        }
+
+        [HttpGet("attachments/options")]
+        public Task<FileUploadScopeOptions> GetAttachmentOptions()
+        {
+            return _fileUploadService.GetOptionsAsync(ModuleConstants.QuoteAttachmentsScope);
         }
     }
 }

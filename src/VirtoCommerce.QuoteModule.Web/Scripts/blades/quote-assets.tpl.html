@@ -2,8 +2,8 @@
     <div class="blade-inner">
         <div class="inner-block">
             <div class="inner">
-                <div class="sub-t" va-permission="{{blade.updatePermission}}">{{ 'quotes.blades.quotes-assets.labels.select-files' | translate }}</div>
-                <form class="form" ng-if="blade.hasUpdatePermission()">
+                <div class="sub-t" ng-if="canUpload()">{{ 'quotes.blades.quotes-assets.labels.select-files' | translate }}</div>
+                <form class="form" ng-if="canUpload()">
                     <div ng-show="uploader.isHTML5">
                         <!-- 3. ng-file-over | ng-file-over="className" -->
                         <div class="well my-drop-zone panel drag-area" uploader="uploader" nv-file-drop nv-file-over>
