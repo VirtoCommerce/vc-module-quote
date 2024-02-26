@@ -90,7 +90,9 @@ angular.module('virtoCommerce.quoteModule')
             };
 
             $scope.copyUrl = function (data) {
-                window.prompt('Copy to clipboard: Ctrl+C, Enter', data.url);
+                var link = document.createElement("a");
+                link.href = data.url;
+                window.prompt('Copy to clipboard: Ctrl+C, Enter', link.href);
             };
 
             function validateFile(file) {
