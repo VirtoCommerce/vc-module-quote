@@ -27,6 +27,7 @@ public class QuoteItemType : ExtendableGraphType<QuoteItemAggregate>
         Field(x => x.Model.Comment, nullable: true);
         Field(x => x.Model.ImageUrl, nullable: true);
         Field(x => x.Model.TaxType, nullable: true);
+        Field(x => x.Model.Quantity, nullable: false);
 
         Field<NonNullGraphType<MoneyType>>(nameof(QuoteItem.ListPrice), resolve: context => context.Source.Model.ListPrice.ToMoney(context.Source.Quote.Currency));
         Field<NonNullGraphType<MoneyType>>(nameof(QuoteItem.SalePrice), resolve: context => context.Source.Model.SalePrice.ToMoney(context.Source.Quote.Currency));

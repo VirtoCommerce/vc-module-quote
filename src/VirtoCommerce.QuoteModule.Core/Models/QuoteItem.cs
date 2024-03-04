@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.CatalogModule.Core.Model;
@@ -32,6 +32,10 @@ namespace VirtoCommerce.QuoteModule.Core.Models
         public string ImageUrl { get; set; }
 
         public string TaxType { get; set; }
+        /// <summary>
+        /// Requested quote item qty
+        /// </summary>
+        public int Quantity { get; set; }
 
         private TierPrice _selectedTierPrice;
         public TierPrice SelectedTierPrice
@@ -68,6 +72,7 @@ namespace VirtoCommerce.QuoteModule.Core.Models
             target.Currency = _.Currency;
             target.Name = _.Name;
             target.Sku = _.Sku;
+            target.Quantity = _.Quantity;
 
             if (SelectedTierPrice != null)
             {

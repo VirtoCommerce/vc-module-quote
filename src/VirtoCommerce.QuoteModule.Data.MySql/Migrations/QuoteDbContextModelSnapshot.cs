@@ -271,6 +271,9 @@ namespace VirtoCommerce.QuoteModule.Data.MySql.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("varchar(64)");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.Property<string>("QuoteRequestId")
                         .IsRequired()
                         .HasColumnType("varchar(128)");

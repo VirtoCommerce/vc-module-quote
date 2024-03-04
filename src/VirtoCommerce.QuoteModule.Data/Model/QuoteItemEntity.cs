@@ -50,6 +50,8 @@ namespace VirtoCommerce.QuoteModule.Data.Model
         [StringLength(64)]
         public string TaxType { get; set; }
 
+        public int Quantity { get; set; }
+
         #region Navigation Properties
 
         public virtual QuoteRequestEntity QuoteRequest { get; set; }
@@ -78,7 +80,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             target.Currency = _.Currency;
             target.Name = _.Name;
             target.Sku = _.Sku;
-
+            target.Quantity = _.Quantity;
             target.ProposalPrices = ProposalPrices.Select(x => x.ToModel(AbstractTypeFactory<TierPrice>.TryCreateInstance())).ToList();
 
             return target;
@@ -105,6 +107,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             target.Currency = _.Currency;
             target.Name = _.Name;
             target.Sku = _.Sku;
+            target.Quantity = _.Quantity;
 
             if (_.ProposalPrices != null)
             {
@@ -131,6 +134,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             target.Currency = _.Currency;
             target.Name = _.Name;
             target.Sku = _.Sku;
+            target.Quantity = _.Quantity;
 
             if (!ProposalPrices.IsNullCollection())
             {
