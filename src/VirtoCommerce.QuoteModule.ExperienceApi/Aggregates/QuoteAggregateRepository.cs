@@ -71,7 +71,7 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
 
         var filesByUrls = allFiles
             .Where(x => x.Scope == ModuleConstants.QuoteAttachmentsScope &&
-                (quote.IsTransient() || x.OwnerIsEmpty() || x.OwnerIs(nameof(QuoteRequest), quote.Id)))
+                (x.OwnerIsEmpty() || x.OwnerIs(nameof(QuoteRequest), quote.Id)))
             .ToDictionary(x => GetFileUrl(x.Id), _ignoreCase);
 
         var changedFiles = new List<File>();
