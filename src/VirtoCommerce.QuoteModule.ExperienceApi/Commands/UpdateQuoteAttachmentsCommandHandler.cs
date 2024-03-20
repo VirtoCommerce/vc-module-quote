@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using VirtoCommerce.FileExperienceApi.Core.Services;
 using VirtoCommerce.Platform.Core.Settings;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
@@ -12,9 +11,8 @@ public class UpdateQuoteAttachmentsCommandHandler : UpdateQuoteAttachmentsComman
     public UpdateQuoteAttachmentsCommandHandler(
         IQuoteRequestService quoteRequestService,
         IQuoteAggregateRepository quoteAggregateRepository,
-        ISettingsManager settingsManager,
-        IFileUploadService fileUploadService)
-        : base(quoteRequestService, quoteAggregateRepository, settingsManager, fileUploadService)
+        ISettingsManager settingsManager)
+        : base(quoteRequestService, quoteAggregateRepository, settingsManager)
     {
     }
 
