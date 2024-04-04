@@ -63,7 +63,8 @@ namespace VirtoCommerce.QuoteModule.Core
                     Name = "Quotes.EnableQuotes",
                     GroupName = "Quotes|General",
                     ValueType = SettingValueType.Boolean,
-                    DefaultValue = false
+                    DefaultValue = false,
+                    IsPublic = true,
                 };
             }
 
