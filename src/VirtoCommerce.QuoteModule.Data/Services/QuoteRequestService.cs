@@ -206,10 +206,7 @@ namespace VirtoCommerce.QuoteModule.Data.Services
 
             else if (criteria.Keyword != null)
             {
-                query = query.Where(x => x.Number.Contains(criteria.Keyword)
-                                         || (x.CustomerName != null && x.CustomerName.Contains(criteria.Keyword))
-                                         || (x.Status != null && x.Status.Contains(criteria.Keyword))
-                                         || (x.Tag != null && x.Tag.Contains(criteria.Keyword)));
+                query = GetKeywordFilters(query, criteria);
             }
 
             else if (!string.IsNullOrEmpty(criteria.NumberKeyword))
@@ -238,6 +235,15 @@ namespace VirtoCommerce.QuoteModule.Data.Services
             }
 
             return query;
+        }
+
+        protected virtual IQueryable<QuoteRequestEntity> GetKeywordFilters(IQueryable<QuoteRequestEntity> query,
+            QuoteRequestSearchCriteria criteria)
+        {
+            return query.Where(x => x.Number.Contains(criteria.Keyword)
+                                     || (x.CustomerName != null && x.CustomerName.Contains(criteria.Keyword))
+                                     || (x.Status != null && x.Status.Contains(criteria.Keyword))
+                                     || (x.Tag != null && x.Tag.Contains(criteria.Keyword)));
         }
 
         protected virtual IList<SortInfo> BuildSortExpression(QuoteRequestSearchCriteria criteria)
