@@ -134,85 +134,22 @@ namespace VirtoCommerce.QuoteModule.Data.Services
             return _platformMemoryCache.GetOrCreateExclusiveAsync(cacheKey, async cacheEntry =>
             {
                 cacheEntry.AddExpirationToken(QuoteSearchCacheRegion.CreateChangeToken());
-                using (var repository = _repositoryFactory())
+                using var repository = _repositoryFactory();
+
+                var query = BuildQuery(repository, criteria);
+                var sortInfos = BuildSortExpression(criteria);
+
+                result.TotalCount = await query.CountAsync();
+                if (criteria.Take > 0)
                 {
-                    var query = repository.QuoteRequests;
+                    var ids = await query.OrderBySortInfos(sortInfos).ThenBy(x => x.Id)
+                        .Select(x => x.Id)
+                        .Skip(criteria.Skip).Take(criteria.Take)
+                        .ToArrayAsync();
 
-                    if (criteria.CustomerId != null)
-                    {
-                        query = query.Where(x => x.CustomerId == criteria.CustomerId);
-                    }
-
-                    if (criteria.StoreId != null)
-                    {
-                        query = query.Where(x => x.StoreId == criteria.StoreId);
-                    }
-
-                    if (criteria.Currency != null)
-                    {
-                        query = query.Where(x => x.Currency == criteria.Currency);
-                    }
-
-                    if (criteria.LanguageCode != null)
-                    {
-                        query = query.Where(x => x.LanguageCode == criteria.LanguageCode);
-                    }
-
-                    if (criteria.Number != null)
-                    {
-                        query = query.Where(x => x.Number == criteria.Number);
-                    }
-
-                    else if (criteria.Keyword != null)
-                    {
-                        query = query.Where(x => x.Number.Contains(criteria.Keyword)
-                            || (x.CustomerName != null && x.CustomerName.Contains(criteria.Keyword))
-                            || (x.Status != null && x.Status.Contains(criteria.Keyword))
-                            || (x.Tag != null && x.Tag.Contains(criteria.Keyword)));
-                    }
-
-                    else if (!string.IsNullOrEmpty(criteria.NumberKeyword))
-                    {
-                        query = query.Where(x => x.Number.Contains(criteria.NumberKeyword));
-                    }
-
-                    if (criteria.Tag != null)
-                    {
-                        query = query.Where(x => x.Tag == criteria.Tag);
-                    }
-
-                    if (!criteria.Statuses.IsNullOrEmpty())
-                    {
-                        query = query.Where(x => criteria.Statuses.Contains(x.Status));
-                    }
-
-                    if (criteria.StartDate != null)
-                    {
-                        query = query.Where(x => x.CreatedDate >= criteria.StartDate);
-                    }
-
-                    if (criteria.EndDate != null)
-                    {
-                        query = query.Where(x => x.CreatedDate <= criteria.EndDate);
-                    }
-
-                    var sortInfos = criteria.SortInfos;
-                    if (sortInfos.IsNullOrEmpty())
-                    {
-                        sortInfos = new[] { new SortInfo { SortColumn = ReflectionUtility.GetPropertyName<QuoteRequest>(x => x.CreatedDate), SortDirection = SortDirection.Descending } };
-                    }
-
-                    result.TotalCount = await query.CountAsync();
-                    if (criteria.Take > 0)
-                    {
-                        var ids = await query.OrderBySortInfos(sortInfos).ThenBy(x => x.Id)
-                                         .Select(x => x.Id)
-                                         .Skip(criteria.Skip).Take(criteria.Take)
-                                         .ToArrayAsync();
-
-                        result.Results = (await GetByIdsAsync(ids)).OrderBy(x => Array.IndexOf(ids, x.Id)).ToList();
-                    }
+                    result.Results = (await GetByIdsAsync(ids)).OrderBy(x => Array.IndexOf(ids, x.Id)).ToArray();
                 }
+
                 return result;
             });
         }
@@ -238,6 +175,81 @@ namespace VirtoCommerce.QuoteModule.Data.Services
             }
         }
 
+        protected virtual IQueryable<QuoteRequestEntity> BuildQuery(IQuoteRepository repository, QuoteRequestSearchCriteria criteria)
+        {
+            var query = repository.QuoteRequests;
+
+            if (criteria.CustomerId != null)
+            {
+                query = query.Where(x => x.CustomerId == criteria.CustomerId);
+            }
+
+            if (criteria.StoreId != null)
+            {
+                query = query.Where(x => x.StoreId == criteria.StoreId);
+            }
+
+            if (criteria.Currency != null)
+            {
+                query = query.Where(x => x.Currency == criteria.Currency);
+            }
+
+            if (criteria.LanguageCode != null)
+            {
+                query = query.Where(x => x.LanguageCode == criteria.LanguageCode);
+            }
+
+            if (criteria.Number != null)
+            {
+                query = query.Where(x => x.Number == criteria.Number);
+            }
+
+            else if (criteria.Keyword != null)
+            {
+                query = query.Where(x => x.Number.Contains(criteria.Keyword)
+                                         || (x.CustomerName != null && x.CustomerName.Contains(criteria.Keyword))
+                                         || (x.Status != null && x.Status.Contains(criteria.Keyword))
+                                         || (x.Tag != null && x.Tag.Contains(criteria.Keyword)));
+            }
+
+            else if (!string.IsNullOrEmpty(criteria.NumberKeyword))
+            {
+                query = query.Where(x => x.Number.Contains(criteria.NumberKeyword));
+            }
+
+            if (criteria.Tag != null)
+            {
+                query = query.Where(x => x.Tag == criteria.Tag);
+            }
+
+            if (!criteria.Statuses.IsNullOrEmpty())
+            {
+                query = query.Where(x => criteria.Statuses.Contains(x.Status));
+            }
+
+            if (criteria.StartDate != null)
+            {
+                query = query.Where(x => x.CreatedDate >= criteria.StartDate);
+            }
+
+            if (criteria.EndDate != null)
+            {
+                query = query.Where(x => x.CreatedDate <= criteria.EndDate);
+            }
+
+            return query;
+        }
+
+        protected virtual IList<SortInfo> BuildSortExpression(QuoteRequestSearchCriteria criteria)
+        {
+            var data = criteria.SortInfos;
+            if (data.IsNullOrEmpty())
+            {
+                data = new[] { new SortInfo { SortColumn = ReflectionUtility.GetPropertyName<QuoteRequest>(x => x.CreatedDate), SortDirection = SortDirection.Descending } };
+            }
+
+            return data;
+        }
 
         protected virtual async Task EnsureThatQuoteHasNumber(QuoteRequest[] quoteRequests)
         {
