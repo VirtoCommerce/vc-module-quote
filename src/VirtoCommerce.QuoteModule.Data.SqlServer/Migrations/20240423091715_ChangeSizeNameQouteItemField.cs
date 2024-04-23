@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -14,10 +14,11 @@ namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
                 name: "Name",
                 table: "QuoteItem",
                 type: "nvarchar(1024)",
+                maxLength: 1024,
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(256)",
-                oldNullable: false);
+                oldMaxLength: 256);
         }
 
         /// <inheritdoc />
@@ -27,10 +28,11 @@ namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
                 name: "Name",
                 table: "QuoteItem",
                 type: "nvarchar(256)",
+                maxLength: 256,
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(1024)",
-                oldNullable: false);
+                oldMaxLength: 1024);
         }
     }
 }

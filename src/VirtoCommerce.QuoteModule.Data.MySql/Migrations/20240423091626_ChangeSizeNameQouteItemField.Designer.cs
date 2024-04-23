@@ -11,7 +11,7 @@ using VirtoCommerce.QuoteModule.Data.Repositories;
 namespace VirtoCommerce.QuoteModule.Data.MySql.Migrations
 {
     [DbContext(typeof(QuoteDbContext))]
-    [Migration("20240423083521_ChangeSizeNameQouteItemField")]
+    [Migration("20240423091626_ChangeSizeNameQouteItemField")]
     partial class ChangeSizeNameQouteItemField
     {
         /// <inheritdoc />
@@ -266,8 +266,8 @@ namespace VirtoCommerce.QuoteModule.Data.MySql.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasMaxLength(1024)
+                        .HasColumnType("varchar(1024)");
 
                     b.Property<string>("ProductId")
                         .IsRequired()
