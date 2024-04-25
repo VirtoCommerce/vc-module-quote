@@ -14,7 +14,8 @@ namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
 
 public class ApproveQuoteCommandHandler(
         ICustomerOrderBuilder customerOrderBuilder,
-        IQuoteRequestService quoteRequestService)
+        IQuoteRequestService quoteRequestService,
+        IQuoteTotalsCalculator totalsCalculator)
     : IRequestHandler<ApproveQuoteCommand, ApproveQuoteResult>
 {
     public async Task<ApproveQuoteResult> Handle(ApproveQuoteCommand request, CancellationToken cancellationToken)
@@ -31,15 +32,15 @@ public class ApproveQuoteCommandHandler(
             throw new ExecutionError($"Quote status is not '{QuoteStatus.ProposalSent}'") { Code = Constants.ValidationErrorCode };
         }
 
-        quote.Status = QuoteStatus.Approved;
+        var totals = await totalsCalculator.CalculateTotalsAsync(quote);
 
-        var cart = quote.ToCartModel(new ShoppingCart());
+        quote.Status = QuoteStatus.Ordered;
+        var cart = quote.ToCartModel(new ShoppingCart(), totals);
 
         foreach (var cartItem in cart.Items)
         {
             cartItem.ListPrice = cartItem.SalePrice;
         }
-
 
         var order = await customerOrderBuilder.PlaceCustomerOrderFromCartAsync(cart);
         await quoteRequestService.SaveChangesAsync(new[] { quote });

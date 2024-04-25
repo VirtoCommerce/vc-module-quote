@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using VirtoCommerce.CartModule.Core.Model;
@@ -8,6 +8,8 @@ using VirtoCommerce.Platform.Core.ChangeLog;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.DynamicProperties;
 using VirtoCommerce.TaxModule.Core.Model;
+
+using TaxAddress = VirtoCommerce.TaxModule.Core.Model.Address;
 
 namespace VirtoCommerce.QuoteModule.Core.Models
 {
@@ -83,7 +85,7 @@ namespace VirtoCommerce.QuoteModule.Core.Models
         public ICollection<DynamicObjectProperty> DynamicProperties { get; set; }
         #endregion
 
-        public ShoppingCart ToCartModel(ShoppingCart target)
+        public ShoppingCart ToCartModel(ShoppingCart target, QuoteRequestTotals totals = null)
         {
             var _ = this;
             target.Id = _.Id;
@@ -120,6 +122,17 @@ namespace VirtoCommerce.QuoteModule.Core.Models
                 target.Shipments = new List<Shipment>(new[] { shipment });
             }
 
+            if (totals != null)
+            {
+                //totals.AdjustmentQuoteExlTax;
+                target.DiscountTotal = totals.DiscountTotal;
+                target.Total = totals.GrandTotalInclTax;
+                //totals.OriginalSubTotalExlTax;
+                target.ShippingTotal = totals.ShippingTotal;
+                target.SubTotal = totals.SubTotalExlTax;
+                target.TaxTotal = totals.TaxTotal;
+            }
+
             return target;
         }
 
@@ -128,7 +141,7 @@ namespace VirtoCommerce.QuoteModule.Core.Models
             target.Id = Id;
             target.Code = Number;
             target.Currency = Currency;
-            target.Address = Addresses?.FirstOrDefault()?.ToTaxModel(AbstractTypeFactory<TaxModule.Core.Model.Address>.TryCreateInstance());
+            target.Address = Addresses?.FirstOrDefault()?.ToTaxModel(AbstractTypeFactory<TaxAddress>.TryCreateInstance());
             target.Type = GetType().Name;
             foreach (var quoteItem in Items)
             {

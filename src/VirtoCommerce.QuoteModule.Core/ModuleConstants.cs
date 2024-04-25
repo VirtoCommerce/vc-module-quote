@@ -9,7 +9,7 @@ namespace VirtoCommerce.QuoteModule.Core
         public const string Processing = "Processing";
         public const string Cancelled = "Cancelled";
         public const string ProposalSent = "Proposal sent";
-        public const string Approved = "Approved";
+        public const string Ordered = "Ordered";
         public const string Declined = "Declined";
     }
 
@@ -42,7 +42,7 @@ namespace VirtoCommerce.QuoteModule.Core
                     ValueType = SettingValueType.ShortText,
                     IsDictionary = true,
                     DefaultValue = "New",
-                    AllowedValues = new object[] { QuoteStatus.Draft, "New", QuoteStatus.Processing, QuoteStatus.ProposalSent, "Ordered", QuoteStatus.Cancelled }
+                    AllowedValues = new object[] { QuoteStatus.Draft, "New", QuoteStatus.Processing, QuoteStatus.ProposalSent, "Ordered", QuoteStatus.Cancelled, QuoteStatus.Declined }
                 };
 
                 public static SettingDescriptor DefaultStatus { get; } = new SettingDescriptor
