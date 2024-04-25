@@ -88,7 +88,7 @@ jobs:
         uses: VirtoCommerce/vc-github-actions/changelog-generator@master
 
       - name: Get Artifact Version
-        uses: VirtoCommerce/vc-github-actions/get-image-version@VCST-571
+        uses: VirtoCommerce/vc-github-actions/get-image-version@master
         id: artifact_ver
 
       - name: Set VERSION_SUFFIX variable
@@ -175,7 +175,7 @@ jobs:
 
       - name: Create deployment matrix
         if: ${{ github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main' }}
-        uses: VirtoCommerce/vc-github-actions/cloud-create-deploy-matrix@VCST-571
+        uses: VirtoCommerce/vc-github-actions/cloud-create-deploy-matrix@master
         id: deployment-matrix
         with:
           deployConfigPath: '.deployment/module/cloudDeploy.json'
@@ -241,7 +241,7 @@ jobs:
     if: ${{ ((github.ref == 'refs/heads/dev') && (github.event_name == 'push') && (needs.ci.outputs.run-e2e == 'true')) ||
         (github.event_name == 'workflow_dispatch')}}
     needs: 'ci'
-    uses: VirtoCommerce/.github/.github/workflows/e2e.yml@VCST-571
+    uses: VirtoCommerce/.github/.github/workflows/e2e.yml@v3.800.5
     with:
       katalonRepo: 'VirtoCommerce/vc-quality-gate-katalon'
       katalonRepoBranch: 'dev'
@@ -259,7 +259,7 @@ jobs:
   deploy-cloud:
     if: ${{ (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev') && github.event_name == 'push' }}
     needs: ci
-    uses: VirtoCommerce/.github/.github/workflows/deploy-cloud.yml@VCST-571
+    uses: VirtoCommerce/.github/.github/workflows/deploy-cloud.yml@v3.800.5
     with:
       releaseSource: module
       moduleId: ${{ needs.ci.outputs.moduleId }}
