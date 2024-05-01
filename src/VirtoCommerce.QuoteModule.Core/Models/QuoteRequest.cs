@@ -85,7 +85,8 @@ namespace VirtoCommerce.QuoteModule.Core.Models
         public ICollection<DynamicObjectProperty> DynamicProperties { get; set; }
         #endregion
 
-        public ShoppingCart ToCartModel(ShoppingCart target, QuoteRequestTotals totals = null)
+        [Obsolete("Use IQuoteConverter instead", DiagnosticId = "VC0008", UrlFormat = "https://docs.virtocommerce.org/products/products-virto3-versions")]
+        public ShoppingCart ToCartModel(ShoppingCart target)
         {
             var _ = this;
             target.Id = _.Id;
@@ -117,25 +118,16 @@ namespace VirtoCommerce.QuoteModule.Core.Models
                 {
                     Currency = Currency,
                     ShipmentMethodCode = ShipmentMethod.ShipmentMethodCode,
-                    ShipmentMethodOption = ShipmentMethod.OptionName
+                    ShipmentMethodOption = ShipmentMethod.OptionName,
+                    Price = _.ManualShippingTotal,
                 };
                 target.Shipments = new List<Shipment>(new[] { shipment });
-            }
-
-            if (totals != null)
-            {
-                //totals.AdjustmentQuoteExlTax;
-                target.DiscountTotal = totals.DiscountTotal;
-                target.Total = totals.GrandTotalInclTax;
-                //totals.OriginalSubTotalExlTax;
-                target.ShippingTotal = totals.ShippingTotal;
-                target.SubTotal = totals.SubTotalExlTax;
-                target.TaxTotal = totals.TaxTotal;
             }
 
             return target;
         }
 
+        [Obsolete("Use IQuoteTotalsCalculator instead", DiagnosticId = "VC0008", UrlFormat = "https://docs.virtocommerce.org/products/products-virto3-versions")]
         public TaxEvaluationContext ToTaxEvalContext(TaxEvaluationContext target)
         {
             target.Id = Id;

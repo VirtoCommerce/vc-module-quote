@@ -3,26 +3,32 @@ using System.Threading;
 using System.Threading.Tasks;
 using GraphQL;
 using MediatR;
-using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.ExperienceApiModule.Core.Helpers;
 using VirtoCommerce.OrdersModule.Core.Services;
 using VirtoCommerce.QuoteModule.Core;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
-using static VirtoCommerce.OrdersModule.Core.ModuleConstants;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
 
-public class ApproveQuoteCommandHandler(
-        ICustomerOrderBuilder customerOrderBuilder,
-        ICustomerOrderService customerOrderService,
-        IQuoteRequestService quoteRequestService,
-        IQuoteTotalsCalculator totalsCalculator)
-    : IRequestHandler<ApproveQuoteCommand, ApproveQuoteResult>
+public class ApproveQuoteCommandHandler : IRequestHandler<ApproveQuoteCommand, ApproveQuoteResult>
 {
+    private readonly ICustomerOrderBuilder _customerOrderBuilder;
+    private readonly IQuoteConverter _quoteConverter;
+    private readonly IQuoteRequestService _quoteRequestService;
+
+    public ApproveQuoteCommandHandler(ICustomerOrderBuilder customerOrderBuilder,
+        IQuoteConverter quoteConverter,
+        IQuoteRequestService quoteRequestService)
+    {
+        _customerOrderBuilder = customerOrderBuilder;
+        _quoteConverter = quoteConverter;
+        _quoteRequestService = quoteRequestService;
+    }
+
     public async Task<ApproveQuoteResult> Handle(ApproveQuoteCommand request, CancellationToken cancellationToken)
     {
-        var quote = (await quoteRequestService.GetByIdsAsync(request.QuoteId)).FirstOrDefault();
+        var quote = (await _quoteRequestService.GetByIdsAsync(request.QuoteId)).FirstOrDefault();
 
         if (quote == null)
         {
@@ -34,25 +40,11 @@ public class ApproveQuoteCommandHandler(
             throw new ExecutionError($"Quote status is not '{QuoteStatus.ProposalSent}'") { Code = Constants.ValidationErrorCode };
         }
 
-        var totals = await totalsCalculator.CalculateTotalsAsync(quote);
+        //quote.Status = QuoteStatus.Ordered;
+        var cart = _quoteConverter.ConvertToCartWithTax(quote);
+        var order = await _customerOrderBuilder.PlaceCustomerOrderFromCartAsync(cart);
 
-        quote.Status = QuoteStatus.Ordered;
-        var cart = quote.ToCartModel(new ShoppingCart(), totals);
-
-        foreach (var cartItem in cart.Items)
-        {
-            cartItem.ListPrice = cartItem.SalePrice;
-        }
-
-        var order = await customerOrderBuilder.PlaceCustomerOrderFromCartAsync(cart);
-
-        order.ShippingTotal = totals.ShippingTotal;
-        order.Total = totals.GrandTotalInclTax;
-        order.TaxTotal = totals.TaxTotal;
-        order.Status = CustomerOrderStatus.NotPayed;
-
-        await customerOrderService.SaveChangesAsync(new[] { order });
-        await quoteRequestService.SaveChangesAsync(new[] { quote });
+        await _quoteRequestService.SaveChangesAsync(new[] { quote });
 
         return new ApproveQuoteResult
         {

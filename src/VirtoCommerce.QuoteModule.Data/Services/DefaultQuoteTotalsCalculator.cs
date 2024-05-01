@@ -10,25 +10,30 @@ using VirtoCommerce.TaxModule.Core.Model;
 using VirtoCommerce.TaxModule.Core.Model.Search;
 using VirtoCommerce.TaxModule.Core.Services;
 
+using TaxAddress = VirtoCommerce.TaxModule.Core.Model.Address;
+
 namespace VirtoCommerce.QuoteModule.Data.Services
 {
     public class DefaultQuoteTotalsCalculator : IQuoteTotalsCalculator
     {
         private readonly IShippingMethodsSearchService _shippingMethodsSearchService;
         private readonly ITaxProviderSearchService _taxProviderSearchService;
+        private readonly IQuoteConverter _quoteConverter;
 
         public DefaultQuoteTotalsCalculator(
             IShippingMethodsSearchService shippingMethodsSearchService,
-            ITaxProviderSearchService taxProviderSearchService)
+            ITaxProviderSearchService taxProviderSearchService,
+            IQuoteConverter quoteConverter)
         {
             _shippingMethodsSearchService = shippingMethodsSearchService;
             _taxProviderSearchService = taxProviderSearchService;
+            _quoteConverter = quoteConverter;
         }
 
         public virtual async Task<QuoteRequestTotals> CalculateTotalsAsync(QuoteRequest quote)
         {
             var retVal = new QuoteRequestTotals();
-            var cartFromQuote = quote.ToCartModel(AbstractTypeFactory<ShoppingCart>.TryCreateInstance());
+            var cartFromQuote = _quoteConverter.ConvertToCart(quote);
 
             //Calculate shipment total
             //first try to get manual amount
@@ -54,11 +59,12 @@ namespace VirtoCommerce.QuoteModule.Data.Services
             var taxSearchCriteria = AbstractTypeFactory<TaxProviderSearchCriteria>.TryCreateInstance();
             taxSearchCriteria.StoreIds = new[] { quote.StoreId };
             taxSearchCriteria.Sort = nameof(TaxProvider.Priority);
-            var taxProvider = (await _taxProviderSearchService.SearchAsync(taxSearchCriteria)).Results.FirstOrDefault();
+            var taxProvider = (await _taxProviderSearchService.SearchAsync(taxSearchCriteria))
+                .Results.FirstOrDefault(x => x.IsActive);
 
             if (taxProvider != null)
             {
-                var taxEvalContext = quote.ToTaxEvalContext(AbstractTypeFactory<TaxEvaluationContext>.TryCreateInstance());
+                var taxEvalContext = ToTaxEvalContext(quote);
                 retVal.TaxTotal = taxProvider.CalculateRates(taxEvalContext).Select(x => x.Rate).DefaultIfEmpty(0).Sum(x => x);
             }
 
@@ -80,6 +86,29 @@ namespace VirtoCommerce.QuoteModule.Data.Services
             }
 
             return retVal;
+        }
+
+        protected virtual TaxEvaluationContext ToTaxEvalContext(QuoteRequest quote)
+        {
+            var target = AbstractTypeFactory<TaxEvaluationContext>.TryCreateInstance();
+            target.Id = quote.Id;
+            target.Code = quote.Number;
+            target.Currency = quote.Currency;
+            target.Address = quote.Addresses?.FirstOrDefault()?.ToTaxModel(AbstractTypeFactory<TaxAddress>.TryCreateInstance());
+            target.Type = quote.GetType().Name;
+            foreach (var quoteItem in quote.Items)
+            {
+                var line = new TaxLine
+                {
+                    Id = quoteItem.Id,
+                    Code = quoteItem.Sku,
+                    Name = quoteItem.Name,
+                    TaxType = quoteItem.TaxType,
+                    Amount = quoteItem.SelectedTierPrice.Price * quoteItem.SelectedTierPrice.Quantity
+                };
+                target.Lines.Add(line);
+            }
+            return target;
         }
     }
 }
