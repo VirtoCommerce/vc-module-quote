@@ -95,31 +95,7 @@ public class QuoteConverter : IQuoteConverter
 
     public ShoppingCart ConvertToCartWithTax(QuoteRequest quote)
     {
-        var result = AbstractTypeFactory<ShoppingCart>.TryCreateInstance();
-
-        result.CreatedBy = quote.CreatedBy;
-        result.CreatedDate = quote.CreatedDate;
-        result.ModifiedBy = quote.ModifiedBy;
-        result.ModifiedDate = quote.ModifiedDate;
-        result.ChannelId = quote.ChannelId;
-        result.IsAnonymous = quote.IsAnonymous;
-        result.Status = quote.Status;
-        result.Comment = quote.Comment;
-        result.Coupon = quote.Coupon;
-        result.Currency = quote.Currency;
-        result.CustomerId = quote.CustomerId;
-        result.CustomerName = quote.CustomerName;
-        result.LanguageCode = quote.LanguageCode;
-        result.OrganizationId = quote.OrganizationId;
-        result.StoreId = quote.StoreId;
-
-        result.Items = quote.Items?.Convert(x => ToCartItems(x, quote));
-        result.TaxDetails = quote.TaxDetails?.Convert(ToCartTaxDetails);
-        result.DynamicProperties = quote.DynamicProperties?.Convert(ToDynamicProperties);
-
-        result.Addresses = quote.Addresses?.Convert(ToCartAddresses);
-        result.Shipments = quote.ShipmentMethod?.Convert(x => ToCartShipments(x, result, quote));
-        result.Payments = ToCartPayments(quote, result.Addresses);
+        var result = ConvertToCart(quote);
 
         EvaluateDiscount(quote, result);
         var taxRates = EvaluateTaxesAsync(result).GetAwaiter().GetResult();
