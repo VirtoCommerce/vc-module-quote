@@ -40,7 +40,7 @@ public class ApproveQuoteCommandHandler : IRequestHandler<ApproveQuoteCommand, A
             throw new ExecutionError($"Quote status is not '{QuoteStatus.ProposalSent}'") { Code = Constants.ValidationErrorCode };
         }
 
-        //quote.Status = QuoteStatus.Ordered;
+        quote.Status = QuoteStatus.Ordered;
         var cart = _quoteConverter.ConvertToCartWithTax(quote);
         var order = await _customerOrderBuilder.PlaceCustomerOrderFromCartAsync(cart);
 
