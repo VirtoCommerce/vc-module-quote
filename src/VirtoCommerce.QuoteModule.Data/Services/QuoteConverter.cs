@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.CoreModule.Core.Common;
+using VirtoCommerce.CoreModule.Core.Currency;
 using VirtoCommerce.CoreModule.Core.Tax;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.DynamicProperties;
@@ -28,14 +29,17 @@ public class QuoteConverter : IQuoteConverter
     private readonly ISettingsManager _settingsManager;
     private readonly ITaxProviderSearchService _taxProviderSearchService;
     private readonly IShippingMethodsSearchService _shippingMethodsSearchService;
+    private readonly ICurrencyService _currencyService;
 
     public QuoteConverter(ISettingsManager settingsManager,
         ITaxProviderSearchService taxProviderSearchService,
-        IShippingMethodsSearchService shippingMethodsSearchService)
+        IShippingMethodsSearchService shippingMethodsSearchService,
+        ICurrencyService currencyService)
     {
         _settingsManager = settingsManager;
         _taxProviderSearchService = taxProviderSearchService;
         _shippingMethodsSearchService = shippingMethodsSearchService;
+        _currencyService = currencyService;
     }
 
     public virtual async Task<QuoteRequest> ConvertFromCart(ShoppingCart cart)
@@ -93,13 +97,95 @@ public class QuoteConverter : IQuoteConverter
         return result;
     }
 
-    public ShoppingCart ConvertToCartWithTax(QuoteRequest quote)
+    public virtual async Task<ShoppingCart> ConvertToCartWithTax(QuoteRequest quote)
     {
         var result = ConvertToCart(quote);
 
         EvaluateDiscount(quote, result);
-        var taxRates = EvaluateTaxesAsync(result).GetAwaiter().GetResult();
+        var taxRates = await EvaluateTaxesAsync(result);
         ApplyTaxRates(result, taxRates);
+
+        result.DiscountTotal = 0m;
+        result.DiscountTotalWithTax = 0m;
+        result.FeeTotal = result.Fee;
+        result.TaxTotal = 0m;
+
+        var cartItemsWithoutGifts = result.Items?.Where(x => !x.IsGift);
+
+        if (cartItemsWithoutGifts != null)
+        {
+            result.SubTotal = cartItemsWithoutGifts.Sum(x => x.ListPrice * x.Quantity);
+            result.SubTotalWithTax = cartItemsWithoutGifts.Sum(x => x.ListPriceWithTax * x.Quantity);
+            result.SubTotalDiscount = cartItemsWithoutGifts.Sum(x => x.DiscountTotal);
+            result.SubTotalDiscountWithTax = cartItemsWithoutGifts.Sum(x => x.DiscountTotalWithTax);
+            result.DiscountTotal += cartItemsWithoutGifts.Sum(x => x.DiscountTotal);
+            result.DiscountTotalWithTax += cartItemsWithoutGifts.Sum(x => x.DiscountTotalWithTax);
+            result.FeeTotal += cartItemsWithoutGifts.Sum(x => x.Fee);
+            result.FeeTotalWithTax += cartItemsWithoutGifts.Sum(x => x.FeeWithTax);
+            result.TaxTotal += cartItemsWithoutGifts.Sum(x => x.TaxTotal);
+        }
+
+        if (result.Shipments != null)
+        {
+            result.ShippingTotal = result.Shipments.Sum(x => x.Total);
+            result.ShippingTotalWithTax = result.Shipments.Sum(x => x.TotalWithTax);
+            result.ShippingSubTotal = result.Shipments.Sum(x => x.Price);
+            result.ShippingSubTotalWithTax = result.Shipments.Sum(x => x.PriceWithTax);
+            result.ShippingDiscountTotal = result.Shipments.Sum(x => x.DiscountAmount);
+            result.ShippingDiscountTotalWithTax = result.Shipments.Sum(x => x.DiscountAmountWithTax);
+            result.DiscountTotal += result.Shipments.Sum(x => x.DiscountAmount);
+            result.DiscountTotalWithTax += result.Shipments.Sum(x => x.DiscountAmountWithTax);
+            result.FeeTotal += result.Shipments.Sum(x => x.Fee);
+            result.FeeTotalWithTax += result.Shipments.Sum(x => x.FeeWithTax);
+            result.TaxTotal += result.Shipments.Sum(x => x.TaxTotal);
+        }
+
+        if (result.Payments != null)
+        {
+            result.PaymentTotal = result.Payments.Sum(x => x.Total);
+            result.PaymentTotalWithTax = result.Payments.Sum(x => x.TotalWithTax);
+            result.PaymentSubTotal = result.Payments.Sum(x => x.Price);
+            result.PaymentSubTotalWithTax = result.Payments.Sum(x => x.PriceWithTax);
+            result.PaymentDiscountTotal = result.Payments.Sum(x => x.DiscountAmount);
+            result.PaymentDiscountTotalWithTax = result.Payments.Sum(x => x.DiscountAmountWithTax);
+            result.DiscountTotal += result.Payments.Sum(x => x.DiscountAmount);
+            result.DiscountTotalWithTax += result.Payments.Sum(x => x.DiscountAmountWithTax);
+            result.TaxTotal += result.Payments.Sum(x => x.TaxTotal);
+        }
+
+        var taxFactor = 1 + result.TaxPercentRate;
+        result.FeeWithTax = result.Fee * taxFactor;
+        result.FeeTotalWithTax = result.FeeTotal * taxFactor;
+        result.DiscountTotal += result.DiscountAmount;
+        result.DiscountTotalWithTax += result.DiscountAmount * taxFactor;
+        //Subtract from cart tax total self discount tax amount
+        result.TaxTotal -= result.DiscountAmount * result.TaxPercentRate;
+
+        //Need to round all cart totals
+        var currency = _currencyService.GetAllCurrenciesAsync().GetAwaiter().GetResult().First(c => c.Code == result.Currency);
+        result.SubTotal = currency.RoundingPolicy.RoundMoney(result.SubTotal, currency);
+        result.SubTotalWithTax = currency.RoundingPolicy.RoundMoney(result.SubTotalWithTax, currency);
+        result.SubTotalDiscount = currency.RoundingPolicy.RoundMoney(result.SubTotalDiscount, currency);
+        result.SubTotalDiscountWithTax = currency.RoundingPolicy.RoundMoney(result.SubTotalDiscountWithTax, currency);
+        result.TaxTotal = currency.RoundingPolicy.RoundMoney(result.TaxTotal, currency);
+        result.DiscountTotal = currency.RoundingPolicy.RoundMoney(result.DiscountTotal, currency);
+        result.DiscountTotalWithTax = currency.RoundingPolicy.RoundMoney(result.DiscountTotalWithTax, currency);
+        result.Fee = currency.RoundingPolicy.RoundMoney(result.Fee, currency);
+        result.FeeWithTax = currency.RoundingPolicy.RoundMoney(result.FeeWithTax, currency);
+        result.FeeTotal = currency.RoundingPolicy.RoundMoney(result.FeeTotal, currency);
+        result.FeeTotalWithTax = currency.RoundingPolicy.RoundMoney(result.FeeTotalWithTax, currency);
+        result.ShippingTotal = currency.RoundingPolicy.RoundMoney(result.ShippingTotal, currency);
+        result.ShippingTotalWithTax = currency.RoundingPolicy.RoundMoney(result.ShippingTotalWithTax, currency);
+        result.ShippingSubTotal = currency.RoundingPolicy.RoundMoney(result.ShippingSubTotal, currency);
+        result.ShippingSubTotalWithTax = currency.RoundingPolicy.RoundMoney(result.ShippingSubTotalWithTax, currency);
+        result.PaymentTotal = currency.RoundingPolicy.RoundMoney(result.PaymentTotal, currency);
+        result.PaymentTotalWithTax = currency.RoundingPolicy.RoundMoney(result.PaymentTotalWithTax, currency);
+        result.PaymentSubTotal = currency.RoundingPolicy.RoundMoney(result.PaymentSubTotal, currency);
+        result.PaymentSubTotalWithTax = currency.RoundingPolicy.RoundMoney(result.PaymentSubTotalWithTax, currency);
+        result.PaymentDiscountTotal = currency.RoundingPolicy.RoundMoney(result.PaymentDiscountTotal, currency);
+        result.PaymentDiscountTotalWithTax = currency.RoundingPolicy.RoundMoney(result.PaymentDiscountTotalWithTax, currency);
+
+        result.Total = result.SubTotal + result.ShippingSubTotal + result.TaxTotal + result.PaymentSubTotal + result.FeeTotal - result.DiscountTotal;
 
         return result;
     }
@@ -120,16 +206,16 @@ public class QuoteConverter : IQuoteConverter
 
     protected virtual TaxEvaluationContext CreateTaxEvalContext(ShoppingCart cart)
     {
-        var taxEvalcontext = AbstractTypeFactory<TaxEvaluationContext>.TryCreateInstance();
-        taxEvalcontext.StoreId = cart.StoreId;
-        taxEvalcontext.Code = cart.Name;
-        taxEvalcontext.Type = "Cart";
-        taxEvalcontext.CustomerId = cart.CustomerId;
+        var taxEvalContext = AbstractTypeFactory<TaxEvaluationContext>.TryCreateInstance();
+        taxEvalContext.StoreId = cart.StoreId;
+        taxEvalContext.Code = cart.Name;
+        taxEvalContext.Type = "Cart";
+        taxEvalContext.CustomerId = cart.CustomerId;
         //map customer after PT-5425
 
         foreach (var lineItem in cart.Items)
         {
-            taxEvalcontext.Lines.Add(new TaxLine()
+            taxEvalContext.Lines.Add(new TaxLine()
             {
                 //PT-5339: Add Currency to tax line
                 Id = lineItem.Id,
@@ -157,11 +243,11 @@ public class QuoteConverter : IQuoteConverter
                 Amount = shipment.Total > 0 ? shipment.Total : shipment.Price,
                 TypeName = "shipment"
             };
-            taxEvalcontext.Lines.Add(totalTaxLine);
+            taxEvalContext.Lines.Add(totalTaxLine);
 
             if (shipment.DeliveryAddress != null)
             {
-                taxEvalcontext.Address = CreateTaxAddress(shipment.DeliveryAddress);
+                taxEvalContext.Address = CreateTaxAddress(shipment.DeliveryAddress);
             }
         }
 
@@ -178,9 +264,9 @@ public class QuoteConverter : IQuoteConverter
                 Amount = payment.Total > 0 ? payment.Total : payment.Price,
                 TypeName = "payment"
             };
-            taxEvalcontext.Lines.Add(totalTaxLine);
+            taxEvalContext.Lines.Add(totalTaxLine);
         }
-        return taxEvalcontext;
+        return taxEvalContext;
     }
 
     protected virtual TaxModule.Core.Model.Address CreateTaxAddress(CartAddress address)
@@ -220,12 +306,13 @@ public class QuoteConverter : IQuoteConverter
         cart.TaxPercentRate = 0m;
         foreach (var lineItem in cart.Items ?? Enumerable.Empty<LineItem>())
         {
+            ApplyTaxRates(lineItem, taxRates);
+
             //Get percent rate from line item
             if (cart.TaxPercentRate == 0)
             {
                 cart.TaxPercentRate = lineItem.TaxPercentRate;
             }
-            ApplyTaxRates(lineItem, taxRates);
         }
         foreach (var shipment in cart.Shipments ?? Enumerable.Empty<Shipment>())
         {
@@ -237,7 +324,7 @@ public class QuoteConverter : IQuoteConverter
         }
     }
 
-    protected virtual void ApplyTaxRates(LineItem lineItem, IEnumerable<TaxRate> taxRates)
+    protected virtual void ApplyTaxRates(CartLineItem lineItem, IEnumerable<TaxRate> taxRates)
     {
         lineItem.TaxPercentRate = 0m;
         var lineItemTaxRate = taxRates.FirstOrDefault(x => x.Line.Id != null && x.Line.Id.EqualsInvariant(lineItem.Id ?? ""))
@@ -262,6 +349,20 @@ public class QuoteConverter : IQuoteConverter
         }
 
         lineItem.TaxDetails = lineItemTaxRate.TaxDetails;
+
+        var taxFactor = 1 + lineItem.TaxPercentRate;
+        lineItem.ListPriceWithTax = lineItem.ListPrice * taxFactor;
+        lineItem.SalePriceWithTax = lineItem.SalePrice * taxFactor;
+        lineItem.PlacedPrice = lineItem.ListPrice - lineItem.DiscountAmount;
+        lineItem.PlacedPriceWithTax = lineItem.PlacedPrice * taxFactor;
+        lineItem.ExtendedPrice = lineItem.PlacedPrice * lineItem.Quantity;
+        lineItem.DiscountAmountWithTax = lineItem.DiscountAmount * taxFactor;
+        lineItem.DiscountTotal = lineItem.DiscountAmount * Math.Max(1, lineItem.Quantity);
+        lineItem.FeeWithTax = lineItem.Fee * taxFactor;
+        lineItem.PlacedPriceWithTax = lineItem.PlacedPrice * taxFactor;
+        lineItem.ExtendedPriceWithTax = lineItem.PlacedPriceWithTax * lineItem.Quantity;
+        lineItem.DiscountTotalWithTax = lineItem.DiscountAmountWithTax * Math.Max(1, lineItem.Quantity);
+        lineItem.TaxTotal = (lineItem.ExtendedPrice + lineItem.Fee) * lineItem.TaxPercentRate;
     }
 
     protected virtual void ApplyTaxRates(Payment payment, IEnumerable<TaxRate> taxRates)
@@ -289,6 +390,12 @@ public class QuoteConverter : IQuoteConverter
         }
 
         payment.TaxDetails = paymentTaxRate.TaxDetails;
+        var taxFactor = 1 + payment.TaxPercentRate;
+        payment.Total = payment.Price - payment.DiscountAmount;
+        payment.TotalWithTax = payment.Total * taxFactor;
+        payment.PriceWithTax = payment.Price * taxFactor;
+        payment.DiscountAmountWithTax = payment.DiscountAmount * taxFactor;
+        payment.TaxTotal = payment.Total * payment.TaxPercentRate;
     }
 
     protected virtual void ApplyTaxRates(Shipment shipment, IEnumerable<TaxRate> taxRates)
@@ -316,6 +423,14 @@ public class QuoteConverter : IQuoteConverter
         }
 
         shipment.TaxDetails = shipmentTaxRate.TaxDetails;
+
+        var taxFactor = 1 + shipment.TaxPercentRate;
+        shipment.PriceWithTax = shipment.Price * taxFactor;
+        shipment.DiscountAmountWithTax = shipment.DiscountAmount * taxFactor;
+        shipment.FeeWithTax = shipment.Fee * taxFactor;
+        shipment.Total = shipment.Price + shipment.Fee - shipment.DiscountAmount;
+        shipment.TotalWithTax = shipment.PriceWithTax + shipment.FeeWithTax - shipment.DiscountAmountWithTax;
+        shipment.TaxTotal = shipment.Total * shipment.TaxPercentRate;
     }
 
     #endregion

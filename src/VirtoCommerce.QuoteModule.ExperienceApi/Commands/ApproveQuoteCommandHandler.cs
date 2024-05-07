@@ -41,7 +41,7 @@ public class ApproveQuoteCommandHandler : IRequestHandler<ApproveQuoteCommand, A
         }
 
         quote.Status = QuoteStatus.Ordered;
-        var cart = _quoteConverter.ConvertToCartWithTax(quote);
+        var cart = await _quoteConverter.ConvertToCartWithTax(quote);
         var order = await _customerOrderBuilder.PlaceCustomerOrderFromCartAsync(cart);
 
         await _quoteRequestService.SaveChangesAsync(new[] { quote });
