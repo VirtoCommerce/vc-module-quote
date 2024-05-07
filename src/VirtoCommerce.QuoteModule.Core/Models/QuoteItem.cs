@@ -75,7 +75,6 @@ namespace VirtoCommerce.QuoteModule.Core.Models
             target.Name = _.Name;
             target.Sku = _.Sku;
             target.Quantity = _.Quantity;
-            target.TaxPercentRate = 0.13m;
 
             if (SelectedTierPrice != null)
             {

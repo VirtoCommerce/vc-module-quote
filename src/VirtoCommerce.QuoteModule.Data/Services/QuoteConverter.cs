@@ -26,6 +26,9 @@ namespace VirtoCommerce.QuoteModule.Data.Services;
 
 public class QuoteConverter : IQuoteConverter
 {
+    private const int _precision = 4;
+    private const decimal _accuracy = 0.01m;
+
     private readonly ISettingsManager _settingsManager;
     private readonly ITaxProviderSearchService _taxProviderSearchService;
     private readonly IShippingMethodsSearchService _shippingMethodsSearchService;
@@ -91,7 +94,7 @@ public class QuoteConverter : IQuoteConverter
         result.DynamicProperties = quote.DynamicProperties?.Convert(ToDynamicProperties);
 
         result.Addresses = quote.Addresses?.Convert(ToCartAddresses);
-        result.Shipments = quote.ShipmentMethod?.Convert(x => ToCartShipments(x, result, quote));
+        result.Shipments = quote.ShipmentMethod?.Convert(x => ToCartShipments(x, result, quote)).GetAwaiter().GetResult();
         result.Payments = ToCartPayments(quote, result.Addresses);
 
         return result;
@@ -162,7 +165,8 @@ public class QuoteConverter : IQuoteConverter
         result.TaxTotal -= result.DiscountAmount * result.TaxPercentRate;
 
         //Need to round all cart totals
-        var currency = _currencyService.GetAllCurrenciesAsync().GetAwaiter().GetResult().First(c => c.Code == result.Currency);
+        var currencies = await _currencyService.GetAllCurrenciesAsync();
+        var currency = currencies.First(c => c.Code == result.Currency);
         result.SubTotal = currency.RoundingPolicy.RoundMoney(result.SubTotal, currency);
         result.SubTotalWithTax = currency.RoundingPolicy.RoundMoney(result.SubTotalWithTax, currency);
         result.SubTotalDiscount = currency.RoundingPolicy.RoundMoney(result.SubTotalDiscount, currency);
@@ -344,7 +348,7 @@ public class QuoteConverter : IQuoteConverter
             var amount = lineItem.ExtendedPrice > 0 ? lineItem.ExtendedPrice : lineItem.SalePrice;
             if (amount > 0)
             {
-                lineItem.TaxPercentRate = Math.Round(lineItemTaxRate.Rate / amount, 4, MidpointRounding.AwayFromZero);
+                lineItem.TaxPercentRate = Math.Round(lineItemTaxRate.Rate / amount, _precision, MidpointRounding.AwayFromZero);
             }
         }
 
@@ -385,7 +389,7 @@ public class QuoteConverter : IQuoteConverter
             var amount = payment.Total > 0 ? payment.Total : payment.Price;
             if (amount > 0)
             {
-                payment.TaxPercentRate = Math.Round(paymentTaxRate.Rate / amount, 4, MidpointRounding.AwayFromZero);
+                payment.TaxPercentRate = Math.Round(paymentTaxRate.Rate / amount, _precision, MidpointRounding.AwayFromZero);
             }
         }
 
@@ -418,7 +422,7 @@ public class QuoteConverter : IQuoteConverter
             var amount = shipment.Total > 0 ? shipment.Total : shipment.Price;
             if (amount > 0)
             {
-                shipment.TaxPercentRate = Math.Round(shipmentTaxRate.Rate / amount, 4, MidpointRounding.AwayFromZero);
+                shipment.TaxPercentRate = Math.Round(shipmentTaxRate.Rate / amount, _precision, MidpointRounding.AwayFromZero);
             }
         }
 
@@ -449,7 +453,7 @@ public class QuoteConverter : IQuoteConverter
             }
             else if (quote.ManualRelDiscountAmount > 0)
             {
-                discount = subTotal * quote.ManualRelDiscountAmount * 0.01m;
+                discount = subTotal * quote.ManualRelDiscountAmount * _accuracy;
             }
 
             if (discount > 0)
@@ -654,20 +658,20 @@ public class QuoteConverter : IQuoteConverter
         return details;
     }
 
-    protected virtual IList<Shipment> ToCartShipments(QuoteShipmentMethod shipmentMethod, ShoppingCart cart, QuoteRequest quote)
+    protected virtual async Task<IList<Shipment>> ToCartShipments(QuoteShipmentMethod shipmentMethod, ShoppingCart cart, QuoteRequest quote)
     {
         var shipment = AbstractTypeFactory<Shipment>.TryCreateInstance();
 
         shipment.ShipmentMethodCode = shipmentMethod.ShipmentMethodCode;
         shipment.ShipmentMethodOption = shipmentMethod.OptionName;
         shipment.Currency = cart.Currency;
-        shipment.Price = GetShipmentPrice(quote, shipmentMethod, cart);
+        shipment.Price = await GetShipmentPrice(quote, shipmentMethod, cart);
         shipment.DeliveryAddress = cart.Addresses.FirstOrDefault(x => x.AddressType.HasFlag(AddressType.Shipping));
 
         return new List<Shipment> { shipment };
     }
 
-    private decimal GetShipmentPrice(QuoteRequest quote, QuoteShipmentMethod shipmentMethod, ShoppingCart cart)
+    protected virtual async Task<decimal> GetShipmentPrice(QuoteRequest quote, QuoteShipmentMethod shipmentMethod, ShoppingCart cart)
     {
         var result = quote.ManualShippingTotal;
 
@@ -680,7 +684,7 @@ public class QuoteConverter : IQuoteConverter
             searchCriteria.StoreId = quote.StoreId;
             searchCriteria.IsActive = true;
             searchCriteria.Codes = new[] { quote.ShipmentMethod.ShipmentMethodCode };
-            var storeShippingMethods = _shippingMethodsSearchService.SearchAsync(searchCriteria).GetAwaiter().GetResult();
+            var storeShippingMethods = await _shippingMethodsSearchService.SearchAsync(searchCriteria);
             var rate = storeShippingMethods.Results
                 .SelectMany(x => x.CalculateRates(evalContext))
                 .FirstOrDefault(x => (quote.ShipmentMethod.OptionName == null) || quote.ShipmentMethod.OptionName == x.OptionName);
