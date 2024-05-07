@@ -263,8 +263,8 @@ namespace VirtoCommerce.QuoteModule.Data.MySql.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasMaxLength(1024)
+                        .HasColumnType("varchar(1024)");
 
                     b.Property<string>("ProductId")
                         .IsRequired()
