@@ -145,7 +145,7 @@ namespace VirtoCommerce.QuoteModule.Web.Controllers.Api
 
                 if (store != null)
                 {
-                    var cartFromQuote = quote.ToCartModel(AbstractTypeFactory<ShoppingCart>.TryCreateInstance());
+                    var cartFromQuote = _quoteConverter.ConvertToCart(quote);
                     var evalContext = new ShippingEvaluationContext(cartFromQuote);
 
                     var searchCriteria = AbstractTypeFactory<ShippingMethodsSearchCriteria>.TryCreateInstance();

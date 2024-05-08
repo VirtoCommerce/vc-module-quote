@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using VirtoCommerce.CartModule.Core.Model;
@@ -8,6 +8,8 @@ using VirtoCommerce.Platform.Core.ChangeLog;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.DynamicProperties;
 using VirtoCommerce.TaxModule.Core.Model;
+
+using TaxAddress = VirtoCommerce.TaxModule.Core.Model.Address;
 
 namespace VirtoCommerce.QuoteModule.Core.Models
 {
@@ -83,6 +85,7 @@ namespace VirtoCommerce.QuoteModule.Core.Models
         public ICollection<DynamicObjectProperty> DynamicProperties { get; set; }
         #endregion
 
+        [Obsolete("Use IQuoteConverter instead", DiagnosticId = "VC0008", UrlFormat = "https://docs.virtocommerce.org/products/products-virto3-versions")]
         public ShoppingCart ToCartModel(ShoppingCart target)
         {
             var _ = this;
@@ -115,7 +118,8 @@ namespace VirtoCommerce.QuoteModule.Core.Models
                 {
                     Currency = Currency,
                     ShipmentMethodCode = ShipmentMethod.ShipmentMethodCode,
-                    ShipmentMethodOption = ShipmentMethod.OptionName
+                    ShipmentMethodOption = ShipmentMethod.OptionName,
+                    Price = _.ManualShippingTotal,
                 };
                 target.Shipments = new List<Shipment>(new[] { shipment });
             }
@@ -123,12 +127,13 @@ namespace VirtoCommerce.QuoteModule.Core.Models
             return target;
         }
 
+        [Obsolete("Use IQuoteTotalsCalculator instead", DiagnosticId = "VC0008", UrlFormat = "https://docs.virtocommerce.org/products/products-virto3-versions")]
         public TaxEvaluationContext ToTaxEvalContext(TaxEvaluationContext target)
         {
             target.Id = Id;
             target.Code = Number;
             target.Currency = Currency;
-            target.Address = Addresses?.FirstOrDefault()?.ToTaxModel(AbstractTypeFactory<TaxModule.Core.Model.Address>.TryCreateInstance());
+            target.Address = Addresses?.FirstOrDefault()?.ToTaxModel(AbstractTypeFactory<TaxAddress>.TryCreateInstance());
             target.Type = GetType().Name;
             foreach (var quoteItem in Items)
             {

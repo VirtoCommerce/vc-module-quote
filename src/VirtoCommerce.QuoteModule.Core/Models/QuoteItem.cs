@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using VirtoCommerce.CartModule.Core.Model;
@@ -57,6 +58,7 @@ namespace VirtoCommerce.QuoteModule.Core.Models
 
         public ICollection<TierPrice> ProposalPrices { get; set; }
 
+        [Obsolete("Use IQuoteConverter instead", DiagnosticId = "VC0008", UrlFormat = "https://docs.virtocommerce.org/products/products-virto3-versions")]
         public LineItem ToCartModel(LineItem target)
         {
             var _ = this;
@@ -78,6 +80,11 @@ namespace VirtoCommerce.QuoteModule.Core.Models
             {
                 target.SalePrice = SelectedTierPrice.Price;
                 target.Quantity = (int)SelectedTierPrice.Quantity;
+            }
+
+            if (target.SalePrice > 0 && target.ListPrice > target.SalePrice)
+            {
+                target.DiscountAmount = target.ListPrice - target.SalePrice;
             }
             return target;
         }

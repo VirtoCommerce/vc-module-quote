@@ -8,4 +8,5 @@ public interface IQuoteConverter
 {
     Task<QuoteRequest> ConvertFromCart(ShoppingCart cart);
     ShoppingCart ConvertToCart(QuoteRequest quote);
+    Task<ShoppingCart> ConvertToCartWithTax(QuoteRequest quote);
 }
