@@ -1,6 +1,6 @@
 using GraphQL.Types;
 using VirtoCommerce.ExperienceApiModule.Core.Infrastructure;
-using VirtoCommerce.QuoteModule.Core.Models;
+using VirtoCommerce.QuoteModule.ExperienceApi.Models;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
 

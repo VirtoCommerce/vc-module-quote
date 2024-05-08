@@ -1,5 +1,5 @@
 using VirtoCommerce.ExperienceApiModule.Core.Schemas;
-using VirtoCommerce.QuoteModule.Core.Models;
+using VirtoCommerce.QuoteModule.ExperienceApi.Models;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
 

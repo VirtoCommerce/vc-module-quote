@@ -42,7 +42,7 @@ namespace VirtoCommerce.QuoteModule.Core
                     ValueType = SettingValueType.ShortText,
                     IsDictionary = true,
                     DefaultValue = "New",
-                    AllowedValues = new object[] { QuoteStatus.Draft, "New", QuoteStatus.Processing, QuoteStatus.ProposalSent, "Ordered", QuoteStatus.Cancelled, QuoteStatus.Declined }
+                    AllowedValues = new object[] { QuoteStatus.Draft, "New", QuoteStatus.Processing, QuoteStatus.ProposalSent, QuoteStatus.Ordered, QuoteStatus.Cancelled, QuoteStatus.Declined }
                 };
 
                 public static SettingDescriptor DefaultStatus { get; } = new SettingDescriptor

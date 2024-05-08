@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using VirtoCommerce.ExperienceApiModule.Core.BaseQueries;
-using VirtoCommerce.QuoteModule.Core.Models;
+using VirtoCommerce.QuoteModule.ExperienceApi.Models;
 using VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;

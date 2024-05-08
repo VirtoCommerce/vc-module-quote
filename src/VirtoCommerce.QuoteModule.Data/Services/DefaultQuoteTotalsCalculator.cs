@@ -1,8 +1,6 @@
-using System;
 using System.Threading.Tasks;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
-using VirtoCommerce.TaxModule.Core.Model;
 
 namespace VirtoCommerce.QuoteModule.Data.Services
 {
@@ -33,12 +31,6 @@ namespace VirtoCommerce.QuoteModule.Data.Services
             retVal.DiscountTotal = cartFromQuote.DiscountTotal;
 
             return retVal;
-        }
-
-        [Obsolete("Logic moved to IQuoteConverter", DiagnosticId = "VC0008", UrlFormat = "https://docs.virtocommerce.org/products/products-virto3-versions")]
-        protected virtual TaxEvaluationContext ToTaxEvalContext(QuoteRequest quote)
-        {
-            return null;
         }
     }
 }

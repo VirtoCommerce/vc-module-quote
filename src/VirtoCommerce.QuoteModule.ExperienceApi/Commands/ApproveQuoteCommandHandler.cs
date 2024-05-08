@@ -6,8 +6,8 @@ using MediatR;
 using VirtoCommerce.ExperienceApiModule.Core.Helpers;
 using VirtoCommerce.OrdersModule.Core.Services;
 using VirtoCommerce.QuoteModule.Core;
-using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
+using VirtoCommerce.QuoteModule.ExperienceApi.Models;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
 

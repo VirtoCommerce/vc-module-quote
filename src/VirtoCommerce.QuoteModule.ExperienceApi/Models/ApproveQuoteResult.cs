@@ -1,4 +1,4 @@
-namespace VirtoCommerce.QuoteModule.Core.Models;
+namespace VirtoCommerce.QuoteModule.ExperienceApi.Models;
 
 public class ApproveQuoteResult
 {
