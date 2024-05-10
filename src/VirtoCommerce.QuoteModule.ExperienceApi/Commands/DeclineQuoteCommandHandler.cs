@@ -30,7 +30,6 @@ public class DeclineQuoteCommandHandler(
         }
 
         quote.Status = QuoteStatus.Declined;
-        quote.Comment = request.Comment;
 
         await quoteRequestService.SaveChangesAsync(new[] { quote });
 
