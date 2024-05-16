@@ -11,9 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using VirtoCommerce.ExperienceApiModule.Core.Extensions;
 using VirtoCommerce.ExperienceApiModule.Core.Infrastructure;
 using VirtoCommerce.FileExperienceApi.Core.Authorization;
-using VirtoCommerce.Platform.Core.Bus;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.DynamicProperties;
+using VirtoCommerce.Platform.Core.Events;
 using VirtoCommerce.Platform.Core.ExportImport;
 using VirtoCommerce.Platform.Core.Modularity;
 using VirtoCommerce.Platform.Core.Security;
@@ -104,9 +104,8 @@ namespace VirtoCommerce.QuoteModule.Web
             var permissionsRegistrar = appBuilder.ApplicationServices.GetRequiredService<IPermissionsRegistrar>();
             permissionsRegistrar.RegisterPermissions(ModuleInfo.Id, "Quotes", ModuleConstants.Security.Permissions.AllPermissions);
 
-            var handlerRegistrar = appBuilder.ApplicationServices.GetRequiredService<IHandlerRegistrar>();
-            handlerRegistrar.RegisterHandler<QuoteRequestChangeEvent>((message, _) => appBuilder.ApplicationServices.GetRequiredService<LogChangesEventHandler>().Handle(message));
-            handlerRegistrar.RegisterHandler<QuoteRequestChangeEvent>((message, _) => appBuilder.ApplicationServices.GetRequiredService<CancelQuoteEventHandler>().Handle(message));
+            appBuilder.RegisterEventHandler<QuoteRequestChangeEvent, LogChangesEventHandler>();
+            appBuilder.RegisterEventHandler<QuoteRequestChangeEvent, CancelQuoteEventHandler>();
 
             using var serviceScope = appBuilder.ApplicationServices.CreateScope();
             var databaseProvider = Configuration.GetValue("DatabaseProvider", "SqlServer");
