@@ -7,38 +7,52 @@ namespace VirtoCommerce.QuoteModule.Data.Model
 {
     public class AddressEntity : Entity, IHasOuterId
     {
-        [StringLength(32)]
-        public string AddressType { get; set; }
         [StringLength(64)]
+        public string AddressType { get; set; }
+
+        [StringLength(512)]
         public string Organization { get; set; }
+
         [StringLength(3)]
         public string CountryCode { get; set; }
+
         [Required]
-        [StringLength(64)]
+        [StringLength(128)]
         public string CountryName { get; set; }
+
         [Required]
         [StringLength(128)]
         public string City { get; set; }
+
         [StringLength(64)]
         public string PostalCode { get; set; }
+
         [StringLength(2048)]
         public string Line1 { get; set; }
+
         [StringLength(2048)]
         public string Line2 { get; set; }
+
         [StringLength(128)]
         public string RegionId { get; set; }
+
         [StringLength(128)]
         public string RegionName { get; set; }
+
         [Required]
-        [StringLength(64)]
+        [StringLength(128)]
         public string FirstName { get; set; }
+
         [Required]
-        [StringLength(64)]
+        [StringLength(128)]
         public string LastName { get; set; }
+
         [StringLength(64)]
         public string Phone { get; set; }
-        [StringLength(254)]
+
+        [StringLength(256)]
         public string Email { get; set; }
+
         [StringLength(128)]
         public string OuterId { get; set; }
 
