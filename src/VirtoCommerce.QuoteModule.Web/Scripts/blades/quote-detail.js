@@ -148,18 +148,35 @@ angular.module('virtoCommerce.quoteModule')
                     {
                         name: "quotes.commands.submit-proposal", icon: 'fa fa-check-square-o',
                         executeMethod: function () {
-                            var dialog = {
-                                id: "confirmDelete",
-                                title: "quotes.dialogs.proposal-delete.title",
-                                message: "quotes.dialogs.proposal-delete.message",
-                                callback: function (ok) {
-                                    if (ok) {
-                                        blade.currentEntity.status = 'Proposal sent';
-                                        saveChanges();
+                            if (blade.currentEntity.items.length == 0 ||
+                                blade.currentEntity.totals.grandTotalInclTax == 0) {
+                                var dialog = {
+                                    id: "submitProposalWithWarning",
+                                    title: "quotes.dialogs.proposal-submit-with-warning.title",
+                                    message: "quotes.dialogs.proposal-submit-with-warning.message",
+                                    callback: function (ok) {
+                                        if (ok) {
+                                            blade.currentEntity.status = 'Proposal sent';
+                                            saveChanges();
+                                        }
                                     }
-                                }
-                            };
-                            dialogService.showConfirmationDialog(dialog);
+                                };
+                                dialogService.showWarningDialog(dialog);
+                            }
+                            else {
+                                var dialog = {
+                                    id: "submitProposal",
+                                    title: "quotes.dialogs.proposal-submit.title",
+                                    message: "quotes.dialogs.proposal-submit.message",
+                                    callback: function (ok) {
+                                        if (ok) {
+                                            blade.currentEntity.status = 'Proposal sent';
+                                            saveChanges();
+                                        }
+                                    }
+                                };
+                                dialogService.showConfirmationDialog(dialog);
+                            }
                         },
                         canExecuteMethod: function () {
                             return blade.origEntity && blade.origEntity.status !== 'Proposal sent';
