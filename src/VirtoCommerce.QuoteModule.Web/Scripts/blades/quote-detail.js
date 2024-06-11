@@ -148,9 +148,9 @@ angular.module('virtoCommerce.quoteModule')
                     {
                         name: "quotes.commands.submit-proposal", icon: 'fa fa-check-square-o',
                         executeMethod: function () {
-                            if (blade.currentEntity.items.length == 0 ||
-                                blade.currentEntity.totals.grandTotalInclTax == 0) {
-                                var dialog = {
+                            if (blade.currentEntity.items.length === 0 ||
+                                blade.currentEntity.totals.grandTotalInclTax === 0) {
+                                var warningDialog = {
                                     id: "submitProposalWithWarning",
                                     title: "quotes.dialogs.proposal-submit-with-warning.title",
                                     message: "quotes.dialogs.proposal-submit-with-warning.message",
@@ -161,10 +161,10 @@ angular.module('virtoCommerce.quoteModule')
                                         }
                                     }
                                 };
-                                dialogService.showWarningDialog(dialog);
+                                dialogService.showWarningDialog(warningDialog);
                             }
                             else {
-                                var dialog = {
+                                var confirmationDialog = {
                                     id: "submitProposal",
                                     title: "quotes.dialogs.proposal-submit.title",
                                     message: "quotes.dialogs.proposal-submit.message",
@@ -175,7 +175,7 @@ angular.module('virtoCommerce.quoteModule')
                                         }
                                     }
                                 };
-                                dialogService.showConfirmationDialog(dialog);
+                                dialogService.showConfirmationDialog(confirmationDialog);
                             }
                         },
                         canExecuteMethod: function () {
