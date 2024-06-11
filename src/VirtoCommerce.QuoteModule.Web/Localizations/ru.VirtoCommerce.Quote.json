@@ -149,7 +149,7 @@
   },
   "module": {
     "VirtoCommerce.Quote": {
-      "description": "Экспорт/Импорт запросов котировок (RFQ)" 
+      "description": "Экспорт/Импорт запросов котировок (RFQ)"
     }
-  } 
+  }
 }
