@@ -3,6 +3,9 @@ angular.module('virtoCommerce.quoteModule')
         'platformWebApp.bladeNavigationService', 'platformWebApp.settings', 'platformWebApp.dialogService', 'platformWebApp.metaFormsService',
         'virtoCommerce.quoteModule.quotes', 'virtoCommerce.customerModule.members',
             function ($scope, bladeNavigationService, settings, dialogService, metaFormsService, quotes, members) {
+
+                const QuoteProposalSentStatus = 'Proposal sent';
+
                 var blade = $scope.blade;
 
                 var onHoldCommand = {
@@ -156,7 +159,7 @@ angular.module('virtoCommerce.quoteModule')
                                     message: "quotes.dialogs.proposal-submit-with-warning.message",
                                     callback: function (ok) {
                                         if (ok) {
-                                            blade.currentEntity.status = 'Proposal sent';
+                                            blade.currentEntity.status = QuoteProposalSentStatus;
                                             saveChanges();
                                         }
                                     }
@@ -170,7 +173,7 @@ angular.module('virtoCommerce.quoteModule')
                                     message: "quotes.dialogs.proposal-submit.message",
                                     callback: function (ok) {
                                         if (ok) {
-                                            blade.currentEntity.status = 'Proposal sent';
+                                            blade.currentEntity.status = QuoteProposalSentStatus;
                                             saveChanges();
                                         }
                                     }
@@ -179,7 +182,7 @@ angular.module('virtoCommerce.quoteModule')
                             }
                         },
                         canExecuteMethod: function () {
-                            return blade.origEntity && blade.origEntity.status !== 'Proposal sent';
+                            return blade.origEntity && blade.origEntity.status !== QuoteProposalSentStatus;
                         },
                         permission: blade.updatePermission
                     },
