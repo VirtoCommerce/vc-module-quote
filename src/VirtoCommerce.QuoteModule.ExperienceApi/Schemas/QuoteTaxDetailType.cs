@@ -1,7 +1,7 @@
 using GraphQL.Types;
 using VirtoCommerce.CoreModule.Core.Currency;
 using VirtoCommerce.CoreModule.Core.Tax;
-using VirtoCommerce.ExperienceApiModule.Core.Schemas;
+using VirtoCommerce.Xapi.Core.Schemas;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Schemas;

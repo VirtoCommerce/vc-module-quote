@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using GraphQL;
 using MediatR;
-using VirtoCommerce.ExperienceApiModule.Core.Helpers;
+using VirtoCommerce.Xapi.Core.Helpers;
 using VirtoCommerce.OrdersModule.Core.Services;
 using VirtoCommerce.QuoteModule.Core;
 using VirtoCommerce.QuoteModule.Core.Services;
