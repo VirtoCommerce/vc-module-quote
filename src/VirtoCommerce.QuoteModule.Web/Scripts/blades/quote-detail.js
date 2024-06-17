@@ -3,6 +3,9 @@ angular.module('virtoCommerce.quoteModule')
         'platformWebApp.bladeNavigationService', 'platformWebApp.settings', 'platformWebApp.dialogService', 'platformWebApp.metaFormsService',
         'virtoCommerce.quoteModule.quotes', 'virtoCommerce.customerModule.members',
             function ($scope, bladeNavigationService, settings, dialogService, metaFormsService, quotes, members) {
+
+                const QuoteProposalSentStatus = 'Proposal sent';
+
                 var blade = $scope.blade;
 
                 var onHoldCommand = {
@@ -148,21 +151,38 @@ angular.module('virtoCommerce.quoteModule')
                     {
                         name: "quotes.commands.submit-proposal", icon: 'fa fa-check-square-o',
                         executeMethod: function () {
-                            var dialog = {
-                                id: "confirmDelete",
-                                title: "quotes.dialogs.proposal-delete.title",
-                                message: "quotes.dialogs.proposal-delete.message",
-                                callback: function (ok) {
-                                    if (ok) {
-                                        blade.currentEntity.status = 'Proposal sent';
-                                        saveChanges();
+                            if (blade.currentEntity.items.length === 0 ||
+                                blade.currentEntity.totals.grandTotalInclTax === 0) {
+                                var warningDialog = {
+                                    id: "submitProposalWithWarning",
+                                    title: "quotes.dialogs.proposal-submit-with-warning.title",
+                                    message: "quotes.dialogs.proposal-submit-with-warning.message",
+                                    callback: function (ok) {
+                                        if (ok) {
+                                            blade.currentEntity.status = QuoteProposalSentStatus;
+                                            saveChanges();
+                                        }
                                     }
-                                }
-                            };
-                            dialogService.showConfirmationDialog(dialog);
+                                };
+                                dialogService.showWarningDialog(warningDialog);
+                            }
+                            else {
+                                var confirmationDialog = {
+                                    id: "submitProposal",
+                                    title: "quotes.dialogs.proposal-submit.title",
+                                    message: "quotes.dialogs.proposal-submit.message",
+                                    callback: function (ok) {
+                                        if (ok) {
+                                            blade.currentEntity.status = QuoteProposalSentStatus;
+                                            saveChanges();
+                                        }
+                                    }
+                                };
+                                dialogService.showConfirmationDialog(confirmationDialog);
+                            }
                         },
                         canExecuteMethod: function () {
-                            return blade.origEntity && blade.origEntity.status !== 'Proposal sent';
+                            return blade.origEntity && blade.origEntity.status !== QuoteProposalSentStatus;
                         },
                         permission: blade.updatePermission
                     },

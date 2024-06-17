@@ -1,6 +1,6 @@
 {
   "quotes": {
-	"main-menu-title": "Kostenvoranschläge",
+    "main-menu-title": "Kostenvoranschläge",
     "blades": {
       "quotes-assets": {
         "subtitle": "Anhänge",
@@ -123,9 +123,13 @@
           "reason": "Ein Grund, hier abzubrechen..."
         }
       },
-      "proposal-delete": {
+      "proposal-submit": {
         "title": "Vorschlag bestätigen",
         "message": "Nur begrenzte Änderungen sind verfügbar, nachdem der Antrag gesendet wurde. Sind Sie sicher, dass Sie diesen Vorschlag an den Kunden schicken möchten?"
+      },
+      "proposal-submit-with-warning": {
+        "title": "Unvollständiger Angebotsvorschlag",
+        "message": "Achtung: Das Angebot enthält entweder keine Artikel oder hat einen Gesamtwert von Null. Bitte stellen Sie sicher, dass alle Artikel aufgelistet und mit den richtigen Preisen versehen sind, bevor Sie fortfahren. Möchten Sie wirklich fortfahren?"
       },
       "hold-confirmation": {
         "title": "Warteschleifen Bestätigung",
