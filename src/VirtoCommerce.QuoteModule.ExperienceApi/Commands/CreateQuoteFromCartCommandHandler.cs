@@ -7,13 +7,13 @@ using GraphQL;
 using MediatR;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.CartModule.Core.Services;
-using VirtoCommerce.ExperienceApiModule.Core.Helpers;
+using VirtoCommerce.Xapi.Core.Helpers;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.QuoteModule.ExperienceApi.Validation;
-using VirtoCommerce.XPurchase;
-using VirtoCommerce.XPurchase.Validators;
+using VirtoCommerce.XCart.Core.Services;
+using VirtoCommerce.XCart.Core.Validators;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
 

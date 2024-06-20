@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using GraphQL;
 using GraphQL.Types;
-using VirtoCommerce.ExperienceApiModule.Core.BaseQueries;
+using VirtoCommerce.Xapi.Core.BaseQueries;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Queries;

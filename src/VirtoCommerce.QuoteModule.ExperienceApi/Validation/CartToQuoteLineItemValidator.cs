@@ -1,7 +1,7 @@
 using System.Linq;
 using FluentValidation;
 using VirtoCommerce.Platform.Core.Common;
-using VirtoCommerce.XPurchase;
+using VirtoCommerce.XCart.Core.Validators;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Validation
 {

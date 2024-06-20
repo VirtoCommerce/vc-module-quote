@@ -1,6 +1,6 @@
 using GraphQL.Types;
 using VirtoCommerce.CoreModule.Core.Currency;
-using VirtoCommerce.ExperienceApiModule.Core.Schemas;
+using VirtoCommerce.Xapi.Core.Schemas;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using VirtoCommerce.CoreModule.Core.Currency;
 using VirtoCommerce.CoreModule.Core.Tax;
-using VirtoCommerce.ExperienceApiModule.Core.Extensions;
+using VirtoCommerce.Xapi.Core.Extensions;
 using VirtoCommerce.FileExperienceApi.Core.Models;
 using VirtoCommerce.FileExperienceApi.Core.Services;
 using VirtoCommerce.Platform.Core.Common;
