@@ -50,6 +50,7 @@ public class CreateQuoteCommandHandler : IRequestHandler<CreateQuoteCommand, Quo
 
         var contact = await GetContact(request.UserId);
         quote.CustomerName = contact?.Name;
+        // todo: get organization from another contact
         quote.OrganizationId = contact?.Organizations?.FirstOrDefault();
 
         var organization = await GetOrganization(quote.OrganizationId);

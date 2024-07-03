@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     <PackageReference Include="VirtoCommerce.FileExperienceApi.Data" Version="3.800.0" />
-    <PackageReference Include="VirtoCommerce.XPurchase" Version="3.800.0" />
+    <PackageReference Include="VirtoCommerce.XPurchase" Version="3.837.0-alpha.1423-vcst-1353" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VirtoCommerce.QuoteModule.Core\VirtoCommerce.QuoteModule.Core.csproj" />

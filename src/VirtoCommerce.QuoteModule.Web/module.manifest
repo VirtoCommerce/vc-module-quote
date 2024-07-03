@@ -4,13 +4,13 @@
   <version>3.816.0</version>
   <version-tag />
 
-  <platformVersion>3.825.0</platformVersion>
+  <platformVersion>3.841.0</platformVersion>
   <dependencies>
     <dependency id="VirtoCommerce.Assets" version="3.800.0" />
     <dependency id="VirtoCommerce.Cart" version="3.800.0" />
     <dependency id="VirtoCommerce.Catalog" version="3.800.0" />
     <dependency id="VirtoCommerce.Core" version="3.800.0" />
-    <dependency id="VirtoCommerce.ExperienceApi" version="3.800.0" />
+    <dependency id="VirtoCommerce.ExperienceApi" version="3.387.0" />
     <dependency id="VirtoCommerce.FileExperienceApi" version="3.800.0" />
     <dependency id="VirtoCommerce.Orders" version="3.800.0" />
     <dependency id="VirtoCommerce.Shipping" version="3.800.0" />
