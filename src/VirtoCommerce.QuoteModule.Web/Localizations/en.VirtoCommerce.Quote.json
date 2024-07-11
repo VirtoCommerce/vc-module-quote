@@ -123,9 +123,13 @@
           "reason": "Please enter reason here..."
         }
       },
-      "proposal-delete": {
+      "proposal-submit": {
         "title": "Confirm proposal",
-        "message": "After you send a proposal, you will not be able to modify some parts of your quote. Are you sure you want to proceed?"
+        "message": "Once you submit your proposal, certain parts of your quote will be locked and cannot be modified. Are you sure you want to proceed?"
+      },
+      "proposal-submit-with-warning": {
+        "title": "Incomplete quote proposal",
+        "message": "Warning: The quote doesn't have either any items or with a zero total. Please ensure that all items are listed and priced appropriately before proceeding. Are you sure you want to proceed?"
       },
       "hold-confirmation": {
         "title": "Confirm put on hold",
