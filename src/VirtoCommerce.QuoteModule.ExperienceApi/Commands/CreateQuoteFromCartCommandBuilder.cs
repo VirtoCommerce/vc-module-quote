@@ -2,11 +2,11 @@ using System.Threading.Tasks;
 using GraphQL;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using VirtoCommerce.Xapi.Core.BaseQueries;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
-using VirtoCommerce.XCart.Core.Authorization;
+using VirtoCommerce.Xapi.Core.BaseQueries;
 using VirtoCommerce.XCart.Core.Queries;
+using VirtoCommerce.XCart.Data.Authorization;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
 
