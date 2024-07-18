@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using VirtoCommerce.CartModule.Core.Model;
-using VirtoCommerce.XPurchase;
+using VirtoCommerce.XCart.Core.Models;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Validation
 {
