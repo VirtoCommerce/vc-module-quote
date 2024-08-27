@@ -2,10 +2,11 @@ using System.Threading.Tasks;
 using GraphQL;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using VirtoCommerce.Xapi.Core.BaseQueries;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.QuoteModule.ExperienceApi.Authorization;
 using VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
+using VirtoCommerce.Xapi.Core.BaseQueries;
+using VirtoCommerce.Xapi.Core.Extensions;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
 
@@ -27,5 +28,17 @@ public class CreateQuoteCommandBuilder : CommandBuilder<CreateQuoteCommand, Quot
     protected virtual Task CheckCanCreateQuote(IResolveFieldContext<object> context, string userId)
     {
         return Authorize(context, userId, new QuoteAuthorizationRequirement());
+    }
+
+    protected override CreateQuoteCommand GetRequest(IResolveFieldContext<object> context)
+    {
+        var command = base.GetRequest(context);
+
+        if (command != null)
+        {
+            command.CurrentOrganizationId = context.GetCurrentOrganizationId();
+        }
+
+        return command;
     }
 }

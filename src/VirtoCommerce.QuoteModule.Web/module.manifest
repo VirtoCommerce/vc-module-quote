@@ -18,6 +18,7 @@
     <dependency id="VirtoCommerce.Shipping" version="3.800.0" />
     <dependency id="VirtoCommerce.Store" version="3.800.0" />
     <dependency id="VirtoCommerce.Tax" version="3.800.0" />
+    <dependency id="VirtoCommerce.Customer" version="3.813.0" />
   </dependencies>
 
   <title>Quotes</title>

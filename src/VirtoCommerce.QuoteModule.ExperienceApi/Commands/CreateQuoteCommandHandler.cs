@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -50,12 +49,12 @@ public class CreateQuoteCommandHandler : IRequestHandler<CreateQuoteCommand, Quo
 
         var contact = await GetContact(request.UserId);
         quote.CustomerName = contact?.Name;
-        quote.OrganizationId = contact?.Organizations?.FirstOrDefault();
+        quote.OrganizationId = request.CurrentOrganizationId ?? contact.DefaultOrganizationId;
 
         var organization = await GetOrganization(quote.OrganizationId);
         quote.OrganizationName = organization?.Name;
 
-        await _quoteRequestService.SaveChangesAsync(new[] { quote });
+        await _quoteRequestService.SaveChangesAsync([quote]);
 
         return await _quoteAggregateRepository.GetById(quote.Id);
     }
