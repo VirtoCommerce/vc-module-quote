@@ -49,7 +49,7 @@ public class CreateQuoteCommandHandler : IRequestHandler<CreateQuoteCommand, Quo
 
         var contact = await GetContact(request.UserId);
         quote.CustomerName = contact?.Name;
-        quote.OrganizationId = request.CurrentOrganizationId ?? contact.DefaultOrganizationId;
+        quote.OrganizationId = request.CurrentOrganizationId ?? contact?.DefaultOrganizationId;
 
         var organization = await GetOrganization(quote.OrganizationId);
         quote.OrganizationName = organization?.Name;
