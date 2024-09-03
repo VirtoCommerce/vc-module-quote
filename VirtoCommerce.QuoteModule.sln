@@ -27,6 +27,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtoCommerce.QuoteModule.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtoCommerce.QuoteModule.Data.PostgreSql", "src\VirtoCommerce.QuoteModule.Data.PostgreSql\VirtoCommerce.QuoteModule.Data.PostgreSql.csproj", "{AF5FE400-6C31-47F9-9E90-A553887FED9E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AE6605AE-C77E-4C09-B824-68ABDE5657B7}"
+	ProjectSection(SolutionItems) = preProject
+		VirtoCommerce.QuoteModule.sln.DotSettings = VirtoCommerce.QuoteModule.sln.DotSettings
+		README.md = README.md
+		module.ignore = module.ignore
+		mkdocs.yml = mkdocs.yml
+		MkDocs.md = MkDocs.md
+		Directory.Build.props = Directory.Build.props
+		.gitignore = .gitignore
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
