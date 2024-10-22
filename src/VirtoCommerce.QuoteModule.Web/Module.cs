@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using GraphQL.Server;
+using GraphQL.Server.Ui.Playground;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +32,7 @@ using VirtoCommerce.QuoteModule.Data.SqlServer;
 using VirtoCommerce.QuoteModule.ExperienceApi;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.QuoteModule.ExperienceApi.Authorization;
+using VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
 using VirtoCommerce.QuoteModule.Web.ExportImport;
 using VirtoCommerce.StoreModule.Core.Model;
 using VirtoCommerce.Xapi.Core.Extensions;
@@ -85,6 +87,9 @@ namespace VirtoCommerce.QuoteModule.Web
             serviceCollection.AddMediatR(assemblyMarker);
             serviceCollection.AddAutoMapper(assemblyMarker);
             serviceCollection.AddSchemaBuilders(assemblyMarker);
+
+            serviceCollection.AddSingleton<QuoteSchemaFactory>();
+
             serviceCollection.AddTransient<IQuoteAggregateRepository, QuoteAggregateRepository>();
             serviceCollection.AddSingleton<IAuthorizationHandler, QuoteAuthorizationHandler>();
             serviceCollection.AddSingleton<IFileAuthorizationRequirementFactory, QuoteAuthorizationRequirementFactory>();
@@ -93,6 +98,13 @@ namespace VirtoCommerce.QuoteModule.Web
         public void PostInitialize(IApplicationBuilder appBuilder)
         {
             _appBuilder = appBuilder;
+
+            appBuilder.UseGraphQL<QuoteSchemaFactory>(path: "/quotes/graphql");
+            // Use GraphQL Playground at default URL /ui/playground
+            appBuilder.UseGraphQLPlayground(new PlaygroundOptions
+            {
+                GraphQLEndPoint = "/quotes/graphql"
+            }, path: "/ui/playground2");
 
             var dynamicPropertyRegistrar = appBuilder.ApplicationServices.GetRequiredService<IDynamicPropertyRegistrar>();
             dynamicPropertyRegistrar.RegisterType<QuoteRequest>();

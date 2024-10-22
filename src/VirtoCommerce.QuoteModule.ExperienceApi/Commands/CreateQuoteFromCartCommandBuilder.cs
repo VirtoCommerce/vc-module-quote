@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.Authorization;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
 using VirtoCommerce.Xapi.Core.BaseQueries;
+using VirtoCommerce.Xapi.Core.Infrastructure;
 using VirtoCommerce.XCart.Core.Queries;
 using VirtoCommerce.XCart.Data.Authorization;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
 
+[SubSchemaName("Quote")]
 public class CreateQuoteFromCartCommandBuilder : CommandBuilder<CreateQuoteFromCartCommand, QuoteAggregate, CreateQuoteFromCartCommandType, QuoteType>
 {
     private readonly IMediator _mediator;

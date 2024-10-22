@@ -2,13 +2,15 @@ using System.Threading.Tasks;
 using GraphQL;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using VirtoCommerce.Xapi.Core.BaseQueries;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.QuoteModule.ExperienceApi.Authorization;
 using VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
+using VirtoCommerce.Xapi.Core.BaseQueries;
+using VirtoCommerce.Xapi.Core.Infrastructure;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
 
+[SubSchemaName("Quote")]
 public class CreateQuoteCommandBuilder : CommandBuilder<CreateQuoteCommand, QuoteAggregate, CreateQuoteCommandType, QuoteType>
 {
     protected override string Name => "CreateQuote";

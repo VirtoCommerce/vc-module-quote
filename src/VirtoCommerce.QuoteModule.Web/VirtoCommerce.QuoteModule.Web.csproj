@@ -13,6 +13,9 @@
     <None Remove="dist\**" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="GraphQL.Server.Ui.Playground" Version="5.0.2" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\VirtoCommerce.QuoteModule.Core\VirtoCommerce.QuoteModule.Core.csproj" />
     <ProjectReference Include="..\VirtoCommerce.QuoteModule.Data.MySql\VirtoCommerce.QuoteModule.Data.MySql.csproj" />
     <ProjectReference Include="..\VirtoCommerce.QuoteModule.Data.PostgreSql\VirtoCommerce.QuoteModule.Data.PostgreSql.csproj" />
