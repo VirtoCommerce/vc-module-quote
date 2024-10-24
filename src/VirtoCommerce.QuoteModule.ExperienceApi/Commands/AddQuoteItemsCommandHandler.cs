@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
@@ -6,6 +7,7 @@ using VirtoCommerce.Platform.Core.Settings;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
+using VirtoCommerce.XCatalog.Core.Models;
 using VirtoCommerce.XCatalog.Core.Queries;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
@@ -43,7 +45,13 @@ public class AddQuoteItemsCommandHandler(
 
         var productsResponse = await mediator.Send(productsQuery);
 
-        var productsByIds = productsResponse.Products.ToDictionary(x => x.Id, x => x);
+        AddQuoteItems(quote, request, productsResponse.Products);
+    }
+
+    // This method should be a part of QuoteAggregate, but it requires QuoteCommand to be refactored with breaking changes
+    protected virtual void AddQuoteItems(QuoteRequest quote, AddQuoteItemsCommand request, ICollection<ExpProduct> products)
+    {
+        var productsByIds = products.ToDictionary(x => x.Id, x => x);
 
         foreach (var newQuoteItem in request.NewQuoteItems)
         {
