@@ -60,18 +60,21 @@ public class AddQuoteItemsCommandHandler(
             var product = productsByIds.GetValueSafe(newQuoteItem.ProductId);
             var price = product?.AllPrices.FirstOrDefault();
 
-            quoteItem.Name = newQuoteItem.Name ?? product?.IndexedProduct.Name;
+            quoteItem.Name = newQuoteItem.Name;
 
             quoteItem.ProductId = newQuoteItem.ProductId;
-            quoteItem.Sku = product?.IndexedProduct.Code;
-            quoteItem.CatalogId = product?.IndexedProduct.CatalogId;
-            quoteItem.CategoryId = product?.IndexedProduct.CategoryId;
-            quoteItem.ImageUrl = product?.IndexedProduct.ImgSrc;
+            if (product != null)
+            {
+                quoteItem.Name = product.IndexedProduct.Name;
+                quoteItem.Sku = product.IndexedProduct.Code;
+                quoteItem.CatalogId = product.IndexedProduct.CatalogId;
+                quoteItem.CategoryId = product.IndexedProduct.CategoryId;
+                quoteItem.ImageUrl = product.IndexedProduct.ImgSrc;
+                quoteItem.TaxType = product.IndexedProduct.TaxType;
+            }
 
             quoteItem.ListPrice = price?.ListPrice.InternalAmount ?? 0;
             quoteItem.SalePrice = price?.SalePrice.InternalAmount ?? 0;
-
-            quoteItem.TaxType = product?.IndexedProduct.TaxType;
 
             quoteItem.Comment = newQuoteItem.Comment;
             quoteItem.Currency = quote.Currency;
