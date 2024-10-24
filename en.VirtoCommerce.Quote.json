@@ -1,0 +1,191 @@
+{
+  "quotes": {
+    "main-menu-title": "Quotes",
+    "blades": {
+      "quotes-assets": {
+        "subtitle": "Quote attachments",
+        "labels": {
+          "drag-note": "Drag and drop your files here",
+          "select-files": "Select files",
+          "progress": "Progress",
+          "type": "Type",
+          "name": "Name",
+          "actions": "Actions"
+        }
+      },
+      "quote-detail": {
+        "subtitle": "Quote details",
+        "labels": {
+          "customer": "Customer",
+          "created": "Created",
+          "customer-organization": "Customer's company",
+          "last-updated": "Last updated",
+          "status": "Status",
+          "expiry-date": "Expiry date",
+          "assigned-to": "Assigned to",
+          "rfq-from": "RFQ from",
+          "reminder-date": "Reminder date",
+          "general-comment": "General comment",
+          "internal-comment": "Internal comment"
+        },
+        "placeholders": {
+          "status": "Select...",
+          "expiry-date": "Select date",
+          "assigned-to": "Select...",
+          "rfq-from": "Select store...",
+          "reminder-date": "Select date",
+          "general-comment": "Public comment",
+          "internal-comment": "Internal comment"
+        }
+      },
+      "quote-items": {
+        "title": "{{title}} line items",
+        "subtitle": "Edit line items",
+        "labels": {
+          "new-subtotal": "New subtotal",
+          "relative-discount": "Relative discount",
+          "shipping-method": "Shipping method",
+          "manual-shipping-total": "Total shipping (manual)",
+          "sub-total-placed": "Subtotal (placed)",
+          "adjustment-quote": "Adjustment",
+          "sub-total": "Subtotal",
+          "shipping": "Shipping",
+          "discount": "Discount",
+          "grand-total": "Grand total",
+          "taxes": "Taxes",
+          "grand-total-incl-tax": "Grand total (incl. taxes)",
+          "picture": "Image",
+          "comment": "Product comment",
+          "list-price": "List price",
+          "sale-price": "Sale price",
+          "quantity": "Quantity",
+          "proposed-price": "Proposed price",
+          "margin": "Margin (GP)",
+          "product": "Product",
+          "sku": "SKU"
+        },
+        "placeholders": {
+          "shipping-method": "Select...",
+          "comment": "Enter comment"
+        }
+      },
+      "quotes-list": {
+        "title": "Quotes",
+        "labels": {
+          "quote-number": "Quote #",
+          "status": "Status",
+          "items-count": "Item count",
+          "customer": "Customer",
+          "created": "Created",
+          "no-quotes": "No quotes yet"
+        }
+      },
+      "catalog-items-select": {
+        "title": "Add item to quote"
+      }
+    },
+    "widgets": {
+      "quote-address": {
+        "address-type": "Address type",
+        "no-address": "No address",
+        "blade-subtitle": "Manage addresses"
+      },
+      "quotes-assets": {
+        "title": "Attachments"
+      },
+      "quote-items": {
+        "title": "Line items"
+      },
+      "quote-totals": {
+        "sub-total": "Subtotal",
+        "shipping": "Shipping",
+        "discount": "Discount",
+        "grand-total": "Grand total"
+      }
+    },
+    "dialogs": {
+      "quote-requests-delete": {
+        "title": "Confirm delete",
+        "message": "Are you sure you want to delete the selected quote request(s)?"
+      },
+      "quote-delete": {
+        "title": "Confirm delete",
+        "message": "Are you sure you want to delete this quote?"
+      },
+      "quote-save": {
+        "title": "Save changes",
+        "message": "The quote has been modified. Do you want to save changes?"
+      },
+      "quote-cancel": {
+        "title": "Cancel quote",
+        "message": "Are you sure you want to cancel this quote?",
+        "placeholders": {
+          "reason": "Enter reason here..."
+        }
+      },
+      "proposal-submit": {
+        "title": "Confirm proposal",
+        "message": "Once you have submitted your proposal, certain parts of your quote will be locked and cannot be modified. Are you sure you want to proceed?"
+      },
+      "proposal-submit-with-warning": {
+        "title": "Incomplete quote proposal",
+        "message": "Warning: Offer is missing or totals zero. Please ensure that all items are listed and priced correctly before proceeding. Are you sure you want to proceed?"
+      },
+      "hold-confirmation": {
+        "title": "Confirm put on hold",
+        "message-release": "Are you sure you want to reactivate this quote?",
+        "message-place": "Are you sure you want to put this quote on hold?"
+      }
+    },
+    "commands": {
+      "release-hold": "Reactivate",
+      "place-on-hold": "Put on hold",
+      "submit-proposal": "Submit proposal",
+      "cancel-document": "Cancel document",
+      "add-selected": "Add selected",
+      "add-item": "Add item"
+    }
+  },
+  "permissions": {
+    "quote:access": "Open quote menu",
+    "quote:create": "Create quote",
+    "quote:read": "View quotes",
+    "quote:update": "Update quotes",
+    "quote:delete": "Delete quotes"
+  },
+  "settings": {
+    "Quotes": {
+      "Status": {
+        "title": "Quote statuses",
+        "description": "List of valid quote statuses"
+      },
+      "DefaultStatus": {
+        "title": "Default quote status",
+        "description": "This status will be assigned to the quote created from the shopping cart"
+      },
+      "QuoteRequestNewNumberTemplate": {
+        "title": "RFQ number template",
+        "description": "This template or pattern will be used to generate numbers for new quote requests. 0 is the date and time (UTC) when the number was generated, while 1 is the sequence number"
+      },
+      "EnableQuotes": {
+        "title": "Enable quotes",
+        "description": "Enable the switch to activate quotes in the store"
+      }
+    }
+  },
+  "file-upload-error": {
+    "status": "Error",
+    "status-text": "File upload failed",
+    "invalid-configuration": "File upload scope is not configured",
+    "template": "{{fileName}}: {{errorMessage}}",
+    "duplicate-name": "File with the same name already exists",
+    "INVALID_SIZE": "File size exceeds {{parameter}} bytes",
+    "INVALID_EXTENSION": "File type is not one of the allowed types ({{parameter}})",
+    "UNKNOWN_ERROR": "Unknown error: {{message}}"
+  },
+  "module": {
+    "VirtoCommerce.Quote": {
+      "description": "Export or import quote requests (RFQs)"
+    }
+  }
+}
