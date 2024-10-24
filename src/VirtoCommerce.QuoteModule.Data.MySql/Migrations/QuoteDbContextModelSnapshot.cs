@@ -239,7 +239,6 @@ namespace VirtoCommerce.QuoteModule.Data.MySql.Migrations
                         .HasColumnType("varchar(128)");
 
                     b.Property<string>("CatalogId")
-                        .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("varchar(64)");
 
@@ -270,7 +269,6 @@ namespace VirtoCommerce.QuoteModule.Data.MySql.Migrations
                         .HasColumnType("varchar(1024)");
 
                     b.Property<string>("ProductId")
-                        .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("varchar(64)");
 
@@ -286,7 +284,6 @@ namespace VirtoCommerce.QuoteModule.Data.MySql.Migrations
                         .HasColumnType("decimal");
 
                     b.Property<string>("Sku")
-                        .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("varchar(64)");
 

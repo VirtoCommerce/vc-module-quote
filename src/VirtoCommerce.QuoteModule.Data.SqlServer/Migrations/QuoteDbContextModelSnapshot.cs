@@ -239,7 +239,6 @@ namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
                         .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("CatalogId")
-                        .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
@@ -269,7 +268,6 @@ namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
                         .HasColumnType("nvarchar(1024)");
 
                     b.Property<string>("ProductId")
-                        .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
@@ -284,7 +282,6 @@ namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
                         .HasColumnType("Money");
 
                     b.Property<string>("Sku")
-                        .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 

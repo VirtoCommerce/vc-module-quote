@@ -21,22 +21,22 @@ namespace VirtoCommerce.QuoteModule.Data.Model
 
         [Column(TypeName = "Money")]
         public decimal ListPrice { get; set; }
+
         [Column(TypeName = "Money")]
         public decimal SalePrice { get; set; }
 
-        [Required]
         [StringLength(64)]
         public string ProductId { get; set; }
-        [Required]
+
         [StringLength(64)]
         public string Sku { get; set; }
 
-        [Required]
         [StringLength(64)]
         public string CatalogId { get; set; }
 
         [StringLength(64)]
         public string CategoryId { get; set; }
+
         [Required]
         [StringLength(1024)]
         public string Name { get; set; }

@@ -57,5 +57,7 @@ public abstract class QuoteCommandHandler<TCommand> : IRequestHandler<TCommand, 
         return Task.CompletedTask;
     }
 
-    protected abstract void UpdateQuote(QuoteRequest quote, TCommand request);
+    protected virtual void UpdateQuote(QuoteRequest quote, TCommand request)
+    {
+    }
 }
