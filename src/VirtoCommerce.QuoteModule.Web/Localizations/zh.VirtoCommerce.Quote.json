@@ -1,0 +1,191 @@
+{
+  "quotes": {
+    "main-menu-title": "报价单",
+    "blades": {
+      "quotes-assets": {
+        "subtitle": "报价单附件",
+        "labels": {
+          "drag-note": "将文件拖放到此处",
+          "select-files": "选择文件",
+          "progress": "进度",
+          "type": "类型",
+          "name": "名称",
+          "actions": "操作"
+        }
+      },
+      "quote-detail": {
+        "subtitle": "报价单详情",
+        "labels": {
+          "customer": "客户",
+          "created": "创建时间",
+          "customer-organization": "客户公司",
+          "last-updated": "最后更新",
+          "status": "状态",
+          "expiry-date": "有效期",
+          "assigned-to": "分配给",
+          "rfq-from": "询价来源",
+          "reminder-date": "提醒日期",
+          "general-comment": "一般评论",
+          "internal-comment": "内部评论"
+        },
+        "placeholders": {
+          "status": "选择...",
+          "expiry-date": "选择日期",
+          "assigned-to": "选择...",
+          "rfq-from": "选择商店...",
+          "reminder-date": "选择日期",
+          "general-comment": "公开评论",
+          "internal-comment": "内部评论"
+        }
+      },
+      "quote-items": {
+        "title": "{{title}}项目",
+        "subtitle": "编辑项目",
+        "labels": {
+          "new-subtotal": "新小计",
+          "relative-discount": "相对折扣",
+          "shipping-method": "配送方式",
+          "manual-shipping-total": "总运费（手动）",
+          "sub-total-placed": "小计（已下单）",
+          "adjustment-quote": "调整",
+          "sub-total": "小计",
+          "shipping": "运费",
+          "discount": "折扣",
+          "grand-total": "总计",
+          "taxes": "税费",
+          "grand-total-incl-tax": "总计（含税）",
+          "picture": "图片",
+          "comment": "产品评论",
+          "list-price": "目录价",
+          "sale-price": "销售价",
+          "quantity": "数量",
+          "proposed-price": "建议价格",
+          "margin": "利润率（毛利）",
+          "product": "产品",
+          "sku": "SKU"
+        },
+        "placeholders": {
+          "shipping-method": "选择...",
+          "comment": "输入评论"
+        }
+      },
+      "quotes-list": {
+        "title": "报价单",
+        "labels": {
+          "quote-number": "报价单号",
+          "status": "状态",
+          "items-count": "项目数量",
+          "customer": "客户",
+          "created": "创建时间",
+          "no-quotes": "暂无报价单"
+        }
+      },
+      "catalog-items-select": {
+        "title": "添加项目到报价单"
+      }
+    },
+    "widgets": {
+      "quote-address": {
+        "address-type": "地址类型",
+        "no-address": "无地址",
+        "blade-subtitle": "管理地址"
+      },
+      "quotes-assets": {
+        "title": "附件"
+      },
+      "quote-items": {
+        "title": "项目"
+      },
+      "quote-totals": {
+        "sub-total": "小计",
+        "shipping": "运费",
+        "discount": "折扣",
+        "grand-total": "总计"
+      }
+    },
+    "dialogs": {
+      "quote-requests-delete": {
+        "title": "确认删除",
+        "message": "您确定要删除所选的报价请求吗？"
+      },
+      "quote-delete": {
+        "title": "确认删除",
+        "message": "您确定要删除此报价单吗？"
+      },
+      "quote-save": {
+        "title": "保存更改",
+        "message": "报价单已被修改。您想保存更改吗？"
+      },
+      "quote-cancel": {
+        "title": "取消报价单",
+        "message": "您确定要取消此报价单吗？",
+        "placeholders": {
+          "reason": "在此输入原因..."
+        }
+      },
+      "proposal-submit": {
+        "title": "确认提案",
+        "message": "提交提案后，报价单的某些部分将被锁定且无法修改。您确定要继续吗？"
+      },
+      "proposal-submit-with-warning": {
+        "title": "不完整的报价提案",
+        "message": "警告：报价缺失或总额为零。请确保所有项目都已列出并正确定价后再继续。您确定要继续吗？"
+      },
+      "hold-confirmation": {
+        "title": "确认暂停",
+        "message-release": "您确定要重新激活此报价单吗？",
+        "message-place": "您确定要暂停此报价单吗？"
+      }
+    },
+    "commands": {
+      "release-hold": "重新激活",
+      "place-on-hold": "暂停",
+      "submit-proposal": "提交提案",
+      "cancel-document": "取消文档",
+      "add-selected": "添加所选",
+      "add-item": "添加项目"
+    }
+  },
+  "permissions": {
+    "quote:access": "打开报价单菜单",
+    "quote:create": "创建报价单",
+    "quote:read": "查看报价单",
+    "quote:update": "更新报价单",
+    "quote:delete": "删除报价单"
+  },
+  "settings": {
+    "Quotes": {
+      "Status": {
+        "title": "报价单状态",
+        "description": "有效报价单状态列表"
+      },
+      "DefaultStatus": {
+        "title": "默认报价单状态",
+        "description": "此状态将分配给从购物车创建的报价单"
+      },
+      "QuoteRequestNewNumberTemplate": {
+        "title": "报价请求新编号模板",
+        "description": "此模板或模式将用于为新的报价请求生成编号。0是生成编号时的日期和时间（UTC），而1是序列号"
+      },
+      "EnableQuotes": {
+        "title": "启用报价单",
+        "description": "启用开关以在商店中激活报价单"
+      }
+    }
+  },
+  "file-upload-error": {
+    "status": "错误",
+    "status-text": "文件上传失败",
+    "invalid-configuration": "文件上传范围未配置",
+    "template": "{{fileName}}: {{errorMessage}}",
+    "duplicate-name": "已存在同名文件",
+    "INVALID_SIZE": "文件大小超过{{parameter}}字节",
+    "INVALID_EXTENSION": "文件类型不是允许的类型之一（{{parameter}}）",
+    "UNKNOWN_ERROR": "未知错误：{{message}}"
+  },
+  "module": {
+    "VirtoCommerce.Quote": {
+      "description": "导出或导入报价请求（RFQ）"
+    }
+  }
+}

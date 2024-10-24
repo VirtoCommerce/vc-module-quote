@@ -1,0 +1,191 @@
+{
+  "quotes": {
+    "main-menu-title": "Cotizaciones",
+    "blades": {
+      "quotes-assets": {
+        "subtitle": "Archivos adjuntos de la cotización",
+        "labels": {
+          "drag-note": "Arrastra y suelta tus archivos aquí",
+          "select-files": "Seleccionar archivos",
+          "progress": "Progreso",
+          "type": "Tipo",
+          "name": "Nombre",
+          "actions": "Acciones"
+        }
+      },
+      "quote-detail": {
+        "subtitle": "Detalles de la cotización",
+        "labels": {
+          "customer": "Cliente",
+          "created": "Creado",
+          "customer-organization": "Empresa del cliente",
+          "last-updated": "Última actualización",
+          "status": "Estado",
+          "expiry-date": "Fecha de vencimiento",
+          "assigned-to": "Asignado a",
+          "rfq-from": "Solicitud de cotización de",
+          "reminder-date": "Fecha de recordatorio",
+          "general-comment": "Comentario general",
+          "internal-comment": "Comentario interno"
+        },
+        "placeholders": {
+          "status": "Seleccionar...",
+          "expiry-date": "Seleccionar fecha",
+          "assigned-to": "Seleccionar...",
+          "rfq-from": "Seleccionar tienda...",
+          "reminder-date": "Seleccionar fecha",
+          "general-comment": "Comentario público",
+          "internal-comment": "Comentario interno"
+        }
+      },
+      "quote-items": {
+        "title": "Artículos de {{title}}",
+        "subtitle": "Editar artículos",
+        "labels": {
+          "new-subtotal": "Nuevo subtotal",
+          "relative-discount": "Descuento relativo",
+          "shipping-method": "Método de envío",
+          "manual-shipping-total": "Total de envío (manual)",
+          "sub-total-placed": "Subtotal (colocado)",
+          "adjustment-quote": "Ajuste",
+          "sub-total": "Subtotal",
+          "shipping": "Envío",
+          "discount": "Descuento",
+          "grand-total": "Total general",
+          "taxes": "Impuestos",
+          "grand-total-incl-tax": "Total general (impuestos incluidos)",
+          "picture": "Imagen",
+          "comment": "Comentario del producto",
+          "list-price": "Precio de lista",
+          "sale-price": "Precio de venta",
+          "quantity": "Cantidad",
+          "proposed-price": "Precio propuesto",
+          "margin": "Margen (MB)",
+          "product": "Producto",
+          "sku": "SKU"
+        },
+        "placeholders": {
+          "shipping-method": "Seleccionar...",
+          "comment": "Ingresar comentario"
+        }
+      },
+      "quotes-list": {
+        "title": "Cotizaciones",
+        "labels": {
+          "quote-number": "Número de cotización",
+          "status": "Estado",
+          "items-count": "Cantidad de artículos",
+          "customer": "Cliente",
+          "created": "Creado",
+          "no-quotes": "Aún no hay cotizaciones"
+        }
+      },
+      "catalog-items-select": {
+        "title": "Agregar artículo a la cotización"
+      }
+    },
+    "widgets": {
+      "quote-address": {
+        "address-type": "Tipo de dirección",
+        "no-address": "Sin dirección",
+        "blade-subtitle": "Gestionar direcciones"
+      },
+      "quotes-assets": {
+        "title": "Archivos adjuntos"
+      },
+      "quote-items": {
+        "title": "Artículos"
+      },
+      "quote-totals": {
+        "sub-total": "Subtotal",
+        "shipping": "Envío",
+        "discount": "Descuento",
+        "grand-total": "Total general"
+      }
+    },
+    "dialogs": {
+      "quote-requests-delete": {
+        "title": "Confirmar eliminación",
+        "message": "¿Estás seguro de que deseas eliminar la(s) solicitud(es) de cotización seleccionada(s)?"
+      },
+      "quote-delete": {
+        "title": "Confirmar eliminación",
+        "message": "¿Estás seguro de que deseas eliminar esta cotización?"
+      },
+      "quote-save": {
+        "title": "Guardar cambios",
+        "message": "La cotización ha sido modificada. ¿Deseas guardar los cambios?"
+      },
+      "quote-cancel": {
+        "title": "Cancelar cotización",
+        "message": "¿Estás seguro de que deseas cancelar esta cotización?",
+        "placeholders": {
+          "reason": "Ingresa el motivo aquí..."
+        }
+      },
+      "proposal-submit": {
+        "title": "Confirmar propuesta",
+        "message": "Una vez que hayas enviado tu propuesta, ciertas partes de tu cotización se bloquearán y no podrán ser modificadas. ¿Estás seguro de que deseas continuar?"
+      },
+      "proposal-submit-with-warning": {
+        "title": "Propuesta de cotización incompleta",
+        "message": "Advertencia: Falta la oferta o el total es cero. Asegúrate de que todos los artículos estén listados y con precios correctos antes de continuar. ¿Estás seguro de que deseas continuar?"
+      },
+      "hold-confirmation": {
+        "title": "Confirmar retención",
+        "message-release": "¿Estás seguro de que deseas reactivar esta cotización?",
+        "message-place": "¿Estás seguro de que deseas poner esta cotización en espera?"
+      }
+    },
+    "commands": {
+      "release-hold": "Reactivar",
+      "place-on-hold": "Poner en espera",
+      "submit-proposal": "Enviar propuesta",
+      "cancel-document": "Cancelar documento",
+      "add-selected": "Agregar seleccionados",
+      "add-item": "Agregar artículo"
+    }
+  },
+  "permissions": {
+    "quote:access": "Abrir menú de cotizaciones",
+    "quote:create": "Crear cotización",
+    "quote:read": "Ver cotizaciones",
+    "quote:update": "Actualizar cotizaciones",
+    "quote:delete": "Eliminar cotizaciones"
+  },
+  "settings": {
+    "Quotes": {
+      "Status": {
+        "title": "Estados de cotización",
+        "description": "Lista de estados de cotización válidos"
+      },
+      "DefaultStatus": {
+        "title": "Estado de cotización predeterminado",
+        "description": "Este estado se asignará a la cotización creada desde el carrito de compras"
+      },
+      "QuoteRequestNewNumberTemplate": {
+        "title": "Plantilla de número de solicitud de cotización",
+        "description": "Esta plantilla o patrón se utilizará para generar números para nuevas solicitudes de cotización. 0 es la fecha y hora (UTC) cuando se generó el número, mientras que 1 es el número de secuencia"
+      },
+      "EnableQuotes": {
+        "title": "Habilitar cotizaciones",
+        "description": "Activa el interruptor para activar las cotizaciones en la tienda"
+      }
+    }
+  },
+  "file-upload-error": {
+    "status": "Error",
+    "status-text": "Error en la carga del archivo",
+    "invalid-configuration": "El ámbito de carga de archivos no está configurado",
+    "template": "{{fileName}}: {{errorMessage}}",
+    "duplicate-name": "Ya existe un archivo con el mismo nombre",
+    "INVALID_SIZE": "El tamaño del archivo excede {{parameter}} bytes",
+    "INVALID_EXTENSION": "El tipo de archivo no es uno de los tipos permitidos ({{parameter}})",
+    "UNKNOWN_ERROR": "Error desconocido: {{message}}"
+  },
+  "module": {
+    "VirtoCommerce.Quote": {
+      "description": "Exportar o importar solicitudes de cotización (RFQ)"
+    }
+  }
+}
