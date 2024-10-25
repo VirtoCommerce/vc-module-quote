@@ -170,6 +170,10 @@
       "EnableQuotes": {
         "title": "Enable quotes",
         "description": "Enable the switch to activate quotes in the store"
+      },
+      "FileUploadScopeName": {
+        "title": "File upload scope name",
+        "description": "Specify the scope name for file upload configurations and policies. Default: quote-attachments"
       }
     }
   },
