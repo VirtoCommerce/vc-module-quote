@@ -1,0 +1,191 @@
+{
+  "quotes": {
+    "main-menu-title": "Devis",
+    "blades": {
+      "quotes-assets": {
+        "subtitle": "Pièces jointes du devis",
+        "labels": {
+          "drag-note": "Glissez et déposez vos fichiers ici",
+          "select-files": "Sélectionner des fichiers",
+          "progress": "Progression",
+          "type": "Type",
+          "name": "Nom",
+          "actions": "Actions"
+        }
+      },
+      "quote-detail": {
+        "subtitle": "Détails du devis",
+        "labels": {
+          "customer": "Client",
+          "created": "Créé",
+          "customer-organization": "Entreprise du client",
+          "last-updated": "Dernière mise à jour",
+          "status": "Statut",
+          "expiry-date": "Date d'expiration",
+          "assigned-to": "Assigné à",
+          "rfq-from": "Demande de devis de",
+          "reminder-date": "Date de rappel",
+          "general-comment": "Commentaire général",
+          "internal-comment": "Commentaire interne"
+        },
+        "placeholders": {
+          "status": "Sélectionner...",
+          "expiry-date": "Sélectionner une date",
+          "assigned-to": "Sélectionner...",
+          "rfq-from": "Sélectionner un magasin...",
+          "reminder-date": "Sélectionner une date",
+          "general-comment": "Commentaire public",
+          "internal-comment": "Commentaire interne"
+        }
+      },
+      "quote-items": {
+        "title": "Articles du {{title}}",
+        "subtitle": "Modifier les articles",
+        "labels": {
+          "new-subtotal": "Nouveau sous-total",
+          "relative-discount": "Remise relative",
+          "shipping-method": "Méthode d'expédition",
+          "manual-shipping-total": "Total d'expédition (manuel)",
+          "sub-total-placed": "Sous-total (placé)",
+          "adjustment-quote": "Ajustement",
+          "sub-total": "Sous-total",
+          "shipping": "Expédition",
+          "discount": "Remise",
+          "grand-total": "Total général",
+          "taxes": "Taxes",
+          "grand-total-incl-tax": "Total général (taxes incluses)",
+          "picture": "Image",
+          "comment": "Commentaire sur le produit",
+          "list-price": "Prix catalogue",
+          "sale-price": "Prix de vente",
+          "quantity": "Quantité",
+          "proposed-price": "Prix proposé",
+          "margin": "Marge (MB)",
+          "product": "Produit",
+          "sku": "UGS"
+        },
+        "placeholders": {
+          "shipping-method": "Sélectionner...",
+          "comment": "Entrer un commentaire"
+        }
+      },
+      "quotes-list": {
+        "title": "Devis",
+        "labels": {
+          "quote-number": "Numéro de devis",
+          "status": "Statut",
+          "items-count": "Nombre d'articles",
+          "customer": "Client",
+          "created": "Créé",
+          "no-quotes": "Pas encore de devis"
+        }
+      },
+      "catalog-items-select": {
+        "title": "Ajouter un article au devis"
+      }
+    },
+    "widgets": {
+      "quote-address": {
+        "address-type": "Type d'adresse",
+        "no-address": "Pas d'adresse",
+        "blade-subtitle": "Gérer les adresses"
+      },
+      "quotes-assets": {
+        "title": "Pièces jointes"
+      },
+      "quote-items": {
+        "title": "Articles"
+      },
+      "quote-totals": {
+        "sub-total": "Sous-total",
+        "shipping": "Expédition",
+        "discount": "Remise",
+        "grand-total": "Total général"
+      }
+    },
+    "dialogs": {
+      "quote-requests-delete": {
+        "title": "Confirmer la suppression",
+        "message": "Êtes-vous sûr de vouloir supprimer la/les demande(s) de devis sélectionnée(s) ?"
+      },
+      "quote-delete": {
+        "title": "Confirmer la suppression",
+        "message": "Êtes-vous sûr de vouloir supprimer ce devis ?"
+      },
+      "quote-save": {
+        "title": "Enregistrer les modifications",
+        "message": "Le devis a été modifié. Voulez-vous enregistrer les modifications ?"
+      },
+      "quote-cancel": {
+        "title": "Annuler le devis",
+        "message": "Êtes-vous sûr de vouloir annuler ce devis ?",
+        "placeholders": {
+          "reason": "Entrez la raison ici..."
+        }
+      },
+      "proposal-submit": {
+        "title": "Confirmer la proposition",
+        "message": "Une fois que vous aurez soumis votre proposition, certaines parties de votre devis seront verrouillées et ne pourront pas être modifiées. Êtes-vous sûr de vouloir continuer ?"
+      },
+      "proposal-submit-with-warning": {
+        "title": "Proposition de devis incomplète",
+        "message": "Avertissement : L'offre est manquante ou le total est nul. Veuillez vous assurer que tous les articles sont listés et correctement tarifés avant de continuer. Êtes-vous sûr de vouloir continuer ?"
+      },
+      "hold-confirmation": {
+        "title": "Confirmer la mise en attente",
+        "message-release": "Êtes-vous sûr de vouloir réactiver ce devis ?",
+        "message-place": "Êtes-vous sûr de vouloir mettre ce devis en attente ?"
+      }
+    },
+    "commands": {
+      "release-hold": "Réactiver",
+      "place-on-hold": "Mettre en attente",
+      "submit-proposal": "Soumettre la proposition",
+      "cancel-document": "Annuler le document",
+      "add-selected": "Ajouter la sélection",
+      "add-item": "Ajouter un article"
+    }
+  },
+  "permissions": {
+    "quote:access": "Ouvrir le menu des devis",
+    "quote:create": "Créer un devis",
+    "quote:read": "Voir les devis",
+    "quote:update": "Mettre à jour les devis",
+    "quote:delete": "Supprimer les devis"
+  },
+  "settings": {
+    "Quotes": {
+      "Status": {
+        "title": "Statuts des devis",
+        "description": "Liste des statuts de devis valides"
+      },
+      "DefaultStatus": {
+        "title": "Statut de devis par défaut",
+        "description": "Ce statut sera attribué au devis créé à partir du panier"
+      },
+      "QuoteRequestNewNumberTemplate": {
+        "title": "Modèle de numéro de demande de devis",
+        "description": "Ce modèle ou ce motif sera utilisé pour générer des numéros pour les nouvelles demandes de devis. 0 est la date et l'heure (UTC) de génération du numéro, tandis que 1 est le numéro de séquence"
+      },
+      "EnableQuotes": {
+        "title": "Activer les devis",
+        "description": "Activez le commutateur pour activer les devis dans la boutique"
+      }
+    }
+  },
+  "file-upload-error": {
+    "status": "Erreur",
+    "status-text": "Échec du téléchargement du fichier",
+    "invalid-configuration": "La portée du téléchargement de fichiers n'est pas configurée",
+    "template": "{{fileName}} : {{errorMessage}}",
+    "duplicate-name": "Un fichier portant le même nom existe déjà",
+    "INVALID_SIZE": "La taille du fichier dépasse {{parameter}} octets",
+    "INVALID_EXTENSION": "Le type de fichier n'est pas l'un des types autorisés ({{parameter}})",
+    "UNKNOWN_ERROR": "Erreur inconnue : {{message}}"
+  },
+  "module": {
+    "VirtoCommerce.Quote": {
+      "description": "Exporter ou importer des demandes de devis (RFQ)"
+    }
+  }
+}
