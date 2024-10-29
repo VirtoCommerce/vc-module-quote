@@ -44,39 +44,15 @@ public class QuoteType : ExtendableGraphType<QuoteAggregate>
 
         Field<NonNullGraphType<CurrencyType>>(nameof(QuoteRequest.Currency),
             resolve: context => context.Source.Currency);
-
         Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequest.ManualRelDiscountAmount),
             resolve: context => context.Source.Model.ManualRelDiscountAmount.ToMoney(context.Source.Currency));
-        Field<NonNullGraphType<MoneyType>>("discountTotal",
-            resolve: context => context.Source.Model.Totals.DiscountTotal.ToMoney(context.Source.Currency));
-
         Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequest.ManualShippingTotal),
             resolve: context => context.Source.Model.ManualShippingTotal.ToMoney(context.Source.Currency));
-        Field<NonNullGraphType<MoneyType>>("shippingTotal",
-            resolve: context => context.Source.Model.Totals.ShippingTotal.ToMoney(context.Source.Currency));
-
-
         Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequest.ManualSubTotal),
             resolve: context => context.Source.Model.ManualSubTotal.ToMoney(context.Source.Currency));
-        Field<NonNullGraphType<MoneyType>>("originalSubTotal",
-            resolve: context => context.Source.Model.Totals.OriginalSubTotalExlTax.ToMoney(context.Source.Currency));
-        Field<NonNullGraphType<MoneyType>>("subTotal",
-            resolve: context => context.Source.Model.Totals.SubTotalExlTax.ToMoney(context.Source.Currency));
-
-        Field<NonNullGraphType<MoneyType>>("taxTotal",
-            resolve: context => context.Source.Model.Totals.TaxTotal.ToMoney(context.Source.Currency));
-
-        Field<NonNullGraphType<MoneyType>>("total",
-            resolve: context => context.Source.Model.Totals.GrandTotalExlTax.ToMoney(context.Source.Currency));
-        Field<NonNullGraphType<MoneyType>>("totalWithTax",
-            resolve: context => context.Source.Model.Totals.GrandTotalInclTax.ToMoney(context.Source.Currency));
-
-        Field<NonNullGraphType<MoneyType>>("adjustment",
-            resolve: context => context.Source.Model.Totals.AdjustmentQuoteExlTax.ToMoney(context.Source.Currency));
 
         ExtendableField<NonNullGraphType<QuoteTotalsType>>(nameof(QuoteRequest.Totals),
-            resolve: context => context.Source.Totals,
-            deprecationReason: "Use separate fields instead");
+            resolve: context => context.Source.Totals);
         ExtendableField<NonNullGraphType<ListGraphType<NonNullGraphType<QuoteItemType>>>>(nameof(QuoteRequest.Items),
             resolve: context => context.Source.Items);
         ExtendableField<NonNullGraphType<ListGraphType<NonNullGraphType<QuoteAddressType>>>>(nameof(QuoteRequest.Addresses),
