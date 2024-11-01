@@ -1,0 +1,191 @@
+{
+  "quotes": {
+    "main-menu-title": "Preventivi",
+    "blades": {
+      "quotes-assets": {
+        "subtitle": "Allegati del preventivo",
+        "labels": {
+          "drag-note": "Trascina e rilascia i tuoi file qui",
+          "select-files": "Seleziona file",
+          "progress": "Progresso",
+          "type": "Tipo",
+          "name": "Nome",
+          "actions": "Azioni"
+        }
+      },
+      "quote-detail": {
+        "subtitle": "Dettagli del preventivo",
+        "labels": {
+          "customer": "Cliente",
+          "created": "Creato",
+          "customer-organization": "Azienda del cliente",
+          "last-updated": "Ultimo aggiornamento",
+          "status": "Stato",
+          "expiry-date": "Data di scadenza",
+          "assigned-to": "Assegnato a",
+          "rfq-from": "RFQ da",
+          "reminder-date": "Data promemoria",
+          "general-comment": "Commento generale",
+          "internal-comment": "Commento interno"
+        },
+        "placeholders": {
+          "status": "Seleziona...",
+          "expiry-date": "Seleziona data",
+          "assigned-to": "Seleziona...",
+          "rfq-from": "Seleziona negozio...",
+          "reminder-date": "Seleziona data",
+          "general-comment": "Commento pubblico",
+          "internal-comment": "Commento interno"
+        }
+      },
+      "quote-items": {
+        "title": "Articoli del {{title}}",
+        "subtitle": "Modifica articoli",
+        "labels": {
+          "new-subtotal": "Nuovo subtotale",
+          "relative-discount": "Sconto relativo",
+          "shipping-method": "Metodo di spedizione",
+          "manual-shipping-total": "Totale spedizione (manuale)",
+          "sub-total-placed": "Subtotale (inserito)",
+          "adjustment-quote": "Aggiustamento",
+          "sub-total": "Subtotale",
+          "shipping": "Spedizione",
+          "discount": "Sconto",
+          "grand-total": "Totale generale",
+          "taxes": "Tasse",
+          "grand-total-incl-tax": "Totale generale (tasse incluse)",
+          "picture": "Immagine",
+          "comment": "Commento sul prodotto",
+          "list-price": "Prezzo di listino",
+          "sale-price": "Prezzo di vendita",
+          "quantity": "Quantità",
+          "proposed-price": "Prezzo proposto",
+          "margin": "Margine (GP)",
+          "product": "Prodotto",
+          "sku": "SKU"
+        },
+        "placeholders": {
+          "shipping-method": "Seleziona...",
+          "comment": "Inserisci commento"
+        }
+      },
+      "quotes-list": {
+        "title": "Preventivi",
+        "labels": {
+          "quote-number": "Numero preventivo",
+          "status": "Stato",
+          "items-count": "Numero articoli",
+          "customer": "Cliente",
+          "created": "Creato",
+          "no-quotes": "Nessun preventivo ancora"
+        }
+      },
+      "catalog-items-select": {
+        "title": "Aggiungi articolo al preventivo"
+      }
+    },
+    "widgets": {
+      "quote-address": {
+        "address-type": "Tipo di indirizzo",
+        "no-address": "Nessun indirizzo",
+        "blade-subtitle": "Gestisci indirizzi"
+      },
+      "quotes-assets": {
+        "title": "Allegati"
+      },
+      "quote-items": {
+        "title": "Articoli"
+      },
+      "quote-totals": {
+        "sub-total": "Subtotale",
+        "shipping": "Spedizione",
+        "discount": "Sconto",
+        "grand-total": "Totale generale"
+      }
+    },
+    "dialogs": {
+      "quote-requests-delete": {
+        "title": "Conferma eliminazione",
+        "message": "Sei sicuro di voler eliminare la/e richiesta/e di preventivo selezionata/e?"
+      },
+      "quote-delete": {
+        "title": "Conferma eliminazione",
+        "message": "Sei sicuro di voler eliminare questo preventivo?"
+      },
+      "quote-save": {
+        "title": "Salva modifiche",
+        "message": "Il preventivo è stato modificato. Vuoi salvare le modifiche?"
+      },
+      "quote-cancel": {
+        "title": "Annulla preventivo",
+        "message": "Sei sicuro di voler annullare questo preventivo?",
+        "placeholders": {
+          "reason": "Inserisci il motivo qui..."
+        }
+      },
+      "proposal-submit": {
+        "title": "Conferma proposta",
+        "message": "Una volta inviata la tua proposta, alcune parti del tuo preventivo saranno bloccate e non potranno essere modificate. Sei sicuro di voler procedere?"
+      },
+      "proposal-submit-with-warning": {
+        "title": "Proposta di preventivo incompleta",
+        "message": "Attenzione: L'offerta è mancante o il totale è zero. Assicurati che tutti gli articoli siano elencati e prezzati correttamente prima di procedere. Sei sicuro di voler procedere?"
+      },
+      "hold-confirmation": {
+        "title": "Conferma sospensione",
+        "message-release": "Sei sicuro di voler riattivare questo preventivo?",
+        "message-place": "Sei sicuro di voler sospendere questo preventivo?"
+      }
+    },
+    "commands": {
+      "release-hold": "Riattiva",
+      "place-on-hold": "Sospendi",
+      "submit-proposal": "Invia proposta",
+      "cancel-document": "Annulla documento",
+      "add-selected": "Aggiungi selezionati",
+      "add-item": "Aggiungi articolo"
+    }
+  },
+  "permissions": {
+    "quote:access": "Apri menu preventivi",
+    "quote:create": "Crea preventivo",
+    "quote:read": "Visualizza preventivi",
+    "quote:update": "Aggiorna preventivi",
+    "quote:delete": "Elimina preventivi"
+  },
+  "settings": {
+    "Quotes": {
+      "Status": {
+        "title": "Stati dei preventivi",
+        "description": "Elenco degli stati validi per i preventivi"
+      },
+      "DefaultStatus": {
+        "title": "Stato predefinito del preventivo",
+        "description": "Questo stato verrà assegnato al preventivo creato dal carrello"
+      },
+      "QuoteRequestNewNumberTemplate": {
+        "title": "Modello numero RFQ",
+        "description": "Questo modello o pattern verrà utilizzato per generare numeri per nuove richieste di preventivo. 0 è la data e l'ora (UTC) in cui è stato generato il numero, mentre 1 è il numero di sequenza"
+      },
+      "EnableQuotes": {
+        "title": "Abilita preventivi",
+        "description": "Attiva l'interruttore per abilitare i preventivi nel negozio"
+      }
+    }
+  },
+  "file-upload-error": {
+    "status": "Errore",
+    "status-text": "Caricamento file fallito",
+    "invalid-configuration": "L'ambito di caricamento file non è configurato",
+    "template": "{{fileName}}: {{errorMessage}}",
+    "duplicate-name": "Un file con lo stesso nome esiste già",
+    "INVALID_SIZE": "La dimensione del file supera {{parameter}} byte",
+    "INVALID_EXTENSION": "Il tipo di file non è uno dei tipi consentiti ({{parameter}})",
+    "UNKNOWN_ERROR": "Errore sconosciuto: {{message}}"
+  },
+  "module": {
+    "VirtoCommerce.Quote": {
+      "description": "Esporta o importa richieste di preventivo (RFQ)"
+    }
+  }
+}
