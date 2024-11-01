@@ -59,7 +59,7 @@ public class QuoteAuthorizationHandler : AuthorizationHandler<QuoteAuthorization
                 }
             }
 
-            var currentUserId = GetCurrentUserId(context);
+            var currentUserId = GetUserId(context);
 
             switch (resource)
             {
@@ -91,7 +91,7 @@ public class QuoteAuthorizationHandler : AuthorizationHandler<QuoteAuthorization
 
     private async Task<bool> CanAccessQuote(AuthorizationHandlerContext context, QuoteRequest quote)
     {
-        var currentUserId = GetCurrentUserId(context);
+        var currentUserId = GetUserId(context);
 
         return quote.CustomerId == currentUserId ||
                await IsOrganizationMaintainer(context.User, currentUserId, quote.OrganizationId);
@@ -120,7 +120,7 @@ public class QuoteAuthorizationHandler : AuthorizationHandler<QuoteAuthorization
         return contact;
     }
 
-    private static string GetCurrentUserId(AuthorizationHandlerContext context)
+    private static string GetUserId(AuthorizationHandlerContext context)
     {
         return context.User.GetUserId() ?? AnonymousUser.UserName;
     }
