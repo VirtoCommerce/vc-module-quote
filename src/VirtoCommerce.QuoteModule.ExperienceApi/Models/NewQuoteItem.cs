@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using VirtoCommerce.Xapi.Core.Models;
-using VirtoCommerce.XCart.Core.Models;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Models;
 
