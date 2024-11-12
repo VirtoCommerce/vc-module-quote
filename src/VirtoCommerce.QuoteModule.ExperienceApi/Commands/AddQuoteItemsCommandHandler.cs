@@ -30,8 +30,8 @@ public class AddQuoteItemsCommandHandler(
             StoreId = quote.StoreId,
             CurrencyCode = quote.Currency,
             ObjectIds = productIds,
-            IncludeFields = new string[]
-            {
+            IncludeFields =
+            [
                 "__object",
                 "price",
                 "images",
@@ -39,7 +39,7 @@ public class AddQuoteItemsCommandHandler(
                 "description",
                 "slug",
                 "outlines"
-            },
+            ],
             EvaluatePromotions = false,
         };
 
@@ -57,12 +57,13 @@ public class AddQuoteItemsCommandHandler(
         {
             var quoteItem = AbstractTypeFactory<QuoteItem>.TryCreateInstance();
 
-            var product = productsByIds.GetValueSafe(newQuoteItem.ProductId);
-            var price = product?.AllPrices.FirstOrDefault();
-
-            quoteItem.Name = newQuoteItem.Name;
-
             quoteItem.ProductId = newQuoteItem.ProductId;
+            quoteItem.Name = newQuoteItem.Name;
+            quoteItem.Comment = newQuoteItem.Comment;
+            quoteItem.Quantity = newQuoteItem.Quantity;
+            quoteItem.Currency = quote.Currency;
+
+            var product = productsByIds.GetValueSafe(newQuoteItem.ProductId);
             if (product != null)
             {
                 quoteItem.Name = product.IndexedProduct.Name;
@@ -73,13 +74,9 @@ public class AddQuoteItemsCommandHandler(
                 quoteItem.TaxType = product.IndexedProduct.TaxType;
             }
 
+            var price = product?.AllPrices.FirstOrDefault();
             quoteItem.ListPrice = price?.ListPrice.InternalAmount ?? 0;
             quoteItem.SalePrice = price?.SalePrice.InternalAmount ?? 0;
-
-            quoteItem.Comment = newQuoteItem.Comment;
-            quoteItem.Currency = quote.Currency;
-
-            quoteItem.Quantity = newQuoteItem.Quantity;
 
             var tierPrice = AbstractTypeFactory<TierPrice>.TryCreateInstance();
             tierPrice.Price = newQuoteItem.Price ?? quoteItem.SalePrice;
