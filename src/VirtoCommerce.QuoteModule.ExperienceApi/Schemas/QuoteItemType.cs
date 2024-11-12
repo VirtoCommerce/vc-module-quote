@@ -1,13 +1,14 @@
 using System.Linq;
+using System.Threading.Tasks;
 using GraphQL.DataLoader;
 using GraphQL.Resolvers;
 using GraphQL.Types;
 using MediatR;
+using VirtoCommerce.QuoteModule.Core.Models;
+using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.Xapi.Core.Extensions;
 using VirtoCommerce.Xapi.Core.Helpers;
 using VirtoCommerce.Xapi.Core.Schemas;
-using VirtoCommerce.QuoteModule.Core.Models;
-using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.XCatalog.Core.Models;
 using VirtoCommerce.XCatalog.Core.Queries;
 using VirtoCommerce.XCatalog.Core.Schemas;
@@ -19,9 +20,9 @@ public class QuoteItemType : ExtendableGraphType<QuoteItemAggregate>
     public QuoteItemType(IMediator mediator, IDataLoaderContextAccessor dataLoader)
     {
         Field(x => x.Model.Id, nullable: false);
-        Field(x => x.Model.Sku, nullable: false);
-        Field(x => x.Model.ProductId, nullable: false);
-        Field(x => x.Model.CatalogId, nullable: false);
+        Field(x => x.Model.Sku, nullable: true);
+        Field(x => x.Model.ProductId, nullable: true);
+        Field(x => x.Model.CatalogId, nullable: true);
         Field(x => x.Model.CategoryId, nullable: true);
         Field(x => x.Model.Name, nullable: false);
         Field(x => x.Model.Comment, nullable: true);
@@ -58,7 +59,9 @@ public class QuoteItemType : ExtendableGraphType<QuoteItemAggregate>
                     return response.Products.ToDictionary(x => x.Id);
                 });
 
-                return loader.LoadAsync(context.Source.Model.ProductId);
+                return context.Source.Model.ProductId != null
+                    ? loader.LoadAsync(context.Source.Model.ProductId)
+                    : new DataLoaderResult<ExpProduct>(Task.FromResult<ExpProduct>(null));
             })
         };
 
