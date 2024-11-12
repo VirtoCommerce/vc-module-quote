@@ -4,12 +4,12 @@ using VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
 
-public class AddQuoteItemsCommand: QuoteCommand
+public class AddQuoteItemsCommand : QuoteCommand
 {
     public NewQuoteItem[] NewQuoteItems { get; set; }
 }
 
-public class AddQuoteItemsCommandType: QuoteCommandType<AddQuoteItemsCommand>
+public class AddQuoteItemsCommandType : QuoteCommandType<AddQuoteItemsCommand>
 {
     public AddQuoteItemsCommandType()
     {

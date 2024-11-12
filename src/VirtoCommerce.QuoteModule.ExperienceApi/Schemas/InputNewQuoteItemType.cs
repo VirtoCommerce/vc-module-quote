@@ -4,7 +4,7 @@ using VirtoCommerce.Xapi.Core.Schemas;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
 
-public class InputNewQuoteItemType: InputObjectGraphType<NewQuoteItem>
+public class InputNewQuoteItemType : InputObjectGraphType<NewQuoteItem>
 {
     public InputNewQuoteItemType()
     {

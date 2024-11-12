@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
 
-public class AddQuoteItemsCommandBuilder: QuoteCommandBuilder<AddQuoteItemsCommand, AddQuoteItemsCommandType>
+public class AddQuoteItemsCommandBuilder : QuoteCommandBuilder<AddQuoteItemsCommand, AddQuoteItemsCommandType>
 {
     protected override string Name => "addQuoteItems";
 
