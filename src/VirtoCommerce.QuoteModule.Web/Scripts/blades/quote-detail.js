@@ -243,17 +243,13 @@ angular.module('virtoCommerce.quoteModule')
                 $scope.quoteStatuses = settings.getValues({ id: 'Quotes.Status' });
                 blade.shippingMethods = quotes.getShippingMethods({ id: blade.currentEntityId }, initShipmentMethod);
 
-                // load employees
-                members.search(
-                    {
-                        memberType: 'Employee',
-                        //memberId: parent org. ID,
-                        sort: 'fullName:asc',
-                        take: 1000
-                    },
-                    function (data) {
-                        $scope.employees = data.results;
-                    });
+                blade.fetchEmployees = function (criteria) {
+                    criteria.memberType = 'Employee';
+                    criteria.deepSearch = true;
+                    criteria.sort = 'name';
+
+                    return members.search(criteria);
+                };
 
                 function initShipmentMethod() {
                     if (blade.currentEntity && blade.currentEntity.shipmentMethod && blade.shippingMethods.$resolved) {
