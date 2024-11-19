@@ -3,7 +3,7 @@ using VirtoCommerce.Platform.Core.Settings;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
-using VirtoCommerce.Xapi.Core.Services;
+using VirtoCommerce.ExperienceApiModule.Core.Services;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
 
@@ -19,9 +19,9 @@ public class UpdateQuoteDynamicPropertiesCommandHandler(
         settingsManager
     )
 {
-    protected override async Task UpdateQuoteAsync(QuoteRequest quote, UpdateQuoteDynamicPropertiesCommand request)
+    protected override Task UpdateQuoteAsync(QuoteRequest quote, UpdateQuoteDynamicPropertiesCommand request)
     {
-        await dynamicPropertyUpdaterService.UpdateDynamicPropertyValues(quote, request.DynamicProperties);
+        return dynamicPropertyUpdaterService.UpdateDynamicPropertyValues(quote, request.DynamicProperties);
     }
 
     protected override void UpdateQuote(QuoteRequest quote, UpdateQuoteDynamicPropertiesCommand request)
