@@ -10,6 +10,7 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     <PackageReference Include="VirtoCommerce.FileExperienceApi.Data" Version="3.803.0" />
     <PackageReference Include="VirtoCommerce.OrdersModule.Core" Version="3.800.0" />
+    <PackageReference Include="VirtoCommerce.Xapi.Core" Version="3.813.0-alpha.52-vcst-2241" />
     <PackageReference Include="VirtoCommerce.XCart.Data" Version="3.800.0" />
   </ItemGroup>
   <ItemGroup>

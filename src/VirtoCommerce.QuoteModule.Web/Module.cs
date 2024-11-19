@@ -88,11 +88,15 @@ namespace VirtoCommerce.QuoteModule.Web
             serviceCollection.AddTransient<IQuoteAggregateRepository, QuoteAggregateRepository>();
             serviceCollection.AddSingleton<IAuthorizationHandler, QuoteAuthorizationHandler>();
             serviceCollection.AddSingleton<IFileAuthorizationRequirementFactory, QuoteAuthorizationRequirementFactory>();
+
+            serviceCollection.AddSingleton<ScopedSchemaFactory<AssemblyMarker>>();
         }
 
         public void PostInitialize(IApplicationBuilder appBuilder)
         {
             _appBuilder = appBuilder;
+
+            appBuilder.UseSchemaGraphQL<ScopedSchemaFactory<AssemblyMarker>>(Configuration, "quote");
 
             var dynamicPropertyRegistrar = appBuilder.ApplicationServices.GetRequiredService<IDynamicPropertyRegistrar>();
             dynamicPropertyRegistrar.RegisterType<QuoteRequest>();
