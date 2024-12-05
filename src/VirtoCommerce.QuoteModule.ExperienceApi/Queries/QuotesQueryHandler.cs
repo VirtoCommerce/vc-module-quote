@@ -2,14 +2,14 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using VirtoCommerce.Xapi.Core.Index;
-using VirtoCommerce.Xapi.Core.Infrastructure;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.SearchModule.Core.Model;
 using VirtoCommerce.SearchModule.Core.Services;
+using VirtoCommerce.Xapi.Core.Index;
+using VirtoCommerce.Xapi.Core.Infrastructure;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Queries;
 
@@ -48,6 +48,7 @@ public class QuotesQueryHandler : IQueryHandler<QuotesQuery, QuoteAggregateSearc
         criteria.CustomerId = request.UserId;
         criteria.Currency = request.CurrencyCode;
         criteria.LanguageCode = request.CultureName;
+        criteria.OrganizationIds = [request.OrganizationId];
 
         // parse Filter argument
         if (string.IsNullOrEmpty(request.Filter))

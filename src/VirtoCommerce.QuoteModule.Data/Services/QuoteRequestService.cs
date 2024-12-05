@@ -184,6 +184,11 @@ namespace VirtoCommerce.QuoteModule.Data.Services
                 query = query.Where(x => x.CustomerId == criteria.CustomerId);
             }
 
+            if (!criteria.OrganizationIds.IsNullOrEmpty())
+            {
+                query = query.Where(x => criteria.OrganizationIds.Contains(x.OrganizationId));
+            }
+
             if (criteria.StoreId != null)
             {
                 query = query.Where(x => x.StoreId == criteria.StoreId);
