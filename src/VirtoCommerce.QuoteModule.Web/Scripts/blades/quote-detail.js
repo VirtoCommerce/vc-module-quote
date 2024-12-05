@@ -251,6 +251,46 @@ angular.module('virtoCommerce.quoteModule')
                     return members.search(criteria);
                 };
 
+                function showCustomerDetailBlade(member) {
+                    var foundTemplate = memberTypesResolverService.resolve(member.memberType);
+                    if (foundTemplate) {
+                        var newBlade = angular.copy(foundTemplate.detailBlade);
+                        newBlade.currentEntity = member;
+                        bladeNavigationService.showBlade(newBlade, blade);
+                    } else {
+                        dialogService.showNotificationDialog({
+                            id: "error",
+                            title: "quote.dialogs.unknown-member-type.title",
+                            message: "quote.dialogs.unknown-member-type.message",
+                            messageValues: { memberType: member.memberType }
+                        });
+                    }
+                }
+
+                blade.openCustomerDetails = function () {
+                    if (blade.currentEntity.customerId) {
+                        members.getByUserId({ userId: blade.currentEntity.customerId }, function (member) {
+                            if (member && member.id) {
+                                showCustomerDetailBlade(member);
+                            }
+                        });
+                    }
+                };
+
+                blade.openOrganizationDetails = function () {
+                    if (blade.currentEntity.organizationId) {
+                        members.get({ id: blade.currentEntity.organizationId }, function (member) {
+                            if (member && member.id) {
+                                showCustomerDetailBlade(member);
+                            }
+                        });
+                    }
+                };
+
+                blade.translate = function(key) {
+                    return $translate.instant(key);
+                }
+
                 function initShipmentMethod() {
                     if (blade.currentEntity && blade.currentEntity.shipmentMethod && blade.shippingMethods.$resolved) {
                         blade.currentEntity.shipmentMethod = _.findWhere(blade.shippingMethods, {

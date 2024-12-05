@@ -12,7 +12,11 @@
                             <ul class="list __info">
                                 <li class="list-item">
                                     <div class="list-t">{{ 'quotes.blades.quote-detail.labels.customer' | translate }}</div>
-                                    <div class="list-descr">{{blade.currentEntity.customerName}}</div>
+                                    <div class="list-descr">
+                                      <label class="form-label" style="height:27px;">
+                                        <a href="" ng-click="blade.openCustomerDetails()">{{ blade.currentEntity.customerName }}</a>
+                                      </label>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -28,10 +32,14 @@
                     <div class="clearfix">
                         <div class="column">
                             <ul class="list __info">
-                                <li class="list-item">
-                                    <div class="list-t">{{ 'quotes.blades.quote-detail.labels.customer-organization' | translate }}</div>
-                                    <div class="list-descr">{{blade.currentEntity.organizationName?blade.currentEntity.organizationName:'Not defined'}}</div>
-                                </li>
+                              <li class="list-item">
+                                <div class="list-t">{{ 'quotes.blades.quote-detail.labels.customer-organization' | translate }}</div>
+                                <div class="list-descr">
+                                  <label class="form-label" style="height:27px;">
+                                    <a href="" ng-click="blade.openOrganizationDetails()">{{ blade.currentEntity.organizationName ? blade.currentEntity.organizationName : blade.translate('quotes.blades.quoteDetail.labels.not-defined') }}</a>
+                                  </label>
+                                </div>
+                              </li>
                             </ul>
                         </div>
                         <div class="column">

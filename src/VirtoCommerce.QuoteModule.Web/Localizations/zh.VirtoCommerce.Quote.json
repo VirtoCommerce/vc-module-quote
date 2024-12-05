@@ -26,7 +26,8 @@
           "rfq-from": "询价来源",
           "reminder-date": "提醒日期",
           "general-comment": "一般评论",
-          "internal-comment": "内部评论"
+          "internal-comment": "内部评论",
+          "not-defined": "未定义"
         },
         "placeholders": {
           "status": "选择...",

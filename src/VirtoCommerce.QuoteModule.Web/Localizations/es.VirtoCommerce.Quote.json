@@ -26,7 +26,8 @@
           "rfq-from": "Solicitud de cotización de",
           "reminder-date": "Fecha de recordatorio",
           "general-comment": "Comentario general",
-          "internal-comment": "Comentario interno"
+          "internal-comment": "Comentario interno",
+          "not-defined": "No definido"
         },
         "placeholders": {
           "status": "Seleccionar...",
