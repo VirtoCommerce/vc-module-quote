@@ -26,7 +26,8 @@
           "rfq-from": "Anfrage von",
           "reminder-date": "Erinnerungsdatum",
           "general-comment": "Allgemeiner Kommentar",
-          "internal-comment": "Interner Kommentar"
+          "internal-comment": "Interner Kommentar",
+          "not-defined": "Nicht definiert"
         },
         "placeholders": {
           "status": "Auswählen...",

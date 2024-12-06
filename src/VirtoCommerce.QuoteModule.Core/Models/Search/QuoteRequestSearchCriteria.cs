@@ -14,6 +14,7 @@ namespace VirtoCommerce.QuoteModule.Core.Models
         public string NumberKeyword { get; set; }
 
         public string CustomerId { get; set; }
+        public string OrganizationId { get; set; }
         public string StoreId { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }

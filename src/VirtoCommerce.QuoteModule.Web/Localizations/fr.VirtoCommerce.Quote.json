@@ -26,7 +26,8 @@
           "rfq-from": "Demande de devis de",
           "reminder-date": "Date de rappel",
           "general-comment": "Commentaire général",
-          "internal-comment": "Commentaire interne"
+          "internal-comment": "Commentaire interne",
+          "not-defined": "Non défini"
         },
         "placeholders": {
           "status": "Sélectionner...",
