@@ -3,6 +3,7 @@ using GraphQL;
 using GraphQL.Types;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.Xapi.Core.BaseQueries;
+using VirtoCommerce.Xapi.Core.Extensions;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Queries;
 
@@ -27,7 +28,6 @@ public class QuotesQuery : SearchQuery<QuoteAggregateSearchResult>
         yield return Argument<StringGraphType>(nameof(CurrencyCode));
         yield return Argument<StringGraphType>(nameof(CultureName));
         yield return Argument<StringGraphType>(nameof(Filter));
-        yield return Argument<StringGraphType>(nameof(OrganizationId));
     }
 
     public override void Map(IResolveFieldContext context)
@@ -39,6 +39,6 @@ public class QuotesQuery : SearchQuery<QuoteAggregateSearchResult>
         CurrencyCode = context.GetArgument<string>(nameof(CurrencyCode));
         CultureName = context.GetArgument<string>(nameof(CultureName));
         Filter = context.GetArgument<string>(nameof(Filter));
-        OrganizationId = context.GetArgument<string>(nameof(OrganizationId));
+        OrganizationId = context.GetCurrentOrganizationId();
     }
 }

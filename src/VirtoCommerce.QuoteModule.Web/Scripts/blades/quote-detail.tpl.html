@@ -36,7 +36,12 @@
                                 <div class="list-t">{{ 'quotes.blades.quote-detail.labels.customer-organization' | translate }}</div>
                                 <div class="list-descr">
                                   <label class="form-label" style="height:27px;">
-                                    <a href="" ng-click="blade.openOrganizationDetails()">{{ blade.currentEntity.organizationName ? blade.currentEntity.organizationName : blade.translate('quotes.blades.quoteDetail.labels.not-defined') }}</a>
+                                    <a ng-if="blade.currentEntity.organizationId" href="" ng-click="blade.openOrganizationDetails()">
+                                      {{ blade.currentEntity.organizationName || blade.currentEntity.organizationId }}
+                                    </a>
+                                    <span ng-if="!blade.currentEntity.organizationId">
+                                      {{ 'quotes.blades.quoteDetail.labels.not-defined' | translate }}
+                                    </span>
                                   </label>
                                 </div>
                               </li>

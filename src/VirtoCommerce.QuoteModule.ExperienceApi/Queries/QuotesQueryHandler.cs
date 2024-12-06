@@ -48,7 +48,7 @@ public class QuotesQueryHandler : IQueryHandler<QuotesQuery, QuoteAggregateSearc
         criteria.CustomerId = request.UserId;
         criteria.Currency = request.CurrencyCode;
         criteria.LanguageCode = request.CultureName;
-        criteria.OrganizationIds = [request.OrganizationId];
+        criteria.OrganizationId = request.OrganizationId;
 
         // parse Filter argument
         if (string.IsNullOrEmpty(request.Filter))

@@ -287,10 +287,6 @@ angular.module('virtoCommerce.quoteModule')
                     }
                 };
 
-                blade.translate = function(key) {
-                    return $translate.instant(key);
-                }
-
                 function initShipmentMethod() {
                     if (blade.currentEntity && blade.currentEntity.shipmentMethod && blade.shippingMethods.$resolved) {
                         blade.currentEntity.shipmentMethod = _.findWhere(blade.shippingMethods, {
