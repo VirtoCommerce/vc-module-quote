@@ -56,6 +56,7 @@ public class QuoteConverter : IQuoteConverter
         result.CustomerName = cart.CustomerName;
         result.LanguageCode = cart.LanguageCode;
         result.OrganizationId = cart.OrganizationId;
+        result.OrganizationName = cart.OrganizationName;
         result.Status = await GetInitialQuoteStatus();
         result.StoreId = cart.StoreId;
 
@@ -87,6 +88,7 @@ public class QuoteConverter : IQuoteConverter
         result.CustomerName = quote.CustomerName;
         result.LanguageCode = quote.LanguageCode;
         result.OrganizationId = quote.OrganizationId;
+        result.OrganizationName = quote.OrganizationName;
         result.StoreId = quote.StoreId;
 
         result.Items = quote.Items?.Convert(x => ToCartItems(x, quote));

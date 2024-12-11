@@ -1,8 +1,8 @@
 angular.module('virtoCommerce.quoteModule')
     .controller('virtoCommerce.quoteModule.quoteDetailController', ['$scope',
         'platformWebApp.bladeNavigationService', 'platformWebApp.settings', 'platformWebApp.dialogService', 'platformWebApp.metaFormsService',
-        'virtoCommerce.quoteModule.quotes', 'virtoCommerce.customerModule.members',
-            function ($scope, bladeNavigationService, settings, dialogService, metaFormsService, quotes, members) {
+        'virtoCommerce.quoteModule.quotes', 'virtoCommerce.customerModule.members', 'virtoCommerce.customerModule.memberTypesResolverService',
+        function ($scope, bladeNavigationService, settings, dialogService, metaFormsService, quotes, members, memberTypesResolverService) {
 
                 const QuoteProposalSentStatus = 'Proposal sent';
 
