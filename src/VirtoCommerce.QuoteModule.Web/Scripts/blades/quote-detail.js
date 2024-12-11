@@ -251,7 +251,7 @@ angular.module('virtoCommerce.quoteModule')
                     return members.search(criteria);
                 };
 
-                function showCustomerDetailBlade(member) {
+                function showMemberDetailBlade(member) {
                     var foundTemplate = memberTypesResolverService.resolve(member.memberType);
                     if (foundTemplate) {
                         var newBlade = angular.copy(foundTemplate.detailBlade);
@@ -271,7 +271,7 @@ angular.module('virtoCommerce.quoteModule')
                     if (blade.currentEntity.customerId) {
                         members.getByUserId({ userId: blade.currentEntity.customerId }, function (member) {
                             if (member && member.id) {
-                                showCustomerDetailBlade(member);
+                                showMemberDetailBlade(member);
                             }
                         });
                     }
@@ -281,7 +281,7 @@ angular.module('virtoCommerce.quoteModule')
                     if (blade.currentEntity.organizationId) {
                         members.get({ id: blade.currentEntity.organizationId }, function (member) {
                             if (member && member.id) {
-                                showCustomerDetailBlade(member);
+                                showMemberDetailBlade(member);
                             }
                         });
                     }
