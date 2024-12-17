@@ -26,7 +26,8 @@
           "rfq-from": "Запрос от",
           "reminder-date": "Дата напоминания",
           "general-comment": "Общий комментарий",
-          "internal-comment": "Внутренний комментарий"
+          "internal-comment": "Внутренний комментарий",
+          "not-defined": "Не определено"
         },
         "placeholders": {
           "status": "Выбрать...",

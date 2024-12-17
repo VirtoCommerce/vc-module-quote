@@ -26,7 +26,8 @@
           "rfq-from": "RFQ from",
           "reminder-date": "Reminder date",
           "general-comment": "General comment",
-          "internal-comment": "Internal comment"
+          "internal-comment": "Internal comment",
+          "not-defined": "Not defined"
         },
         "placeholders": {
           "status": "Select...",

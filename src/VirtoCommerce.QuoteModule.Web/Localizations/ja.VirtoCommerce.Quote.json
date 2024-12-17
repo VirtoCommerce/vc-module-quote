@@ -26,7 +26,8 @@
           "rfq-from": "見積依頼元",
           "reminder-date": "リマインダー日",
           "general-comment": "一般コメント",
-          "internal-comment": "内部コメント"
+          "internal-comment": "内部コメント",
+          "not-defined": "未定義"
         },
         "placeholders": {
           "status": "選択...",

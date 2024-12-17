@@ -1,8 +1,8 @@
 angular.module('virtoCommerce.quoteModule')
     .controller('virtoCommerce.quoteModule.quoteDetailController', ['$scope',
         'platformWebApp.bladeNavigationService', 'platformWebApp.settings', 'platformWebApp.dialogService', 'platformWebApp.metaFormsService',
-        'virtoCommerce.quoteModule.quotes', 'virtoCommerce.customerModule.members',
-            function ($scope, bladeNavigationService, settings, dialogService, metaFormsService, quotes, members) {
+        'virtoCommerce.quoteModule.quotes', 'virtoCommerce.customerModule.members', 'virtoCommerce.customerModule.memberTypesResolverService',
+        function ($scope, bladeNavigationService, settings, dialogService, metaFormsService, quotes, members, memberTypesResolverService) {
 
                 const QuoteProposalSentStatus = 'Proposal sent';
 
@@ -249,6 +249,42 @@ angular.module('virtoCommerce.quoteModule')
                     criteria.sort = 'name';
 
                     return members.search(criteria);
+                };
+
+                function showMemberDetailBlade(member) {
+                    var foundTemplate = memberTypesResolverService.resolve(member.memberType);
+                    if (foundTemplate) {
+                        var newBlade = angular.copy(foundTemplate.detailBlade);
+                        newBlade.currentEntity = member;
+                        bladeNavigationService.showBlade(newBlade, blade);
+                    } else {
+                        dialogService.showNotificationDialog({
+                            id: "error",
+                            title: "quote.dialogs.unknown-member-type.title",
+                            message: "quote.dialogs.unknown-member-type.message",
+                            messageValues: { memberType: member.memberType }
+                        });
+                    }
+                }
+
+                blade.openCustomerDetails = function () {
+                    if (blade.currentEntity.customerId) {
+                        members.getByUserId({ userId: blade.currentEntity.customerId }, function (member) {
+                            if (member && member.id) {
+                                showMemberDetailBlade(member);
+                            }
+                        });
+                    }
+                };
+
+                blade.openOrganizationDetails = function () {
+                    if (blade.currentEntity.organizationId) {
+                        members.get({ id: blade.currentEntity.organizationId }, function (member) {
+                            if (member && member.id) {
+                                showMemberDetailBlade(member);
+                            }
+                        });
+                    }
                 };
 
                 function initShipmentMethod() {

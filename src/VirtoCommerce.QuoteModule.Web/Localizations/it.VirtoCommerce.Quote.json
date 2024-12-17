@@ -26,7 +26,8 @@
           "rfq-from": "RFQ da",
           "reminder-date": "Data promemoria",
           "general-comment": "Commento generale",
-          "internal-comment": "Commento interno"
+          "internal-comment": "Commento interno",
+          "not-defined": "Non definito"
         },
         "placeholders": {
           "status": "Seleziona...",
