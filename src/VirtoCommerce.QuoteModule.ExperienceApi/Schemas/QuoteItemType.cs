@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Threading.Tasks;
+using GraphQL;
 using GraphQL.DataLoader;
 using GraphQL.Resolvers;
 using GraphQL.Types;
@@ -39,7 +40,7 @@ public class QuoteItemType : ExtendableGraphType<QuoteItemAggregate>
         var productField = new FieldType
         {
             Name = "product",
-            Type = GraphTypeExtenstionHelper.GetActualType<ProductType>(),
+            Type = GraphTypeExtensionHelper.GetActualType<ProductType>(),
             Resolver = new FuncFieldResolver<QuoteItemAggregate, IDataLoaderResult<ExpProduct>>(context =>
             {
                 var loader = dataLoader.Context.GetOrAddBatchLoader<string, ExpProduct>("quote_lineItem_products", async ids =>

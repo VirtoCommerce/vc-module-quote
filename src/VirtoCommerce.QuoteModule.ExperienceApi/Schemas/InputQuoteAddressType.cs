@@ -1,9 +1,10 @@
 using GraphQL.Types;
 using VirtoCommerce.QuoteModule.Core.Models;
+using VirtoCommerce.Xapi.Core.Schemas;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
 
-public class InputQuoteAddressType : InputObjectGraphType<Address>
+public class InputQuoteAddressType : ExtendableInputGraphType<Address>
 {
     public InputQuoteAddressType()
     {

@@ -1,12 +1,12 @@
 using GraphQL.Types;
-using VirtoCommerce.Xapi.Core.Extensions;
-using VirtoCommerce.Xapi.Core.Schemas;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
+using VirtoCommerce.Xapi.Core.Extensions;
+using VirtoCommerce.Xapi.Core.Schemas;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
 
-public class QuoteTierPriceType : ObjectGraphType<QuoteTierPriceAggregate>
+public class QuoteTierPriceType : ExtendableGraphType<QuoteTierPriceAggregate>
 {
     public QuoteTierPriceType()
     {
