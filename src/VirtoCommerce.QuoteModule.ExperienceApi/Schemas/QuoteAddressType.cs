@@ -1,9 +1,10 @@
 using GraphQL.Types;
 using VirtoCommerce.QuoteModule.Core.Models;
+using VirtoCommerce.Xapi.Core.Schemas;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
 
-public class QuoteAddressType : ObjectGraphType<Address>
+public class QuoteAddressType : ExtendableGraphType<Address>
 {
     public QuoteAddressType()
     {

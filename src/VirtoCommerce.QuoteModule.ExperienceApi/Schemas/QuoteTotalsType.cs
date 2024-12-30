@@ -1,12 +1,12 @@
 using GraphQL.Types;
 using VirtoCommerce.CoreModule.Core.Currency;
-using VirtoCommerce.Xapi.Core.Schemas;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
+using VirtoCommerce.Xapi.Core.Schemas;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
 
-public class QuoteTotalsType : ObjectGraphType<QuoteTotalsAggregate>
+public class QuoteTotalsType : ExtendableGraphType<QuoteTotalsAggregate>
 {
     public QuoteTotalsType()
     {

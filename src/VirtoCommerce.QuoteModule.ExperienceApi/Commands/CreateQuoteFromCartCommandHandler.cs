@@ -7,11 +7,11 @@ using GraphQL;
 using MediatR;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.CartModule.Core.Services;
-using VirtoCommerce.Xapi.Core.Helpers;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.QuoteModule.ExperienceApi.Validation;
+using VirtoCommerce.Xapi.Core.Helpers;
 using VirtoCommerce.XCart.Core.Services;
 using VirtoCommerce.XCart.Core.Validators;
 
@@ -86,9 +86,9 @@ public class CreateQuoteFromCartCommandHandler : IRequestHandler<CreateQuoteFrom
         });
 
         // combine all errors
-        if (cartAggregate.ValidationErrors.Any() || cartAggregate.ValidationWarnings.Any() || lineItemValidationErrors.Any())
+        if (cartAggregate.GetValidationErrors().Any() || cartAggregate.ValidationWarnings.Any() || lineItemValidationErrors.Any())
         {
-            var errors = cartAggregate.ValidationErrors
+            var errors = cartAggregate.GetValidationErrors()
                 .Union(cartAggregate.ValidationWarnings)
                 .Union(lineItemValidationErrors)
                 .GroupBy(x => x.ErrorCode)
