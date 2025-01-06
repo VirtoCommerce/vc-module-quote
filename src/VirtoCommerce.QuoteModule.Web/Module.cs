@@ -3,7 +3,6 @@ using System.IO;
 using System.Threading.Tasks;
 using GraphQL;
 using GraphQL.MicrosoftDI;
-using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -84,11 +83,7 @@ namespace VirtoCommerce.QuoteModule.Web
             // GraphQL
             _ = new GraphQLBuilder(serviceCollection, builder =>
             {
-                var assemblyMarker = typeof(AssemblyMarker);
-                builder.AddGraphTypes(assemblyMarker.Assembly);
-                serviceCollection.AddMediatR(assemblyMarker);
-                serviceCollection.AddAutoMapper(assemblyMarker);
-                serviceCollection.AddSchemaBuilders(assemblyMarker);
+                builder.AddSchema(serviceCollection, typeof(AssemblyMarker));
             });
 
             serviceCollection.AddTransient<IQuoteAggregateRepository, QuoteAggregateRepository>();
