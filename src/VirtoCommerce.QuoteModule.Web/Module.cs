@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using VirtoCommerce.FileExperienceApi.Core.Authorization;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.DynamicProperties;
@@ -36,7 +35,6 @@ using VirtoCommerce.QuoteModule.Web.ExportImport;
 using VirtoCommerce.StoreModule.Core.Model;
 using VirtoCommerce.Xapi.Core.Extensions;
 using VirtoCommerce.Xapi.Core.Infrastructure;
-using VirtoCommerce.Xapi.Core.Models;
 
 namespace VirtoCommerce.QuoteModule.Web
 {
@@ -97,8 +95,7 @@ namespace VirtoCommerce.QuoteModule.Web
         {
             _appBuilder = appBuilder;
 
-            var playgroundOptions = appBuilder.ApplicationServices.GetService<IOptions<GraphQLPlaygroundOptions>>();
-            appBuilder.UseSchemaGraphQL<ScopedSchemaFactory<AssemblyMarker>>(playgroundOptions?.Value?.Enable ?? true, "quote");
+            appBuilder.UseScopedSchema<AssemblyMarker>("quote");
 
             var dynamicPropertyRegistrar = appBuilder.ApplicationServices.GetRequiredService<IDynamicPropertyRegistrar>();
             dynamicPropertyRegistrar.RegisterType<QuoteRequest>();
