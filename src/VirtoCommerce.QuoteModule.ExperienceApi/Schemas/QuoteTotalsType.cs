@@ -10,13 +10,13 @@ public class QuoteTotalsType : ExtendableGraphType<QuoteTotalsAggregate>
 {
     public QuoteTotalsType()
     {
-        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequestTotals.OriginalSubTotalExlTax), resolve: context => new Money(context.Source.Model.OriginalSubTotalExlTax, context.Source.Quote.Currency));
-        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequestTotals.SubTotalExlTax), resolve: context => new Money(context.Source.Model.SubTotalExlTax, context.Source.Quote.Currency));
-        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequestTotals.ShippingTotal), resolve: context => new Money(context.Source.Model.ShippingTotal, context.Source.Quote.Currency));
-        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequestTotals.DiscountTotal), resolve: context => new Money(context.Source.Model.DiscountTotal, context.Source.Quote.Currency));
-        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequestTotals.TaxTotal), resolve: context => new Money(context.Source.Model.TaxTotal, context.Source.Quote.Currency));
-        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequestTotals.AdjustmentQuoteExlTax), resolve: context => new Money(context.Source.Model.AdjustmentQuoteExlTax, context.Source.Quote.Currency));
-        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequestTotals.GrandTotalExlTax), resolve: context => new Money(context.Source.Model.GrandTotalExlTax, context.Source.Quote.Currency));
-        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequestTotals.GrandTotalInclTax), resolve: context => new Money(context.Source.Model.GrandTotalInclTax, context.Source.Quote.Currency));
+        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequestTotals.OriginalSubTotalExlTax)).Resolve(context => new Money(context.Source.Model.OriginalSubTotalExlTax, context.Source.Quote.Currency));
+        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequestTotals.SubTotalExlTax)).Resolve(context => new Money(context.Source.Model.SubTotalExlTax, context.Source.Quote.Currency));
+        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequestTotals.ShippingTotal)).Resolve(context => new Money(context.Source.Model.ShippingTotal, context.Source.Quote.Currency));
+        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequestTotals.DiscountTotal)).Resolve(context => new Money(context.Source.Model.DiscountTotal, context.Source.Quote.Currency));
+        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequestTotals.TaxTotal)).Resolve(context => new Money(context.Source.Model.TaxTotal, context.Source.Quote.Currency));
+        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequestTotals.AdjustmentQuoteExlTax)).Resolve(context => new Money(context.Source.Model.AdjustmentQuoteExlTax, context.Source.Quote.Currency));
+        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequestTotals.GrandTotalExlTax)).Resolve(context => new Money(context.Source.Model.GrandTotalExlTax, context.Source.Quote.Currency));
+        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequestTotals.GrandTotalInclTax)).Resolve(context => new Money(context.Source.Model.GrandTotalInclTax, context.Source.Quote.Currency));
     }
 }

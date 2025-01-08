@@ -11,6 +11,6 @@ public class QuoteTierPriceType : ExtendableGraphType<QuoteTierPriceAggregate>
     public QuoteTierPriceType()
     {
         Field(x => x.Model.Quantity, nullable: false);
-        Field<NonNullGraphType<MoneyType>>(nameof(TierPrice.Price), resolve: context => context.Source.Model.Price.ToMoney(context.Source.Quote.Currency));
+        Field<NonNullGraphType<MoneyType>>(nameof(TierPrice.Price)).Resolve(context => context.Source.Model.Price.ToMoney(context.Source.Quote.Currency));
     }
 }

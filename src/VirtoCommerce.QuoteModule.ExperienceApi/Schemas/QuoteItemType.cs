@@ -31,8 +31,8 @@ public class QuoteItemType : ExtendableGraphType<QuoteItemAggregate>
         Field(x => x.Model.TaxType, nullable: true);
         Field(x => x.Model.Quantity, nullable: false);
 
-        Field<NonNullGraphType<MoneyType>>(nameof(QuoteItem.ListPrice), resolve: context => context.Source.Model.ListPrice.ToMoney(context.Source.Quote.Currency));
-        Field<NonNullGraphType<MoneyType>>(nameof(QuoteItem.SalePrice), resolve: context => context.Source.Model.SalePrice.ToMoney(context.Source.Quote.Currency));
+        Field<NonNullGraphType<MoneyType>>(nameof(QuoteItem.ListPrice)).Resolve(context => context.Source.Model.ListPrice.ToMoney(context.Source.Quote.Currency));
+        Field<NonNullGraphType<MoneyType>>(nameof(QuoteItem.SalePrice)).Resolve(context => context.Source.Model.SalePrice.ToMoney(context.Source.Quote.Currency));
 
         ExtendableField<QuoteTierPriceType>(nameof(QuoteItem.SelectedTierPrice), resolve: context => context.Source.SelectedTierPrice);
         ExtendableField<NonNullGraphType<ListGraphType<NonNullGraphType<QuoteTierPriceType>>>>(nameof(QuoteItem.ProposalPrices), resolve: context => context.Source.ProposalPrices);
