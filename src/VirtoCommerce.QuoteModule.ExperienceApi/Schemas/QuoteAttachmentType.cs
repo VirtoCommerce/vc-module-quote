@@ -12,9 +12,5 @@ public class QuoteAttachmentType : ExtendableGraphType<QuoteAttachment>
         Field(x => x.Url, nullable: false);
         Field<StringGraphType>("ContentType").Resolve(context => context.Source.MimeType);
         Field(x => x.Size, nullable: false);
-
-        Field<StringGraphType>(nameof(QuoteAttachment.MimeType))
-            .Resolve(context => context.Source.MimeType)
-            .DeprecationReason("Use ContentType");
     }
 }
