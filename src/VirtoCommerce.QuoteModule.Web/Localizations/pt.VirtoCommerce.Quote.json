@@ -1,0 +1,192 @@
+{
+  "quotes": {
+    "main-menu-title": "Cotações",
+    "blades": {
+      "quotes-assets": {
+        "subtitle": "Anexos da cotação",
+        "labels": {
+          "drag-note": "Arraste e solte seus arquivos aqui",
+          "select-files": "Selecionar arquivos",
+          "progress": "Progresso",
+          "type": "Tipo",
+          "name": "Nome",
+          "actions": "Ações"
+        }
+      },
+      "quote-detail": {
+        "subtitle": "Detalhes da cotação",
+        "labels": {
+          "customer": "Cliente",
+          "created": "Criado",
+          "customer-organization": "Empresa do cliente",
+          "last-updated": "Última atualização",
+          "status": "Status",
+          "expiry-date": "Data de expiração",
+          "assigned-to": "Atribuído a",
+          "rfq-from": "RFQ de",
+          "reminder-date": "Data de lembrete",
+          "general-comment": "Comentário geral",
+          "internal-comment": "Comentário interno",
+          "not-defined": "Não definido"
+        },
+        "placeholders": {
+          "status": "Selecionar...",
+          "expiry-date": "Selecionar data",
+          "assigned-to": "Selecionar...",
+          "rfq-from": "Selecionar loja...",
+          "reminder-date": "Selecionar data",
+          "general-comment": "Comentário público",
+          "internal-comment": "Comentário interno"
+        }
+      },
+      "quote-items": {
+        "title": "Itens de {{title}}",
+        "subtitle": "Editar itens",
+        "labels": {
+          "new-subtotal": "Novo subtotal",
+          "relative-discount": "Desconto relativo",
+          "shipping-method": "Método de envio",
+          "manual-shipping-total": "Total de envio (manual)",
+          "sub-total-placed": "Subtotal (colocado)",
+          "adjustment-quote": "Ajuste",
+          "sub-total": "Subtotal",
+          "shipping": "Envio",
+          "discount": "Desconto",
+          "grand-total": "Total geral",
+          "taxes": "Impostos",
+          "grand-total-incl-tax": "Total geral (impostos incluídos)",
+          "picture": "Imagem",
+          "comment": "Comentário do produto",
+          "list-price": "Preço de tabela",
+          "sale-price": "Preço de venda",
+          "quantity": "Quantidade",
+          "proposed-price": "Preço proposto",
+          "margin": "Margem (MB)",
+          "product": "Produto",
+          "sku": "SKU"
+        },
+        "placeholders": {
+          "shipping-method": "Selecionar...",
+          "comment": "Inserir comentário"
+        }
+      },
+      "quotes-list": {
+        "title": "Cotações",
+        "labels": {
+          "quote-number": "Número da cotação",
+          "status": "Status",
+          "items-count": "Contagem de itens",
+          "customer": "Cliente",
+          "created": "Criado",
+          "no-quotes": "Ainda não há cotações"
+        }
+      },
+      "catalog-items-select": {
+        "title": "Adicionar item à cotação"
+      }
+    },
+    "widgets": {
+      "quote-address": {
+        "address-type": "Tipo de endereço",
+        "no-address": "Sem endereço",
+        "blade-subtitle": "Gerenciar endereços"
+      },
+      "quotes-assets": {
+        "title": "Anexos"
+      },
+      "quote-items": {
+        "title": "Itens"
+      },
+      "quote-totals": {
+        "sub-total": "Subtotal",
+        "shipping": "Envio",
+        "discount": "Desconto",
+        "grand-total": "Total geral"
+      }
+    },
+    "dialogs": {
+      "quote-requests-delete": {
+        "title": "Confirmar exclusão",
+        "message": "Tem certeza de que deseja excluir a(s) solicitação(ões) de cotação selecionada(s)?"
+      },
+      "quote-delete": {
+        "title": "Confirmar exclusão",
+        "message": "Tem certeza de que deseja excluir esta cotação?"
+      },
+      "quote-save": {
+        "title": "Salvar alterações",
+        "message": "A cotação foi modificada. Deseja salvar as alterações?"
+      },
+      "quote-cancel": {
+        "title": "Cancelar cotação",
+        "message": "Tem certeza de que deseja cancelar esta cotação?",
+        "placeholders": {
+          "reason": "Insira o motivo aqui..."
+        }
+      },
+      "proposal-submit": {
+        "title": "Confirmar proposta",
+        "message": "Depois de enviar sua proposta, certas partes da sua cotação serão bloqueadas e não poderão ser modificadas. Tem certeza de que deseja prosseguir?"
+      },
+      "proposal-submit-with-warning": {
+        "title": "Proposta de cotação incompleta",
+        "message": "Aviso: A oferta está faltando ou o total é zero. Certifique-se de que todos os itens estejam listados e precificados corretamente antes de prosseguir. Tem certeza de que deseja prosseguir?"
+      },
+      "hold-confirmation": {
+        "title": "Confirmar retenção",
+        "message-release": "Tem certeza de que deseja reativar esta cotação?",
+        "message-place": "Tem certeza de que deseja colocar esta cotação em espera?"
+      }
+    },
+    "commands": {
+      "release-hold": "Reativar",
+      "place-on-hold": "Colocar em espera",
+      "submit-proposal": "Enviar proposta",
+      "cancel-document": "Cancelar documento",
+      "add-selected": "Adicionar selecionados",
+      "add-item": "Adicionar item"
+    }
+  },
+  "permissions": {
+    "quote:access": "Abrir menu de cotações",
+    "quote:create": "Criar cotação",
+    "quote:read": "Visualizar cotações",
+    "quote:update": "Atualizar cotações",
+    "quote:delete": "Excluir cotações"
+  },
+  "settings": {
+    "Quotes": {
+      "Status": {
+        "title": "Status de cotações",
+        "description": "Lista de status de cotações válidos"
+      },
+      "DefaultStatus": {
+        "title": "Status padrão de cotação",
+        "description": "Este status será atribuído à cotação criada a partir do carrinho de compras"
+      },
+      "QuoteRequestNewNumberTemplate": {
+        "title": "Modelo de número de solicitação de cotação",
+        "description": "Este modelo ou padrão será usado para gerar números para novas solicitações de cotação. 0 é a data e hora (UTC) quando o número foi gerado, enquanto 1 é o número de sequência"
+      },
+      "EnableQuotes": {
+        "title": "Habilitar cotações",
+        "description": "Ative o interruptor para ativar cotações na loja"
+      }
+    }
+  },
+  "file-upload-error": {
+    "status": "Erro",
+    "status-text": "Falha no upload do arquivo",
+    "invalid-configuration": "O escopo de upload de arquivo não está configurado",
+    "template": "{{fileName}}: {{errorMessage}}",
+    "duplicate-name": "Já existe um arquivo com o mesmo nome",
+    "INVALID_SIZE": "O tamanho do arquivo excede {{parameter}} bytes",
+    "INVALID_EXTENSION": "O tipo de arquivo não é um dos tipos permitidos ({{parameter}})",
+    "UNKNOWN_ERROR": "Erro desconhecido: {{message}}"
+  },
+  "module": {
+    "VirtoCommerce.Quote": {
+      "description": "Exportar ou importar solicitações de cotação (RFQs)"
+    }
+  }
+}

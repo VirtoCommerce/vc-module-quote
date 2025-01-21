@@ -12,7 +12,11 @@
                             <ul class="list __info">
                                 <li class="list-item">
                                     <div class="list-t">{{ 'quotes.blades.quote-detail.labels.customer' | translate }}</div>
-                                    <div class="list-descr">{{blade.currentEntity.customerName}}</div>
+                                    <div class="list-descr">
+                                      <label class="form-label" style="height:27px;">
+                                        <a href="" ng-click="blade.openCustomerDetails()">{{ blade.currentEntity.customerName }}</a>
+                                      </label>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -28,10 +32,19 @@
                     <div class="clearfix">
                         <div class="column">
                             <ul class="list __info">
-                                <li class="list-item">
-                                    <div class="list-t">{{ 'quotes.blades.quote-detail.labels.customer-organization' | translate }}</div>
-                                    <div class="list-descr">{{blade.currentEntity.organizationName?blade.currentEntity.organizationName:'Not defined'}}</div>
-                                </li>
+                              <li class="list-item">
+                                <div class="list-t">{{ 'quotes.blades.quote-detail.labels.customer-organization' | translate }}</div>
+                                <div class="list-descr">
+                                  <label class="form-label" style="height:27px;">
+                                    <a ng-if="blade.currentEntity.organizationId" href="" ng-click="blade.openOrganizationDetails()">
+                                      {{ blade.currentEntity.organizationName || blade.currentEntity.organizationId }}
+                                    </a>
+                                    <span ng-if="!blade.currentEntity.organizationId">
+                                      {{ 'quotes.blades.quote-detail.labels.not-defined' | translate }}
+                                    </span>
+                                  </label>
+                                </div>
+                              </li>
                             </ul>
                         </div>
                         <div class="column">
@@ -68,12 +81,13 @@
                             <div class="form-group">
                                 <label class="form-label">{{ 'quotes.blades.quote-detail.labels.assigned-to' | translate }}</label>
                                 <div class="form-input">
-                                    <ui-select ng-model="blade.currentEntity.employeeId" ng-disabled="blade.isLocked()">
-                                        <ui-select-match placeholder="{{ 'quotes.blades.quote-detail.placeholders.assigned-to' | translate }}">{{$select.selected.fullName}}</ui-select-match>
-                                        <ui-select-choices repeat="x.id as x in employees | filter: { fullName: $select.search }">
-                                            <span ng-bind-html="x.fullName | highlight: $select.search"></span>
-                                        </ui-select-choices>
-                                    </ui-select>
+                                  <ui-scroll-drop-down data="blade.fetchEmployees(criteria)"
+                                                       ng-model="blade.currentEntity.employeeId"
+                                                       on-select="blade.currentEntity.employeeName = item.name"
+                                                       on-remove="blade.currentEntity.employeeName = undefined"
+                                                       placeholder="'quotes.blades.quote-detail.placeholders.assigned-to'"
+                                                       disabled="blade.currentEntity.isLocked">
+                                  </ui-scroll-drop-down>
                                 </div>
                             </div>
                         </div>

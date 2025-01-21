@@ -1,0 +1,192 @@
+{
+  "quotes": {
+    "main-menu-title": "見積書",
+    "blades": {
+      "quotes-assets": {
+        "subtitle": "見積書の添付ファイル",
+        "labels": {
+          "drag-note": "ファイルをここにドラッグ＆ドロップしてください",
+          "select-files": "ファイルを選択",
+          "progress": "進捗",
+          "type": "タイプ",
+          "name": "名前",
+          "actions": "アクション"
+        }
+      },
+      "quote-detail": {
+        "subtitle": "見積書の詳細",
+        "labels": {
+          "customer": "顧客",
+          "created": "作成日",
+          "customer-organization": "顧客の会社",
+          "last-updated": "最終更新日",
+          "status": "ステータス",
+          "expiry-date": "有効期限",
+          "assigned-to": "担当者",
+          "rfq-from": "見積依頼元",
+          "reminder-date": "リマインダー日",
+          "general-comment": "一般コメント",
+          "internal-comment": "内部コメント",
+          "not-defined": "未定義"
+        },
+        "placeholders": {
+          "status": "選択...",
+          "expiry-date": "日付を選択",
+          "assigned-to": "選択...",
+          "rfq-from": "ストアを選択...",
+          "reminder-date": "日付を選択",
+          "general-comment": "公開コメント",
+          "internal-comment": "内部コメント"
+        }
+      },
+      "quote-items": {
+        "title": "{{title}}の項目",
+        "subtitle": "項目を編集",
+        "labels": {
+          "new-subtotal": "新しい小計",
+          "relative-discount": "相対割引",
+          "shipping-method": "配送方法",
+          "manual-shipping-total": "配送料合計（手動）",
+          "sub-total-placed": "小計（配置済み）",
+          "adjustment-quote": "調整",
+          "sub-total": "小計",
+          "shipping": "配送料",
+          "discount": "割引",
+          "grand-total": "合計",
+          "taxes": "税金",
+          "grand-total-incl-tax": "合計（税込）",
+          "picture": "画像",
+          "comment": "商品コメント",
+          "list-price": "定価",
+          "sale-price": "販売価格",
+          "quantity": "数量",
+          "proposed-price": "提案価格",
+          "margin": "利益率（GP）",
+          "product": "商品",
+          "sku": "SKU"
+        },
+        "placeholders": {
+          "shipping-method": "選択...",
+          "comment": "コメントを入力"
+        }
+      },
+      "quotes-list": {
+        "title": "見積書",
+        "labels": {
+          "quote-number": "見積番号",
+          "status": "ステータス",
+          "items-count": "項目数",
+          "customer": "顧客",
+          "created": "作成日",
+          "no-quotes": "見積書はまだありません"
+        }
+      },
+      "catalog-items-select": {
+        "title": "見積書に項目を追加"
+      }
+    },
+    "widgets": {
+      "quote-address": {
+        "address-type": "住所タイプ",
+        "no-address": "住所なし",
+        "blade-subtitle": "住所を管理"
+      },
+      "quotes-assets": {
+        "title": "添付ファイル"
+      },
+      "quote-items": {
+        "title": "項目"
+      },
+      "quote-totals": {
+        "sub-total": "小計",
+        "shipping": "配送料",
+        "discount": "割引",
+        "grand-total": "合計"
+      }
+    },
+    "dialogs": {
+      "quote-requests-delete": {
+        "title": "削除の確認",
+        "message": "選択した見積依頼を削除してもよろしいですか？"
+      },
+      "quote-delete": {
+        "title": "削除の確認",
+        "message": "この見積書を削除してもよろしいですか？"
+      },
+      "quote-save": {
+        "title": "変更を保存",
+        "message": "見積書が変更されました。変更を保存しますか？"
+      },
+      "quote-cancel": {
+        "title": "見積書をキャンセル",
+        "message": "この見積書をキャンセルしてもよろしいですか？",
+        "placeholders": {
+          "reason": "理由をここに入力..."
+        }
+      },
+      "proposal-submit": {
+        "title": "提案の確認",
+        "message": "提案を送信すると、見積書の一部がロックされ、変更できなくなります。続行してもよろしいですか？"
+      },
+      "proposal-submit-with-warning": {
+        "title": "不完全な見積提案",
+        "message": "警告：オファーが欠落しているか、合計がゼロです。続行する前に、すべての項目が正しく記載され、価格設定されていることを確認してください。続行してもよろしいですか？"
+      },
+      "hold-confirmation": {
+        "title": "保留の確認",
+        "message-release": "この見積書を再アクティブ化してもよろしいですか？",
+        "message-place": "この見積書を保留にしてもよろしいですか？"
+      }
+    },
+    "commands": {
+      "release-hold": "再アクティブ化",
+      "place-on-hold": "保留にする",
+      "submit-proposal": "提案を送信",
+      "cancel-document": "文書をキャンセル",
+      "add-selected": "選択項目を追加",
+      "add-item": "項目を追加"
+    }
+  },
+  "permissions": {
+    "quote:access": "見積メニューを開く",
+    "quote:create": "見積書を作成",
+    "quote:read": "見積書を表示",
+    "quote:update": "見積書を更新",
+    "quote:delete": "見積書を削除"
+  },
+  "settings": {
+    "Quotes": {
+      "Status": {
+        "title": "見積書のステータス",
+        "description": "有効な見積書ステータスのリスト"
+      },
+      "DefaultStatus": {
+        "title": "デフォルトの見積書ステータス",
+        "description": "このステータスは、ショッピングカートから作成された見積書に割り当てられます"
+      },
+      "QuoteRequestNewNumberTemplate": {
+        "title": "見積依頼の新規番号テンプレート",
+        "description": "このテンプレートまたはパターンは、新しい見積依頼の番号を生成するために使用されます。0は番号が生成された日時（UTC）、1はシーケンス番号です"
+      },
+      "EnableQuotes": {
+        "title": "見積書を有効にする",
+        "description": "ストアで見積書を有効にするにはスイッチをオンにしてください"
+      }
+    }
+  },
+  "file-upload-error": {
+    "status": "エラー",
+    "status-text": "ファイルのアップロードに失敗しました",
+    "invalid-configuration": "ファイルアップロードのスコープが設定されていません",
+    "template": "{{fileName}}: {{errorMessage}}",
+    "duplicate-name": "同じ名前のファイルが既に存在します",
+    "INVALID_SIZE": "ファイルサイズが{{parameter}}バイトを超えています",
+    "INVALID_EXTENSION": "ファイルタイプが許可されているタイプ（{{parameter}}）の1つではありません",
+    "UNKNOWN_ERROR": "不明なエラー: {{message}}"
+  },
+  "module": {
+    "VirtoCommerce.Quote": {
+      "description": "見積依頼（RFQ）をエクスポートまたはインポート"
+    }
+  }
+}

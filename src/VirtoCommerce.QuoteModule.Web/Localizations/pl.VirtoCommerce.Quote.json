@@ -1,0 +1,192 @@
+{
+  "quotes": {
+    "main-menu-title": "Oferty",
+    "blades": {
+      "quotes-assets": {
+        "subtitle": "Załączniki oferty",
+        "labels": {
+          "drag-note": "Przeciągnij i upuść swoje pliki tutaj",
+          "select-files": "Wybierz pliki",
+          "progress": "Postęp",
+          "type": "Typ",
+          "name": "Nazwa",
+          "actions": "Akcje"
+        }
+      },
+      "quote-detail": {
+        "subtitle": "Szczegóły oferty",
+        "labels": {
+          "customer": "Klient",
+          "created": "Utworzono",
+          "customer-organization": "Firma klienta",
+          "last-updated": "Ostatnia aktualizacja",
+          "status": "Status",
+          "expiry-date": "Data ważności",
+          "assigned-to": "Przypisano do",
+          "rfq-from": "Zapytanie ofertowe od",
+          "reminder-date": "Data przypomnienia",
+          "general-comment": "Komentarz ogólny",
+          "internal-comment": "Komentarz wewnętrzny",
+          "not-defined": "Nieokreślony"
+        },
+        "placeholders": {
+          "status": "Wybierz...",
+          "expiry-date": "Wybierz datę",
+          "assigned-to": "Wybierz...",
+          "rfq-from": "Wybierz sklep...",
+          "reminder-date": "Wybierz datę",
+          "general-comment": "Komentarz publiczny",
+          "internal-comment": "Komentarz wewnętrzny"
+        }
+      },
+      "quote-items": {
+        "title": "Pozycje {{title}}",
+        "subtitle": "Edytuj pozycje",
+        "labels": {
+          "new-subtotal": "Nowa suma częściowa",
+          "relative-discount": "Rabat względny",
+          "shipping-method": "Metoda wysyłki",
+          "manual-shipping-total": "Suma wysyłki (ręcznie)",
+          "sub-total-placed": "Suma częściowa (złożona)",
+          "adjustment-quote": "Korekta",
+          "sub-total": "Suma częściowa",
+          "shipping": "Wysyłka",
+          "discount": "Rabat",
+          "grand-total": "Suma całkowita",
+          "taxes": "Podatki",
+          "grand-total-incl-tax": "Suma całkowita (z podatkiem)",
+          "picture": "Obraz",
+          "comment": "Komentarz do produktu",
+          "list-price": "Cena katalogowa",
+          "sale-price": "Cena sprzedaży",
+          "quantity": "Ilość",
+          "proposed-price": "Proponowana cena",
+          "margin": "Marża (MB)",
+          "product": "Produkt",
+          "sku": "SKU"
+        },
+        "placeholders": {
+          "shipping-method": "Wybierz...",
+          "comment": "Wprowadź komentarz"
+        }
+      },
+      "quotes-list": {
+        "title": "Oferty",
+        "labels": {
+          "quote-number": "Numer oferty",
+          "status": "Status",
+          "items-count": "Liczba pozycji",
+          "customer": "Klient",
+          "created": "Utworzono",
+          "no-quotes": "Brak ofert"
+        }
+      },
+      "catalog-items-select": {
+        "title": "Dodaj pozycję do oferty"
+      }
+    },
+    "widgets": {
+      "quote-address": {
+        "address-type": "Typ adresu",
+        "no-address": "Brak adresu",
+        "blade-subtitle": "Zarządzaj adresami"
+      },
+      "quotes-assets": {
+        "title": "Załączniki"
+      },
+      "quote-items": {
+        "title": "Pozycje"
+      },
+      "quote-totals": {
+        "sub-total": "Suma częściowa",
+        "shipping": "Wysyłka",
+        "discount": "Rabat",
+        "grand-total": "Suma całkowita"
+      }
+    },
+    "dialogs": {
+      "quote-requests-delete": {
+        "title": "Potwierdź usunięcie",
+        "message": "Czy na pewno chcesz usunąć wybrane zapytanie(a) ofertowe?"
+      },
+      "quote-delete": {
+        "title": "Potwierdź usunięcie",
+        "message": "Czy na pewno chcesz usunąć tę ofertę?"
+      },
+      "quote-save": {
+        "title": "Zapisz zmiany",
+        "message": "Oferta została zmodyfikowana. Czy chcesz zapisać zmiany?"
+      },
+      "quote-cancel": {
+        "title": "Anuluj ofertę",
+        "message": "Czy na pewno chcesz anulować tę ofertę?",
+        "placeholders": {
+          "reason": "Wprowadź powód tutaj..."
+        }
+      },
+      "proposal-submit": {
+        "title": "Potwierdź propozycję",
+        "message": "Po przesłaniu propozycji niektóre części oferty zostaną zablokowane i nie będzie można ich modyfikować. Czy na pewno chcesz kontynuować?"
+      },
+      "proposal-submit-with-warning": {
+        "title": "Niekompletna propozycja oferty",
+        "message": "Ostrzeżenie: Brak oferty lub suma wynosi zero. Upewnij się, że wszystkie pozycje są wymienione i prawidłowo wycenione przed kontynuowaniem. Czy na pewno chcesz kontynuować?"
+      },
+      "hold-confirmation": {
+        "title": "Potwierdź wstrzymanie",
+        "message-release": "Czy na pewno chcesz ponownie aktywować tę ofertę?",
+        "message-place": "Czy na pewno chcesz wstrzymać tę ofertę?"
+      }
+    },
+    "commands": {
+      "release-hold": "Ponownie aktywuj",
+      "place-on-hold": "Wstrzymaj",
+      "submit-proposal": "Prześlij propozycję",
+      "cancel-document": "Anuluj dokument",
+      "add-selected": "Dodaj wybrane",
+      "add-item": "Dodaj pozycję"
+    }
+  },
+  "permissions": {
+    "quote:access": "Otwórz menu ofert",
+    "quote:create": "Utwórz ofertę",
+    "quote:read": "Przeglądaj oferty",
+    "quote:update": "Aktualizuj oferty",
+    "quote:delete": "Usuń oferty"
+  },
+  "settings": {
+    "Quotes": {
+      "Status": {
+        "title": "Statusy ofert",
+        "description": "Lista prawidłowych statusów ofert"
+      },
+      "DefaultStatus": {
+        "title": "Domyślny status oferty",
+        "description": "Ten status zostanie przypisany do oferty utworzonej z koszyka"
+      },
+      "QuoteRequestNewNumberTemplate": {
+        "title": "Szablon numeru zapytania ofertowego",
+        "description": "Ten szablon lub wzorzec będzie używany do generowania numerów dla nowych zapytań ofertowych. 0 to data i czas (UTC) wygenerowania numeru, a 1 to numer sekwencyjny"
+      },
+      "EnableQuotes": {
+        "title": "Włącz oferty",
+        "description": "Włącz przełącznik, aby aktywować oferty w sklepie"
+      }
+    }
+  },
+  "file-upload-error": {
+    "status": "Błąd",
+    "status-text": "Przesyłanie pliku nie powiodło się",
+    "invalid-configuration": "Zakres przesyłania plików nie jest skonfigurowany",
+    "template": "{{fileName}}: {{errorMessage}}",
+    "duplicate-name": "Plik o tej samej nazwie już istnieje",
+    "INVALID_SIZE": "Rozmiar pliku przekracza {{parameter}} bajtów",
+    "INVALID_EXTENSION": "Typ pliku nie jest jednym z dozwolonych typów ({{parameter}})",
+    "UNKNOWN_ERROR": "Nieznany błąd: {{message}}"
+  },
+  "module": {
+    "VirtoCommerce.Quote": {
+      "description": "Eksportuj lub importuj zapytania ofertowe (RFQ)"
+    }
+  }
+}
