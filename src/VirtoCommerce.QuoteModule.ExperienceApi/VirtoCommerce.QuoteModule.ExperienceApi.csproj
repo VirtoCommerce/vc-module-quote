@@ -11,7 +11,7 @@
     <PackageReference Include="VirtoCommerce.FileExperienceApi.Data" Version="3.803.0" />
     <PackageReference Include="VirtoCommerce.OrdersModule.Core" Version="3.800.0" />
     <PackageReference Include="VirtoCommerce.XCart.Data" Version="3.800.0" />
-    <PackageReference Include="VirtoCommerce.CustomerModule.Core" Version="3.813.0-alpha.843-vcst-1402" />
+    <PackageReference Include="VirtoCommerce.CustomerModule.Core" Version="3.817.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VirtoCommerce.QuoteModule.Core\VirtoCommerce.QuoteModule.Core.csproj" />
