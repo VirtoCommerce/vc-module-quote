@@ -122,9 +122,6 @@ public class QuoteAuthorizationHandler : AuthorizationHandler<QuoteAuthorization
 
     private static string GetUserId(AuthorizationHandlerContext context)
     {
-        return
-            context.User.FindFirstValue(ClaimTypes.NameIdentifier) ??
-            context.User.FindFirstValue("name") ??
-            AnonymousUser.UserName;
+        return context.User.GetUserId() ?? AnonymousUser.UserName;
     }
 }

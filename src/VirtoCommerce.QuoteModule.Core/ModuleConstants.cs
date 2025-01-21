@@ -69,6 +69,16 @@ namespace VirtoCommerce.QuoteModule.Core
                     DefaultValue = false,
                     IsPublic = true,
                 };
+
+                public static SettingDescriptor FileUploadScopeName { get; } = new SettingDescriptor
+                {
+                    Name = "Quotes.FileUploadScopeName",
+                    GroupName = "Quotes|General",
+                    ValueType = SettingValueType.ShortText,
+                    DefaultValue = "quote-attachments",
+                    IsPublic = true,
+                };
+
             }
 
             public static IEnumerable<SettingDescriptor> AllSettings
@@ -79,6 +89,7 @@ namespace VirtoCommerce.QuoteModule.Core
                     yield return General.Status;
                     yield return General.DefaultStatus;
                     yield return General.QuoteRequestNewNumberTemplate;
+                    yield return General.FileUploadScopeName;
                 }
             }
 
@@ -88,6 +99,7 @@ namespace VirtoCommerce.QuoteModule.Core
                 {
                     yield return General.QuoteRequestNewNumberTemplate;
                     yield return General.EnableQuotes;
+                    yield return General.FileUploadScopeName;
                 }
             }
         }
