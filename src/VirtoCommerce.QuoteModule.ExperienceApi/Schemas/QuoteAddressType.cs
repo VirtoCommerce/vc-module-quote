@@ -1,15 +1,15 @@
 using GraphQL.Types;
 using VirtoCommerce.QuoteModule.Core.Models;
+using VirtoCommerce.Xapi.Core.Schemas;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
 
-public class QuoteAddressType : ObjectGraphType<Address>
+public class QuoteAddressType : ExtendableGraphType<Address>
 {
     public QuoteAddressType()
     {
-        Field<IntGraphType>(nameof(Address.AddressType), resolve: context => (int)context.Source.AddressType);
-        Field<StringGraphType>("id", resolve: context => context.Source.Key, description: "ID");
-
+        Field<IntGraphType>(nameof(Address.AddressType)).Resolve(context => (int)context.Source.AddressType);
+        Field<StringGraphType>("id").Resolve(context => context.Source.Key).Description("ID");
         Field(x => x.Key, nullable: true);
         Field(x => x.OuterId, nullable: true);
         Field(x => x.Name, nullable: true);

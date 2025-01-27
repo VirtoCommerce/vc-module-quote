@@ -1,10 +1,10 @@
 using GraphQL.Types;
+using VirtoCommerce.QuoteModule.Core.Models;
+using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.Xapi.Core.Extensions;
 using VirtoCommerce.Xapi.Core.Helpers;
 using VirtoCommerce.Xapi.Core.Schemas;
 using VirtoCommerce.Xapi.Core.Services;
-using VirtoCommerce.QuoteModule.Core.Models;
-using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
 
@@ -42,14 +42,14 @@ public class QuoteType : ExtendableGraphType<QuoteAggregate>
         Field(x => x.Model.StoreId, nullable: false);
         Field(x => x.Model.Tag, nullable: true);
 
-        Field<NonNullGraphType<CurrencyType>>(nameof(QuoteRequest.Currency),
-            resolve: context => context.Source.Currency);
-        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequest.ManualRelDiscountAmount),
-            resolve: context => context.Source.Model.ManualRelDiscountAmount.ToMoney(context.Source.Currency));
-        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequest.ManualShippingTotal),
-            resolve: context => context.Source.Model.ManualShippingTotal.ToMoney(context.Source.Currency));
-        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequest.ManualSubTotal),
-            resolve: context => context.Source.Model.ManualSubTotal.ToMoney(context.Source.Currency));
+        Field<NonNullGraphType<CurrencyType>>(nameof(QuoteRequest.Currency))
+            .Resolve(context => context.Source.Currency);
+        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequest.ManualRelDiscountAmount))
+            .Resolve(context => context.Source.Model.ManualRelDiscountAmount.ToMoney(context.Source.Currency));
+        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequest.ManualShippingTotal))
+            .Resolve(context => context.Source.Model.ManualShippingTotal.ToMoney(context.Source.Currency));
+        Field<NonNullGraphType<MoneyType>>(nameof(QuoteRequest.ManualSubTotal))
+            .Resolve(context => context.Source.Model.ManualSubTotal.ToMoney(context.Source.Currency));
 
         ExtendableField<NonNullGraphType<QuoteTotalsType>>(nameof(QuoteRequest.Totals),
             resolve: context => context.Source.Totals);
@@ -62,10 +62,10 @@ public class QuoteType : ExtendableGraphType<QuoteAggregate>
         ExtendableField<QuoteShipmentMethodType>(nameof(QuoteRequest.ShipmentMethod), resolve: context => context.Source.ShipmentMethod);
         ExtendableField<NonNullGraphType<ListGraphType<NonNullGraphType<QuoteTaxDetailType>>>>(nameof(QuoteRequest.TaxDetails), resolve: context => context.Source.TaxDetails);
 
-        ExtendableField<NonNullGraphType<ListGraphType<NonNullGraphType<DynamicPropertyValueType>>>>(
+        ExtendableFieldAsync<NonNullGraphType<ListGraphType<NonNullGraphType<DynamicPropertyValueType>>>>(
             nameof(QuoteRequest.DynamicProperties),
             "Quote dynamic property values",
             QueryArgumentPresets.GetArgumentForDynamicProperties(),
-            context => dynamicPropertyResolverService.LoadDynamicPropertyValues(context.Source.Model, context.GetArgumentOrValue<string>("cultureName")));
+            async context => await dynamicPropertyResolverService.LoadDynamicPropertyValues(context.Source.Model, context.GetArgumentOrValue<string>("cultureName")));
     }
 }
