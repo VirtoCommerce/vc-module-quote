@@ -1,6 +1,6 @@
 using GraphQL.Types;
-using VirtoCommerce.Xapi.Core.Infrastructure;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
+using VirtoCommerce.Xapi.Core.Infrastructure;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
 

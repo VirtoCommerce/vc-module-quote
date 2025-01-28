@@ -1,14 +1,13 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using GraphQL.Server;
-using MediatR;
+using GraphQL;
+using GraphQL.MicrosoftDI;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using VirtoCommerce.FileExperienceApi.Core.Authorization;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.DynamicProperties;
@@ -36,7 +35,6 @@ using VirtoCommerce.QuoteModule.Web.ExportImport;
 using VirtoCommerce.StoreModule.Core.Model;
 using VirtoCommerce.Xapi.Core.Extensions;
 using VirtoCommerce.Xapi.Core.Infrastructure;
-using VirtoCommerce.Xapi.Core.Models;
 
 namespace VirtoCommerce.QuoteModule.Web
 {
@@ -81,12 +79,11 @@ namespace VirtoCommerce.QuoteModule.Web
             serviceCollection.AddTransient<CancelQuoteEventHandler>();
 
             // GraphQL
-            var assemblyMarker = typeof(AssemblyMarker);
-            var graphQlBuilder = new CustomGraphQLBuilder(serviceCollection);
-            graphQlBuilder.AddGraphTypes(assemblyMarker);
-            serviceCollection.AddMediatR(assemblyMarker);
-            serviceCollection.AddAutoMapper(assemblyMarker);
-            serviceCollection.AddSchemaBuilders(assemblyMarker);
+            _ = new GraphQLBuilder(serviceCollection, builder =>
+            {
+                builder.AddSchema(serviceCollection, typeof(AssemblyMarker));
+            });
+
             serviceCollection.AddTransient<IQuoteAggregateRepository, QuoteAggregateRepository>();
             serviceCollection.AddSingleton<IAuthorizationHandler, QuoteAuthorizationHandler>();
             serviceCollection.AddSingleton<IFileAuthorizationRequirementFactory, QuoteAuthorizationRequirementFactory>();
@@ -98,8 +95,7 @@ namespace VirtoCommerce.QuoteModule.Web
         {
             _appBuilder = appBuilder;
 
-            var playgroundOptions = appBuilder.ApplicationServices.GetService<IOptions<GraphQLPlaygroundOptions>>();
-            appBuilder.UseSchemaGraphQL<ScopedSchemaFactory<AssemblyMarker>>(playgroundOptions?.Value?.Enable ?? true, "quote");
+            appBuilder.UseScopedSchema<AssemblyMarker>("quote");
 
             var dynamicPropertyRegistrar = appBuilder.ApplicationServices.GetRequiredService<IDynamicPropertyRegistrar>();
             dynamicPropertyRegistrar.RegisterType<QuoteRequest>();
