@@ -2,27 +2,27 @@
 
 [![CI status](https://github.com/VirtoCommerce/vc-module-quote/workflows/Module%20CI/badge.svg?branch=dev)](https://github.com/VirtoCommerce/vc-module-quote/actions?query=workflow%3A"Module+CI") [![Quality gate](https://sonarcloud.io/api/project_badges/measure?project=VirtoCommerce_vc-module-quote&metric=alert_status&branch=dev)](https://sonarcloud.io/dashboard?id=VirtoCommerce_vc-module-quote) [![Reliability rating](https://sonarcloud.io/api/project_badges/measure?project=VirtoCommerce_vc-module-quote&metric=reliability_rating&branch=dev)](https://sonarcloud.io/dashboard?id=VirtoCommerce_vc-module-quote) [![Security rating](https://sonarcloud.io/api/project_badges/measure?project=VirtoCommerce_vc-module-quote&metric=security_rating&branch=dev)](https://sonarcloud.io/dashboard?id=VirtoCommerce_vc-module-quote) [![Sqale rating](https://sonarcloud.io/api/project_badges/measure?project=VirtoCommerce_vc-module-quote&metric=sqale_rating&branch=dev)](https://sonarcloud.io/dashboard?id=VirtoCommerce_vc-module-quote)
 
-Virto Commerce Quote Module represents Quotes management system.
+The Virto Commerce Quote module represents quotes management system.
 
 ## Key features
 * Unlimited number of tiers
 * Discounts per tier or for the whole quote
 * Full line items' management even after the initial quote was created
 * Attachments, dynamic properties support
-* Regular Order is produced once the Quote is confirmed by a customer.
+* Regular order is produced once the quote is confirmed by a customer
 
 ## Documentation
-* [Catalog Module Documentation](https://docs.virtocommerce.org/platform/user-guide/quotes/overview/)
+* [Quote module user documentation](https://docs.virtocommerce.org/platform/user-guide/quotes/overview/)
+* [GraphQL API documentation](https://docs.virtocommerce.org/platform/developer-guide/GraphQL-Storefront-API-Reference-xAPI/Quote/overview/)
 * [View on GitHub](https://github.com/VirtoCommerce/vc-module-quote)
-
 
 ## References
 
-* Deploy: https://docs.virtocommerce.org/platform/developer-guide/Tutorials-and-How-tos/Tutorials/deploy-module-from-source-code/
-* Installation: https://docs.virtocommerce.org/platform/user-guide/modules-installation/
-* Home: https://virtocommerce.com
-* Community: https://www.virtocommerce.org
-* [Download Latest Release](https://github.com/VirtoCommerce/vc-module-catalog/releases/latest)
+* [Deployment](https://docs.virtocommerce.org/platform/developer-guide/Tutorials-and-How-tos/Tutorials/deploy-module-from-source-code/)
+* [Installation](https://docs.virtocommerce.org/platform/user-guide/modules-installation/)
+* [Home](https://virtocommerce.com)
+* [Community](https://www.virtocommerce.org)
+* [Download latest release](https://github.com/VirtoCommerce/vc-module-quote/releases/latest)
 
 ## License
 
