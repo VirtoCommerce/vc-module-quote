@@ -12,14 +12,14 @@ Virto Commerce Quote Module represents Quotes management system.
 * Regular Order is produced once the Quote is confirmed by a customer.
 
 ## Documentation
-* [Catalog Module Documentation](https://virtocommerce.com/docs/latest/modules/quote/)
-* [View on GitHub](docs/index.md)
+* [Catalog Module Documentation](https://docs.virtocommerce.org/platform/user-guide/quotes/overview/)
+* [View on GitHub](https://github.com/VirtoCommerce/vc-module-quote)
 
 
 ## References
 
-* Deploy: https://virtocommerce.com/docs/latest/developer-guide/deploy-module-from-source-code/
-* Installation: https://www.virtocommerce.com/docs/latest/user-guide/modules/
+* Deploy: https://docs.virtocommerce.org/platform/developer-guide/Tutorials-and-How-tos/Tutorials/deploy-module-from-source-code/
+* Installation: https://docs.virtocommerce.org/platform/user-guide/modules-installation/
 * Home: https://virtocommerce.com
 * Community: https://www.virtocommerce.org
 * [Download Latest Release](https://github.com/VirtoCommerce/vc-module-catalog/releases/latest)
