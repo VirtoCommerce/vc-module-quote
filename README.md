@@ -14,6 +14,7 @@ The Virto Commerce Quote module represents quotes management system.
 ## Documentation
 * [Quote module user documentation](https://docs.virtocommerce.org/platform/user-guide/quotes/overview/)
 * [GraphQL API documentation](https://docs.virtocommerce.org/platform/developer-guide/GraphQL-Storefront-API-Reference-xAPI/Quote/overview/)
+* [REST API](https://virtostart-demo-admin.govirto.com/docs/index.html?urls.primaryName=VirtoCommerce.Quote)
 * [View on GitHub](https://github.com/VirtoCommerce/vc-module-quote)
 
 ## References
