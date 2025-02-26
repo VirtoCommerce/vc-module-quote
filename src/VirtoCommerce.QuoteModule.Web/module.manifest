@@ -11,10 +11,10 @@
     <dependency id="VirtoCommerce.Catalog" version="3.800.0" />
     <dependency id="VirtoCommerce.Core" version="3.800.0" />
     <dependency id="VirtoCommerce.Customer" version="3.817.0" />
-    <dependency id="VirtoCommerce.Xapi" version="3.904.0-alpha.74-vcst-2589-update-mediatr" />
-    <dependency id="VirtoCommerce.XCart" version="3.905.0-alpha.76-vcst-2589-update-mediatr" />
-    <dependency id="VirtoCommerce.XCatalog" version="3.905.0-alpha.73-vcst-2589-update-mediatr" />
-    <dependency id="VirtoCommerce.FileExperienceApi" version="3.903.0-alpha.42-vcst-2589-update-mediatr" />
+    <dependency id="VirtoCommerce.Xapi" version="3.904.0" />
+    <dependency id="VirtoCommerce.XCart" version="3.905.0" />
+    <dependency id="VirtoCommerce.XCatalog" version="3.905.0" />
+    <dependency id="VirtoCommerce.FileExperienceApi" version="3.903.0" />
     <dependency id="VirtoCommerce.Orders" version="3.800.0" />
     <dependency id="VirtoCommerce.Shipping" version="3.800.0" />
     <dependency id="VirtoCommerce.Store" version="3.800.0" />
