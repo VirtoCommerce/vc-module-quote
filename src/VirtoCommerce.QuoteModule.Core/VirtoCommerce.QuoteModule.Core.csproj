@@ -14,7 +14,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     <PackageReference Include="VirtoCommerce.CartModule.Core" Version="3.810.0" />
-    <PackageReference Include="VirtoCommerce.CatalogModule.Core" Version="3.847.0-alpha.2304-vcst-2821" />
+    <PackageReference Include="VirtoCommerce.CatalogModule.Core" Version="3.850.0" />
     <PackageReference Include="VirtoCommerce.CoreModule.Core" Version="3.816.0" />
     <PackageReference Include="VirtoCommerce.Platform.Core" Version="3.877.0" />
     <PackageReference Include="VirtoCommerce.TaxModule.Core" Version="3.800.0" />
