@@ -43,6 +43,9 @@ namespace VirtoCommerce.QuoteModule.Data.Model
         [StringLength(128)]
         public string FirstName { get; set; }
 
+        [StringLength(128)]
+        public string MiddleName { get; set; }
+
         [Required]
         [StringLength(128)]
         public string LastName { get; set; }
@@ -73,6 +76,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             target.City = City;
             target.Email = Email;
             target.FirstName = FirstName;
+            target.MiddleName = MiddleName;
             target.LastName = LastName;
             target.Line1 = Line1;
             target.Line2 = Line2;
@@ -98,6 +102,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             City = address.City;
             Email = address.Email;
             FirstName = address.FirstName;
+            MiddleName = address.MiddleName;
             LastName = address.LastName;
             Line1 = address.Line1;
             Line2 = address.Line2;
@@ -121,6 +126,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             target.City = City;
             target.Email = Email;
             target.FirstName = FirstName;
+            target.MiddleName = MiddleName;
             target.LastName = LastName;
             target.Line1 = Line1;
             target.Line2 = Line2;
