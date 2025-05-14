@@ -649,6 +649,7 @@ public class QuoteConverter : IQuoteConverter
         result.Email = address.Email;
         result.Phone = address.Phone;
         result.FirstName = address.FirstName;
+        result.MiddleName = address.MiddleName;
         result.LastName = address.LastName;
         result.Organization = address.Organization;
 

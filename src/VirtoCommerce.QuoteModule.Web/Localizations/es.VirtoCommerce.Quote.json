@@ -83,6 +83,44 @@
       },
       "catalog-items-select": {
         "title": "Agregar artículo a la cotización"
+      },
+      "address-details": {
+        "labels": {
+          "name": "Nombre de la dirección",
+          "address-type": "Tipo de dirección",
+          "first-name": "Nombre",
+          "middle-name": "Segundo nombre",
+          "last-name": "Apellido",
+          "country": "País",
+          "region": "Región",
+          "city": "Ciudad",
+          "address1": "Dirección línea 1",
+          "address2": "Dirección línea 2",
+          "zip-code": "Código postal",
+          "email": "Correo electrónico",
+          "phone": "Teléfono",
+          "description": "Descripción"
+        },
+        "placeholders": {
+          "address-type": "Seleccione tipo de dirección...",
+          "first-name": "Ingrese nombre...",
+          "middle-name": "Ingrese segundo nombre...",
+          "last-name": "Ingrese apellido...",
+          "country": "Seleccione país...",
+          "region": "Seleccione región...",
+          "city": "Ingrese ciudad...",
+          "address1": "Ingrese dirección línea 1...",
+          "address2": "Ingrese dirección línea 2...",
+          "zip-code": "Ingrese código postal...",
+          "email": "Ingrese correo electrónico...",
+          "phone": "Ingrese teléfono...",
+          "description": "Ingrese descripción..."
+        }
+      },
+      "address-list": {
+        "labels": {
+          "no-addresses": "Aún no hay direcciones"
+        }
       }
     },
     "widgets": {
@@ -136,6 +174,14 @@
         "title": "Confirmar retención",
         "message-release": "¿Estás seguro de que deseas reactivar esta cotización?",
         "message-place": "¿Estás seguro de que deseas poner esta cotización en espera?"
+      },
+      "address-delete": {
+        "title": "Confirmar eliminación",
+        "message": "¿Está seguro de que desea eliminar esta dirección?"
+      },
+      "address-save": {
+        "title": "Guardar cambios",
+        "message": "La dirección ha sido modificada. ¿Desea guardar los cambios?"
       }
     },
     "commands": {

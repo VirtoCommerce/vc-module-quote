@@ -83,6 +83,44 @@
       },
       "catalog-items-select": {
         "title": "添加项目到报价单"
+      },
+      "address-details": {
+        "labels": {
+          "name": "地址名称",
+          "address-type": "地址类型",
+          "first-name": "名",
+          "middle-name": "中间名",
+          "last-name": "姓",
+          "country": "国家",
+          "region": "地区",
+          "city": "城市",
+          "address1": "地址行1",
+          "address2": "地址行2",
+          "zip-code": "邮政编码",
+          "email": "电子邮件",
+          "phone": "电话",
+          "description": "描述"
+        },
+        "placeholders": {
+          "address-type": "请选择地址类型...",
+          "first-name": "请输入名...",
+          "middle-name": "请输入中间名...",
+          "last-name": "请输入姓...",
+          "country": "请选择国家...",
+          "region": "请选择地区...",
+          "city": "请输入城市...",
+          "address1": "请输入地址行1...",
+          "address2": "请输入地址行2...",
+          "zip-code": "请输入邮政编码...",
+          "email": "请输入电子邮件...",
+          "phone": "请输入电话...",
+          "description": "请输入描述..."
+        }
+      },
+      "address-list": {
+        "labels": {
+          "no-addresses": "暂无地址"
+        }
       }
     },
     "widgets": {
@@ -136,6 +174,14 @@
         "title": "确认暂停",
         "message-release": "您确定要重新激活此报价单吗？",
         "message-place": "您确定要暂停此报价单吗？"
+      },
+      "address-delete": {
+        "title": "确认删除",
+        "message": "您确定要删除此地址吗？"
+      },
+      "address-save": {
+        "title": "保存更改",
+        "message": "地址已被修改。您想保存更改吗？"
       }
     },
     "commands": {

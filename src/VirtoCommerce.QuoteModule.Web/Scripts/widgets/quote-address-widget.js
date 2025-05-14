@@ -1,4 +1,4 @@
-﻿angular.module('virtoCommerce.quoteModule')
+angular.module('virtoCommerce.quoteModule')
 .controller('virtoCommerce.quoteModule.quoteAddressWidgetController', ['$scope', 'platformWebApp.bladeNavigationService', function ($scope, bladeNavigationService) {
     var blade = $scope.blade;
 
@@ -8,8 +8,8 @@
             currentEntities: blade.currentEntity.addresses,
             title: blade.title,
             subtitle: 'quotes.widgets.quote-address.blade-subtitle',
-            controller: 'virtoCommerce.coreModule.common.coreAddressListController',
-            template: 'Modules/$(VirtoCommerce.Core)/Scripts/common/blades/address-list.tpl.html'
+            controller: 'virtoCommerce.quoteModule.addressListController',
+            template: 'Modules/$(VirtoCommerce.Quote)/Scripts/blades/addresses/address-list.tpl.html'
         };
         bladeNavigationService.showBlade(newBlade, blade);
     };
