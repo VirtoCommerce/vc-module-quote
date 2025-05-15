@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GraphQL;
@@ -5,6 +6,7 @@ using GraphQL.DataLoader;
 using GraphQL.Resolvers;
 using GraphQL.Types;
 using MediatR;
+using StackExchange.Redis;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.Xapi.Core.Extensions;
@@ -45,7 +47,8 @@ public class QuoteItemType : ExtendableGraphType<QuoteItemAggregate>
             {
                 var loader = dataLoader.Context.GetOrAddBatchLoader<string, ExpProduct>("quote_lineItem_products", async ids =>
                 {
-                    var quote = context.Source.Quote.Model;
+                    var quoteAggregate = context.Source.Quote;
+                    var quote = quoteAggregate.Model;
 
                     var request = new LoadProductsQuery
                     {
@@ -54,6 +57,13 @@ public class QuoteItemType : ExtendableGraphType<QuoteItemAggregate>
                         ObjectIds = ids.ToArray(),
                         IncludeFields = context.SubFields.Values.GetAllNodesPaths(context).ToArray(),
                     };
+
+
+                    var cultureName = context.GetArgumentOrValue<string>("cultureName") ?? quote.LanguageCode;
+                    context.UserContext.TryAdd("currencyCode", quote.Currency);
+                    context.UserContext.TryAdd("storeId", quote.StoreId);
+                    context.UserContext.TryAdd("store", quoteAggregate.Store);
+                    context.UserContext.TryAdd("cultureName", cultureName);
 
                     var response = await mediator.Send(request);
 

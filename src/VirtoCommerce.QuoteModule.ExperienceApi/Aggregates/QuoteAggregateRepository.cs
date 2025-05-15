@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using VirtoCommerce.CoreModule.Core.Currency;
 using VirtoCommerce.CoreModule.Core.Tax;
-using VirtoCommerce.Xapi.Core.Extensions;
 using VirtoCommerce.FileExperienceApi.Core.Models;
 using VirtoCommerce.FileExperienceApi.Core.Services;
 using VirtoCommerce.Platform.Core.Common;
@@ -12,6 +11,9 @@ using VirtoCommerce.QuoteModule.Core;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.QuoteModule.ExperienceApi.Extensions;
+using VirtoCommerce.StoreModule.Core.Model;
+using VirtoCommerce.StoreModule.Core.Services;
+using VirtoCommerce.Xapi.Core.Extensions;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 
@@ -21,6 +23,7 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
     private readonly IQuoteTotalsCalculator _totalsCalculator;
     private readonly ICurrencyService _currencyService;
     private readonly IFileUploadService _fileUploadService;
+    private readonly IStoreService _storeService;
 
     private const string _attachmentsUrlPrefix = "/api/files/";
     private readonly StringComparer _ignoreCase = StringComparer.OrdinalIgnoreCase;
@@ -29,12 +32,14 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
         IQuoteRequestService quoteRequestService,
         IQuoteTotalsCalculator totalsCalculator,
         ICurrencyService currencyService,
-        IFileUploadService fileUploadService)
+        IFileUploadService fileUploadService,
+        IStoreService storeService)
     {
         _quoteRequestService = quoteRequestService;
         _totalsCalculator = totalsCalculator;
         _currencyService = currencyService;
         _fileUploadService = fileUploadService;
+        _storeService = storeService;
     }
 
     public async Task<QuoteAggregate> GetById(string id)
@@ -56,7 +61,8 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
             quote.Totals = await _totalsCalculator.CalculateTotalsAsync(quote);
 
             var currency = currencies.GetCurrencyForLanguage(quote.Currency, quote.LanguageCode);
-            var aggregate = ToQuoteAggregate(quote, currency);
+            var store = await _storeService.GetByIdAsync(quote.StoreId);
+            var aggregate = ToQuoteAggregate(quote, currency, store);
 
             result.Add(aggregate);
         }
@@ -113,10 +119,11 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
         }
     }
 
-    protected virtual QuoteAggregate ToQuoteAggregate(QuoteRequest model, Currency currency)
+    protected virtual QuoteAggregate ToQuoteAggregate(QuoteRequest model, Currency currency, Store store)
     {
         var aggregate = AbstractTypeFactory<QuoteAggregate>.TryCreateInstance();
 
+        aggregate.Store = store;
         aggregate.Model = model;
         aggregate.Currency = currency;
 
