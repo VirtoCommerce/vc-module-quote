@@ -38,6 +38,8 @@ namespace VirtoCommerce.QuoteModule.Core.Models
         /// </summary>
         public int Quantity { get; set; }
 
+        public bool IsConfigured { get; set; }
+
         private TierPrice _selectedTierPrice;
         public TierPrice SelectedTierPrice
         {
@@ -57,6 +59,8 @@ namespace VirtoCommerce.QuoteModule.Core.Models
         }
 
         public ICollection<TierPrice> ProposalPrices { get; set; }
+
+        public ICollection<ConfigurationItem> ConfigurationItems { get; set; }
 
         [Obsolete("Use IQuoteConverter instead", DiagnosticId = "VC0008", UrlFormat = "https://docs.virtocommerce.org/products/products-virto3-versions")]
         public LineItem ToCartModel(LineItem target)

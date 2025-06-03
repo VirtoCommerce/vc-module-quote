@@ -26,8 +26,18 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
 
                 await Attachments.Where(x => ids.Contains(x.QuoteRequestId)).LoadAsync();
 
-                await QuoteItems.Include(x => x.ProposalPrices)
+                var quoteItems = await QuoteItems.Include(x => x.ProposalPrices)
                                     .Where(x => ids.Contains(x.QuoteRequestId)).ToArrayAsync();
+
+                var configurationItemIds = quoteItems.Where(x => x.IsConfigured).Select(x => x.Id).ToArray();
+                if (configurationItemIds.Length > 0)
+                {
+                    await ConfigurationItems
+                        .Where(x => configurationItemIds.Contains(x.QuoteItemId))
+                        .Include(x => x.Files)
+                        .AsSplitQuery()
+                        .LoadAsync();
+                }
 
                 await DynamicPropertyObjectValues.Where(x => ids.Contains(x.ObjectId)).LoadAsync();
             }
@@ -42,6 +52,10 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
         public IQueryable<QuoteItemEntity> QuoteItems => DbContext.Set<QuoteItemEntity>();
 
         public IQueryable<QuoteRequestEntity> QuoteRequests => DbContext.Set<QuoteRequestEntity>();
+
+        public IQueryable<ConfigurationItemEntity> ConfigurationItems => DbContext.Set<ConfigurationItemEntity>();
+
+        public IQueryable<ConfigurationItemFileEntity> ConfigurationItemFiles => DbContext.Set<ConfigurationItemFileEntity>();
         #endregion
 
         protected IQueryable<QuoteDynamicPropertyObjectValueEntity> DynamicPropertyObjectValues => DbContext.Set<QuoteDynamicPropertyObjectValueEntity>();

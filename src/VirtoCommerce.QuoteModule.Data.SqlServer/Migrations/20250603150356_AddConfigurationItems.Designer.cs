@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VirtoCommerce.QuoteModule.Data.Repositories;
 
@@ -11,9 +12,11 @@ using VirtoCommerce.QuoteModule.Data.Repositories;
 namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
 {
     [DbContext(typeof(QuoteDbContext))]
-    partial class QuoteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250603150356_AddConfigurationItems")]
+    partial class AddConfigurationItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
