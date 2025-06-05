@@ -8,7 +8,7 @@ using VirtoCommerce.QuoteModule.Core.Models;
 
 namespace VirtoCommerce.QuoteModule.Data.Model;
 
-public class ConfigurationItemEntity : AuditableEntity, IDataEntity<ConfigurationItemEntity, ConfigurationItem>
+public class QuoteConfigurationItemEntity : AuditableEntity, IDataEntity<QuoteConfigurationItemEntity, QuoteConfigurationItem>
 {
     [StringLength(128)]
     public string QuoteItemId { get; set; }
@@ -43,10 +43,10 @@ public class ConfigurationItemEntity : AuditableEntity, IDataEntity<Configuratio
     public string CustomText { get; set; }
 
     #region Navigation Properties
-    public virtual ObservableCollection<ConfigurationItemFileEntity> Files { get; set; } = new NullCollection<ConfigurationItemFileEntity>();
+    public virtual ObservableCollection<QuoteConfigurationItemFileEntity> Files { get; set; } = new NullCollection<QuoteConfigurationItemFileEntity>();
     #endregion
 
-    public virtual ConfigurationItem ToModel(ConfigurationItem configurationItem)
+    public virtual QuoteConfigurationItem ToModel(QuoteConfigurationItem configurationItem)
     {
         ArgumentNullException.ThrowIfNull(configurationItem);
 
@@ -67,12 +67,12 @@ public class ConfigurationItemEntity : AuditableEntity, IDataEntity<Configuratio
         configurationItem.Type = Type;
         configurationItem.CustomText = CustomText;
 
-        configurationItem.Files = Files.Select(x => x.ToModel(AbstractTypeFactory<ConfigurationItemFile>.TryCreateInstance())).ToList();
+        configurationItem.Files = Files.Select(x => x.ToModel(AbstractTypeFactory<QuoteConfigurationItemFile>.TryCreateInstance())).ToList();
 
         return configurationItem;
     }
 
-    public virtual ConfigurationItemEntity FromModel(ConfigurationItem configurationItem, PrimaryKeyResolvingMap pkMap)
+    public virtual QuoteConfigurationItemEntity FromModel(QuoteConfigurationItem configurationItem, PrimaryKeyResolvingMap pkMap)
     {
         ArgumentNullException.ThrowIfNull(configurationItem);
 
@@ -97,13 +97,13 @@ public class ConfigurationItemEntity : AuditableEntity, IDataEntity<Configuratio
 
         if (configurationItem.Files != null)
         {
-            Files = new ObservableCollection<ConfigurationItemFileEntity>(configurationItem.Files.Select(x => AbstractTypeFactory<ConfigurationItemFileEntity>.TryCreateInstance().FromModel(x, pkMap)));
+            Files = new ObservableCollection<QuoteConfigurationItemFileEntity>(configurationItem.Files.Select(x => AbstractTypeFactory<QuoteConfigurationItemFileEntity>.TryCreateInstance().FromModel(x, pkMap)));
         }
 
         return this;
     }
 
-    public virtual void Patch(ConfigurationItemEntity target)
+    public virtual void Patch(QuoteConfigurationItemEntity target)
     {
         ArgumentNullException.ThrowIfNull(target);
 

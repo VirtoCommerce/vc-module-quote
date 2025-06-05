@@ -73,18 +73,18 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
 
             #region QuoteConfigurationItem
 
-            modelBuilder.Entity<ConfigurationItemEntity>().ToTable("QuoteConfigurationItem").HasKey(x => x.Id);
-            modelBuilder.Entity<ConfigurationItemEntity>().Property(x => x.Id).HasMaxLength(128).ValueGeneratedOnAdd();
-            modelBuilder.Entity<ConfigurationItemEntity>().HasOne(x => x.QuoteItem).WithMany(x => x.ConfigurationItems)
+            modelBuilder.Entity<QuoteConfigurationItemEntity>().ToTable("QuoteConfigurationItem").HasKey(x => x.Id);
+            modelBuilder.Entity<QuoteConfigurationItemEntity>().Property(x => x.Id).HasMaxLength(128).ValueGeneratedOnAdd();
+            modelBuilder.Entity<QuoteConfigurationItemEntity>().HasOne(x => x.QuoteItem).WithMany(x => x.ConfigurationItems)
                         .HasForeignKey(x => x.QuoteItemId).IsRequired().OnDelete(DeleteBehavior.ClientCascade);
 
             #endregion
 
             #region QuoteConfigurationItemFile
 
-            modelBuilder.Entity<ConfigurationItemFileEntity>().ToTable("QuoteConfigurationItemFile").HasKey(x => x.Id);
-            modelBuilder.Entity<ConfigurationItemFileEntity>().Property(x => x.Id).HasMaxLength(128).ValueGeneratedOnAdd();
-            modelBuilder.Entity<ConfigurationItemFileEntity>().HasOne(x => x.ConfigurationItem).WithMany(x => x.Files)
+            modelBuilder.Entity<QuoteConfigurationItemFileEntity>().ToTable("QuoteConfigurationItemFile").HasKey(x => x.Id);
+            modelBuilder.Entity<QuoteConfigurationItemFileEntity>().Property(x => x.Id).HasMaxLength(128).ValueGeneratedOnAdd();
+            modelBuilder.Entity<QuoteConfigurationItemFileEntity>().HasOne(x => x.ConfigurationItem).WithMany(x => x.Files)
                 .HasForeignKey(x => x.ConfigurationItemId).IsRequired().OnDelete(DeleteBehavior.Cascade);
 
             #endregion

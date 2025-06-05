@@ -53,9 +53,9 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
 
         public IQueryable<QuoteRequestEntity> QuoteRequests => DbContext.Set<QuoteRequestEntity>();
 
-        public IQueryable<ConfigurationItemEntity> ConfigurationItems => DbContext.Set<ConfigurationItemEntity>();
+        public IQueryable<QuoteConfigurationItemEntity> ConfigurationItems => DbContext.Set<QuoteConfigurationItemEntity>();
 
-        public IQueryable<ConfigurationItemFileEntity> ConfigurationItemFiles => DbContext.Set<ConfigurationItemFileEntity>();
+        public IQueryable<QuoteConfigurationItemFileEntity> ConfigurationItemFiles => DbContext.Set<QuoteConfigurationItemFileEntity>();
         #endregion
 
         protected IQueryable<QuoteDynamicPropertyObjectValueEntity> DynamicPropertyObjectValues => DbContext.Set<QuoteDynamicPropertyObjectValueEntity>();

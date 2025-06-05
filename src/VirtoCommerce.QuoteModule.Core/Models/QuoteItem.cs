@@ -60,7 +60,7 @@ namespace VirtoCommerce.QuoteModule.Core.Models
 
         public ICollection<TierPrice> ProposalPrices { get; set; }
 
-        public ICollection<ConfigurationItem> ConfigurationItems { get; set; }
+        public ICollection<QuoteConfigurationItem> ConfigurationItems { get; set; }
 
         [Obsolete("Use IQuoteConverter instead", DiagnosticId = "VC0008", UrlFormat = "https://docs.virtocommerce.org/products/products-virto3-versions")]
         public LineItem ToCartModel(LineItem target)

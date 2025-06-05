@@ -6,7 +6,7 @@ using VirtoCommerce.QuoteModule.Core.Models;
 
 namespace VirtoCommerce.QuoteModule.Data.Model;
 
-public class ConfigurationItemFileEntity : AuditableEntity, IDataEntity<ConfigurationItemFileEntity, ConfigurationItemFile>
+public class QuoteConfigurationItemFileEntity : AuditableEntity, IDataEntity<QuoteConfigurationItemFileEntity, QuoteConfigurationItemFile>
 {
     [StringLength(2083)]
     [Required]
@@ -26,11 +26,11 @@ public class ConfigurationItemFileEntity : AuditableEntity, IDataEntity<Configur
 
     #region Navigation Properties
 
-    public virtual ConfigurationItemEntity ConfigurationItem { get; set; }
+    public virtual QuoteConfigurationItemEntity ConfigurationItem { get; set; }
 
     #endregion
 
-    public ConfigurationItemFile ToModel(ConfigurationItemFile model)
+    public QuoteConfigurationItemFile ToModel(QuoteConfigurationItemFile model)
     {
         ArgumentNullException.ThrowIfNull(model);
 
@@ -49,7 +49,7 @@ public class ConfigurationItemFileEntity : AuditableEntity, IDataEntity<Configur
         return model;
     }
 
-    public ConfigurationItemFileEntity FromModel(ConfigurationItemFile model, PrimaryKeyResolvingMap pkMap)
+    public QuoteConfigurationItemFileEntity FromModel(QuoteConfigurationItemFile model, PrimaryKeyResolvingMap pkMap)
     {
         ArgumentNullException.ThrowIfNull(model);
 
@@ -70,7 +70,7 @@ public class ConfigurationItemFileEntity : AuditableEntity, IDataEntity<Configur
         return this;
     }
 
-    public void Patch(ConfigurationItemFileEntity target)
+    public void Patch(QuoteConfigurationItemFileEntity target)
     {
         target.Name = Name;
         target.Url = Url;

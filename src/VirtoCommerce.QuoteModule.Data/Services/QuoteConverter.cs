@@ -21,8 +21,6 @@ using CartAddress = VirtoCommerce.CartModule.Core.Model.Address;
 using CartConfigurationItem = VirtoCommerce.CartModule.Core.Model.ConfigurationItem;
 using CartConfigurationItemFile = VirtoCommerce.CartModule.Core.Model.ConfigurationItemFile;
 using CartLineItem = VirtoCommerce.CartModule.Core.Model.LineItem;
-using ConfiguraitonItemFile = VirtoCommerce.QuoteModule.Core.Models.ConfigurationItemFile;
-using ConfigurationItem = VirtoCommerce.QuoteModule.Core.Models.ConfigurationItem;
 using QuoteAddress = VirtoCommerce.QuoteModule.Core.Models.Address;
 using QuoteShipmentMethod = VirtoCommerce.QuoteModule.Core.Models.ShipmentMethod;
 
@@ -515,16 +513,16 @@ public class QuoteConverter : IQuoteConverter
         return result;
     }
 
-    protected virtual IList<ConfigurationItem> FromCartConfigurationItems(ICollection<CartConfigurationItem> items)
+    protected virtual IList<QuoteConfigurationItem> FromCartConfigurationItems(ICollection<CartConfigurationItem> items)
     {
         return items
             .Select(FromCartConfigurationItem)
             .ToList();
     }
 
-    protected virtual ConfigurationItem FromCartConfigurationItem(CartConfigurationItem cartConfigurationItem)
+    protected virtual QuoteConfigurationItem FromCartConfigurationItem(CartConfigurationItem cartConfigurationItem)
     {
-        var result = AbstractTypeFactory<ConfigurationItem>.TryCreateInstance();
+        var result = AbstractTypeFactory<QuoteConfigurationItem>.TryCreateInstance();
 
         result.ProductId = cartConfigurationItem.ProductId;
         result.Name = cartConfigurationItem.Name;
@@ -541,16 +539,16 @@ public class QuoteConverter : IQuoteConverter
         return result;
     }
 
-    protected virtual IList<ConfiguraitonItemFile> FromCartConfigurationItemFiles(ICollection<CartConfigurationItemFile> files)
+    protected virtual IList<QuoteConfigurationItemFile> FromCartConfigurationItemFiles(ICollection<CartConfigurationItemFile> files)
     {
         return files
             .Select(FromCartConfigurationItemFile)
             .ToList();
     }
 
-    protected virtual ConfiguraitonItemFile FromCartConfigurationItemFile(CartConfigurationItemFile file)
+    protected virtual QuoteConfigurationItemFile FromCartConfigurationItemFile(CartConfigurationItemFile file)
     {
-        var result = AbstractTypeFactory<ConfiguraitonItemFile>.TryCreateInstance();
+        var result = AbstractTypeFactory<QuoteConfigurationItemFile>.TryCreateInstance();
 
         result.Url = file.Url;
         result.Name = file.Name;

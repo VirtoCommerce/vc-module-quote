@@ -3,7 +3,7 @@ using VirtoCommerce.Xapi.Core.Schemas;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
 
-public class QuoteConfigurationItemFileType : ExtendableGraphType<ConfigurationItemFile>
+public class QuoteConfigurationItemFileType : ExtendableGraphType<QuoteConfigurationItemFile>
 {
     public QuoteConfigurationItemFileType()
     {

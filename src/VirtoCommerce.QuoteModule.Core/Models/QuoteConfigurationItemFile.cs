@@ -1,11 +1,9 @@
 using System;
 using VirtoCommerce.Platform.Core.Common;
-using VirtoCommerce.Platform.Core.Swagger;
 
 namespace VirtoCommerce.QuoteModule.Core.Models;
 
-[SwaggerSchemaId("QuoteConfigurationItemFile")]
-public class ConfigurationItemFile : AuditableEntity, ICloneable
+public class QuoteConfigurationItemFile : AuditableEntity, ICloneable
 {
     public string Name { get; set; }
     public string Url { get; set; }

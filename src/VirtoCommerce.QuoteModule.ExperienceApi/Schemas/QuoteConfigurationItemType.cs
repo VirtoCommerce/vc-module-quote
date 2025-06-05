@@ -4,7 +4,7 @@ using VirtoCommerce.Xapi.Core.Schemas;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
 
-public class QuoteConfigurationItemType : ExtendableGraphType<ConfigurationItem>
+public class QuoteConfigurationItemType : ExtendableGraphType<QuoteConfigurationItem>
 {
     public QuoteConfigurationItemType()
     {
@@ -13,7 +13,7 @@ public class QuoteConfigurationItemType : ExtendableGraphType<ConfigurationItem>
         Field(x => x.Type, nullable: false).Description("Configuration item type. Possible values: 'Product', 'Text', 'File'");
         Field(x => x.CustomText, nullable: true).Description("Configuration item custom text");
 
-        ExtendableField<ListGraphType<QuoteConfigurationItemFileType>>(nameof(ConfigurationItem.Files),
+        ExtendableField<ListGraphType<QuoteConfigurationItemFileType>>(nameof(QuoteConfigurationItem.Files),
             resolve: context => context.Source.Files,
             description: "List of files for 'File' configuration item section");
     }

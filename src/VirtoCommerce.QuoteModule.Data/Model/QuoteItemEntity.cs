@@ -61,7 +61,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
 
         public virtual ObservableCollection<TierPriceEntity> ProposalPrices { get; set; }
 
-        public virtual ObservableCollection<ConfigurationItemEntity> ConfigurationItems { get; set; } = new NullCollection<ConfigurationItemEntity>();
+        public virtual ObservableCollection<QuoteConfigurationItemEntity> ConfigurationItems { get; set; } = new NullCollection<QuoteConfigurationItemEntity>();
 
         #endregion
 
@@ -87,7 +87,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             target.Quantity = _.Quantity;
             target.IsConfigured = _.IsConfigured;
             target.ProposalPrices = ProposalPrices.Select(x => x.ToModel(AbstractTypeFactory<TierPrice>.TryCreateInstance())).ToList();
-            target.ConfigurationItems = ConfigurationItems.Select(x => x.ToModel(AbstractTypeFactory<ConfigurationItem>.TryCreateInstance())).ToList();
+            target.ConfigurationItems = ConfigurationItems.Select(x => x.ToModel(AbstractTypeFactory<QuoteConfigurationItem>.TryCreateInstance())).ToList();
 
             return target;
         }
@@ -123,7 +123,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
 
             if (_.ConfigurationItems != null)
             {
-                ConfigurationItems = new ObservableCollection<ConfigurationItemEntity>(_.ConfigurationItems.Select(x => AbstractTypeFactory<ConfigurationItemEntity>.TryCreateInstance().FromModel(x, pkMap)));
+                ConfigurationItems = new ObservableCollection<QuoteConfigurationItemEntity>(_.ConfigurationItems.Select(x => AbstractTypeFactory<QuoteConfigurationItemEntity>.TryCreateInstance().FromModel(x, pkMap)));
             }
 
             return this;
