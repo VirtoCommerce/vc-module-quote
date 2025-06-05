@@ -70,6 +70,11 @@ angular.module(moduleName, [])
                     template: '$(Platform)/Scripts/app/changeLog/widgets/operations-widget.tpl.html'
                 }, 'quoteDetail');
 
+                widgetService.registerWidget({
+                    controller: 'virtoCommerce.quoteModule.quoteItemConfigurationWidgetController',
+                    template: 'Modules/$(VirtoCommerce.Quote)/Scripts/widgets/quote-item-configuration-widget.html'
+                }, 'quoteItemDetail');
+
                 metaFormsService.registerMetaFields('QuoteAddressDetails', [
                 {
                     name: 'description',
