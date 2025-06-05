@@ -156,6 +156,124 @@ namespace VirtoCommerce.QuoteModule.Data.PostgreSql.Migrations
                     b.ToTable("QuoteAttachment", (string)null);
                 });
 
+            modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.QuoteConfigurationItemEntity", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<string>("CatalogId")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<string>("CategoryId")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CustomText")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<string>("ImageUrl")
+                        .HasMaxLength(1028)
+                        .HasColumnType("character varying(1028)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(1024)
+                        .HasColumnType("character varying(1024)");
+
+                    b.Property<string>("ProductId")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("QuoteItemId")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<string>("Sku")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuoteItemId");
+
+                    b.ToTable("QuoteConfigurationItem", (string)null);
+                });
+
+            modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.QuoteConfigurationItemFileEntity", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<string>("ConfigurationItemId")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<string>("ContentType")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(1024)
+                        .HasColumnType("character varying(1024)");
+
+                    b.Property<long>("Size")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasMaxLength(2083)
+                        .HasColumnType("character varying(2083)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ConfigurationItemId");
+
+                    b.ToTable("QuoteConfigurationItemFile", (string)null);
+                });
+
             modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.QuoteDynamicPropertyObjectValueEntity", b =>
                 {
                     b.Property<string>("Id")
@@ -262,6 +380,9 @@ namespace VirtoCommerce.QuoteModule.Data.PostgreSql.Migrations
                     b.Property<string>("ImageUrl")
                         .HasMaxLength(1028)
                         .HasColumnType("character varying(1028)");
+
+                    b.Property<bool>("IsConfigured")
+                        .HasColumnType("boolean");
 
                     b.Property<decimal>("ListPrice")
                         .HasColumnType("Money");
@@ -487,6 +608,28 @@ namespace VirtoCommerce.QuoteModule.Data.PostgreSql.Migrations
                     b.Navigation("QuoteRequest");
                 });
 
+            modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.QuoteConfigurationItemEntity", b =>
+                {
+                    b.HasOne("VirtoCommerce.QuoteModule.Data.Model.QuoteItemEntity", "QuoteItem")
+                        .WithMany("ConfigurationItems")
+                        .HasForeignKey("QuoteItemId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
+                    b.Navigation("QuoteItem");
+                });
+
+            modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.QuoteConfigurationItemFileEntity", b =>
+                {
+                    b.HasOne("VirtoCommerce.QuoteModule.Data.Model.QuoteConfigurationItemEntity", "ConfigurationItem")
+                        .WithMany("Files")
+                        .HasForeignKey("ConfigurationItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ConfigurationItem");
+                });
+
             modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.QuoteDynamicPropertyObjectValueEntity", b =>
                 {
                     b.HasOne("VirtoCommerce.QuoteModule.Data.Model.QuoteRequestEntity", "QuoteRequest")
@@ -519,8 +662,15 @@ namespace VirtoCommerce.QuoteModule.Data.PostgreSql.Migrations
                     b.Navigation("QuoteItem");
                 });
 
+            modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.QuoteConfigurationItemEntity", b =>
+                {
+                    b.Navigation("Files");
+                });
+
             modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.QuoteItemEntity", b =>
                 {
+                    b.Navigation("ConfigurationItems");
+
                     b.Navigation("ProposalPrices");
                 });
 
