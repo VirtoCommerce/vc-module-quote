@@ -52,12 +52,10 @@ namespace VirtoCommerce.QuoteModule.Data.PostgreSql.Migrations
                         .HasColumnType("character varying(256)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("character varying(128)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("character varying(128)");
 
