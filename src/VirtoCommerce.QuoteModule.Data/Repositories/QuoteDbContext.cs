@@ -22,7 +22,7 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
         {
             #region AddressEntity
             modelBuilder.Entity<AddressEntity>().ToTable("QuoteAddress").HasKey(x => x.Id);
-            modelBuilder.Entity<AddressEntity>().Property(x => x.Id).HasMaxLength(128).ValueGeneratedOnAdd();
+            modelBuilder.Entity<AddressEntity>().Property(x => x.Id).HasMaxLength(IdLength).ValueGeneratedOnAdd();
             modelBuilder.Entity<AddressEntity>().HasOne(x => x.QuoteRequest).WithMany(x => x.Addresses)
                         .HasForeignKey(x => x.QuoteRequestId).IsRequired().OnDelete(DeleteBehavior.Cascade);
 
@@ -30,7 +30,7 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
 
             #region AttachmentEntity
             modelBuilder.Entity<AttachmentEntity>().ToTable("QuoteAttachment").HasKey(x => x.Id);
-            modelBuilder.Entity<AttachmentEntity>().Property(x => x.Id).HasMaxLength(128).ValueGeneratedOnAdd();
+            modelBuilder.Entity<AttachmentEntity>().Property(x => x.Id).HasMaxLength(IdLength).ValueGeneratedOnAdd();
             modelBuilder.Entity<AttachmentEntity>().HasOne(x => x.QuoteRequest).WithMany(x => x.Attachments)
                         .HasForeignKey(x => x.QuoteRequestId).IsRequired().OnDelete(DeleteBehavior.Cascade);
 
@@ -38,7 +38,7 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
 
             #region QuoteItemEntity
             modelBuilder.Entity<QuoteItemEntity>().ToTable("QuoteItem").HasKey(x => x.Id);
-            modelBuilder.Entity<QuoteItemEntity>().Property(x => x.Id).HasMaxLength(128).ValueGeneratedOnAdd();
+            modelBuilder.Entity<QuoteItemEntity>().Property(x => x.Id).HasMaxLength(IdLength).ValueGeneratedOnAdd();
             modelBuilder.Entity<QuoteItemEntity>().HasOne(x => x.QuoteRequest).WithMany(x => x.Items)
                         .HasForeignKey(x => x.QuoteRequestId).IsRequired().OnDelete(DeleteBehavior.Cascade);
 
@@ -46,7 +46,7 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
 
             #region TierPriceEntity
             modelBuilder.Entity<TierPriceEntity>().ToTable("QuoteTierPrice").HasKey(x => x.Id);
-            modelBuilder.Entity<TierPriceEntity>().Property(x => x.Id).HasMaxLength(128).ValueGeneratedOnAdd();
+            modelBuilder.Entity<TierPriceEntity>().Property(x => x.Id).HasMaxLength(IdLength).ValueGeneratedOnAdd();
             modelBuilder.Entity<TierPriceEntity>().HasOne(x => x.QuoteItem).WithMany(x => x.ProposalPrices)
                         .HasForeignKey(x => x.QuoteItemId).IsRequired().OnDelete(DeleteBehavior.Cascade);
 
@@ -54,14 +54,14 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
 
             #region QuoteRequestEntity
             modelBuilder.Entity<QuoteRequestEntity>().ToTable("QuoteRequest").HasKey(x => x.Id);
-            modelBuilder.Entity<QuoteRequestEntity>().Property(x => x.Id).HasMaxLength(128).ValueGeneratedOnAdd();
+            modelBuilder.Entity<QuoteRequestEntity>().Property(x => x.Id).HasMaxLength(IdLength).ValueGeneratedOnAdd();
             modelBuilder.Entity<QuoteRequestEntity>().Property(x => x.ManualRelDiscountAmount).HasPrecision(18, 2);
 
             #endregion
 
             #region DynamicPropertyValues
             modelBuilder.Entity<QuoteDynamicPropertyObjectValueEntity>().ToTable("QuoteDynamicPropertyObjectValue").HasKey(x => x.Id);
-            modelBuilder.Entity<QuoteDynamicPropertyObjectValueEntity>().Property(x => x.Id).HasMaxLength(128).ValueGeneratedOnAdd();
+            modelBuilder.Entity<QuoteDynamicPropertyObjectValueEntity>().Property(x => x.Id).HasMaxLength(IdLength).ValueGeneratedOnAdd();
             modelBuilder.Entity<QuoteDynamicPropertyObjectValueEntity>().Property(x => x.DecimalValue).HasColumnType("decimal(18,5)");
             modelBuilder.Entity<QuoteDynamicPropertyObjectValueEntity>().HasOne(p => p.QuoteRequest)
                 .WithMany(s => s.DynamicPropertyObjectValues).HasForeignKey(k => k.ObjectId)
@@ -74,7 +74,7 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
             #region QuoteConfigurationItem
 
             modelBuilder.Entity<QuoteConfigurationItemEntity>().ToTable("QuoteConfigurationItem").HasKey(x => x.Id);
-            modelBuilder.Entity<QuoteConfigurationItemEntity>().Property(x => x.Id).HasMaxLength(128).ValueGeneratedOnAdd();
+            modelBuilder.Entity<QuoteConfigurationItemEntity>().Property(x => x.Id).HasMaxLength(IdLength).ValueGeneratedOnAdd();
             modelBuilder.Entity<QuoteConfigurationItemEntity>().HasOne(x => x.QuoteItem).WithMany(x => x.ConfigurationItems)
                         .HasForeignKey(x => x.QuoteItemId).IsRequired().OnDelete(DeleteBehavior.ClientCascade);
 
@@ -83,7 +83,7 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
             #region QuoteConfigurationItemFile
 
             modelBuilder.Entity<QuoteConfigurationItemFileEntity>().ToTable("QuoteConfigurationItemFile").HasKey(x => x.Id);
-            modelBuilder.Entity<QuoteConfigurationItemFileEntity>().Property(x => x.Id).HasMaxLength(128).ValueGeneratedOnAdd();
+            modelBuilder.Entity<QuoteConfigurationItemFileEntity>().Property(x => x.Id).HasMaxLength(IdLength).ValueGeneratedOnAdd();
             modelBuilder.Entity<QuoteConfigurationItemFileEntity>().HasOne(x => x.ConfigurationItem).WithMany(x => x.Files)
                 .HasForeignKey(x => x.ConfigurationItemId).IsRequired().OnDelete(DeleteBehavior.Cascade);
 

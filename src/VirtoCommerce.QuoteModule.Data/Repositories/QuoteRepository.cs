@@ -26,8 +26,11 @@ namespace VirtoCommerce.QuoteModule.Data.Repositories
 
                 await Attachments.Where(x => ids.Contains(x.QuoteRequestId)).LoadAsync();
 
-                var quoteItems = await QuoteItems.Include(x => x.ProposalPrices)
-                                    .Where(x => ids.Contains(x.QuoteRequestId)).ToArrayAsync();
+                var quoteItems = await QuoteItems
+                    .Where(x => ids.Contains(x.QuoteRequestId))
+                    .Include(x => x.ProposalPrices)
+                    .AsSplitQuery()
+                    .ToArrayAsync();
 
                 var configurationItemIds = quoteItems.Where(x => x.IsConfigured).Select(x => x.Id).ToArray();
                 if (configurationItemIds.Length > 0)
