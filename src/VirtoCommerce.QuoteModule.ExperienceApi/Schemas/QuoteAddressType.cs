@@ -23,8 +23,8 @@ public class QuoteAddressType : ExtendableGraphType<Address>
         Field(x => x.Line2, nullable: true);
         Field(x => x.Email, nullable: true);
         Field(x => x.Phone, nullable: true);
-        Field(x => x.FirstName, nullable: false);
-        Field(x => x.LastName, nullable: false);
+        Field(x => x.FirstName, nullable: true);
+        Field(x => x.LastName, nullable: true);
         Field(x => x.Organization, nullable: true).Description("Company name");
     }
 }
