@@ -1,9 +1,21 @@
 <div class="blade-content __medium-wide">
   <div class="blade-inner">
     <div class="inner-block">
-      <div class="form-group">
-        <va-widget-container group="quoteItemDetail" blade="blade"></va-widget-container>
-      </div>
+      <form class="form" name="quoteItemForm">
+        <va-metaform blade="blade" registered-inputs="blade.metaFields" column-count="1" ng-init="setForm(quoteItemForm)"></va-metaform>
+        <div class="form-group">
+          <va-widget-container group="quoteItemDetail" blade="blade" data="blade.currentEntity"></va-widget-container>
+        </div>
+      </form>
     </div>
   </div>
 </div>
+
+<script type="text/ng-template" id="name.html">
+  <div class="form-input">
+    <a href="" ng-click="blade.openItemDetail()" style="font-size:14px;">{{ blade.currentEntity.name }}</a>
+  </div>
+  <div class="form-input" ng-if="blade.currentEntity.comment">
+    <span style="font-size:14px;">{{ blade.currentEntity.comment }}</span>
+  </div>
+</script>
