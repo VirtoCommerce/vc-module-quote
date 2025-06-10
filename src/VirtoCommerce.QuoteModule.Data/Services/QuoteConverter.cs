@@ -668,8 +668,56 @@ public class QuoteConverter : IQuoteConverter
         result.DiscountAmount = result.ListPrice - result.SalePrice;
         result.IsReadOnly = true;
 
+        result.IsConfigured = item.IsConfigured;
+        result.ConfigurationItems = item.ConfigurationItems?.Convert(ToCartConfigurationItems);
+
         // Workaround for the cart to order converter
         result.Id = Guid.NewGuid().ToString();
+
+        return result;
+    }
+
+    protected virtual IList<CartConfigurationItem> ToCartConfigurationItems(ICollection<QuoteConfigurationItem> quoteConfigurationItems)
+    {
+        return quoteConfigurationItems
+            .Select(ToCartConfigurationItem)
+            .ToList();
+    }
+
+    protected virtual CartConfigurationItem ToCartConfigurationItem(QuoteConfigurationItem quoteConfigurationItem)
+    {
+        var result = AbstractTypeFactory<CartConfigurationItem>.TryCreateInstance();
+
+        result.ProductId = quoteConfigurationItem.ProductId;
+        result.Name = quoteConfigurationItem.Name;
+        result.Sku = quoteConfigurationItem.Sku;
+        result.Quantity = quoteConfigurationItem.Quantity;
+        result.ImageUrl = quoteConfigurationItem.ImageUrl;
+        result.CatalogId = quoteConfigurationItem.CatalogId;
+        result.CategoryId = quoteConfigurationItem.CategoryId;
+        result.Type = quoteConfigurationItem.Type;
+        result.CustomText = quoteConfigurationItem.CustomText;
+
+        result.Files = quoteConfigurationItem.Files?.Convert(ToCartConfigurationItemFiles);
+
+        return result;
+    }
+
+    protected virtual IList<CartConfigurationItemFile> ToCartConfigurationItemFiles(IList<QuoteConfigurationItemFile> quoteConfigurationItemFiles)
+    {
+        return quoteConfigurationItemFiles
+            .Select(ToCartConfigurationItemFile)
+            .ToList();
+    }
+
+    protected virtual CartConfigurationItemFile ToCartConfigurationItemFile(QuoteConfigurationItemFile quoteConfigurationItemFile)
+    {
+        var result = AbstractTypeFactory<CartConfigurationItemFile>.TryCreateInstance();
+
+        result.Url = quoteConfigurationItemFile.Url;
+        result.Name = quoteConfigurationItemFile.Name;
+        result.ContentType = quoteConfigurationItemFile.ContentType;
+        result.Size = quoteConfigurationItemFile.Size;
 
         return result;
     }
