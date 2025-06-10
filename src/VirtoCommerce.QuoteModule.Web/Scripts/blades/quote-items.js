@@ -125,6 +125,16 @@ angular.module('virtoCommerce.quoteModule')
 
     $scope.selectItem = function (node) {
         $scope.selectedNodeId = node.id;
+
+        var newBlade = {
+            id: "quoteItemDetail",
+            currentEntity: node,
+            title: node.name,
+            controller: 'virtoCommerce.quoteModule.quoteItemDetailController',
+            template: 'Modules/$(VirtoCommerce.Quote)/Scripts/blades/quote-item-detail.html'
+        };
+
+        bladeNavigationService.showBlade(newBlade, blade);
     };
 
     $scope.checkAll = function (selected) {

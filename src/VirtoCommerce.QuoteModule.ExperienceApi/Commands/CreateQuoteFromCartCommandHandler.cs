@@ -86,10 +86,9 @@ public class CreateQuoteFromCartCommandHandler : IRequestHandler<CreateQuoteFrom
         });
 
         // combine all errors
-        if (cartAggregate.GetValidationErrors().Any() || cartAggregate.ValidationWarnings.Any() || lineItemValidationErrors.Any())
+        if (cartAggregate.GetValidationErrors().Any() || lineItemValidationErrors.Any())
         {
             var errors = cartAggregate.GetValidationErrors()
-                .Union(cartAggregate.ValidationWarnings)
                 .Union(lineItemValidationErrors)
                 .GroupBy(x => x.ErrorCode)
                 .ToDictionary(x => x.Key, x => x.First().ErrorMessage);

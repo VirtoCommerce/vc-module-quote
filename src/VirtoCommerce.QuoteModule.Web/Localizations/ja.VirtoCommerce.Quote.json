@@ -121,6 +121,38 @@
         "labels": {
           "no-addresses": "まだ住所がありません"
         }
+      },
+      "quote-item-configuration": {
+        "title": "構成",
+        "labels": {
+          "picture": "画像",
+          "quantity": "数量",
+          "text": "テキスト",
+          "product-name": "商品名",
+          "file-name": "ファイル名",
+          "file-size": "ファイルサイズ",
+          "file-content-type": "ファイル形式"
+        },
+        "menu": {
+          "products": {
+            "title": "構成商品の設定",
+            "description": "構成を構成する製品"
+          },
+          "texts": {
+            "title": "構成テキスト",
+            "description": "独自の製品構成を作成するために使用されるさまざまなカスタマイズされたテキスト"
+          },
+          "files": {
+            "title": "設定ファイル",
+            "description": "ユニークな製品構成を作成するために使用される様々なファイル"
+          }
+        },
+        "description": {
+          "no-configuration": "この製品は構成をサポートしていません。",
+          "no-products": "この構成にはまだ製品がありません。",
+          "no-texts": "この構成にはまだテキストがありません。",
+          "no-files": "この構成にはまだファイルがありません。"
+        }
       }
     },
     "widgets": {
@@ -140,6 +172,9 @@
         "shipping": "配送料",
         "discount": "割引",
         "grand-total": "合計"
+      },
+      "configuration": {
+        "title": "構成"
       }
     },
     "dialogs": {

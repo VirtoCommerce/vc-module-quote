@@ -18,6 +18,8 @@ using VirtoCommerce.TaxModule.Core.Model;
 using VirtoCommerce.TaxModule.Core.Model.Search;
 using VirtoCommerce.TaxModule.Core.Services;
 using CartAddress = VirtoCommerce.CartModule.Core.Model.Address;
+using CartConfigurationItem = VirtoCommerce.CartModule.Core.Model.ConfigurationItem;
+using CartConfigurationItemFile = VirtoCommerce.CartModule.Core.Model.ConfigurationItemFile;
 using CartLineItem = VirtoCommerce.CartModule.Core.Model.LineItem;
 using QuoteAddress = VirtoCommerce.QuoteModule.Core.Models.Address;
 using QuoteShipmentMethod = VirtoCommerce.QuoteModule.Core.Models.ShipmentMethod;
@@ -498,11 +500,60 @@ public class QuoteConverter : IQuoteConverter
         result.Sku = item.Sku;
         result.TaxType = item.TaxType;
         result.Quantity = item.Quantity;
+        result.IsConfigured = item.IsConfigured;
+
+        result.ConfigurationItems = item.ConfigurationItems?.Convert(FromCartConfigurationItems);
+
         var tierPrice = AbstractTypeFactory<TierPrice>.TryCreateInstance();
         tierPrice.Price = item.SalePrice;
         tierPrice.Quantity = item.Quantity;
 
         result.ProposalPrices = new[] { tierPrice };
+
+        return result;
+    }
+
+    protected virtual IList<QuoteConfigurationItem> FromCartConfigurationItems(ICollection<CartConfigurationItem> items)
+    {
+        return items
+            .Select(FromCartConfigurationItem)
+            .ToList();
+    }
+
+    protected virtual QuoteConfigurationItem FromCartConfigurationItem(CartConfigurationItem cartConfigurationItem)
+    {
+        var result = AbstractTypeFactory<QuoteConfigurationItem>.TryCreateInstance();
+
+        result.ProductId = cartConfigurationItem.ProductId;
+        result.Name = cartConfigurationItem.Name;
+        result.Sku = cartConfigurationItem.Sku;
+        result.Quantity = cartConfigurationItem.Quantity;
+        result.ImageUrl = cartConfigurationItem.ImageUrl;
+        result.CatalogId = cartConfigurationItem.CatalogId;
+        result.CategoryId = cartConfigurationItem.CategoryId;
+        result.Type = cartConfigurationItem.Type;
+        result.CustomText = cartConfigurationItem.CustomText;
+
+        result.Files = cartConfigurationItem.Files?.Convert(FromCartConfigurationItemFiles);
+
+        return result;
+    }
+
+    protected virtual IList<QuoteConfigurationItemFile> FromCartConfigurationItemFiles(ICollection<CartConfigurationItemFile> files)
+    {
+        return files
+            .Select(FromCartConfigurationItemFile)
+            .ToList();
+    }
+
+    protected virtual QuoteConfigurationItemFile FromCartConfigurationItemFile(CartConfigurationItemFile file)
+    {
+        var result = AbstractTypeFactory<QuoteConfigurationItemFile>.TryCreateInstance();
+
+        result.Url = file.Url;
+        result.Name = file.Name;
+        result.ContentType = file.ContentType;
+        result.Size = file.Size;
 
         return result;
     }
@@ -617,8 +668,56 @@ public class QuoteConverter : IQuoteConverter
         result.DiscountAmount = result.ListPrice - result.SalePrice;
         result.IsReadOnly = true;
 
+        result.IsConfigured = item.IsConfigured;
+        result.ConfigurationItems = item.ConfigurationItems?.Convert(ToCartConfigurationItems);
+
         // Workaround for the cart to order converter
         result.Id = Guid.NewGuid().ToString();
+
+        return result;
+    }
+
+    protected virtual IList<CartConfigurationItem> ToCartConfigurationItems(ICollection<QuoteConfigurationItem> quoteConfigurationItems)
+    {
+        return quoteConfigurationItems
+            .Select(ToCartConfigurationItem)
+            .ToList();
+    }
+
+    protected virtual CartConfigurationItem ToCartConfigurationItem(QuoteConfigurationItem quoteConfigurationItem)
+    {
+        var result = AbstractTypeFactory<CartConfigurationItem>.TryCreateInstance();
+
+        result.ProductId = quoteConfigurationItem.ProductId;
+        result.Name = quoteConfigurationItem.Name;
+        result.Sku = quoteConfigurationItem.Sku;
+        result.Quantity = quoteConfigurationItem.Quantity;
+        result.ImageUrl = quoteConfigurationItem.ImageUrl;
+        result.CatalogId = quoteConfigurationItem.CatalogId;
+        result.CategoryId = quoteConfigurationItem.CategoryId;
+        result.Type = quoteConfigurationItem.Type;
+        result.CustomText = quoteConfigurationItem.CustomText;
+
+        result.Files = quoteConfigurationItem.Files?.Convert(ToCartConfigurationItemFiles);
+
+        return result;
+    }
+
+    protected virtual IList<CartConfigurationItemFile> ToCartConfigurationItemFiles(IList<QuoteConfigurationItemFile> quoteConfigurationItemFiles)
+    {
+        return quoteConfigurationItemFiles
+            .Select(ToCartConfigurationItemFile)
+            .ToList();
+    }
+
+    protected virtual CartConfigurationItemFile ToCartConfigurationItemFile(QuoteConfigurationItemFile quoteConfigurationItemFile)
+    {
+        var result = AbstractTypeFactory<CartConfigurationItemFile>.TryCreateInstance();
+
+        result.Url = quoteConfigurationItemFile.Url;
+        result.Name = quoteConfigurationItemFile.Name;
+        result.ContentType = quoteConfigurationItemFile.ContentType;
+        result.Size = quoteConfigurationItemFile.Size;
 
         return result;
     }

@@ -121,6 +121,38 @@
         "labels": {
           "no-addresses": "Pas encore d'adresses"
         }
+      },
+      "quote-item-configuration": {
+        "title": "Configuration",
+        "labels": {
+          "picture": "Image",
+          "quantity": "Quantité",
+          "text": "Texte",
+          "product-name": "Nom du produit",
+          "file-name": "Nom du fichier",
+          "file-size": "Taille du fichier",
+          "file-content-type": "Type de fichier"
+        },
+        "menu": {
+          "products": {
+            "title": "Produits de configuration",
+            "description": "Produits qui composent la configuration"
+          },
+          "texts": {
+            "title": "Textes de configuration",
+            "description": "Divers textes personnalisés utilisés pour créer une configuration de produit unique"
+          },
+          "files": {
+            "title": "Fichiers de configuration",
+            "description": "Fichiers utilisés pour créer une configuration de produit unique"
+          }
+        },
+        "description": {
+          "no-configuration": "Ce produit ne prend pas en charge la configuration.",
+          "no-products": "Ce configuration n'a pas encore de produits.",
+          "no-texts": "Ce configuration n'a pas encore de textes.",
+          "no-files": "Cette configuration ne contient aucun fichier pour le moment."
+        }
       }
     },
     "widgets": {
@@ -140,6 +172,9 @@
         "shipping": "Expédition",
         "discount": "Remise",
         "grand-total": "Total général"
+      },
+      "configuration": {
+        "title": "Configuration"
       }
     },
     "dialogs": {

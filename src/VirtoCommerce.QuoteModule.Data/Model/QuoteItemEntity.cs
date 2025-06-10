@@ -52,12 +52,16 @@ namespace VirtoCommerce.QuoteModule.Data.Model
 
         public int Quantity { get; set; }
 
+        public bool IsConfigured { get; set; }
+
         #region Navigation Properties
 
         public virtual QuoteRequestEntity QuoteRequest { get; set; }
         public string QuoteRequestId { get; set; }
 
         public virtual ObservableCollection<TierPriceEntity> ProposalPrices { get; set; }
+
+        public virtual ObservableCollection<QuoteConfigurationItemEntity> ConfigurationItems { get; set; } = new NullCollection<QuoteConfigurationItemEntity>();
 
         #endregion
 
@@ -81,7 +85,9 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             target.Name = _.Name;
             target.Sku = _.Sku;
             target.Quantity = _.Quantity;
+            target.IsConfigured = _.IsConfigured;
             target.ProposalPrices = ProposalPrices.Select(x => x.ToModel(AbstractTypeFactory<TierPrice>.TryCreateInstance())).ToList();
+            target.ConfigurationItems = ConfigurationItems.Select(x => x.ToModel(AbstractTypeFactory<QuoteConfigurationItem>.TryCreateInstance())).ToList();
 
             return target;
         }
@@ -108,10 +114,16 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             target.Name = _.Name;
             target.Sku = _.Sku;
             target.Quantity = _.Quantity;
+            target.IsConfigured = _.IsConfigured;
 
             if (_.ProposalPrices != null)
             {
                 ProposalPrices = new ObservableCollection<TierPriceEntity>(_.ProposalPrices.Select(x => AbstractTypeFactory<TierPriceEntity>.TryCreateInstance().FromModel(x)));
+            }
+
+            if (_.ConfigurationItems != null)
+            {
+                ConfigurationItems = new ObservableCollection<QuoteConfigurationItemEntity>(_.ConfigurationItems.Select(x => AbstractTypeFactory<QuoteConfigurationItemEntity>.TryCreateInstance().FromModel(x, pkMap)));
             }
 
             return this;
@@ -135,11 +147,17 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             target.Name = _.Name;
             target.Sku = _.Sku;
             target.Quantity = _.Quantity;
+            target.IsConfigured = _.IsConfigured;
 
             if (!ProposalPrices.IsNullCollection())
             {
                 var tierPriceComparer = AnonymousComparer.Create((TierPriceEntity x) => x.Quantity + "-" + x.Price);
                 ProposalPrices.Patch(target.ProposalPrices, tierPriceComparer, (sourceTierPrice, targetTierPrice) => { });
+            }
+
+            if (!ConfigurationItems.IsNullCollection())
+            {
+                ConfigurationItems.Patch(target.ConfigurationItems, (sourceConfigurationItem, targetConfigurationItem) => sourceConfigurationItem.Patch(targetConfigurationItem));
             }
         }
     }

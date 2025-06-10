@@ -77,5 +77,10 @@ public class QuoteItemType : ExtendableGraphType<QuoteItemAggregate>
         };
 
         AddField(productField);
+
+        ExtendableField<ListGraphType<QuoteConfigurationItemType>>(
+            "configurationItems",
+            "Configuration items for configurable product",
+            resolve: context => context.Source.Model?.ConfigurationItems ?? []);
     }
 }
