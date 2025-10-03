@@ -250,8 +250,8 @@
         "description": "This template or pattern will be used to generate numbers for new quote requests. 0 is the date and time (UTC) when the number was generated, while 1 is the sequence number"
       },
       "EnableQuotes": {
-        "title": "Enable quotes",
-        "description": "Enable the switch to activate quotes in the store"
+        "title": "Quotes",
+        "description": "Enable/ disable quotes in the store"
       },
       "FileUploadScopeName": {
         "title": "File upload scope name",

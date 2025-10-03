@@ -1,0 +1,277 @@
+{
+  "quotes": {
+    "main-menu-title": "Tilbud",
+    "blades": {
+      "quotes-assets": {
+        "subtitle": "Tilbudsvedlegg",
+        "labels": {
+          "drag-note": "Dra og slipp filene dine her",
+          "select-files": "Velg filer",
+          "progress": "Fremdrift",
+          "type": "Type",
+          "name": "Navn",
+          "actions": "Handlinger"
+        }
+      },
+      "quote-detail": {
+        "subtitle": "Tilbudsdetaljer",
+        "labels": {
+          "customer": "Kunde",
+          "created": "Opprettet",
+          "customer-organization": "Kundens selskap",
+          "last-updated": "Sist oppdatert",
+          "status": "Status",
+          "expiry-date": "Utløpsdato",
+          "assigned-to": "Tildelt til",
+          "rfq-from": "Tilbudsforespørsel fra",
+          "reminder-date": "Påminnelsesdato",
+          "general-comment": "Generell kommentar",
+          "internal-comment": "Intern kommentar",
+          "not-defined": "Ikke definert"
+        },
+        "placeholders": {
+          "status": "Velg...",
+          "expiry-date": "Velg dato",
+          "assigned-to": "Velg...",
+          "rfq-from": "Velg butikk...",
+          "reminder-date": "Velg dato",
+          "general-comment": "Offentlig kommentar",
+          "internal-comment": "Intern kommentar"
+        }
+      },
+      "quote-items": {
+        "title": "{{title}} linjeposter",
+        "subtitle": "Rediger linjeposter",
+        "labels": {
+          "new-subtotal": "Ny delsum",
+          "relative-discount": "Relativ rabatt",
+          "shipping-method": "Fraktmetode",
+          "manual-shipping-total": "Total frakt (manuell)",
+          "sub-total-placed": "Delsum (plassert)",
+          "adjustment-quote": "Justering",
+          "sub-total": "Delsum",
+          "shipping": "Frakt",
+          "discount": "Rabatt",
+          "grand-total": "Total sum",
+          "taxes": "Skatter",
+          "grand-total-incl-tax": "Total sum (inkl. skatter)",
+          "picture": "Bilde",
+          "comment": "Produktkommentar",
+          "list-price": "Listepris",
+          "sale-price": "Salgspris",
+          "quantity": "Antall",
+          "proposed-price": "Foreslått pris",
+          "margin": "Margin (GP)",
+          "product": "Produkt",
+          "sku": "SKU"
+        },
+        "placeholders": {
+          "shipping-method": "Velg...",
+          "comment": "Skriv inn kommentar"
+        }
+      },
+      "quotes-list": {
+        "title": "Tilbud",
+        "labels": {
+          "quote-number": "Tilbud #",
+          "status": "Status",
+          "items-count": "Antall poster",
+          "customer": "Kunde",
+          "created": "Opprettet",
+          "no-quotes": "Ingen tilbud ennå"
+        }
+      },
+      "catalog-items-select": {
+        "title": "Legg til vare i tilbudet"
+      },
+      "address-details": {
+        "labels": {
+          "name": "Adressenavn",
+          "address-type": "Adresstype",
+          "first-name": "Fornavn",
+          "middle-name": "Mellomnavn",
+          "last-name": "Etternavn",
+          "country": "Land",
+          "region": "Region",
+          "city": "By",
+          "address1": "Adresselinje 1",
+          "address2": "Adresselinje 2",
+          "zip-code": "Postnummer",
+          "email": "E-post",
+          "phone": "Telefon",
+          "description": "Beskrivelse"
+        },
+        "placeholders": {
+          "address-type": "Velg adresstype...",
+          "first-name": "Skriv inn fornavn...",
+          "middle-name": "Skriv inn mellomnavn...",
+          "last-name": "Skriv inn etternavn...",
+          "country": "Velg land...",
+          "region": "Velg region...",
+          "city": "Skriv inn by...",
+          "address1": "Skriv inn adresselinje 1...",
+          "address2": "Skriv inn adresselinje 2...",
+          "zip-code": "Skriv inn postnummer...",
+          "email": "Skriv inn e-post...",
+          "phone": "Skriv inn telefon...",
+          "description": "Skriv inn beskrivelse..."
+        }
+      },
+      "address-list": {
+        "labels": {
+          "no-addresses": "Ingen adresser ennå"
+        }
+      },
+      "quote-item-configuration": {
+        "title": "Konfigurasjon",
+        "labels": {
+          "picture": "Bilde",
+          "quantity": "Antall",
+          "text": "Tekst",
+          "product-name": "Produktnavn",
+          "file-name": "Filnavn",
+          "file-size": "Filstørrelse",
+          "file-content-type": "Filtype"
+        },
+        "menu": {
+          "products": {
+            "title": "Konfigurasjonsprodukter",
+            "description": "Produkter som utgjør konfigurasjonen"
+          },
+          "texts": {
+            "title": "Konfigurasjonstekster",
+            "description": "Ulike tilpassede tekster som brukes til å skape en unik produktkonfigurasjon"
+          },
+          "files": {
+            "title": "Konfigurasjonsfiler",
+            "description": "Ulike filer som brukes til å skape en unik produktkonfigurasjon"
+          }
+        },
+        "description": {
+          "no-configuration": "Dette produktet støtter ikke konfigurasjon.",
+          "no-products": "Denne konfigurasjonen har ingen produkter ennå.",
+          "no-texts": "Denne konfigurasjonen har ingen tekster ennå.",
+          "no-files": "Denne konfigurasjonen har ingen filer ennå."
+        }
+      }
+    },
+    "widgets": {
+      "quote-address": {
+        "address-type": "Adresstype",
+        "no-address": "Ingen adresse",
+        "blade-subtitle": "Administrer adresser"
+      },
+      "quotes-assets": {
+        "title": "Vedlegg"
+      },
+      "quote-items": {
+        "title": "Linjeposter"
+      },
+      "quote-totals": {
+        "sub-total": "Delsum",
+        "shipping": "Frakt",
+        "discount": "Rabatt",
+        "grand-total": "Total sum"
+      },
+      "configuration": {
+        "title": "Konfigurasjon"
+      }
+    },
+    "dialogs": {
+      "quote-requests-delete": {
+        "title": "Bekreft sletting",
+        "message": "Er du sikker på at du vil slette de valgte tilbudsforespørslene?"
+      },
+      "quote-delete": {
+        "title": "Bekreft sletting",
+        "message": "Er du sikker på at du vil slette dette tilbudet?"
+      },
+      "quote-save": {
+        "title": "Lagre endringer",
+        "message": "Tilbudet har blitt endret. Vil du lagre endringene?"
+      },
+      "quote-cancel": {
+        "title": "Avbryt tilbud",
+        "message": "Er du sikker på at du vil avbryte dette tilbudet?",
+        "placeholders": {
+          "reason": "Skriv inn årsak her..."
+        }
+      },
+      "proposal-submit": {
+        "title": "Bekreft forslag",
+        "message": "Når du har sendt inn forslaget ditt, vil visse deler av tilbudet bli låst og kan ikke endres. Er du sikker på at du vil fortsette?"
+      },
+      "proposal-submit-with-warning": {
+        "title": "Ufullstendig tilbudsforslag",
+        "message": "Advarsel: Tilbudet mangler eller har null i total. Sørg for at alle poster er oppført og priset korrekt før du fortsetter. Er du sikker på at du vil fortsette?"
+      },
+      "hold-confirmation": {
+        "title": "Bekreft hold",
+        "message-release": "Er du sikker på at du vil reaktivere dette tilbudet?",
+        "message-place": "Er du sikker på at du vil sette dette tilbudet på vent?"
+      },
+      "address-delete": {
+        "title": "Bekreft sletting",
+        "message": "Er du sikker på at du vil slette denne adressen?"
+      },
+      "address-save": {
+        "title": "Lagre endringer",
+        "message": "Adressen har blitt endret. Vil du lagre endringene?"
+      }
+    },
+    "commands": {
+      "release-hold": "Reaktiver",
+      "place-on-hold": "Sett på vent",
+      "submit-proposal": "Send inn forslag",
+      "cancel-document": "Avbryt dokument",
+      "add-selected": "Legg til valgte",
+      "add-item": "Legg til vare"
+    }
+  },
+  "permissions": {
+    "quote:access": "Åpne tilbudsmeny",
+    "quote:create": "Opprett tilbud",
+    "quote:read": "Vis tilbud",
+    "quote:update": "Oppdater tilbud",
+    "quote:delete": "Slett tilbud"
+  },
+  "settings": {
+    "Quotes": {
+      "Status": {
+        "title": "Tilbudsstatuser",
+        "description": "Liste over gyldige tilbudsstatuser"
+      },
+      "DefaultStatus": {
+        "title": "Standard tilbudsstatus",
+        "description": "Denne statusen vil bli tildelt tilbudet som opprettes fra handlekurven"
+      },
+      "QuoteRequestNewNumberTemplate": {
+        "title": "Mal for tilbudsforespørselsnummer",
+        "description": "Denne malen eller mønsteret vil bli brukt til å generere nummer for nye tilbudsforespørsler. 0 er dato og tid (UTC) når nummeret ble generert, mens 1 er sekvensnummeret"
+      },
+      "EnableQuotes": {
+        "title": "Aktiver tilbud",
+        "description": "Aktiver bryteren for å aktivere tilbud i butikken"
+      },
+      "FileUploadScopeName": {
+        "title": "Navn på filopplastingsomfang",
+        "description": "Angi omfangsnavnet for konfigurasjoner og retningslinjer for filopplasting. Standard: quote-attachments"
+      }
+    }
+  },
+  "file-upload-error": {
+    "status": "Feil",
+    "status-text": "Filopplasting mislyktes",
+    "invalid-configuration": "Omfanget for filopplasting er ikke konfigurert",
+    "template": "{{fileName}}: {{errorMessage}}",
+    "duplicate-name": "En fil med samme navn finnes allerede",
+    "INVALID_SIZE": "Filstørrelsen overstiger {{parameter}} byte",
+    "INVALID_EXTENSION": "Filtypen er ikke en av de tillatte typene ({{parameter}})",
+    "UNKNOWN_ERROR": "Ukjent feil: {{message}}"
+  },
+  "module": {
+    "VirtoCommerce.Quote": {
+      "description": "Eksporter eller importer tilbudsforespørsler (RFQ)"
+    }
+  }
+}

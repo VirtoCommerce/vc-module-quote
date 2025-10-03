@@ -1,0 +1,277 @@
+{
+  "quotes": {
+    "main-menu-title": "Offert",
+    "blades": {
+      "quotes-assets": {
+        "subtitle": "Offertbilagor",
+        "labels": {
+          "drag-note": "Dra och släpp dina filer här",
+          "select-files": "Välj filer",
+          "progress": "Förlopp",
+          "type": "Typ",
+          "name": "Namn",
+          "actions": "Åtgärder"
+        }
+      },
+      "quote-detail": {
+        "subtitle": "Offertdetaljer",
+        "labels": {
+          "customer": "Kund",
+          "created": "Skapad",
+          "customer-organization": "Kundens företag",
+          "last-updated": "Senast uppdaterad",
+          "status": "Status",
+          "expiry-date": "Utgångsdatum",
+          "assigned-to": "Tilldelad till",
+          "rfq-from": "Offertförfrågan från",
+          "reminder-date": "Påminnelsedatum",
+          "general-comment": "Allmän kommentar",
+          "internal-comment": "Intern kommentar",
+          "not-defined": "Ej definierad"
+        },
+        "placeholders": {
+          "status": "Välj...",
+          "expiry-date": "Välj datum",
+          "assigned-to": "Välj...",
+          "rfq-from": "Välj butik...",
+          "reminder-date": "Välj datum",
+          "general-comment": "Offentlig kommentar",
+          "internal-comment": "Intern kommentar"
+        }
+      },
+      "quote-items": {
+        "title": "{{title}} radartiklar",
+        "subtitle": "Redigera radartiklar",
+        "labels": {
+          "new-subtotal": "Ny delsumma",
+          "relative-discount": "Relativ rabatt",
+          "shipping-method": "Fraktsätt",
+          "manual-shipping-total": "Total frakt (manuell)",
+          "sub-total-placed": "Delsumma (lagd)",
+          "adjustment-quote": "Justering",
+          "sub-total": "Delsumma",
+          "shipping": "Frakt",
+          "discount": "Rabatt",
+          "grand-total": "Totalsumma",
+          "taxes": "Skatter",
+          "grand-total-incl-tax": "Totalsumma (inkl. skatter)",
+          "picture": "Bild",
+          "comment": "Produktkommentar",
+          "list-price": "Listpris",
+          "sale-price": "Försäljningspris",
+          "quantity": "Antal",
+          "proposed-price": "Föreslaget pris",
+          "margin": "Marginal (GP)",
+          "product": "Produkt",
+          "sku": "SKU"
+        },
+        "placeholders": {
+          "shipping-method": "Välj...",
+          "comment": "Ange kommentar"
+        }
+      },
+      "quotes-list": {
+        "title": "Offerter",
+        "labels": {
+          "quote-number": "Offert #",
+          "status": "Status",
+          "items-count": "Antal artiklar",
+          "customer": "Kund",
+          "created": "Skapad",
+          "no-quotes": "Inga offerter ännu"
+        }
+      },
+      "catalog-items-select": {
+        "title": "Lägg till artikel i offerten"
+      },
+      "address-details": {
+        "labels": {
+          "name": "Adressnamn",
+          "address-type": "Adresstyp",
+          "first-name": "Förnamn",
+          "middle-name": "Mellannamn",
+          "last-name": "Efternamn",
+          "country": "Land",
+          "region": "Region",
+          "city": "Stad",
+          "address1": "Adressrad 1",
+          "address2": "Adressrad 2",
+          "zip-code": "Postnummer",
+          "email": "E-post",
+          "phone": "Telefon",
+          "description": "Beskrivning"
+        },
+        "placeholders": {
+          "address-type": "Välj adresstyp...",
+          "first-name": "Ange förnamn...",
+          "middle-name": "Ange mellannamn...",
+          "last-name": "Ange efternamn...",
+          "country": "Välj land...",
+          "region": "Välj region...",
+          "city": "Ange stad...",
+          "address1": "Ange adressrad 1...",
+          "address2": "Ange adressrad 2...",
+          "zip-code": "Ange postnummer...",
+          "email": "Ange e-post...",
+          "phone": "Ange telefon...",
+          "description": "Ange beskrivning..."
+        }
+      },
+      "address-list": {
+        "labels": {
+          "no-addresses": "Inga adresser ännu"
+        }
+      },
+      "quote-item-configuration": {
+        "title": "Konfiguration",
+        "labels": {
+          "picture": "Bild",
+          "quantity": "Antal",
+          "text": "Text",
+          "product-name": "Produktnamn",
+          "file-name": "Filnamn",
+          "file-size": "Filstorlek",
+          "file-content-type": "Filtyp"
+        },
+        "menu": {
+          "products": {
+            "title": "Konfigurationsprodukter",
+            "description": "Produkter som ingår i konfigurationen"
+          },
+          "texts": {
+            "title": "Konfigurationstexter",
+            "description": "Olika anpassade texter som används för att skapa en unik produktkonfiguration"
+          },
+          "files": {
+            "title": "Konfigurationsfiler",
+            "description": "Olika filer som används för att skapa en unik produktkonfiguration"
+          }
+        },
+        "description": {
+          "no-configuration": "Denna produkt stöder inte konfiguration.",
+          "no-products": "Denna konfiguration har inga produkter ännu.",
+          "no-texts": "Denna konfiguration har inga texter ännu.",
+          "no-files": "Denna konfiguration har inga filer ännu."
+        }
+      }
+    },
+    "widgets": {
+      "quote-address": {
+        "address-type": "Adresstyp",
+        "no-address": "Ingen adress",
+        "blade-subtitle": "Hantera adresser"
+      },
+      "quotes-assets": {
+        "title": "Bilagor"
+      },
+      "quote-items": {
+        "title": "Radartiklar"
+      },
+      "quote-totals": {
+        "sub-total": "Delsumma",
+        "shipping": "Frakt",
+        "discount": "Rabatt",
+        "grand-total": "Totalsumma"
+      },
+      "configuration": {
+        "title": "Konfiguration"
+      }
+    },
+    "dialogs": {
+      "quote-requests-delete": {
+        "title": "Bekräfta radering",
+        "message": "Är du säker på att du vill radera de valda offertförfrågningarna?"
+      },
+      "quote-delete": {
+        "title": "Bekräfta radering",
+        "message": "Är du säker på att du vill radera denna offert?"
+      },
+      "quote-save": {
+        "title": "Spara ändringar",
+        "message": "Offerten har ändrats. Vill du spara ändringarna?"
+      },
+      "quote-cancel": {
+        "title": "Avbryt offert",
+        "message": "Är du säker på att du vill avbryta denna offert?",
+        "placeholders": {
+          "reason": "Ange orsak här..."
+        }
+      },
+      "proposal-submit": {
+        "title": "Bekräfta förslag",
+        "message": "När du har skickat in ditt förslag kommer vissa delar av offerten att låsas och kan inte ändras. Är du säker på att du vill fortsätta?"
+      },
+      "proposal-submit-with-warning": {
+        "title": "Ofullständigt offertförslag",
+        "message": "Varning: Erbjudandet saknas eller är noll. Se till att alla artiklar är listade och korrekt prissatta innan du fortsätter. Är du säker på att du vill fortsätta?"
+      },
+      "hold-confirmation": {
+        "title": "Bekräfta paus",
+        "message-release": "Är du säker på att du vill återaktivera denna offert?",
+        "message-place": "Är du säker på att du vill sätta denna offert på paus?"
+      },
+      "address-delete": {
+        "title": "Bekräfta radering",
+        "message": "Är du säker på att du vill radera denna adress?"
+      },
+      "address-save": {
+        "title": "Spara ändringar",
+        "message": "Adressen har ändrats. Vill du spara ändringarna?"
+      }
+    },
+    "commands": {
+      "release-hold": "Återaktivera",
+      "place-on-hold": "Sätt på paus",
+      "submit-proposal": "Skicka förslag",
+      "cancel-document": "Avbryt dokument",
+      "add-selected": "Lägg till valda",
+      "add-item": "Lägg till artikel"
+    }
+  },
+  "permissions": {
+    "quote:access": "Öppna offertmenyn",
+    "quote:create": "Skapa offert",
+    "quote:read": "Visa offerter",
+    "quote:update": "Uppdatera offerter",
+    "quote:delete": "Radera offerter"
+  },
+  "settings": {
+    "Quotes": {
+      "Status": {
+        "title": "Offertstatusar",
+        "description": "Lista över giltiga offertstatusar"
+      },
+      "DefaultStatus": {
+        "title": "Standard offertstatus",
+        "description": "Denna status tilldelas offerten som skapas från kundvagnen"
+      },
+      "QuoteRequestNewNumberTemplate": {
+        "title": "Mall för offertförfrågansnummer",
+        "description": "Denna mall eller mönster används för att generera nummer för nya offertförfrågningar. 0 är datum och tid (UTC) när numret genererades, medan 1 är sekvensnumret"
+      },
+      "EnableQuotes": {
+        "title": "Aktivera offerter",
+        "description": "Aktivera knappen för att aktivera offerter i butiken"
+      },
+      "FileUploadScopeName": {
+        "title": "Namn på filuppladdningens omfattning",
+        "description": "Ange omfattningsnamnet för konfigurationer och policyer för filuppladdning. Standard: quote-attachments"
+      }
+    }
+  },
+  "file-upload-error": {
+    "status": "Fel",
+    "status-text": "Filuppladdning misslyckades",
+    "invalid-configuration": "Omfattningen för filuppladdning är inte konfigurerad",
+    "template": "{{fileName}}: {{errorMessage}}",
+    "duplicate-name": "En fil med samma namn finns redan",
+    "INVALID_SIZE": "Filstorleken överstiger {{parameter}} byte",
+    "INVALID_EXTENSION": "Filtypen är inte en av de tillåtna typerna ({{parameter}})",
+    "UNKNOWN_ERROR": "Okänt fel: {{message}}"
+  },
+  "module": {
+    "VirtoCommerce.Quote": {
+      "description": "Exportera eller importera offertförfrågningar (RFQ)"
+    }
+  }
+}
