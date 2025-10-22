@@ -251,7 +251,7 @@
       },
       "EnableQuotes": {
         "title": "Quotes",
-        "description": "Enable/ disable quotes in the store"
+        "description": "Enable/ disable quotes for the store"
       },
       "FileUploadScopeName": {
         "title": "File upload scope name",
