@@ -1,0 +1,277 @@
+{
+  "quotes": {
+    "main-menu-title": "Tarjoukset",
+    "blades": {
+      "quotes-assets": {
+        "subtitle": "Tarjouksen liitteet",
+        "labels": {
+          "drag-note": "Raahaa ja pudota tiedostosi tähän",
+          "select-files": "Valitse tiedostot",
+          "progress": "Edistyminen",
+          "type": "Tyyppi",
+          "name": "Nimi",
+          "actions": "Toiminnot"
+        }
+      },
+      "quote-detail": {
+        "subtitle": "Tarjouksen tiedot",
+        "labels": {
+          "customer": "Asiakas",
+          "created": "Luotu",
+          "customer-organization": "Asiakkaan yritys",
+          "last-updated": "Viimeksi päivitetty",
+          "status": "Tila",
+          "expiry-date": "Viimeinen voimassaolopäivä",
+          "assigned-to": "Määrätty henkilölle",
+          "rfq-from": "Tarjouspyyntö kohteesta",
+          "reminder-date": "Muistutuspäivä",
+          "general-comment": "Yleinen kommentti",
+          "internal-comment": "Sisäinen kommentti",
+          "not-defined": "Ei määritelty"
+        },
+        "placeholders": {
+          "status": "Valitse...",
+          "expiry-date": "Valitse päivä",
+          "assigned-to": "Valitse...",
+          "rfq-from": "Valitse kauppa...",
+          "reminder-date": "Valitse päivä",
+          "general-comment": "Julkinen kommentti",
+          "internal-comment": "Sisäinen kommentti"
+        }
+      },
+      "quote-items": {
+        "title": "{{title}} rivikohteet",
+        "subtitle": "Muokkaa rivikohteita",
+        "labels": {
+          "new-subtotal": "Uusi välisumma",
+          "relative-discount": "Suhteellinen alennus",
+          "shipping-method": "Toimitustapa",
+          "manual-shipping-total": "Toimituskulut yhteensä (manuaalinen)",
+          "sub-total-placed": "Välisumma (vahvistettu)",
+          "adjustment-quote": "Säätö",
+          "sub-total": "Välisumma",
+          "shipping": "Toimitus",
+          "discount": "Alennus",
+          "grand-total": "Kokonaissumma",
+          "taxes": "Verot",
+          "grand-total-incl-tax": "Kokonaissumma (sis. verot)",
+          "picture": "Kuva",
+          "comment": "Tuotekommentti",
+          "list-price": "Listahinta",
+          "sale-price": "Myyntihinta",
+          "quantity": "Määrä",
+          "proposed-price": "Ehdotettu hinta",
+          "margin": "Marginaali (GP)",
+          "product": "Tuote",
+          "sku": "SKU"
+        },
+        "placeholders": {
+          "shipping-method": "Valitse...",
+          "comment": "Syötä kommentti"
+        }
+      },
+      "quotes-list": {
+        "title": "Tarjoukset",
+        "labels": {
+          "quote-number": "Tarjous #",
+          "status": "Tila",
+          "items-count": "Kohteiden määrä",
+          "customer": "Asiakas",
+          "created": "Luotu",
+          "no-quotes": "Ei vielä tarjouksia"
+        }
+      },
+      "catalog-items-select": {
+        "title": "Lisää kohde tarjoukseen"
+      },
+      "address-details": {
+        "labels": {
+          "name": "Osoitteen nimi",
+          "address-type": "Osoitteen tyyppi",
+          "first-name": "Etunimi",
+          "middle-name": "Toinen nimi",
+          "last-name": "Sukunimi",
+          "country": "Maa",
+          "region": "Alue",
+          "city": "Kaupunki",
+          "address1": "Osoiterivi 1",
+          "address2": "Osoiterivi 2",
+          "zip-code": "Postinumero",
+          "email": "Sähköposti",
+          "phone": "Puhelin",
+          "description": "Kuvaus"
+        },
+        "placeholders": {
+          "address-type": "Valitse osoitteen tyyppi...",
+          "first-name": "Syötä etunimi...",
+          "middle-name": "Syötä toinen nimi...",
+          "last-name": "Syötä sukunimi...",
+          "country": "Valitse maa...",
+          "region": "Valitse alue...",
+          "city": "Syötä kaupunki...",
+          "address1": "Syötä osoiterivi 1...",
+          "address2": "Syötä osoiterivi 2...",
+          "zip-code": "Syötä postinumero...",
+          "email": "Syötä sähköposti...",
+          "phone": "Syötä puhelin...",
+          "description": "Syötä kuvaus..."
+        }
+      },
+      "address-list": {
+        "labels": {
+          "no-addresses": "Ei vielä osoitteita"
+        }
+      },
+      "quote-item-configuration": {
+        "title": "Konfiguraatio",
+        "labels": {
+          "picture": "Kuva",
+          "quantity": "Määrä",
+          "text": "Teksti",
+          "product-name": "Tuotteen nimi",
+          "file-name": "Tiedoston nimi",
+          "file-size": "Tiedoston koko",
+          "file-content-type": "Tiedostotyyppi"
+        },
+        "menu": {
+          "products": {
+            "title": "Konfiguraation tuotteet",
+            "description": "Tuotteet, jotka muodostavat konfiguraation"
+          },
+          "texts": {
+            "title": "Konfiguraation tekstit",
+            "description": "Erilaisia mukautettuja tekstejä, joita käytetään yksilöllisen tuotekonfiguraation luomiseen"
+          },
+          "files": {
+            "title": "Konfiguraation tiedostot",
+            "description": "Erilaisia tiedostoja, joita käytetään yksilöllisen tuotekonfiguraation luomiseen"
+          }
+        },
+        "description": {
+          "no-configuration": "Tämä tuote ei tue konfiguraatiota.",
+          "no-products": "Tällä konfiguraatiolla ei ole vielä yhtään tuotetta.",
+          "no-texts": "Tällä konfiguraatiolla ei ole vielä yhtään tekstiä.",
+          "no-files": "Tällä konfiguraatiolla ei ole vielä yhtään tiedostoa."
+        }
+      }
+    },
+    "widgets": {
+      "quote-address": {
+        "address-type": "Osoitteen tyyppi",
+        "no-address": "Ei osoitetta",
+        "blade-subtitle": "Hallinnoi osoitteita"
+      },
+      "quotes-assets": {
+        "title": "Liitteet"
+      },
+      "quote-items": {
+        "title": "Rivikohteet"
+      },
+      "quote-totals": {
+        "sub-total": "Välisumma",
+        "shipping": "Toimitus",
+        "discount": "Alennus",
+        "grand-total": "Kokonaissumma"
+      },
+      "configuration": {
+        "title": "Konfiguraatio"
+      }
+    },
+    "dialogs": {
+      "quote-requests-delete": {
+        "title": "Vahvista poisto",
+        "message": "Oletko varma, että haluat poistaa valitut tarjouspyynnöt?"
+      },
+      "quote-delete": {
+        "title": "Vahvista poisto",
+        "message": "Oletko varma, että haluat poistaa tämän tarjouksen?"
+      },
+      "quote-save": {
+        "title": "Tallenna muutokset",
+        "message": "Tarjousta on muokattu. Haluatko tallentaa muutokset?"
+      },
+      "quote-cancel": {
+        "title": "Peruuta tarjous",
+        "message": "Oletko varma, että haluat peruuttaa tämän tarjouksen?",
+        "placeholders": {
+          "reason": "Syötä syy tähän..."
+        }
+      },
+      "proposal-submit": {
+        "title": "Vahvista ehdotus",
+        "message": "Kun olet lähettänyt ehdotuksesi, tietyt tarjouksen osat lukitaan eivätkä ole muokattavissa. Oletko varma, että haluat jatkaa?"
+      },
+      "proposal-submit-with-warning": {
+        "title": "Epätäydellinen tarjousehdotus",
+        "message": "Varoitus: Tarjous puuttuu tai sen summa on nolla. Varmista, että kaikki kohteet on listattu ja hinnoiteltu oikein ennen jatkamista. Oletko varma, että haluat jatkaa?"
+      },
+      "hold-confirmation": {
+        "title": "Vahvista pidätys",
+        "message-release": "Oletko varma, että haluat aktivoida tämän tarjouksen uudelleen?",
+        "message-place": "Oletko varma, että haluat asettaa tämän tarjouksen pidätykseen?"
+      },
+      "address-delete": {
+        "title": "Vahvista poisto",
+        "message": "Oletko varma, että haluat poistaa tämän osoitteen?"
+      },
+      "address-save": {
+        "title": "Tallenna muutokset",
+        "message": "Osoitetta on muokattu. Haluatko tallentaa muutokset?"
+      }
+    },
+    "commands": {
+      "release-hold": "Aktivoi uudelleen",
+      "place-on-hold": "Aseta pidätykseen",
+      "submit-proposal": "Lähetä ehdotus",
+      "cancel-document": "Peruuta asiakirja",
+      "add-selected": "Lisää valitut",
+      "add-item": "Lisää kohde"
+    }
+  },
+  "permissions": {
+    "quote:access": "Avaa tarjousvalikko",
+    "quote:create": "Luo tarjous",
+    "quote:read": "Näytä tarjouksia",
+    "quote:update": "Päivitä tarjouksia",
+    "quote:delete": "Poista tarjouksia"
+  },
+  "settings": {
+    "Quotes": {
+      "Status": {
+        "title": "Tarjouksen tilat",
+        "description": "Luettelo kelvollisista tarjouksen tiloista"
+      },
+      "DefaultStatus": {
+        "title": "Oletustarjouksen tila",
+        "description": "Tämä tila määritetään ostoskorista luodulle tarjoukselle"
+      },
+      "QuoteRequestNewNumberTemplate": {
+        "title": "Tarjouspyynnön numeromalli",
+        "description": "Tätä mallia tai kaavaa käytetään uusien tarjouspyyntöjen numeroiden luomiseen. 0 on päivämäärä ja aika (UTC), jolloin numero luotiin, kun taas 1 on järjestysnumero"
+      },
+      "EnableQuotes": {
+        "title": "Ota tarjoukset käyttöön",
+        "description": "Ota kytkin käyttöön aktivoidaksesi tarjoukset kaupassa"
+      },
+      "FileUploadScopeName": {
+        "title": "Tiedoston latauksen laajuuden nimi",
+        "description": "Määritä tiedoston latauksen konfiguraatioiden ja käytäntöjen laajuuden nimi. Oletus: quote-attachments"
+      }
+    }
+  },
+  "file-upload-error": {
+    "status": "Virhe",
+    "status-text": "Tiedoston lataus epäonnistui",
+    "invalid-configuration": "Tiedoston latauksen laajuus ei ole määritelty",
+    "template": "{{fileName}}: {{errorMessage}}",
+    "duplicate-name": "Samanniminen tiedosto on jo olemassa",
+    "INVALID_SIZE": "Tiedoston koko ylittää {{parameter}} tavua",
+    "INVALID_EXTENSION": "Tiedostotyyppi ei ole sallittujen tyyppien joukossa ({{parameter}})",
+    "UNKNOWN_ERROR": "Tuntematon virhe: {{message}}"
+  },
+  "module": {
+    "VirtoCommerce.Quote": {
+      "description": "Vie tai tuo tarjouspyyntöjä (RFQ)"
+    }
+  }
+}
