@@ -58,7 +58,10 @@ public class CreateQuoteFromCartCommandHandler : IRequestHandler<CreateQuoteFrom
         quote.Comment = request.Comment;
         await _quoteRequestService.SaveChangesAsync(new[] { quote });
 
-        await _cartService.DeleteAsync(new[] { request.CartId }, softDelete: true);
+        // Clear cart
+        var cartAggregate = await _cartRepository.GetCartForShoppingCartAsync(cart);
+        await cartAggregate.ClearAsync();
+        await _cartRepository.SaveAsync(cartAggregate);
 
         return await _quoteAggregateRepository.GetById(quote.Id);
     }
