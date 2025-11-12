@@ -69,6 +69,11 @@ namespace VirtoCommerce.QuoteModule.Core.Models
             result.ConfigurationItems = ConfigurationItems?.Select(x => x.Clone()).OfType<QuoteConfigurationItem>().ToList();
             result.ProposalPrices = ProposalPrices?.Select(x => x.Clone()).OfType<TierPrice>().ToList();
 
+            if (_selectedTierPrice != null)
+            {
+                result._selectedTierPrice = result.ProposalPrices?.FirstOrDefault(x => _selectedTierPrice.Equals(x));
+            }
+
             return result;
         }
 

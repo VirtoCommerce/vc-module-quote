@@ -87,8 +87,9 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
         var result = new List<QuoteAggregate>();
 
         var currencies = (await _currencyService.GetAllCurrenciesAsync()).ToList();
+        var quotestList = quotes.Select(x => x.Clone()).OfType<QuoteRequest>().ToList();
         var products = await _productService.GetNoCloneAsync(
-                                    quotes.SelectMany(x => x.Items ?? Enumerable.Empty<QuoteItem>())
+                                    quotestList.SelectMany(x => x.Items ?? Enumerable.Empty<QuoteItem>())
                                         .Select(x => x.ProductId)
                                         .Where(x => !string.IsNullOrEmpty(x))
                                         .Distinct()
@@ -97,7 +98,7 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
 
         var productsDictionary = products.ToIDictionary(x => x.Id);
 
-        foreach (var quote in quotes.Select(x => x.Clone()).OfType<QuoteRequest>())
+        foreach (var quote in quotestList)
         {
             // Actualize Cart Language From Context
             if (!string.IsNullOrEmpty(cultureName) && quote.LanguageCode != cultureName)
