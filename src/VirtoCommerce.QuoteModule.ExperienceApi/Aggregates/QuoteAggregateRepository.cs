@@ -95,6 +95,8 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
                                         .ToArray(),
                                     ItemResponseGroup.ItemInfo.ToString());
 
+        var productsDictionary = products.ToIDictionary(x => x.Id);
+
         foreach (var quote in quotes.Select(x => x.Clone()).OfType<QuoteRequest>())
         {
             // Actualize Cart Language From Context
@@ -107,7 +109,7 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
 
             var currency = currencies.GetCurrencyForLanguage(quote.Currency, quote.LanguageCode);
             var store = await _storeService.GetByIdAsync(quote.StoreId);
-            var aggregate = ToQuoteAggregate(quote, currency, store, products);
+            var aggregate = ToQuoteAggregate(quote, currency, store, productsDictionary);
 
             result.Add(aggregate);
         }
@@ -181,7 +183,7 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
         return aggregate;
     }
 
-    protected virtual QuoteAggregate ToQuoteAggregate(QuoteRequest model, Currency currency, Store store, IList<CatalogProduct> products)
+    protected virtual QuoteAggregate ToQuoteAggregate(QuoteRequest model, Currency currency, Store store, IDictionary<string, CatalogProduct> productsDictionary)
     {
         var aggregate = AbstractTypeFactory<QuoteAggregate>.TryCreateInstance();
 
@@ -190,7 +192,7 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
         aggregate.Currency = currency;
 
         aggregate.Totals = model.Totals?.Convert(x => ToQuoteTotalsAggregate(x, aggregate));
-        aggregate.Items = model.Items?.Select(x => ToQuoteItemAggregate(x, aggregate, products?.FirstOrDefault(y => y.Id == x.ProductId))).ToList();
+        aggregate.Items = model.Items?.Select(x => ToQuoteItemAggregate(x, aggregate, productsDictionary.GetValueSafe(x.ProductId))).ToList();
         aggregate.ShipmentMethod = model.ShipmentMethod?.Convert(x => ToQuoteShipmentMethodAggregate(x, aggregate));
         aggregate.TaxDetails = model.TaxDetails?.Select(x => ToQuoteTaxDetailAggregate(x, aggregate)).ToList();
 
