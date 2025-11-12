@@ -95,7 +95,7 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
                                         .ToArray(),
                                     ItemResponseGroup.ItemInfo.ToString());
 
-        foreach (var quote in quotes)
+        foreach (var quote in quotes.Select(x => x.Clone()).OfType<QuoteRequest>())
         {
             // Actualize Cart Language From Context
             if (!string.IsNullOrEmpty(cultureName) && quote.LanguageCode != cultureName)

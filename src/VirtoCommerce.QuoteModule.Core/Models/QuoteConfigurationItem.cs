@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using VirtoCommerce.Platform.Core.Common;
 
 namespace VirtoCommerce.QuoteModule.Core.Models;
 
-public class QuoteConfigurationItem : AuditableEntity
+public class QuoteConfigurationItem : AuditableEntity, ICloneable
 {
     public string LineItemId { get; set; }
 

@@ -7,7 +7,7 @@ using VirtoCommerce.Platform.Core.Common;
 
 namespace VirtoCommerce.QuoteModule.Core.Models
 {
-    public class QuoteItem : Entity
+    public class QuoteItem : Entity, ICloneable
     {
         public string Currency { get; set; }
         /// <summary>
@@ -61,6 +61,16 @@ namespace VirtoCommerce.QuoteModule.Core.Models
         public ICollection<TierPrice> ProposalPrices { get; set; }
 
         public IList<QuoteConfigurationItem> ConfigurationItems { get; set; }
+
+        public object Clone()
+        {
+            var result = (QuoteItem)MemberwiseClone();
+
+            result.ConfigurationItems = ConfigurationItems?.Select(x => x.Clone()).OfType<QuoteConfigurationItem>().ToList();
+            result.ProposalPrices = ProposalPrices?.Select(x => x.Clone()).OfType<TierPrice>().ToList();
+
+            return result;
+        }
 
         [Obsolete("Use IQuoteConverter instead", DiagnosticId = "VC0008", UrlFormat = "https://docs.virtocommerce.org/products/products-virto3-versions")]
         public LineItem ToCartModel(LineItem target)
