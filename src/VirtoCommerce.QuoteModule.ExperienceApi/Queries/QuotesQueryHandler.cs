@@ -36,7 +36,7 @@ public class QuotesQueryHandler : IQueryHandler<QuotesQuery, QuoteAggregateSearc
 
         var result = AbstractTypeFactory<QuoteAggregateSearchResult>.TryCreateInstance();
         result.TotalCount = searchResult.TotalCount;
-        result.Results = await _quoteAggregateRepository.ToQuoteAggregates(searchResult.Results);
+        result.Results = await _quoteAggregateRepository.ToQuoteAggregates(searchResult.Results, request.CultureName);
 
         return result;
     }
@@ -47,7 +47,6 @@ public class QuotesQueryHandler : IQueryHandler<QuotesQuery, QuoteAggregateSearc
         criteria.StoreId = request.StoreId;
         criteria.CustomerId = request.UserId;
         criteria.Currency = request.CurrencyCode;
-        criteria.LanguageCode = request.CultureName;
         criteria.OrganizationId = request.OrganizationId;
 
         // parse Filter argument

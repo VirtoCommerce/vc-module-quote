@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VirtoCommerce.CatalogModule.Core.Model;
+using VirtoCommerce.CatalogModule.Core.Services;
 using VirtoCommerce.CoreModule.Core.Currency;
 using VirtoCommerce.CoreModule.Core.Tax;
 using VirtoCommerce.FileExperienceApi.Core.Models;
@@ -24,6 +26,7 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
     private readonly ICurrencyService _currencyService;
     private readonly IFileUploadService _fileUploadService;
     private readonly IStoreService _storeService;
+    private readonly IItemService _productService;
 
     private const string _attachmentsUrlPrefix = "/api/files/";
     private readonly StringComparer _ignoreCase = StringComparer.OrdinalIgnoreCase;
@@ -33,23 +36,32 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
         IQuoteTotalsCalculator totalsCalculator,
         ICurrencyService currencyService,
         IFileUploadService fileUploadService,
-        IStoreService storeService)
+        IStoreService storeService,
+        IItemService productService)
     {
         _quoteRequestService = quoteRequestService;
         _totalsCalculator = totalsCalculator;
         _currencyService = currencyService;
         _fileUploadService = fileUploadService;
         _storeService = storeService;
+        _productService = productService;
     }
 
     public async Task<QuoteAggregate> GetById(string id)
     {
-        var quotes = await _quoteRequestService.GetByIdsAsync(id);
-        var aggregates = await ToQuoteAggregates(quotes);
+        var quote = (await _quoteRequestService.GetByIdsAsync(id)).FirstOrDefault();
+
+        if (quote == null)
+        {
+            return null;
+        }
+
+        var aggregates = await ToQuoteAggregates([quote], quote.LanguageCode);
 
         return aggregates.FirstOrDefault();
     }
 
+    [Obsolete("Use ToQuoteAggregates(IEnumerable<QuoteRequest> quotes, string cultureName) instead. CultureName argument can be null.", DiagnosticId = "VC0011", UrlFormat = "https://docs.virtocommerce.org/products/products-virto3-versions")]
     public virtual async Task<IList<QuoteAggregate>> ToQuoteAggregates(IEnumerable<QuoteRequest> quotes)
     {
         var result = new List<QuoteAggregate>();
@@ -63,6 +75,42 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
             var currency = currencies.GetCurrencyForLanguage(quote.Currency, quote.LanguageCode);
             var store = await _storeService.GetByIdAsync(quote.StoreId);
             var aggregate = ToQuoteAggregate(quote, currency, store);
+
+            result.Add(aggregate);
+        }
+
+        return result;
+    }
+
+    public virtual async Task<IList<QuoteAggregate>> ToQuoteAggregates(IEnumerable<QuoteRequest> quotes, string cultureName)
+    {
+        var result = new List<QuoteAggregate>();
+
+        var currencies = (await _currencyService.GetAllCurrenciesAsync()).ToList();
+        var quotestList = quotes.Select(x => x.Clone()).OfType<QuoteRequest>().ToList();
+        var products = await _productService.GetNoCloneAsync(
+                                    quotestList.SelectMany(x => x.Items ?? Enumerable.Empty<QuoteItem>())
+                                        .Select(x => x.ProductId)
+                                        .Where(x => !string.IsNullOrEmpty(x))
+                                        .Distinct()
+                                        .ToArray(),
+                                    ItemResponseGroup.ItemInfo.ToString());
+
+        var productsDictionary = products.ToIDictionary(x => x.Id);
+
+        foreach (var quote in quotestList)
+        {
+            // actualize cloned quote languageCode from request cultureName
+            if (!string.IsNullOrEmpty(cultureName) && quote.LanguageCode != cultureName)
+            {
+                quote.LanguageCode = cultureName;
+            }
+
+            quote.Totals = await _totalsCalculator.CalculateTotalsAsync(quote);
+
+            var currency = currencies.GetCurrencyForLanguage(quote.Currency, quote.LanguageCode);
+            var store = await _storeService.GetByIdAsync(quote.StoreId);
+            var aggregate = ToQuoteAggregate(quote, currency, store, productsDictionary);
 
             result.Add(aggregate);
         }
@@ -119,6 +167,7 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
         }
     }
 
+    [Obsolete("Use ToQuoteAggregate(QuoteRequest model, Currency currency, Store store, IList<CatalogProduct> products) instead. Products can be null or empty.", DiagnosticId = "VC0011", UrlFormat = "https://docs.virtocommerce.org/products/products-virto3-versions")]
     protected virtual QuoteAggregate ToQuoteAggregate(QuoteRequest model, Currency currency, Store store)
     {
         var aggregate = AbstractTypeFactory<QuoteAggregate>.TryCreateInstance();
@@ -135,6 +184,22 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
         return aggregate;
     }
 
+    protected virtual QuoteAggregate ToQuoteAggregate(QuoteRequest model, Currency currency, Store store, IDictionary<string, CatalogProduct> productsDictionary)
+    {
+        var aggregate = AbstractTypeFactory<QuoteAggregate>.TryCreateInstance();
+
+        aggregate.Store = store;
+        aggregate.Model = model;
+        aggregate.Currency = currency;
+
+        aggregate.Totals = model.Totals?.Convert(x => ToQuoteTotalsAggregate(x, aggregate));
+        aggregate.Items = model.Items?.Select(x => ToQuoteItemAggregate(x, aggregate, productsDictionary.GetValueSafe(x.ProductId))).ToList();
+        aggregate.ShipmentMethod = model.ShipmentMethod?.Convert(x => ToQuoteShipmentMethodAggregate(x, aggregate));
+        aggregate.TaxDetails = model.TaxDetails?.Select(x => ToQuoteTaxDetailAggregate(x, aggregate)).ToList();
+
+        return aggregate;
+    }
+
     protected virtual QuoteTotalsAggregate ToQuoteTotalsAggregate(QuoteRequestTotals model, QuoteAggregate quote)
     {
         var aggregate = AbstractTypeFactory<QuoteTotalsAggregate>.TryCreateInstance();
@@ -145,11 +210,32 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
         return aggregate;
     }
 
+    [Obsolete("Use ToQuoteItemAggregate(QuoteItem model, QuoteAggregate quote, CatalogProduct product) instead. Product can be null.", DiagnosticId = "VC0011", UrlFormat = "https://docs.virtocommerce.org/products/products-virto3-versions")]
     protected virtual QuoteItemAggregate ToQuoteItemAggregate(QuoteItem model, QuoteAggregate quote)
     {
         var aggregate = AbstractTypeFactory<QuoteItemAggregate>.TryCreateInstance();
 
         aggregate.Model = model;
+        aggregate.Quote = quote;
+
+        aggregate.SelectedTierPrice = model.SelectedTierPrice?.Convert(x => ToQuoteTierPriceAggregate(x, quote));
+        aggregate.ProposalPrices = model.ProposalPrices?.Select(x => ToQuoteTierPriceAggregate(x, quote)).ToList();
+
+        return aggregate;
+    }
+
+    protected virtual QuoteItemAggregate ToQuoteItemAggregate(QuoteItem model, QuoteAggregate quote, CatalogProduct product)
+    {
+        var aggregate = AbstractTypeFactory<QuoteItemAggregate>.TryCreateInstance();
+
+        aggregate.Model = model;
+
+        if (product?.LocalizedName != null)
+        {
+            var localizedName = product.LocalizedName.GetValue(quote.Model.LanguageCode);
+            aggregate.Model.Name = !string.IsNullOrEmpty(localizedName) ? localizedName : aggregate.Model.Name;
+        }
+
         aggregate.Quote = quote;
 
         aggregate.SelectedTierPrice = model.SelectedTierPrice?.Convert(x => ToQuoteTierPriceAggregate(x, quote));

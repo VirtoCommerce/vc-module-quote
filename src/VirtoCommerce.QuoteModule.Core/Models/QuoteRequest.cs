@@ -13,7 +13,7 @@ using TaxAddress = VirtoCommerce.TaxModule.Core.Model.Address;
 
 namespace VirtoCommerce.QuoteModule.Core.Models
 {
-    public class QuoteRequest : AuditableEntity, IHasTaxDetalization, ISupportCancellation, IHasDynamicProperties, IHasLanguageCode, IHasChangesHistory
+    public class QuoteRequest : AuditableEntity, IHasTaxDetalization, ISupportCancellation, IHasDynamicProperties, IHasLanguageCode, IHasChangesHistory, ICloneable
     {
         public string Number { get; set; }
         public string StoreId { get; set; }
@@ -84,6 +84,19 @@ namespace VirtoCommerce.QuoteModule.Core.Models
         public string ObjectType => typeof(QuoteRequest).FullName;
         public ICollection<DynamicObjectProperty> DynamicProperties { get; set; }
         #endregion
+
+        public object Clone()
+        {
+            var result = (QuoteRequest)MemberwiseClone();
+
+            result.Addresses = Addresses?.Select(x => x.Clone()).OfType<Address>().ToList();
+            result.Items = Items?.Select(x => x.Clone()).OfType<QuoteItem>().ToList();
+            result.Attachments = Attachments?.Select(x => x.Clone()).OfType<QuoteAttachment>().ToList();
+            result.TaxDetails = TaxDetails?.Select(x => x.Clone()).OfType<TaxDetail>().ToList();
+            result.DynamicProperties = DynamicProperties?.Select(x => x.Clone()).OfType<DynamicObjectProperty>().ToList();
+
+            return result;
+        }
 
         [Obsolete("Use IQuoteConverter instead", DiagnosticId = "VC0008", UrlFormat = "https://docs.virtocommerce.org/products/products-virto3-versions")]
         public ShoppingCart ToCartModel(ShoppingCart target)
