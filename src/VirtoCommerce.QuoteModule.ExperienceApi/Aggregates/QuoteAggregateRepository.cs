@@ -88,7 +88,11 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
 
         var currencies = (await _currencyService.GetAllCurrenciesAsync()).ToList();
         var products = await _productService.GetNoCloneAsync(
-                                    quotes.SelectMany(x => x.Items).Select(x => x.ProductId).Where(x => !string.IsNullOrEmpty(x)).Distinct().ToArray(),
+                                    quotes.SelectMany(x => x.Items ?? Enumerable.Empty<QuoteItem>())
+                                        .Select(x => x.ProductId)
+                                        .Where(x => !string.IsNullOrEmpty(x))
+                                        .Distinct()
+                                        .ToArray(),
                                     ItemResponseGroup.ItemInfo.ToString());
 
         foreach (var quote in quotes)
