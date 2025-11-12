@@ -100,7 +100,7 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
 
         foreach (var quote in quotestList)
         {
-            // Actualize Cart Language From Context
+            // actualize cloned quote languageCode from request cultureName
             if (!string.IsNullOrEmpty(cultureName) && quote.LanguageCode != cultureName)
             {
                 quote.LanguageCode = cultureName;
