@@ -13,10 +13,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-    <PackageReference Include="VirtoCommerce.CartModule.Core" Version="3.826.0" />
-    <PackageReference Include="VirtoCommerce.CatalogModule.Core" Version="3.850.0" />
-    <PackageReference Include="VirtoCommerce.CoreModule.Core" Version="3.816.0" />
-    <PackageReference Include="VirtoCommerce.Platform.Core" Version="3.877.0" />
-    <PackageReference Include="VirtoCommerce.TaxModule.Core" Version="3.800.0" />
+    <PackageReference Include="VirtoCommerce.CartModule.Core" Version="3.840.0-alpha.764-vcst-4203-cleanup" />
+    <PackageReference Include="VirtoCommerce.CatalogModule.Core" Version="3.904.0-alpha.2432-vcst-4203-cleanup" />
+    <PackageReference Include="VirtoCommerce.CoreModule.Core" Version="3.823.0-alpha.1666-vcst-4203-cleanup" />
+    <PackageReference Include="VirtoCommerce.Platform.Core" Version="3.916.0-alpha.13164-vcst-4203-cleanup" />
+    <PackageReference Include="VirtoCommerce.TaxModule.Core" Version="3.807.0-alpha.205-vcst-4203-cleanup" />
   </ItemGroup>
 </Project>

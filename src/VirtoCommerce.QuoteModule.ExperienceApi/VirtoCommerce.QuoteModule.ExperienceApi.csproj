@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
@@ -8,12 +8,12 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-    <PackageReference Include="VirtoCommerce.FileExperienceApi.Data" Version="3.903.0" />
-    <PackageReference Include="VirtoCommerce.OrdersModule.Core" Version="3.800.0" />
-    <PackageReference Include="VirtoCommerce.Xapi.Core" Version="3.906.0" />
-    <PackageReference Include="VirtoCommerce.XCart.Data" Version="3.906.0" />
-    <PackageReference Include="VirtoCommerce.XCatalog.Core" Version="3.908.0" />
-    <PackageReference Include="VirtoCommerce.CustomerModule.Core" Version="3.817.0" />
+    <PackageReference Include="VirtoCommerce.FileExperienceApi.Data" Version="3.906.0-alpha.58-vcst-4203-cleanup" />
+    <PackageReference Include="VirtoCommerce.OrdersModule.Core" Version="3.863.0-alpha.1370-vcst-4203-cleanup" />
+    <PackageReference Include="VirtoCommerce.Xapi.Core" Version="3.928.0-alpha.130-vcst-4203-cleanup" />
+    <PackageReference Include="VirtoCommerce.XCart.Data" Version="3.949.0-alpha.176-vcst-4203-cleanup" />
+    <PackageReference Include="VirtoCommerce.XCatalog.Core" Version="3.942.0-alpha.157-vcst-4203-cleanup" />
+    <PackageReference Include="VirtoCommerce.CustomerModule.Core" Version="3.846.0-alpha.929-vcst-4203-cleanup" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VirtoCommerce.QuoteModule.Core\VirtoCommerce.QuoteModule.Core.csproj" />
