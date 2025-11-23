@@ -335,8 +335,8 @@ public class QuoteConverter : IQuoteConverter
     protected virtual void ApplyTaxRates(CartLineItem lineItem, IEnumerable<TaxRate> taxRates)
     {
         lineItem.TaxPercentRate = 0m;
-        var lineItemTaxRate = taxRates.FirstOrDefault(x => x.Line.Id != null && x.Line.Id.EqualsInvariant(lineItem.Id ?? ""))
-            ?? taxRates.FirstOrDefault(x => x.Line.Code != null && x.Line.Code.EqualsInvariant(lineItem.Sku ?? ""));
+        var lineItemTaxRate = taxRates.FirstOrDefault(x => x.Line.Id != null && x.Line.Id.EqualsIgnoreCase(lineItem.Id ?? ""))
+            ?? taxRates.FirstOrDefault(x => x.Line.Code != null && x.Line.Code.EqualsIgnoreCase(lineItem.Sku ?? ""));
 
         if (lineItemTaxRate == null)
         {
@@ -376,8 +376,8 @@ public class QuoteConverter : IQuoteConverter
     protected virtual void ApplyTaxRates(Payment payment, IEnumerable<TaxRate> taxRates)
     {
         payment.TaxPercentRate = 0m;
-        var paymentTaxRate = taxRates.FirstOrDefault(x => x.Line.Id != null && x.Line.Id.EqualsInvariant(payment.Id ?? ""))
-            ?? taxRates.FirstOrDefault(x => x.Line.Code != null && x.Line.Code.EqualsInvariant(payment.PaymentGatewayCode));
+        var paymentTaxRate = taxRates.FirstOrDefault(x => x.Line.Id != null && x.Line.Id.EqualsIgnoreCase(payment.Id ?? ""))
+            ?? taxRates.FirstOrDefault(x => x.Line.Code != null && x.Line.Code.EqualsIgnoreCase(payment.PaymentGatewayCode));
 
         if (paymentTaxRate == null)
         {
@@ -409,8 +409,8 @@ public class QuoteConverter : IQuoteConverter
     protected virtual void ApplyTaxRates(Shipment shipment, IEnumerable<TaxRate> taxRates)
     {
         shipment.TaxPercentRate = 0m;
-        var shipmentTaxRate = taxRates.FirstOrDefault(x => x.Line.Id != null && x.Line.Id.EqualsInvariant(shipment.Id ?? ""))
-            ?? taxRates.FirstOrDefault(x => x.Line.Code != null && x.Line.Code.EqualsInvariant(shipment.ShipmentMethodCode));
+        var shipmentTaxRate = taxRates.FirstOrDefault(x => x.Line.Id != null && x.Line.Id.EqualsIgnoreCase(shipment.Id ?? ""))
+            ?? taxRates.FirstOrDefault(x => x.Line.Code != null && x.Line.Code.EqualsIgnoreCase(shipment.ShipmentMethodCode));
 
         if (shipmentTaxRate == null || shipmentTaxRate.Rate <= 0)
         {

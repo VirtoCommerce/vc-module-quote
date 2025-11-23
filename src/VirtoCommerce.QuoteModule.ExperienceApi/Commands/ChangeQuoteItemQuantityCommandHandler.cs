@@ -19,7 +19,7 @@ public class ChangeQuoteItemQuantityCommandHandler : QuoteCommandHandler<ChangeQ
 
     protected override void UpdateQuote(QuoteRequest quote, ChangeQuoteItemQuantityCommand request)
     {
-        var item = quote.Items.FirstOrDefault(x => x.Id.EqualsInvariant(request.LineItemId));
+        var item = quote.Items.FirstOrDefault(x => x.Id.EqualsIgnoreCase(request.LineItemId));
 
         if (item == null)
         {

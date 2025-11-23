@@ -2,7 +2,6 @@ using GraphQL.Types;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.Xapi.Core.Extensions;
-using VirtoCommerce.Xapi.Core.Helpers;
 using VirtoCommerce.Xapi.Core.Schemas;
 using VirtoCommerce.Xapi.Core.Services;
 
@@ -65,7 +64,7 @@ public class QuoteType : ExtendableGraphType<QuoteAggregate>
         ExtendableFieldAsync<NonNullGraphType<ListGraphType<NonNullGraphType<DynamicPropertyValueType>>>>(
             nameof(QuoteRequest.DynamicProperties),
             "Quote dynamic property values",
-            QueryArgumentPresets.GetArgumentForDynamicProperties(),
+            null,
             async context => await dynamicPropertyResolverService.LoadDynamicPropertyValues(context.Source.Model, context.GetArgumentOrValue<string>("cultureName")));
     }
 }

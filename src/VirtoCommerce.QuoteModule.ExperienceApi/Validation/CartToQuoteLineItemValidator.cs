@@ -11,7 +11,7 @@ namespace VirtoCommerce.QuoteModule.ExperienceApi.Validation
         {
             RuleFor(x => x).Custom((lineItemContext, context) =>
             {
-                var cartProduct = lineItemContext.AllCartProducts.FirstOrDefault(x => x.Id.EqualsInvariant(lineItemContext.LineItem.ProductId));
+                var cartProduct = lineItemContext.AllCartProducts.FirstOrDefault(x => x.Id.EqualsIgnoreCase(lineItemContext.LineItem.ProductId));
                 if (cartProduct == null)
                 {
                     context.AddFailure(CartErrorDescriber.ProductUnavailableError(lineItemContext.LineItem));

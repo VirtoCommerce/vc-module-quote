@@ -1,15 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.CoreModule.Core.Common;
 using VirtoCommerce.CoreModule.Core.Tax;
 using VirtoCommerce.Platform.Core.ChangeLog;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.DynamicProperties;
-using VirtoCommerce.TaxModule.Core.Model;
-
-using TaxAddress = VirtoCommerce.TaxModule.Core.Model.Address;
 
 namespace VirtoCommerce.QuoteModule.Core.Models
 {
@@ -96,71 +92,6 @@ namespace VirtoCommerce.QuoteModule.Core.Models
             result.DynamicProperties = DynamicProperties?.Select(x => x.Clone()).OfType<DynamicObjectProperty>().ToList();
 
             return result;
-        }
-
-        [Obsolete("Use IQuoteConverter instead", DiagnosticId = "VC0008", UrlFormat = "https://docs.virtocommerce.org/products/products-virto3-versions")]
-        public ShoppingCart ToCartModel(ShoppingCart target)
-        {
-            var _ = this;
-            target.Id = _.Id;
-            target.CreatedBy = _.CreatedBy;
-            target.CreatedDate = _.CreatedDate;
-            target.ModifiedBy = _.ModifiedBy;
-            target.ModifiedDate = _.ModifiedDate;
-
-            target.StoreId = _.StoreId;
-            target.ChannelId = _.ChannelId;
-            target.IsAnonymous = _.IsAnonymous;
-            target.CustomerId = _.CustomerId;
-            target.CustomerName = _.CustomerName;
-            target.OrganizationId = _.OrganizationId;
-            target.Status = _.Status;
-            target.Comment = _.Comment;
-            target.Currency = _.Currency;
-            target.Coupon = _.Coupon;
-            target.LanguageCode = _.LanguageCode;
-
-            if (Items != null)
-            {
-                target.Items = Items.Select(x => x.ToCartModel(AbstractTypeFactory<LineItem>.TryCreateInstance())).ToList();
-            }
-
-            if (ShipmentMethod != null)
-            {
-                var shipment = new Shipment
-                {
-                    Currency = Currency,
-                    ShipmentMethodCode = ShipmentMethod.ShipmentMethodCode,
-                    ShipmentMethodOption = ShipmentMethod.OptionName,
-                    Price = _.ManualShippingTotal,
-                };
-                target.Shipments = new List<Shipment>(new[] { shipment });
-            }
-
-            return target;
-        }
-
-        [Obsolete("Use IQuoteTotalsCalculator instead", DiagnosticId = "VC0008", UrlFormat = "https://docs.virtocommerce.org/products/products-virto3-versions")]
-        public TaxEvaluationContext ToTaxEvalContext(TaxEvaluationContext target)
-        {
-            target.Id = Id;
-            target.Code = Number;
-            target.Currency = Currency;
-            target.Address = Addresses?.FirstOrDefault()?.ToTaxModel(AbstractTypeFactory<TaxAddress>.TryCreateInstance());
-            target.Type = GetType().Name;
-            foreach (var quoteItem in Items)
-            {
-                var line = new TaxLine
-                {
-                    Id = quoteItem.Id,
-                    Code = quoteItem.Sku,
-                    Name = quoteItem.Name,
-                    TaxType = quoteItem.TaxType,
-                    Amount = quoteItem.SelectedTierPrice.Price * quoteItem.SelectedTierPrice.Quantity
-                };
-                target.Lines.Add(line);
-            }
-            return target;
         }
     }
 }

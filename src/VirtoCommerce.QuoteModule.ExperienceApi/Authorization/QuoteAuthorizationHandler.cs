@@ -52,7 +52,7 @@ public class QuoteAuthorizationHandler : AuthorizationHandler<QuoteAuthorization
                 result = string.IsNullOrEmpty(file.OwnerEntityId);
 
                 if (!result &&
-                    file.OwnerEntityType.EqualsInvariant(nameof(QuoteRequest)) &&
+                    file.OwnerEntityType.EqualsIgnoreCase(nameof(QuoteRequest)) &&
                     !string.IsNullOrEmpty(file.OwnerEntityId))
                 {
                     resource = await _quoteRequestService.GetByIdAsync(file.OwnerEntityId);

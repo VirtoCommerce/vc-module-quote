@@ -66,7 +66,7 @@ public class QuotesQueryHandler : IQueryHandler<QuotesQuery, QuoteAggregateSearc
         }
 
         // custom CreatedDate filter
-        var createdDateRange = parseResult.Filters.OfType<RangeFilter>().FirstOrDefault(x => x.FieldName.EqualsInvariant("CreatedDate"));
+        var createdDateRange = parseResult.Filters.OfType<RangeFilter>().FirstOrDefault(x => x.FieldName.EqualsIgnoreCase("CreatedDate"));
         var range = createdDateRange?.Values?.FirstOrDefault();
         if (range != null)
         {
