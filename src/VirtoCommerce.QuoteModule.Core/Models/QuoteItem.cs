@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.CatalogModule.Core.Model;
 using VirtoCommerce.Platform.Core.Common;
 
@@ -75,37 +74,6 @@ namespace VirtoCommerce.QuoteModule.Core.Models
             }
 
             return result;
-        }
-
-        [Obsolete("Use IQuoteConverter instead", DiagnosticId = "VC0008", UrlFormat = "https://docs.virtocommerce.org/products/products-virto3-versions")]
-        public LineItem ToCartModel(LineItem target)
-        {
-            var _ = this;
-            target.Id = _.Id;
-
-            target.ListPrice = _.ListPrice;
-            target.SalePrice = _.SalePrice;
-            target.TaxType = _.TaxType;
-            target.ImageUrl = _.ImageUrl;
-            target.ProductId = _.ProductId;
-            target.CatalogId = _.CatalogId;
-            target.CategoryId = _.CategoryId;
-            target.Currency = _.Currency;
-            target.Name = _.Name;
-            target.Sku = _.Sku;
-            target.Quantity = _.Quantity;
-
-            if (SelectedTierPrice != null)
-            {
-                target.SalePrice = SelectedTierPrice.Price;
-                target.Quantity = (int)SelectedTierPrice.Quantity;
-            }
-
-            if (target.SalePrice > 0 && target.ListPrice > target.SalePrice)
-            {
-                target.DiscountAmount = target.ListPrice - target.SalePrice;
-            }
-            return target;
         }
     }
 }

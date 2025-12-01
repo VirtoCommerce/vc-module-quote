@@ -2,7 +2,6 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <noWarn>1591</noWarn>
-    <LangVersion>latest</LangVersion>
     <IsPackable>False</IsPackable>
   </PropertyGroup>
   <ItemGroup>
@@ -21,7 +20,6 @@
     <PackageReference Include="Moq" Version="4.20.70" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
     <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
-    <PackageReference Include="VirtoCommerce.Testing" Version="3.877.0" />
     <PackageReference Include="xunit" Version="2.6.2" />
     <PackageReference Include="xunit.runner.console" Version="2.6.2">
       <PrivateAssets>all</PrivateAssets>

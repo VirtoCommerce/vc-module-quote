@@ -19,7 +19,7 @@ public class RemoveQuoteItemCommandHandler : QuoteCommandHandler<RemoveQuoteItem
 
     protected override void UpdateQuote(QuoteRequest quote, RemoveQuoteItemCommand request)
     {
-        var item = quote.Items.FirstOrDefault(x => x.Id.EqualsInvariant(request.LineItemId));
+        var item = quote.Items.FirstOrDefault(x => x.Id.EqualsIgnoreCase(request.LineItemId));
 
         if (item != null)
         {
