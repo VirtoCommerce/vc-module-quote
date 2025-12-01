@@ -31,7 +31,7 @@
   <owners>
     <owner>Virto Commerce</owner>
   </owners>
-  <projectUrl>https://virtocommerce.com/apps/extensions/quote-module</projectUrl>
+  <projectUrl>https://github.com/VirtoCommerce/vc-module-quote</projectUrl>
   <iconUrl>Modules/$(VirtoCommerce.Quote)/Content/logo.png</iconUrl>
   <requireLicenseAcceptance>false</requireLicenseAcceptance>
   <releaseNotes>First version.</releaseNotes>
