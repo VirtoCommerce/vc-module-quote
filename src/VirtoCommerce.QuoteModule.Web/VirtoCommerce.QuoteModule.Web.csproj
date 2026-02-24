@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <OutputType>Library</OutputType>
+    <NoWarn>NU1608</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
     <!-- Project is not a test project -->
