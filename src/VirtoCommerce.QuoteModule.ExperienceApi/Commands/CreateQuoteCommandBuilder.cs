@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using GraphQL;
 using MediatR;
@@ -14,8 +15,14 @@ public class CreateQuoteCommandBuilder : CommandBuilder<CreateQuoteCommand, Quot
 {
     protected override string Name => "CreateQuote";
 
+    public CreateQuoteCommandBuilder(IAuthorizationService authorizationService)
+        : base(authorizationService)
+    {
+    }
+
+    [Obsolete("Use the constructor without IMediator. The mediator is resolved from context.RequestServices per request.", DiagnosticId = "VC0015", UrlFormat = "https://docs.virtocommerce.org/products/products-virto3-versions")]
     public CreateQuoteCommandBuilder(IMediator mediator, IAuthorizationService authorizationService)
-        : base(mediator, authorizationService)
+        : this(authorizationService)
     {
     }
 

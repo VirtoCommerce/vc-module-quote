@@ -1,8 +1,10 @@
+using System;
 using System.Threading.Tasks;
 using GraphQL;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using VirtoCommerce.Xapi.Core.BaseQueries;
+using VirtoCommerce.Xapi.Core.Extensions;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.QuoteModule.ExperienceApi.Authorization;
 using VirtoCommerce.QuoteModule.ExperienceApi.Queries;
@@ -14,12 +16,15 @@ public abstract class QuoteCommandBuilder<TCommand, TCommandGraphType> : Command
     where TCommand : QuoteCommand
     where TCommandGraphType : QuoteCommandType<TCommand>
 {
-    private readonly IMediator _mediator;
-
-    protected QuoteCommandBuilder(IMediator mediator, IAuthorizationService authorizationService)
-        : base(mediator, authorizationService)
+    protected QuoteCommandBuilder(IAuthorizationService authorizationService)
+        : base(authorizationService)
     {
-        _mediator = mediator;
+    }
+
+    [Obsolete("Use the constructor without IMediator. The mediator is resolved from context.RequestServices per request.", DiagnosticId = "VC0015", UrlFormat = "https://docs.virtocommerce.org/products/products-virto3-versions")]
+    protected QuoteCommandBuilder(IMediator mediator, IAuthorizationService authorizationService)
+        : this(authorizationService)
+    {
     }
 
     protected override async Task BeforeMediatorSend(IResolveFieldContext<object> context, TCommand request)
@@ -30,7 +35,7 @@ public abstract class QuoteCommandBuilder<TCommand, TCommandGraphType> : Command
 
     protected virtual async Task CheckCanAccessQuote(IResolveFieldContext<object> context, string quoteId)
     {
-        var quote = await _mediator.Send(new QuoteQuery { Id = quoteId });
+        var quote = await context.GetMediator().Send(new QuoteQuery { Id = quoteId });
         await Authorize(context, quote, new QuoteAuthorizationRequirement());
     }
 }
