@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace VirtoCommerce.QuoteModule.ExperienceApi.Schemas;
 
 public class QuoteItemType : ExtendableGraphType<QuoteItemAggregate>
 {
-    public QuoteItemType(IMediator mediator, IDataLoaderContextAccessor dataLoader)
+    public QuoteItemType(IDataLoaderContextAccessor dataLoader)
     {
         Field(x => x.Model.Id, nullable: false);
         Field(x => x.Model.Sku, nullable: true);
@@ -65,7 +66,7 @@ public class QuoteItemType : ExtendableGraphType<QuoteItemAggregate>
                     context.UserContext.TryAdd("store", quoteAggregate.Store);
                     context.UserContext.TryAdd("cultureName", cultureName);
 
-                    var response = await mediator.Send(request);
+                    var response = await context.GetMediator().Send(request);
 
                     return response.Products.ToDictionary(x => x.Id);
                 });
@@ -82,5 +83,11 @@ public class QuoteItemType : ExtendableGraphType<QuoteItemAggregate>
             "configurationItems",
             "Configuration items for configurable product",
             resolve: context => context.Source.Model?.ConfigurationItems ?? []);
+    }
+
+    [Obsolete("Use the constructor without IMediator. The mediator is resolved from context.RequestServices per request.", DiagnosticId = "VC0015", UrlFormat = "https://docs.virtocommerce.org/products/products-virto3-versions")]
+    public QuoteItemType(IMediator mediator, IDataLoaderContextAccessor dataLoader)
+        : this(dataLoader)
+    {
     }
 }
