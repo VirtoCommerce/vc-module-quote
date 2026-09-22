@@ -72,7 +72,7 @@ public class CreateQuoteFromCartCommandHandler : IRequestHandler<CreateQuoteFrom
         var context = await _cartValidationContextFactory.CreateValidationContextAsync(cartAggregate);
 
         // do not validate items, shipments, payments; only basic validation using default cart validator
-        await cartAggregate.ValidateAsync(context, "default");
+        await cartAggregate.ValidateAsync("default");
 
         // custom validate cart line items (for deleted products)
         var lineItemValidationErrors = new List<ValidationFailure>();
