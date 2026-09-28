@@ -72,7 +72,7 @@ public class CreateQuoteFromCartCommandHandler : IRequestHandler<CreateQuoteFrom
         var context = await _cartValidationContextFactory.CreateValidationContextAsync(cartAggregate);
 
         // do not validate items, shipments, payments; only basic validation using default cart validator
-        await cartAggregate.ValidateAsync("default");
+        var cartErrors = await cartAggregate.ValidateAsync("default");
 
         // custom validate cart line items (for deleted products)
         var lineItemValidationErrors = new List<ValidationFailure>();
@@ -89,14 +89,17 @@ public class CreateQuoteFromCartCommandHandler : IRequestHandler<CreateQuoteFrom
         });
 
         // combine all errors
-        if (cartAggregate.GetValidationErrors().Any() || lineItemValidationErrors.Any())
+        var errors = cartErrors
+            .Concat(cartAggregate.OperationValidationErrors)
+            .Union(lineItemValidationErrors)
+            .ToList();
+        if (errors.Any())
         {
-            var errors = cartAggregate.GetValidationErrors()
-                .Union(lineItemValidationErrors)
+            var dictionary = errors
                 .GroupBy(x => x.ErrorCode)
                 .ToDictionary(x => x.Key, x => x.First().ErrorMessage);
 
-            throw new ExecutionError("The cart has validation errors", errors) { Code = Constants.ValidationErrorCode };
+            throw new ExecutionError("The cart has validation errors", dictionary) { Code = Constants.ValidationErrorCode };
         }
     }
 }
