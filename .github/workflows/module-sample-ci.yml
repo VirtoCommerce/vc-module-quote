@@ -54,17 +54,17 @@ jobs:
           fetch-depth: 0
 
       - name: Install VirtoCommerce.GlobalTool
-        uses: VirtoCommerce/vc-github-actions/setup-vcbuild@master
+        uses: VirtoCommerce/.github/actions/setup-vcbuild@v3.1000.1
         
       - name: Install dotnet-sonarscanner
         run: dotnet tool install --global dotnet-sonarscanner
 
       - name: Get changelog
         id: changelog
-        uses: VirtoCommerce/vc-github-actions/changelog-generator@master
+        uses: VirtoCommerce/.github/actions/changelog-generator@v3.1000.1
 
       - name: Get Image Version
-        uses: VirtoCommerce/vc-github-actions/get-image-version@master
+        uses: VirtoCommerce/.github/actions/get-image-version@v3.1000.1
         id: image
 
       - name: Set VERSION_SUFFIX variable
@@ -76,12 +76,12 @@ jobs:
           fi;
       - name: Add version suffix
         if: ${{ github.ref != 'refs/heads/master' }}
-        uses: VirtoCommerce/vc-github-actions/add-version-suffix@master
+        uses: VirtoCommerce/.github/actions/add-version-suffix@v3.1000.1
         with:
           versionSuffix: ${{ env.VERSION_SUFFIX }}
 
       - name: SonarCloud Begin
-        uses: VirtoCommerce/vc-github-actions/sonar-scanner-begin@master
+        uses: VirtoCommerce/.github/actions/sonar-scanner-begin@v3.1000.1
 
       - name: Build
         run: vc-build Compile -DefaultProject "${{ matrix.projectName }}"
@@ -90,10 +90,10 @@ jobs:
         run: vc-build Test -skip -DefaultProject "${{ matrix.projectName }}"
 
       - name: SonarCloud End
-        uses: VirtoCommerce/vc-github-actions/sonar-scanner-end@master
+        uses: VirtoCommerce/.github/actions/sonar-scanner-end@v3.1000.1
 
       - name: Quality Gate
-        uses: VirtoCommerce/vc-github-actions/sonar-quality-gate@master
+        uses: VirtoCommerce/.github/actions/sonar-quality-gate@v3.1000.1
         with:
           login: ${{secrets.SONAR_TOKEN}}
 
@@ -113,13 +113,13 @@ jobs:
       - name: Publish to Blob
         if: ${{ github.ref == 'refs/heads/dev' || github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/master') }}
         id: blobRelease
-        uses: VirtoCommerce/vc-github-actions/publish-blob-release@master
+        uses: VirtoCommerce/.github/actions/publish-blob-release@v3.1000.1
         with:
           blobSAS: ${{ secrets.BLOB_TOKEN }}
 
       - name: Add link to PR
         if: ${{ github.event_name == 'pull_request' }}
-        uses: VirtoCommerce/vc-github-actions/publish-artifact-link@master
+        uses: VirtoCommerce/.github/actions/publish-artifact-link@v3.1000.1
         with:
           artifactUrl: ${{ steps.blobRelease.outputs.packageUrl }}
           downloadComment: 'Sample Artifact URL:'
@@ -128,10 +128,10 @@ jobs:
         if: ${{ github.ref == 'refs/heads/master' }}
         with:
           changelog: ${{ steps.changelog.outputs.changelog }}
-        uses: VirtoCommerce/vc-github-actions/publish-github-release@master
+        uses: VirtoCommerce/.github/actions/publish-github-release@v3.1000.1
 
       - name: Parse Jira Keys from All Commits
-        uses: VirtoCommerce/vc-github-actions/get-jira-keys@master
+        uses: VirtoCommerce/.github/actions/get-jira-keys@v3.1000.1
         if: always()
         id: jira_keys
         with:
@@ -180,7 +180,7 @@ jobs:
 
     steps: 
     - name: Read deployment config
-      uses: VirtoCommerce/vc-github-actions/get-deploy-param@master
+      uses: VirtoCommerce/.github/actions/get-deploy-param@v3.1000.1
       id: deployConfig
       with:
         envName: ${{ matrix.environment }}
@@ -196,7 +196,7 @@ jobs:
         no_override: false
 
     - name: Update deployment-cm
-      uses: VirtoCommerce/vc-github-actions/create-deploy-pr@master
+      uses: VirtoCommerce/.github/actions/create-deploy-pr@v3.1000.1
       with:
         deployRepo: ${{ steps.deployConfig.outputs.deployRepo }}
         deployBranch: ${{ steps.deployConfig.outputs.deployBranch }}
