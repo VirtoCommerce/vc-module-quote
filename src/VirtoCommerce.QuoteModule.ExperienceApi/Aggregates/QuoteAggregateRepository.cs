@@ -6,13 +6,13 @@ using VirtoCommerce.CatalogModule.Core.Model;
 using VirtoCommerce.CatalogModule.Core.Services;
 using VirtoCommerce.CoreModule.Core.Currency;
 using VirtoCommerce.CoreModule.Core.Tax;
+using VirtoCommerce.FileExperienceApi.Core.Extensions;
 using VirtoCommerce.FileExperienceApi.Core.Models;
 using VirtoCommerce.FileExperienceApi.Core.Services;
 using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.QuoteModule.Core;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
-using VirtoCommerce.QuoteModule.ExperienceApi.Extensions;
 using VirtoCommerce.StoreModule.Core.Model;
 using VirtoCommerce.StoreModule.Core.Services;
 using VirtoCommerce.Xapi.Core.Extensions;
@@ -125,7 +125,7 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
 
         var filesByUrls = allFiles
             .Where(x => x.Scope == ModuleConstants.QuoteAttachmentsScope &&
-                (x.OwnerIsEmpty() || x.OwnerIs(nameof(QuoteRequest), quote.Id)))
+                (x.OwnerIsEmpty() || x.OwnerIs<QuoteRequest>(quote.Id)))
             .ToDictionary(x => GetFileUrl(x.Id), _ignoreCase);
 
         var changedFiles = new List<File>();
@@ -139,8 +139,7 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
 
             if (filesByUrls.TryGetValue(attachment.Url, out var file))
             {
-                file.OwnerEntityId = null;
-                file.OwnerEntityType = null;
+                file.ClearOwner();
                 changedFiles.Add(file);
             }
         }
@@ -154,8 +153,7 @@ public class QuoteAggregateRepository : IQuoteAggregateRepository
             {
                 quote.Attachments.Add(ConvertToAttachment(file));
 
-                file.OwnerEntityId = quote.Id;
-                file.OwnerEntityType = nameof(QuoteRequest);
+                file.SetOwner(quote);
                 changedFiles.Add(file);
             }
         }

@@ -7,13 +7,17 @@ using GraphQL;
 using MediatR;
 using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.CartModule.Core.Services;
+using VirtoCommerce.FileExperienceApi.Core.Extensions;
+using VirtoCommerce.FileExperienceApi.Core.Services;
 using VirtoCommerce.Platform.Core.Common;
+using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
 using VirtoCommerce.QuoteModule.ExperienceApi.Validation;
 using VirtoCommerce.Xapi.Core.Helpers;
 using VirtoCommerce.XCart.Core.Services;
 using VirtoCommerce.XCart.Core.Validators;
+using static VirtoCommerce.CatalogModule.Core.ModuleConstants;
 
 namespace VirtoCommerce.QuoteModule.ExperienceApi.Commands;
 
@@ -25,6 +29,7 @@ public class CreateQuoteFromCartCommandHandler : IRequestHandler<CreateQuoteFrom
     private readonly IQuoteConverter _quoteConverter;
     private readonly IQuoteRequestService _quoteRequestService;
     private readonly IQuoteAggregateRepository _quoteAggregateRepository;
+    private readonly IFileUploadService _fileUploadService;
 
     public CreateQuoteFromCartCommandHandler(
         IShoppingCartService cartService,
@@ -32,7 +37,8 @@ public class CreateQuoteFromCartCommandHandler : IRequestHandler<CreateQuoteFrom
         ICartValidationContextFactory cartValidationContextFactory,
         IQuoteConverter quoteConverter,
         IQuoteRequestService quoteRequestService,
-        IQuoteAggregateRepository quoteAggregateRepository)
+        IQuoteAggregateRepository quoteAggregateRepository,
+        IFileUploadService fileUploadService)
     {
         _cartService = cartService;
         _cartRepository = cartRepository;
@@ -40,6 +46,7 @@ public class CreateQuoteFromCartCommandHandler : IRequestHandler<CreateQuoteFrom
         _quoteConverter = quoteConverter;
         _quoteRequestService = quoteRequestService;
         _quoteAggregateRepository = quoteAggregateRepository;
+        _fileUploadService = fileUploadService;
     }
 
     public async Task<QuoteAggregate> Handle(CreateQuoteFromCartCommand request, CancellationToken cancellationToken)
@@ -57,6 +64,7 @@ public class CreateQuoteFromCartCommandHandler : IRequestHandler<CreateQuoteFrom
         var quote = await _quoteConverter.ConvertFromCart(cart);
         quote.Comment = request.Comment;
         await _quoteRequestService.SaveChangesAsync(new[] { quote });
+        await UpdateConfigurationFiles(quote);
 
         // Clear cart
         var cartAggregate = await _cartRepository.GetCartForShoppingCartAsync(cart);
@@ -98,5 +106,19 @@ public class CreateQuoteFromCartCommandHandler : IRequestHandler<CreateQuoteFrom
 
             throw new ExecutionError("The cart has validation errors", errors) { Code = Constants.ValidationErrorCode };
         }
+    }
+
+    protected virtual async Task UpdateConfigurationFiles(QuoteRequest quote)
+    {
+        var fileUrls = quote.Items
+            .Where(x => !x.ConfigurationItems.IsNullOrEmpty())
+            .SelectMany(x => x.ConfigurationItems.Where(y => y.Files != null))
+            .SelectMany(x => x.Files)
+            .Where(x => !string.IsNullOrEmpty(x.Url))
+            .Select(x => x.Url)
+            .Distinct()
+            .ToArray();
+
+        await _fileUploadService.SetOwnerAsync(fileUrls, ConfigurationSectionFilesScope, quote);
     }
 }

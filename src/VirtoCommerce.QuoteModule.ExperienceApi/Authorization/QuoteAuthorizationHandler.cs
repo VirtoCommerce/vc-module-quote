@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using VirtoCommerce.CustomerModule.Core.Model;
 using VirtoCommerce.CustomerModule.Core.Services;
+using VirtoCommerce.FileExperienceApi.Core.Extensions;
 using VirtoCommerce.FileExperienceApi.Core.Models;
 using VirtoCommerce.Platform.Core;
-using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.Security;
 using VirtoCommerce.QuoteModule.Core.Extensions;
 using VirtoCommerce.QuoteModule.Core.Models;
@@ -49,11 +49,9 @@ public class QuoteAuthorizationHandler : AuthorizationHandler<QuoteAuthorization
 
             if (resource is File file)
             {
-                result = string.IsNullOrEmpty(file.OwnerEntityId);
+                result = file.OwnerIsEmpty();
 
-                if (!result &&
-                    file.OwnerEntityType.EqualsIgnoreCase(nameof(QuoteRequest)) &&
-                    !string.IsNullOrEmpty(file.OwnerEntityId))
+                if (!result && file.OwnerTypeIs<QuoteRequest>())
                 {
                     resource = await _quoteRequestService.GetByIdAsync(file.OwnerEntityId);
                 }
