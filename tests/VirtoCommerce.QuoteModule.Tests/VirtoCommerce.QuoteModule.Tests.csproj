@@ -34,5 +34,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\VirtoCommerce.QuoteModule.Core\VirtoCommerce.QuoteModule.Core.csproj" />
     <ProjectReference Include="..\..\src\VirtoCommerce.QuoteModule.Data\VirtoCommerce.QuoteModule.Data.csproj" />
+    <ProjectReference Include="..\..\src\VirtoCommerce.QuoteModule.ExperienceApi\VirtoCommerce.QuoteModule.ExperienceApi.csproj" />
   </ItemGroup>
 </Project>
