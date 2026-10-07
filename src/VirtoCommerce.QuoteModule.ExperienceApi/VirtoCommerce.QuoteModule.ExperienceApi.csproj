@@ -10,10 +10,10 @@
     
     <PackageReference Include="VirtoCommerce.FileExperienceApi.Data" Version="3.1000.0" />
     <PackageReference Include="VirtoCommerce.OrdersModule.Core" Version="3.1000.0" />
-    <PackageReference Include="VirtoCommerce.Xapi.Core" Version="3.1022.0" />
-    <PackageReference Include="VirtoCommerce.XCart.Data" Version="3.1037.0-alpha.284-vcst-6089-cart-aggr-refactoring" />
-    <PackageReference Include="VirtoCommerce.XCatalog.Core" Version="3.1011.0" />
-    <PackageReference Include="VirtoCommerce.CustomerModule.Core" Version="3.1010.0" />
+    <PackageReference Include="VirtoCommerce.Xapi.Core" Version="3.1026.0" />
+    <PackageReference Include="VirtoCommerce.XCart.Data" Version="3.1040.0-alpha.294-vcst-6089-cart-aggr-refactoring" />
+    <PackageReference Include="VirtoCommerce.XCatalog.Core" Version="3.1023.0" />
+    <PackageReference Include="VirtoCommerce.CustomerModule.Core" Version="3.1028.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VirtoCommerce.QuoteModule.Core\VirtoCommerce.QuoteModule.Core.csproj" />
