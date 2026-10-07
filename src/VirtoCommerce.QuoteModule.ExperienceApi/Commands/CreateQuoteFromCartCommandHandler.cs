@@ -93,7 +93,7 @@ public class CreateQuoteFromCartCommandHandler : IRequestHandler<CreateQuoteFrom
             .Concat(cartAggregate.OperationValidationErrors)
             .Union(lineItemValidationErrors)
             .ToList();
-        if (errors.Any())
+        if (errors.Count != 0)
         {
             var dictionary = errors
                 .GroupBy(x => x.ErrorCode)
