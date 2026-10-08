@@ -90,7 +90,7 @@ namespace VirtoCommerce.QuoteModule.Web
 
             serviceCollection.AddTransient<IQuoteAggregateRepository, QuoteAggregateRepository>();
             serviceCollection.AddSingleton<IAuthorizationHandler, QuoteAuthorizationHandler>();
-            serviceCollection.AddSingleton<IFileAuthorizationRequirementFactory, QuoteAuthorizationRequirementFactory>();
+            serviceCollection.AddSingleton<IFileAuthorizationRequirementFactory, QuoteFileAuthorizationRequirementFactory>();
 
             serviceCollection.AddSingleton<ScopedSchemaFactory<AssemblyMarker>>();
         }
