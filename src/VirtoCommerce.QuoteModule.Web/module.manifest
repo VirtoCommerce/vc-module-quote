@@ -11,7 +11,7 @@
     <dependency id="VirtoCommerce.Catalog" version="3.1000.0" />
     <dependency id="VirtoCommerce.Core" version="3.1007.0" />
     <dependency id="VirtoCommerce.Customer" version="3.1028.0" />
-    <dependency id="VirtoCommerce.FileExperienceApi" version="3.1007.0-alpha.100-vcst-5995" />
+    <dependency id="VirtoCommerce.FileExperienceApi" version="3.1008.0" />
     <dependency id="VirtoCommerce.Orders" version="3.1000.0" />
     <dependency id="VirtoCommerce.Shipping" version="3.1000.0" />
     <dependency id="VirtoCommerce.Store" version="3.1006.0" />
