@@ -12,6 +12,7 @@ using VirtoCommerce.CartModule.Core.Model;
 using VirtoCommerce.CartModule.Core.Services;
 using VirtoCommerce.CoreModule.Core.Currency;
 using VirtoCommerce.CustomerModule.Core.Model;
+using VirtoCommerce.FileExperienceApi.Core.Services;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.QuoteModule.ExperienceApi.Aggregates;
@@ -176,7 +177,7 @@ public class CreateQuoteFromCartCommandHandlerTests
         var quoteConverter = new Mock<IQuoteConverter>();
         quoteConverter
             .Setup(x => x.ConvertFromCart(It.IsAny<ShoppingCart>()))
-            .ReturnsAsync(new QuoteRequest { Id = "quote-1" });
+            .ReturnsAsync(new QuoteRequest { Id = "quote-1", Items = new List<QuoteItem>() });
 
         return new CreateQuoteFromCartCommandHandler(
             cartService.Object,
@@ -184,7 +185,8 @@ public class CreateQuoteFromCartCommandHandlerTests
             GetValidationContextFactory(),
             quoteConverter.Object,
             quoteRequestService,
-            Mock.Of<IQuoteAggregateRepository>());
+            Mock.Of<IQuoteAggregateRepository>(),
+            Mock.Of<IFileUploadService>());
     }
 
     /// <summary>
