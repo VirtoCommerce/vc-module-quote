@@ -1,0 +1,18 @@
+{
+  // Quotes admin UI for the Admin Shell host (Module Federation remote).
+  // No "replaces": the default menu has no legacy quotes item.
+  "remote": { "name": "quote_admin", "exposed": "./Module" },
+  "contributions": {
+    "menu": [
+      {
+        "id": "quotes",
+        "sectionId": "orders",
+        "title": "Quotes",
+        "icon": "lucide-file-question",
+        "route": "/quotes",
+        "permission": "quote:access",
+        "priority": 35
+      }
+    ]
+  }
+}

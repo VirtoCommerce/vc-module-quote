@@ -1,0 +1,11 @@
+export { default as QuotesList } from "./list.vue";
+export { default as QuoteDetails } from "./details.vue";
+export { default as QuoteItems } from "./items.vue";
+export { default as QuoteItemDetails } from "./item-details.vue";
+export { default as QuoteItemConfiguration } from "./item-configuration.vue";
+export { default as QuoteProductPicker } from "./product-picker.vue";
+export { default as QuoteAddresses } from "./addresses.vue";
+export { default as QuoteAddressDetails } from "./address-details.vue";
+export { default as QuoteAttachments } from "./attachments.vue";
+export { default as QuoteDynamicProperties } from "./dynamic-properties.vue";
+export { default as QuoteChanges } from "./changes.vue";
