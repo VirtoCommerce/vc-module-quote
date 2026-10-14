@@ -120,13 +120,15 @@ const { loading: uploading, action: upload } = useAsync<FileList>(async (list) =
   for (const result of results) {
     if (result.succeeded === false)
       errors.value.push(fileError(result.name ?? "", result.errorCode, result.errorParameter, result.errorMessage));
-    else
-      (quote.item.value.attachments ??= []).push({
+    else {
+      quote.item.value.attachments ??= [];
+      quote.item.value.attachments.push({
         name: result.name,
         url: result.url,
         mimeType: result.contentType,
         size: result.size,
       });
+    }
   }
 });
 

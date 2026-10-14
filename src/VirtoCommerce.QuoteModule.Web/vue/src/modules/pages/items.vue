@@ -245,7 +245,8 @@ function margin(line: QuoteItem, tier: TierPrice) {
 }
 
 function addTier(line: QuoteItem) {
-  (line.proposalPrices ??= []).push({ quantity: 1, price: undefined });
+  line.proposalPrices ??= [];
+  line.proposalPrices.push({ quantity: 1, price: undefined });
 }
 
 // removes the selected tier (never the last one) and selects the first remaining
@@ -269,10 +270,10 @@ const methodKey = (m?: ShipmentMethod) => (m ? [m.shipmentMethodCode, m.optionNa
 const shippingOptions = computed(() =>
   quote.shippingMethods.value
     .filter((m) => !m.currency || m.currency === currency.value)
-    .map((m) => ({
-      id: methodKey(m),
-      title: `${m.typeName ?? m.shipmentMethodCode}${m.optionName ? ` (${m.optionName})` : ""} - ${money(m.price, m.currency)}`,
-    })),
+    .map((m) => {
+      const option = m.optionName ? ` (${m.optionName})` : "";
+      return { id: methodKey(m), title: `${m.typeName ?? m.shipmentMethodCode}${option} - ${money(m.price, m.currency)}` };
+    }),
 );
 const shippingMethodKey = computed({
   get: () => methodKey(q.value.shipmentMethod),
@@ -318,7 +319,8 @@ const { loading: adding, action: addProducts } = useAsync<ProductEntry[]>(async 
     const [product, prices] = result.value;
     const price = prices.find((p) => p.currency === currency.value);
     const tier: TierPrice = { quantity: 1, price: undefined };
-    (q.value.items ??= []).push({
+    q.value.items ??= [];
+    q.value.items.push({
       productId: product.id,
       sku: product.code,
       catalogId: product.catalogId,

@@ -387,19 +387,19 @@ const bladeToolbar = ref<IBladeToolbar[]>([
   },
 ]);
 
+function memberBlade(memberType: string) {
+  if (memberType === "Organization") return "CustomerOrganizationDetails";
+  if (memberType === "Employee") return "CustomerEmployeeDetails";
+  return "CustomerContactDetails";
+}
+
 async function openMember(memberId: string | undefined, memberType: string) {
   if (!memberId) {
     notification.error(t("QUOTES.ALERTS.MEMBER_NOT_FOUND"), { timeout: 5000 });
     return;
   }
-  const name =
-    memberType === "Organization"
-      ? "CustomerOrganizationDetails"
-      : memberType === "Employee"
-        ? "CustomerEmployeeDetails"
-        : "CustomerContactDetails";
   // owned by the Customer plugin; it may not be installed in this host
-  await openBlade({ name, param: memberId }).catch(() =>
+  await openBlade({ name: memberBlade(memberType), param: memberId }).catch(() =>
     notification.error(t("QUOTES.ALERTS.MEMBER_UNAVAILABLE"), { timeout: 5000 }),
   );
 }

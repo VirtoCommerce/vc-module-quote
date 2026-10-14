@@ -140,7 +140,15 @@ const { getPropertyValue, setPropertyValue, loadDictionaries } = useDynamicPrope
     const client = await getApiClient();
     const fetchItems = (id: string) =>
       dictionaries.get(id) ??
-      dictionaries.set(id, client.getAllDictionaryItems(id).catch((e) => (dictionaries.delete(id), Promise.reject(e)))).get(id)!;
+      dictionaries
+        .set(
+          id,
+          client.getAllDictionaryItems(id).catch((e) => {
+            dictionaries.delete(id);
+            return Promise.reject(e);
+          }),
+        )
+        .get(id)!;
     const items = (await Promise.all((criteria.propertyIds ?? []).map(fetchItems))).flat();
     const keyword = criteria.keyword?.toLowerCase();
     return items
