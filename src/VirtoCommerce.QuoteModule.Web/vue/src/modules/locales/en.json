@@ -1,7 +1,8 @@
 {
   "QUOTES": {
     "MENU": {
-      "TITLE": "Quotes"
+      "TITLE": "Quotes",
+      "COUNTER": "{count} quotes waiting for a proposal"
     },
     "WIDGETS": {
       "ITEMS": "Line items",
