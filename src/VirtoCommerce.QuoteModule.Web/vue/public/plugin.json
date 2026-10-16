@@ -1,0 +1,16 @@
+{
+  "remote": { "name": "quote_admin", "exposed": "./Module" },
+  "contributions": {
+    "menu": [
+      {
+        "id": "quotes",
+        "sectionId": "orders",
+        "title": "Quotes",
+        "icon": "lucide-file-question",
+        "route": "/quotes",
+        "permission": "quote:access",
+        "priority": 35
+      }
+    ]
+  }
+}

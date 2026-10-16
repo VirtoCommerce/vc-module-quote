@@ -1,0 +1,206 @@
+{
+  "QUOTES": {
+    "MENU": {
+      "TITLE": "Quotes",
+      "COUNTER": "{count} quotes waiting for a proposal"
+    },
+    "WIDGETS": {
+      "ITEMS": "Line items",
+      "ADDRESSES": "Addresses",
+      "ATTACHMENTS": "Attachments",
+      "PROPERTIES": "Properties",
+      "CHANGES": "Changes",
+      "CONFIGURATION": "Configuration"
+    },
+    "TOOLBAR": {
+      "REFRESH": "Refresh",
+      "DELETE": "Delete",
+      "SAVE": "Save",
+      "RESET": "Reset",
+      "APPLY": "OK",
+      "ADD": "Add",
+      "SUBMIT_PROPOSAL": "Submit proposal",
+      "PLACE_ON_HOLD": "Put on hold",
+      "RELEASE_HOLD": "Reactivate",
+      "CANCEL_DOCUMENT": "Cancel document",
+      "ADD_ITEM": "Add item",
+      "REMOVE": "Remove",
+      "ADD_SELECTED": "Add selected",
+      "EDIT_STATUSES": "Edit statuses"
+    },
+    "PAGES": {
+      "LIST": {
+        "TITLE": "Quotes",
+        "EMPTY": "No quotes yet",
+        "COLUMNS": {
+          "NUMBER": "Quote #",
+          "STATUS": "Status",
+          "ITEMS": "Item count",
+          "CUSTOMER": "Customer",
+          "CREATED": "Created"
+        }
+      },
+      "DETAILS": {
+        "TITLE": "Quote",
+        "ON_HOLD": "On hold",
+        "FIELDS": {
+          "CUSTOMER": "Customer",
+          "ORGANIZATION": "Customer's company",
+          "NOT_DEFINED": "Not defined",
+          "CREATED": "Created",
+          "MODIFIED": "Last updated",
+          "STATUS": "Status",
+          "EXPIRATION": "Expiry date",
+          "REMINDER": "Reminder date",
+          "EMPLOYEE": "Assigned to",
+          "EMPLOYEE_PLACEHOLDER": "Select...",
+          "STORE": "RFQ from",
+          "STORE_PLACEHOLDER": "Select store...",
+          "COMMENT": "General comment",
+          "COMMENT_PLACEHOLDER": "Public comment",
+          "INNER_COMMENT": "Internal comment"
+        },
+        "TOTALS": {
+          "TITLE": "Totals",
+          "EDIT_ITEMS": "Line items",
+          "SUBTOTAL": "Subtotal",
+          "SHIPPING": "Shipping",
+          "DISCOUNT": "Discount",
+          "GRAND_TOTAL": "Grand total"
+        }
+      },
+      "ITEMS": {
+        "TITLE": "{number} line items",
+        "EMPTY": "No line items yet",
+        "LIST_PRICE": "List price",
+        "SALE_PRICE": "Sale price",
+        "COMMENT": "Product comment",
+        "COMMENT_PLACEHOLDER": "Enter comment",
+        "SKU": "SKU",
+        "QUANTITY": "Quantity",
+        "PRICE": "Proposed price",
+        "MARGIN": "Margin (GP)",
+        "SELECTED_TIER": "Use this tier",
+        "ADD_TIER": "Add tier",
+        "REMOVE_TIER": "Remove selected tier",
+        "SELECT_ITEM": "Select item",
+        "DETAILS": "Details",
+        "DISCOUNT_TITLE": "Discount and shipping",
+        "NEW_SUBTOTAL": "New subtotal",
+        "RELATIVE_DISCOUNT": "Relative discount, %",
+        "ENTER_RELATIVE": "Enter relative discount",
+        "ENTER_SUBTOTAL": "Enter new subtotal",
+        "SHIPPING_METHOD": "Shipping method",
+        "SHIPPING_METHOD_PLACEHOLDER": "Select...",
+        "MANUAL_SHIPPING": "Total shipping (manual)",
+        "TOTALS": {
+          "TITLE": "Totals",
+          "ORIGINAL_SUBTOTAL": "Subtotal (placed)",
+          "ADJUSTMENT": "Adjustment",
+          "SUBTOTAL": "Subtotal",
+          "SHIPPING": "Shipping",
+          "DISCOUNT": "Discount",
+          "GRAND_TOTAL": "Grand total",
+          "TAXES": "Taxes",
+          "GRAND_TOTAL_INCL_TAX": "Grand total (incl. taxes)"
+        }
+      },
+      "ITEM": {
+        "PRODUCT": "Product name",
+        "COMMENT": "Product comment"
+      },
+      "PICKER": {
+        "TITLE": "Add item to quote",
+        "SEARCH": "Search products",
+        "COLUMNS": {
+          "IMAGE": "Image",
+          "NAME": "Name",
+          "CODE": "SKU"
+        }
+      },
+      "CONFIGURATION": {
+        "PRODUCTS": "Configuration products",
+        "TEXTS": "Configuration texts",
+        "FILES": "Configuration files",
+        "NAME": "Product name",
+        "IMAGE": "Image",
+        "QUANTITY": "Quantity",
+        "TEXT": "Text",
+        "FILE_NAME": "File name",
+        "CONTENT_TYPE": "File type",
+        "SIZE": "File size",
+        "NO_PRODUCTS": "This configuration does not have any products yet.",
+        "NO_TEXTS": "This configuration does not have any texts yet.",
+        "NO_FILES": "This configuration does not have any files yet."
+      },
+      "ADDRESSES": {
+        "TITLE": "Address",
+        "NEW_TITLE": "New address",
+        "EMPTY": "No addresses yet",
+        "ADDRESS": "Address",
+        "DEFAULT": "Default",
+        "TYPE": "Address type",
+        "PERSON": "Name",
+        "DESCRIPTION": "Description",
+        "FIRST_NAME": "First name",
+        "MIDDLE_NAME": "Middle name",
+        "LAST_NAME": "Last name",
+        "COUNTRY": "Country",
+        "REGION": "Region",
+        "CITY": "City",
+        "LINE1": "Address line 1",
+        "LINE2": "Address line 2",
+        "POSTAL_CODE": "ZIP code",
+        "EMAIL": "Email",
+        "PHONE": "Phone"
+      },
+      "ATTACHMENTS": {
+        "EMPTY": "No attachments yet",
+        "SELECT_FILES": "Select files",
+        "TYPE": "Type",
+        "NAME": "Name",
+        "REMOVE": "Remove",
+        "COPY_LINK": "Copy link",
+        "NOT_CONFIGURED": "File upload scope is not configured",
+        "DUPLICATE_NAME": "File with the same name already exists",
+        "INVALID_SIZE": "File size exceeds {parameter} bytes",
+        "INVALID_EXTENSION": "File type is not one of the allowed types ({parameter})",
+        "UNKNOWN_ERROR": "Unknown error: {parameter}",
+        "ERROR": "{fileName}: {message}"
+      },
+      "PROPERTIES": {
+        "EMPTY": "No dynamic properties are defined for quotes",
+        "LANGUAGE": "Language"
+      },
+      "CHANGES": {
+        "EMPTY": "No changes yet",
+        "DATE": "Date",
+        "TYPE": "Operation",
+        "USER": "User",
+        "DETAIL": "Detail"
+      }
+    },
+    "CANCEL": {
+      "TITLE": "Cancel quote",
+      "MESSAGE": "Are you sure you want to cancel this quote?",
+      "REASON": "Reason",
+      "REASON_PLACEHOLDER": "Enter reason here...",
+      "CONFIRM": "Confirm",
+      "BACK": "Cancel"
+    },
+    "ALERTS": {
+      "DELETE_SELECTED": "Are you sure you want to delete the selected quote request(s)?",
+      "DELETE": "Are you sure you want to delete this quote?",
+      "CLOSE_CONFIRMATION": "The quote has been modified. Close without saving?",
+      "PROPOSAL_SUBMIT": "Once you have submitted your proposal, certain parts of your quote will be locked and cannot be modified. Are you sure you want to proceed?",
+      "PROPOSAL_SUBMIT_WARNING": "Warning: Offer is missing or totals zero. Please ensure that all items are listed and priced correctly before proceeding. Are you sure you want to proceed?",
+      "HOLD_PLACE": "Are you sure you want to put this quote on hold?",
+      "HOLD_RELEASE": "Are you sure you want to reactivate this quote?",
+      "DELETE_ADDRESS": "Are you sure you want to delete this address?",
+      "COPIED": "Copied: {text}",
+      "MEMBER_NOT_FOUND": "The customer's account was not found",
+      "MEMBER_UNAVAILABLE": "Customer details are not available in this host",
+      "PRODUCT_UNAVAILABLE": "Product details are not available in this host"
+    }
+  }
+}
