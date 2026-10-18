@@ -1,0 +1,206 @@
+{
+  "QUOTES": {
+    "MENU": {
+      "TITLE": "عروض الأسعار",
+      "COUNTER": "عروض أسعار بانتظار مقترح: {count}"
+    },
+    "WIDGETS": {
+      "ITEMS": "البنود",
+      "ADDRESSES": "العناوين",
+      "ATTACHMENTS": "المرفقات",
+      "PROPERTIES": "الخصائص",
+      "CHANGES": "التغييرات",
+      "CONFIGURATION": "التهيئة"
+    },
+    "TOOLBAR": {
+      "REFRESH": "تحديث",
+      "DELETE": "حذف",
+      "SAVE": "حفظ",
+      "RESET": "إعادة تعيين",
+      "APPLY": "موافق",
+      "ADD": "إضافة",
+      "SUBMIT_PROPOSAL": "إرسال المقترح",
+      "PLACE_ON_HOLD": "تعليق",
+      "RELEASE_HOLD": "إعادة التفعيل",
+      "CANCEL_DOCUMENT": "إلغاء المستند",
+      "ADD_ITEM": "إضافة بند",
+      "REMOVE": "إزالة",
+      "ADD_SELECTED": "إضافة المحدد",
+      "EDIT_STATUSES": "تحرير الحالات"
+    },
+    "PAGES": {
+      "LIST": {
+        "TITLE": "عروض الأسعار",
+        "EMPTY": "لا توجد عروض أسعار بعد",
+        "COLUMNS": {
+          "NUMBER": "رقم عرض السعر",
+          "STATUS": "الحالة",
+          "ITEMS": "عدد البنود",
+          "CUSTOMER": "العميل",
+          "CREATED": "تاريخ الإنشاء"
+        }
+      },
+      "DETAILS": {
+        "TITLE": "عرض السعر",
+        "ON_HOLD": "معلّق",
+        "FIELDS": {
+          "CUSTOMER": "العميل",
+          "ORGANIZATION": "شركة العميل",
+          "NOT_DEFINED": "غير محدد",
+          "CREATED": "تاريخ الإنشاء",
+          "MODIFIED": "آخر تحديث",
+          "STATUS": "الحالة",
+          "EXPIRATION": "تاريخ انتهاء الصلاحية",
+          "REMINDER": "تاريخ التذكير",
+          "EMPLOYEE": "مُسند إلى",
+          "EMPLOYEE_PLACEHOLDER": "اختر...",
+          "STORE": "طلب عرض السعر من",
+          "STORE_PLACEHOLDER": "اختر المتجر...",
+          "COMMENT": "تعليق عام",
+          "COMMENT_PLACEHOLDER": "تعليق علني",
+          "INNER_COMMENT": "تعليق داخلي"
+        },
+        "TOTALS": {
+          "TITLE": "الإجماليات",
+          "EDIT_ITEMS": "البنود",
+          "SUBTOTAL": "المجموع الفرعي",
+          "SHIPPING": "الشحن",
+          "DISCOUNT": "الخصم",
+          "GRAND_TOTAL": "الإجمالي الكلي"
+        }
+      },
+      "ITEMS": {
+        "TITLE": "بنود عرض السعر {number}",
+        "EMPTY": "لا توجد بنود بعد",
+        "LIST_PRICE": "سعر القائمة",
+        "SALE_PRICE": "سعر البيع",
+        "COMMENT": "تعليق على المنتج",
+        "COMMENT_PLACEHOLDER": "أدخل تعليقًا",
+        "SKU": "SKU",
+        "QUANTITY": "الكمية",
+        "PRICE": "السعر المقترح",
+        "MARGIN": "الهامش (إجمالي الربح)",
+        "SELECTED_TIER": "استخدام هذه الشريحة",
+        "ADD_TIER": "إضافة شريحة",
+        "REMOVE_TIER": "إزالة الشريحة المحددة",
+        "SELECT_ITEM": "اختيار البند",
+        "DETAILS": "التفاصيل",
+        "DISCOUNT_TITLE": "الخصم والشحن",
+        "NEW_SUBTOTAL": "المجموع الفرعي الجديد",
+        "RELATIVE_DISCOUNT": "الخصم النسبي، %",
+        "ENTER_RELATIVE": "أدخل الخصم النسبي",
+        "ENTER_SUBTOTAL": "أدخل المجموع الفرعي الجديد",
+        "SHIPPING_METHOD": "طريقة الشحن",
+        "SHIPPING_METHOD_PLACEHOLDER": "اختر...",
+        "MANUAL_SHIPPING": "إجمالي الشحن (يدوي)",
+        "TOTALS": {
+          "TITLE": "الإجماليات",
+          "ORIGINAL_SUBTOTAL": "المجموع الفرعي (في الطلب)",
+          "ADJUSTMENT": "التعديل",
+          "SUBTOTAL": "المجموع الفرعي",
+          "SHIPPING": "الشحن",
+          "DISCOUNT": "الخصم",
+          "GRAND_TOTAL": "الإجمالي الكلي",
+          "TAXES": "الضرائب",
+          "GRAND_TOTAL_INCL_TAX": "الإجمالي الكلي (شامل الضرائب)"
+        }
+      },
+      "ITEM": {
+        "PRODUCT": "اسم المنتج",
+        "COMMENT": "تعليق على المنتج"
+      },
+      "PICKER": {
+        "TITLE": "إضافة بند إلى عرض السعر",
+        "SEARCH": "البحث في المنتجات",
+        "COLUMNS": {
+          "IMAGE": "الصورة",
+          "NAME": "الاسم",
+          "CODE": "SKU"
+        }
+      },
+      "CONFIGURATION": {
+        "PRODUCTS": "منتجات التهيئة",
+        "TEXTS": "نصوص التهيئة",
+        "FILES": "ملفات التهيئة",
+        "NAME": "اسم المنتج",
+        "IMAGE": "الصورة",
+        "QUANTITY": "الكمية",
+        "TEXT": "النص",
+        "FILE_NAME": "اسم الملف",
+        "CONTENT_TYPE": "نوع الملف",
+        "SIZE": "حجم الملف",
+        "NO_PRODUCTS": "لا تحتوي هذه التهيئة على أي منتجات بعد.",
+        "NO_TEXTS": "لا تحتوي هذه التهيئة على أي نصوص بعد.",
+        "NO_FILES": "لا تحتوي هذه التهيئة على أي ملفات بعد."
+      },
+      "ADDRESSES": {
+        "TITLE": "العنوان",
+        "NEW_TITLE": "عنوان جديد",
+        "EMPTY": "لا توجد عناوين بعد",
+        "ADDRESS": "العنوان",
+        "DEFAULT": "افتراضي",
+        "TYPE": "نوع العنوان",
+        "PERSON": "الاسم",
+        "DESCRIPTION": "الوصف",
+        "FIRST_NAME": "الاسم الأول",
+        "MIDDLE_NAME": "الاسم الأوسط",
+        "LAST_NAME": "اسم العائلة",
+        "COUNTRY": "الدولة",
+        "REGION": "المنطقة",
+        "CITY": "المدينة",
+        "LINE1": "سطر العنوان 1",
+        "LINE2": "سطر العنوان 2",
+        "POSTAL_CODE": "الرمز البريدي",
+        "EMAIL": "البريد الإلكتروني",
+        "PHONE": "الهاتف"
+      },
+      "ATTACHMENTS": {
+        "EMPTY": "لا توجد مرفقات بعد",
+        "SELECT_FILES": "اختيار الملفات",
+        "TYPE": "النوع",
+        "NAME": "الاسم",
+        "REMOVE": "إزالة",
+        "COPY_LINK": "نسخ الرابط",
+        "NOT_CONFIGURED": "لم يتم تكوين نطاق رفع الملفات",
+        "DUPLICATE_NAME": "يوجد بالفعل ملف بالاسم نفسه",
+        "INVALID_SIZE": "يتجاوز حجم الملف الحد المسموح به بالبايت: {parameter}",
+        "INVALID_EXTENSION": "نوع الملف ليس من الأنواع المسموح بها ({parameter})",
+        "UNKNOWN_ERROR": "خطأ غير معروف: {parameter}",
+        "ERROR": "{fileName}: {message}"
+      },
+      "PROPERTIES": {
+        "EMPTY": "لم يتم تعريف خصائص ديناميكية لعروض الأسعار",
+        "LANGUAGE": "اللغة"
+      },
+      "CHANGES": {
+        "EMPTY": "لا توجد تغييرات بعد",
+        "DATE": "التاريخ",
+        "TYPE": "العملية",
+        "USER": "المستخدم",
+        "DETAIL": "التفاصيل"
+      }
+    },
+    "CANCEL": {
+      "TITLE": "إلغاء عرض السعر",
+      "MESSAGE": "هل تريد بالتأكيد إلغاء عرض السعر هذا؟",
+      "REASON": "السبب",
+      "REASON_PLACEHOLDER": "أدخل السبب هنا...",
+      "CONFIRM": "تأكيد",
+      "BACK": "إلغاء"
+    },
+    "ALERTS": {
+      "DELETE_SELECTED": "هل تريد بالتأكيد حذف طلبات عروض الأسعار المحددة؟",
+      "DELETE": "هل تريد بالتأكيد حذف عرض السعر هذا؟",
+      "CLOSE_CONFIRMATION": "تم تعديل عرض السعر. هل تريد الإغلاق دون حفظ؟",
+      "PROPOSAL_SUBMIT": "بعد إرسال المقترح، ستُقفل أجزاء معينة من عرض السعر ولن يمكن تعديلها. هل تريد بالتأكيد المتابعة؟",
+      "PROPOSAL_SUBMIT_WARNING": "تحذير: العرض غير موجود أو إجماليه صفر. تأكد من إدراج كل البنود وتسعيرها بشكل صحيح قبل المتابعة. هل تريد بالتأكيد المتابعة؟",
+      "HOLD_PLACE": "هل تريد بالتأكيد تعليق عرض السعر هذا؟",
+      "HOLD_RELEASE": "هل تريد بالتأكيد إعادة تفعيل عرض السعر هذا؟",
+      "DELETE_ADDRESS": "هل تريد بالتأكيد حذف هذا العنوان؟",
+      "COPIED": "تم النسخ: {text}",
+      "MEMBER_NOT_FOUND": "لم يتم العثور على حساب العميل",
+      "MEMBER_UNAVAILABLE": "تفاصيل العميل غير متاحة في هذا المضيف",
+      "PRODUCT_UNAVAILABLE": "تفاصيل المنتج غير متاحة في هذا المضيف"
+    }
+  }
+}

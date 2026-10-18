@@ -11,4 +11,5 @@ import * as pt from "./pt.json";
 import * as ru from "./ru.json";
 import * as sv from "./sv.json";
 import * as zh from "./zh.json";
-export { en, de, es, fi, fr, it, ja, no, pl, pt, ru, sv, zh };
+import * as ar from "./ar.json";
+export { en, de, es, fi, fr, it, ja, no, pl, pt, ru, sv, zh, ar };
