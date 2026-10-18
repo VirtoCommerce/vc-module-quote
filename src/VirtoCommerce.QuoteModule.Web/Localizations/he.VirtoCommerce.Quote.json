@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "quote:access": "פתיחת תפריט הצעות המחיר",
+    "quote:create": "יצירת הצעת מחיר",
+    "quote:read": "צפייה בהצעות מחיר",
+    "quote:update": "עדכון הצעות מחיר",
+    "quote:delete": "מחיקת הצעות מחיר"
+  },
+  "settings": {
+    "Quotes": {
+      "Status": {
+        "title": "סטטוסי הצעות מחיר",
+        "description": "רשימת הסטטוסים התקפים להצעות מחיר"
+      },
+      "DefaultStatus": {
+        "title": "סטטוס ברירת מחדל להצעת מחיר",
+        "description": "סטטוס זה יוקצה להצעת מחיר שנוצרה מעגלת הקניות"
+      },
+      "QuoteRequestNewNumberTemplate": {
+        "title": "תבנית מספר בקשה להצעת מחיר (RFQ)",
+        "description": "תבנית זו תשמש ליצירת מספרים לבקשות חדשות להצעת מחיר. 0 הוא התאריך והשעה (UTC) שבהם נוצר המספר, ו-1 הוא המספר הסידורי"
+      },
+      "EnableQuotes": {
+        "title": "הצעות מחיר",
+        "description": "הפעלה/השבתה של הצעות מחיר עבור החנות"
+      },
+      "FileUploadScopeName": {
+        "title": "שם ההיקף להעלאת קבצים",
+        "description": "יש לציין את שם ההיקף עבור התצורות והמדיניות של העלאת קבצים. ברירת מחדל: quote-attachments"
+      }
+    }
+  }
+}
