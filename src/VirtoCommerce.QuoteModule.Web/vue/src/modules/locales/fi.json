@@ -1,0 +1,206 @@
+{
+  "QUOTES": {
+    "MENU": {
+      "TITLE": "Tarjoukset",
+      "COUNTER": "Odottaa ehdotusta: {count}"
+    },
+    "WIDGETS": {
+      "ITEMS": "Rivikohteet",
+      "ADDRESSES": "Osoitteet",
+      "ATTACHMENTS": "Liitteet",
+      "PROPERTIES": "Ominaisuudet",
+      "CHANGES": "Muutokset",
+      "CONFIGURATION": "Konfiguraatio"
+    },
+    "TOOLBAR": {
+      "REFRESH": "Päivitä",
+      "DELETE": "Poista",
+      "SAVE": "Tallenna",
+      "RESET": "Palauta",
+      "APPLY": "OK",
+      "ADD": "Lisää",
+      "SUBMIT_PROPOSAL": "Lähetä ehdotus",
+      "PLACE_ON_HOLD": "Aseta odotustilaan",
+      "RELEASE_HOLD": "Aktivoi uudelleen",
+      "CANCEL_DOCUMENT": "Peruuta asiakirja",
+      "ADD_ITEM": "Lisää kohde",
+      "REMOVE": "Poista",
+      "ADD_SELECTED": "Lisää valitut",
+      "EDIT_STATUSES": "Muokkaa tiloja"
+    },
+    "PAGES": {
+      "LIST": {
+        "TITLE": "Tarjoukset",
+        "EMPTY": "Ei vielä tarjouksia",
+        "COLUMNS": {
+          "NUMBER": "Tarjouksen nro",
+          "STATUS": "Tila",
+          "ITEMS": "Kohteiden määrä",
+          "CUSTOMER": "Asiakas",
+          "CREATED": "Luotu"
+        }
+      },
+      "DETAILS": {
+        "TITLE": "Tarjous",
+        "ON_HOLD": "Odotustilassa",
+        "FIELDS": {
+          "CUSTOMER": "Asiakas",
+          "ORGANIZATION": "Asiakkaan yritys",
+          "NOT_DEFINED": "Ei määritetty",
+          "CREATED": "Luotu",
+          "MODIFIED": "Viimeksi päivitetty",
+          "STATUS": "Tila",
+          "EXPIRATION": "Viimeinen voimassaolopäivä",
+          "REMINDER": "Muistutuspäivä",
+          "EMPLOYEE": "Vastuuhenkilö",
+          "EMPLOYEE_PLACEHOLDER": "Valitse...",
+          "STORE": "Tarjouspyyntö kaupasta",
+          "STORE_PLACEHOLDER": "Valitse kauppa...",
+          "COMMENT": "Yleinen kommentti",
+          "COMMENT_PLACEHOLDER": "Julkinen kommentti",
+          "INNER_COMMENT": "Sisäinen kommentti"
+        },
+        "TOTALS": {
+          "TITLE": "Summat",
+          "EDIT_ITEMS": "Rivikohteet",
+          "SUBTOTAL": "Välisumma",
+          "SHIPPING": "Toimitus",
+          "DISCOUNT": "Alennus",
+          "GRAND_TOTAL": "Kokonaissumma"
+        }
+      },
+      "ITEMS": {
+        "TITLE": "Tarjouksen {number} rivikohteet",
+        "EMPTY": "Ei vielä rivikohteita",
+        "LIST_PRICE": "Listahinta",
+        "SALE_PRICE": "Myyntihinta",
+        "COMMENT": "Tuotekommentti",
+        "COMMENT_PLACEHOLDER": "Kirjoita kommentti",
+        "SKU": "SKU",
+        "QUANTITY": "Määrä",
+        "PRICE": "Ehdotettu hinta",
+        "MARGIN": "Marginaali (GP)",
+        "SELECTED_TIER": "Käytä tätä porrasta",
+        "ADD_TIER": "Lisää porras",
+        "REMOVE_TIER": "Poista valittu porras",
+        "SELECT_ITEM": "Valitse kohde",
+        "DETAILS": "Tiedot",
+        "DISCOUNT_TITLE": "Alennus ja toimitus",
+        "NEW_SUBTOTAL": "Uusi välisumma",
+        "RELATIVE_DISCOUNT": "Suhteellinen alennus, %",
+        "ENTER_RELATIVE": "Syötä suhteellinen alennus",
+        "ENTER_SUBTOTAL": "Syötä uusi välisumma",
+        "SHIPPING_METHOD": "Toimitustapa",
+        "SHIPPING_METHOD_PLACEHOLDER": "Valitse...",
+        "MANUAL_SHIPPING": "Toimituskulut yhteensä (manuaalinen)",
+        "TOTALS": {
+          "TITLE": "Summat",
+          "ORIGINAL_SUBTOTAL": "Välisumma (pyydetty)",
+          "ADJUSTMENT": "Oikaisu",
+          "SUBTOTAL": "Välisumma",
+          "SHIPPING": "Toimitus",
+          "DISCOUNT": "Alennus",
+          "GRAND_TOTAL": "Kokonaissumma",
+          "TAXES": "Verot",
+          "GRAND_TOTAL_INCL_TAX": "Kokonaissumma (sis. verot)"
+        }
+      },
+      "ITEM": {
+        "PRODUCT": "Tuotteen nimi",
+        "COMMENT": "Tuotekommentti"
+      },
+      "PICKER": {
+        "TITLE": "Lisää kohde tarjoukseen",
+        "SEARCH": "Hae tuotteita",
+        "COLUMNS": {
+          "IMAGE": "Kuva",
+          "NAME": "Nimi",
+          "CODE": "SKU"
+        }
+      },
+      "CONFIGURATION": {
+        "PRODUCTS": "Konfiguraation tuotteet",
+        "TEXTS": "Konfiguraation tekstit",
+        "FILES": "Konfiguraation tiedostot",
+        "NAME": "Tuotteen nimi",
+        "IMAGE": "Kuva",
+        "QUANTITY": "Määrä",
+        "TEXT": "Teksti",
+        "FILE_NAME": "Tiedoston nimi",
+        "CONTENT_TYPE": "Tiedostotyyppi",
+        "SIZE": "Tiedoston koko",
+        "NO_PRODUCTS": "Tässä konfiguraatiossa ei ole vielä tuotteita.",
+        "NO_TEXTS": "Tässä konfiguraatiossa ei ole vielä tekstejä.",
+        "NO_FILES": "Tässä konfiguraatiossa ei ole vielä tiedostoja."
+      },
+      "ADDRESSES": {
+        "TITLE": "Osoite",
+        "NEW_TITLE": "Uusi osoite",
+        "EMPTY": "Ei vielä osoitteita",
+        "ADDRESS": "Osoite",
+        "DEFAULT": "Oletus",
+        "TYPE": "Osoitteen tyyppi",
+        "PERSON": "Nimi",
+        "DESCRIPTION": "Kuvaus",
+        "FIRST_NAME": "Etunimi",
+        "MIDDLE_NAME": "Toinen nimi",
+        "LAST_NAME": "Sukunimi",
+        "COUNTRY": "Maa",
+        "REGION": "Alue",
+        "CITY": "Kaupunki",
+        "LINE1": "Osoiterivi 1",
+        "LINE2": "Osoiterivi 2",
+        "POSTAL_CODE": "Postinumero",
+        "EMAIL": "Sähköposti",
+        "PHONE": "Puhelin"
+      },
+      "ATTACHMENTS": {
+        "EMPTY": "Ei vielä liitteitä",
+        "SELECT_FILES": "Valitse tiedostot",
+        "TYPE": "Tyyppi",
+        "NAME": "Nimi",
+        "REMOVE": "Poista",
+        "COPY_LINK": "Kopioi linkki",
+        "NOT_CONFIGURED": "Tiedostojen latauksen aluetta ei ole määritetty",
+        "DUPLICATE_NAME": "Samanniminen tiedosto on jo olemassa",
+        "INVALID_SIZE": "Tiedoston koko ylittää {parameter} tavua",
+        "INVALID_EXTENSION": "Tiedostotyyppi ei ole sallittujen tyyppien joukossa ({parameter})",
+        "UNKNOWN_ERROR": "Tuntematon virhe: {parameter}",
+        "ERROR": "{fileName}: {message}"
+      },
+      "PROPERTIES": {
+        "EMPTY": "Tarjouksille ei ole määritetty dynaamisia ominaisuuksia",
+        "LANGUAGE": "Kieli"
+      },
+      "CHANGES": {
+        "EMPTY": "Ei vielä muutoksia",
+        "DATE": "Päivämäärä",
+        "TYPE": "Toiminto",
+        "USER": "Käyttäjä",
+        "DETAIL": "Tiedot"
+      }
+    },
+    "CANCEL": {
+      "TITLE": "Peruuta tarjous",
+      "MESSAGE": "Haluatko varmasti peruuttaa tämän tarjouksen?",
+      "REASON": "Syy",
+      "REASON_PLACEHOLDER": "Kirjoita syy tähän...",
+      "CONFIRM": "Vahvista",
+      "BACK": "Peruuta"
+    },
+    "ALERTS": {
+      "DELETE_SELECTED": "Haluatko varmasti poistaa valitut tarjouspyynnöt?",
+      "DELETE": "Haluatko varmasti poistaa tämän tarjouksen?",
+      "CLOSE_CONFIRMATION": "Tarjousta on muokattu. Suljetaanko tallentamatta?",
+      "PROPOSAL_SUBMIT": "Kun ehdotus on lähetetty, tietyt tarjouksen osat lukitaan eikä niitä voi enää muokata. Haluatko varmasti jatkaa?",
+      "PROPOSAL_SUBMIT_WARNING": "Varoitus: tarjous puuttuu tai sen summa on nolla. Varmista ennen jatkamista, että kaikki kohteet on lueteltu ja hinnoiteltu oikein. Haluatko varmasti jatkaa?",
+      "HOLD_PLACE": "Haluatko varmasti asettaa tämän tarjouksen odotustilaan?",
+      "HOLD_RELEASE": "Haluatko varmasti aktivoida tämän tarjouksen uudelleen?",
+      "DELETE_ADDRESS": "Haluatko varmasti poistaa tämän osoitteen?",
+      "COPIED": "Kopioitu: {text}",
+      "MEMBER_NOT_FOUND": "Asiakkaan tiliä ei löytynyt",
+      "MEMBER_UNAVAILABLE": "Asiakkaan tiedot eivät ole käytettävissä tässä isäntäsovelluksessa",
+      "PRODUCT_UNAVAILABLE": "Tuotteen tiedot eivät ole käytettävissä tässä isäntäsovelluksessa"
+    }
+  }
+}

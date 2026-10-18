@@ -57,6 +57,8 @@ namespace VirtoCommerce.QuoteModule.Data.Model
         [StringLength(128)]
         public string OuterId { get; set; }
 
+        public bool IsDefault { get; set; }
+
         public virtual QuoteRequestEntity QuoteRequest { get; set; }
         public string QuoteRequestId { get; set; }
 
@@ -82,6 +84,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             target.AddressType = EnumUtility.SafeParseFlags(AddressType, VirtoCommerce.CoreModule.Core.Common.AddressType.BillingAndShipping);
             target.Organization = Organization;
             target.OuterId = OuterId;
+            target.IsDefault = IsDefault;
             return target;
         }
 
@@ -108,6 +111,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             AddressType = address.AddressType.ToString();
             Organization = address.Organization;
             OuterId = address.OuterId;
+            IsDefault = address.IsDefault;
 
             return this;
         }
@@ -130,6 +134,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             target.Line2 = Line2;
             target.Organization = Organization;
             target.OuterId = OuterId;
+            target.IsDefault = IsDefault;
         }
     }
 }

@@ -1,0 +1,206 @@
+{
+  "QUOTES": {
+    "MENU": {
+      "TITLE": "הצעות מחיר",
+      "COUNTER": "בקשות להצעת מחיר שממתינות להצעה: {count}"
+    },
+    "WIDGETS": {
+      "ITEMS": "פריטים",
+      "ADDRESSES": "כתובות",
+      "ATTACHMENTS": "קבצים מצורפים",
+      "PROPERTIES": "מאפיינים",
+      "CHANGES": "שינויים",
+      "CONFIGURATION": "תצורה"
+    },
+    "TOOLBAR": {
+      "REFRESH": "רענון",
+      "DELETE": "מחיקה",
+      "SAVE": "שמירה",
+      "RESET": "איפוס",
+      "APPLY": "אישור",
+      "ADD": "הוספה",
+      "SUBMIT_PROPOSAL": "שליחת הצעה",
+      "PLACE_ON_HOLD": "השהיה",
+      "RELEASE_HOLD": "הפעלה מחדש",
+      "CANCEL_DOCUMENT": "ביטול המסמך",
+      "ADD_ITEM": "הוספת פריט",
+      "REMOVE": "הסרה",
+      "ADD_SELECTED": "הוספת הנבחרים",
+      "EDIT_STATUSES": "עריכת סטטוסים"
+    },
+    "PAGES": {
+      "LIST": {
+        "TITLE": "הצעות מחיר",
+        "EMPTY": "אין עדיין הצעות מחיר",
+        "COLUMNS": {
+          "NUMBER": "מס' הצעת מחיר",
+          "STATUS": "סטטוס",
+          "ITEMS": "מספר פריטים",
+          "CUSTOMER": "לקוח",
+          "CREATED": "נוצרה"
+        }
+      },
+      "DETAILS": {
+        "TITLE": "הצעת מחיר",
+        "ON_HOLD": "מושהית",
+        "FIELDS": {
+          "CUSTOMER": "לקוח",
+          "ORGANIZATION": "חברת הלקוח",
+          "NOT_DEFINED": "לא מוגדר",
+          "CREATED": "נוצרה",
+          "MODIFIED": "עדכון אחרון",
+          "STATUS": "סטטוס",
+          "EXPIRATION": "תאריך תפוגה",
+          "REMINDER": "תאריך תזכורת",
+          "EMPLOYEE": "משויכת אל",
+          "EMPLOYEE_PLACEHOLDER": "יש לבחור...",
+          "STORE": "בקשה להצעת מחיר מחנות",
+          "STORE_PLACEHOLDER": "יש לבחור חנות...",
+          "COMMENT": "הערה כללית",
+          "COMMENT_PLACEHOLDER": "הערה גלויה",
+          "INNER_COMMENT": "הערה פנימית"
+        },
+        "TOTALS": {
+          "TITLE": "סיכומים",
+          "EDIT_ITEMS": "פריטים",
+          "SUBTOTAL": "סכום ביניים",
+          "SHIPPING": "משלוח",
+          "DISCOUNT": "הנחה",
+          "GRAND_TOTAL": "סה״כ לתשלום"
+        }
+      },
+      "ITEMS": {
+        "TITLE": "פריטים בהצעת מחיר {number}",
+        "EMPTY": "אין עדיין פריטים",
+        "LIST_PRICE": "מחיר מחירון",
+        "SALE_PRICE": "מחיר מבצע",
+        "COMMENT": "הערה על המוצר",
+        "COMMENT_PLACEHOLDER": "יש להזין הערה",
+        "SKU": "SKU",
+        "QUANTITY": "כמות",
+        "PRICE": "מחיר מוצע",
+        "MARGIN": "מרווח (רווח גולמי)",
+        "SELECTED_TIER": "שימוש בדרגה זו",
+        "ADD_TIER": "הוספת דרגה",
+        "REMOVE_TIER": "הסרת הדרגה שנבחרה",
+        "SELECT_ITEM": "בחירת פריט",
+        "DETAILS": "פרטים",
+        "DISCOUNT_TITLE": "הנחה ומשלוח",
+        "NEW_SUBTOTAL": "סכום ביניים חדש",
+        "RELATIVE_DISCOUNT": "הנחה יחסית, %",
+        "ENTER_RELATIVE": "יש להזין הנחה יחסית",
+        "ENTER_SUBTOTAL": "יש להזין סכום ביניים חדש",
+        "SHIPPING_METHOD": "שיטת משלוח",
+        "SHIPPING_METHOD_PLACEHOLDER": "יש לבחור...",
+        "MANUAL_SHIPPING": "סה״כ משלוח (ידני)",
+        "TOTALS": {
+          "TITLE": "סיכומים",
+          "ORIGINAL_SUBTOTAL": "סכום ביניים (בבקשה)",
+          "ADJUSTMENT": "התאמה",
+          "SUBTOTAL": "סכום ביניים",
+          "SHIPPING": "משלוח",
+          "DISCOUNT": "הנחה",
+          "GRAND_TOTAL": "סה״כ לתשלום",
+          "TAXES": "מסים",
+          "GRAND_TOTAL_INCL_TAX": "סה״כ לתשלום (כולל מסים)"
+        }
+      },
+      "ITEM": {
+        "PRODUCT": "שם המוצר",
+        "COMMENT": "הערה על המוצר"
+      },
+      "PICKER": {
+        "TITLE": "הוספת פריט להצעת המחיר",
+        "SEARCH": "חיפוש מוצרים",
+        "COLUMNS": {
+          "IMAGE": "תמונה",
+          "NAME": "שם",
+          "CODE": "SKU"
+        }
+      },
+      "CONFIGURATION": {
+        "PRODUCTS": "מוצרי התצורה",
+        "TEXTS": "טקסטים של התצורה",
+        "FILES": "קובצי התצורה",
+        "NAME": "שם המוצר",
+        "IMAGE": "תמונה",
+        "QUANTITY": "כמות",
+        "TEXT": "טקסט",
+        "FILE_NAME": "שם הקובץ",
+        "CONTENT_TYPE": "סוג הקובץ",
+        "SIZE": "גודל הקובץ",
+        "NO_PRODUCTS": "בתצורה זו אין עדיין מוצרים.",
+        "NO_TEXTS": "בתצורה זו אין עדיין טקסטים.",
+        "NO_FILES": "בתצורה זו אין עדיין קבצים."
+      },
+      "ADDRESSES": {
+        "TITLE": "כתובת",
+        "NEW_TITLE": "כתובת חדשה",
+        "EMPTY": "אין עדיין כתובות",
+        "ADDRESS": "כתובת",
+        "DEFAULT": "ברירת מחדל",
+        "TYPE": "סוג כתובת",
+        "PERSON": "שם",
+        "DESCRIPTION": "תיאור",
+        "FIRST_NAME": "שם פרטי",
+        "MIDDLE_NAME": "שם אמצעי",
+        "LAST_NAME": "שם משפחה",
+        "COUNTRY": "מדינה",
+        "REGION": "אזור",
+        "CITY": "עיר",
+        "LINE1": "שורת כתובת 1",
+        "LINE2": "שורת כתובת 2",
+        "POSTAL_CODE": "מיקוד",
+        "EMAIL": "דוא״ל",
+        "PHONE": "טלפון"
+      },
+      "ATTACHMENTS": {
+        "EMPTY": "אין עדיין קבצים מצורפים",
+        "SELECT_FILES": "בחירת קבצים",
+        "TYPE": "סוג",
+        "NAME": "שם",
+        "REMOVE": "הסרה",
+        "COPY_LINK": "העתקת קישור",
+        "NOT_CONFIGURED": "היקף העלאת הקבצים לא הוגדר",
+        "DUPLICATE_NAME": "כבר קיים קובץ באותו שם",
+        "INVALID_SIZE": "גודל הקובץ חורג מ-{parameter} בתים",
+        "INVALID_EXTENSION": "סוג הקובץ אינו אחד מהסוגים המותרים ({parameter})",
+        "UNKNOWN_ERROR": "שגיאה לא ידועה: {parameter}",
+        "ERROR": "{fileName}: {message}"
+      },
+      "PROPERTIES": {
+        "EMPTY": "לא הוגדרו מאפיינים דינמיים להצעות מחיר",
+        "LANGUAGE": "שפה"
+      },
+      "CHANGES": {
+        "EMPTY": "אין עדיין שינויים",
+        "DATE": "תאריך",
+        "TYPE": "פעולה",
+        "USER": "משתמש",
+        "DETAIL": "פרטים"
+      }
+    },
+    "CANCEL": {
+      "TITLE": "ביטול הצעת המחיר",
+      "MESSAGE": "האם לבטל את הצעת המחיר הזו?",
+      "REASON": "סיבה",
+      "REASON_PLACEHOLDER": "יש להזין את הסיבה...",
+      "CONFIRM": "אישור",
+      "BACK": "ביטול"
+    },
+    "ALERTS": {
+      "DELETE_SELECTED": "האם למחוק את הבקשות להצעת מחיר שנבחרו?",
+      "DELETE": "האם למחוק את הצעת המחיר הזו?",
+      "CLOSE_CONFIRMATION": "הצעת המחיר שונתה. לסגור בלי לשמור?",
+      "PROPOSAL_SUBMIT": "לאחר שליחת ההצעה, חלקים מסוימים בהצעת המחיר יינעלו ולא ניתן יהיה לשנות אותם. האם להמשיך?",
+      "PROPOSAL_SUBMIT_WARNING": "אזהרה: ההצעה חסרה או שסכומה אפס. יש לוודא שכל הפריטים מופיעים ומתומחרים נכון לפני שממשיכים. האם להמשיך?",
+      "HOLD_PLACE": "האם להשהות את הצעת המחיר הזו?",
+      "HOLD_RELEASE": "האם להפעיל מחדש את הצעת המחיר הזו?",
+      "DELETE_ADDRESS": "האם למחוק את הכתובת הזו?",
+      "COPIED": "הועתק: {text}",
+      "MEMBER_NOT_FOUND": "חשבון הלקוח לא נמצא",
+      "MEMBER_UNAVAILABLE": "פרטי הלקוח אינם זמינים במארח זה",
+      "PRODUCT_UNAVAILABLE": "פרטי המוצר אינם זמינים במארח זה"
+    }
+  }
+}
