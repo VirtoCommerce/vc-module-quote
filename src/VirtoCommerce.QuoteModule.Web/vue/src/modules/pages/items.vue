@@ -399,7 +399,7 @@ exposeToChildren({ addProducts: (products: ProductEntry[]) => addProducts(produc
     em {
       font-style: normal;
       color: var(--color-neutral-500);
-      margin-right: 4px;
+      margin-inline-end: 4px;
     }
   }
   &__tier-actions {
