@@ -1,0 +1,206 @@
+{
+  "QUOTES": {
+    "MENU": {
+      "TITLE": "报价单",
+      "COUNTER": "等待提案的报价单：{count}"
+    },
+    "WIDGETS": {
+      "ITEMS": "项目",
+      "ADDRESSES": "地址",
+      "ATTACHMENTS": "附件",
+      "PROPERTIES": "属性",
+      "CHANGES": "变更",
+      "CONFIGURATION": "配置"
+    },
+    "TOOLBAR": {
+      "REFRESH": "刷新",
+      "DELETE": "删除",
+      "SAVE": "保存",
+      "RESET": "重置",
+      "APPLY": "确定",
+      "ADD": "添加",
+      "SUBMIT_PROPOSAL": "提交提案",
+      "PLACE_ON_HOLD": "暂停",
+      "RELEASE_HOLD": "重新激活",
+      "CANCEL_DOCUMENT": "取消单据",
+      "ADD_ITEM": "添加项目",
+      "REMOVE": "移除",
+      "ADD_SELECTED": "添加所选",
+      "EDIT_STATUSES": "编辑状态"
+    },
+    "PAGES": {
+      "LIST": {
+        "TITLE": "报价单",
+        "EMPTY": "暂无报价单",
+        "COLUMNS": {
+          "NUMBER": "报价单号",
+          "STATUS": "状态",
+          "ITEMS": "项目数量",
+          "CUSTOMER": "客户",
+          "CREATED": "创建时间"
+        }
+      },
+      "DETAILS": {
+        "TITLE": "报价单",
+        "ON_HOLD": "已暂停",
+        "FIELDS": {
+          "CUSTOMER": "客户",
+          "ORGANIZATION": "客户公司",
+          "NOT_DEFINED": "未定义",
+          "CREATED": "创建时间",
+          "MODIFIED": "最后更新",
+          "STATUS": "状态",
+          "EXPIRATION": "有效期",
+          "REMINDER": "提醒日期",
+          "EMPLOYEE": "分配给",
+          "EMPLOYEE_PLACEHOLDER": "选择...",
+          "STORE": "询价来源",
+          "STORE_PLACEHOLDER": "选择商店...",
+          "COMMENT": "一般备注",
+          "COMMENT_PLACEHOLDER": "公开备注",
+          "INNER_COMMENT": "内部备注"
+        },
+        "TOTALS": {
+          "TITLE": "合计",
+          "EDIT_ITEMS": "项目",
+          "SUBTOTAL": "小计",
+          "SHIPPING": "运费",
+          "DISCOUNT": "折扣",
+          "GRAND_TOTAL": "总计"
+        }
+      },
+      "ITEMS": {
+        "TITLE": "{number} 的项目",
+        "EMPTY": "暂无项目",
+        "LIST_PRICE": "目录价",
+        "SALE_PRICE": "销售价",
+        "COMMENT": "产品备注",
+        "COMMENT_PLACEHOLDER": "输入备注",
+        "SKU": "SKU",
+        "QUANTITY": "数量",
+        "PRICE": "建议价格",
+        "MARGIN": "利润率（毛利）",
+        "SELECTED_TIER": "使用此价格阶梯",
+        "ADD_TIER": "添加价格阶梯",
+        "REMOVE_TIER": "移除所选价格阶梯",
+        "SELECT_ITEM": "选择项目",
+        "DETAILS": "详情",
+        "DISCOUNT_TITLE": "折扣和运费",
+        "NEW_SUBTOTAL": "新小计",
+        "RELATIVE_DISCOUNT": "相对折扣（%）",
+        "ENTER_RELATIVE": "输入相对折扣",
+        "ENTER_SUBTOTAL": "输入新小计",
+        "SHIPPING_METHOD": "配送方式",
+        "SHIPPING_METHOD_PLACEHOLDER": "选择...",
+        "MANUAL_SHIPPING": "总运费（手动）",
+        "TOTALS": {
+          "TITLE": "合计",
+          "ORIGINAL_SUBTOTAL": "小计（询价时）",
+          "ADJUSTMENT": "调整",
+          "SUBTOTAL": "小计",
+          "SHIPPING": "运费",
+          "DISCOUNT": "折扣",
+          "GRAND_TOTAL": "总计",
+          "TAXES": "税费",
+          "GRAND_TOTAL_INCL_TAX": "总计（含税）"
+        }
+      },
+      "ITEM": {
+        "PRODUCT": "产品名称",
+        "COMMENT": "产品备注"
+      },
+      "PICKER": {
+        "TITLE": "添加项目到报价单",
+        "SEARCH": "搜索产品",
+        "COLUMNS": {
+          "IMAGE": "图片",
+          "NAME": "名称",
+          "CODE": "SKU"
+        }
+      },
+      "CONFIGURATION": {
+        "PRODUCTS": "配置产品",
+        "TEXTS": "配置文本",
+        "FILES": "配置文件",
+        "NAME": "产品名称",
+        "IMAGE": "图片",
+        "QUANTITY": "数量",
+        "TEXT": "文本",
+        "FILE_NAME": "文件名",
+        "CONTENT_TYPE": "文件类型",
+        "SIZE": "文件大小",
+        "NO_PRODUCTS": "此配置尚无任何产品。",
+        "NO_TEXTS": "此配置尚无任何文本。",
+        "NO_FILES": "此配置尚无任何文件。"
+      },
+      "ADDRESSES": {
+        "TITLE": "地址",
+        "NEW_TITLE": "新地址",
+        "EMPTY": "暂无地址",
+        "ADDRESS": "地址",
+        "DEFAULT": "默认",
+        "TYPE": "地址类型",
+        "PERSON": "姓名",
+        "DESCRIPTION": "描述",
+        "FIRST_NAME": "名",
+        "MIDDLE_NAME": "中间名",
+        "LAST_NAME": "姓",
+        "COUNTRY": "国家",
+        "REGION": "地区",
+        "CITY": "城市",
+        "LINE1": "地址行 1",
+        "LINE2": "地址行 2",
+        "POSTAL_CODE": "邮政编码",
+        "EMAIL": "电子邮件",
+        "PHONE": "电话"
+      },
+      "ATTACHMENTS": {
+        "EMPTY": "暂无附件",
+        "SELECT_FILES": "选择文件",
+        "TYPE": "类型",
+        "NAME": "名称",
+        "REMOVE": "移除",
+        "COPY_LINK": "复制链接",
+        "NOT_CONFIGURED": "未配置文件上传范围",
+        "DUPLICATE_NAME": "已存在同名文件",
+        "INVALID_SIZE": "文件大小超过 {parameter} 字节",
+        "INVALID_EXTENSION": "文件类型不在允许的类型之列（{parameter}）",
+        "UNKNOWN_ERROR": "未知错误：{parameter}",
+        "ERROR": "{fileName}：{message}"
+      },
+      "PROPERTIES": {
+        "EMPTY": "未为报价单定义任何动态属性",
+        "LANGUAGE": "语言"
+      },
+      "CHANGES": {
+        "EMPTY": "暂无变更",
+        "DATE": "日期",
+        "TYPE": "操作",
+        "USER": "用户",
+        "DETAIL": "详情"
+      }
+    },
+    "CANCEL": {
+      "TITLE": "取消报价单",
+      "MESSAGE": "您确定要取消此报价单吗？",
+      "REASON": "原因",
+      "REASON_PLACEHOLDER": "在此输入原因...",
+      "CONFIRM": "确认",
+      "BACK": "取消"
+    },
+    "ALERTS": {
+      "DELETE_SELECTED": "您确定要删除所选的询价请求吗？",
+      "DELETE": "您确定要删除此报价单吗？",
+      "CLOSE_CONFIRMATION": "报价单已修改。是否不保存直接关闭？",
+      "PROPOSAL_SUBMIT": "提交提案后，报价单的某些部分将被锁定且无法修改。您确定要继续吗？",
+      "PROPOSAL_SUBMIT_WARNING": "警告：报价缺失或总额为零。继续之前，请确保所有项目均已列出且定价正确。您确定要继续吗？",
+      "HOLD_PLACE": "您确定要暂停此报价单吗？",
+      "HOLD_RELEASE": "您确定要重新激活此报价单吗？",
+      "DELETE_ADDRESS": "您确定要删除此地址吗？",
+      "COPIED": "已复制：{text}",
+      "MEMBER_NOT_FOUND": "未找到客户账户",
+      "MEMBER_UNAVAILABLE": "此宿主应用中无法查看客户详情",
+      "PRODUCT_UNAVAILABLE": "此宿主应用中无法查看产品详情"
+    }
+  }
+}

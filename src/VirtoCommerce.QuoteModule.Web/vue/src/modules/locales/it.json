@@ -1,0 +1,206 @@
+{
+  "QUOTES": {
+    "MENU": {
+      "TITLE": "Preventivi",
+      "COUNTER": "In attesa di proposta: {count}"
+    },
+    "WIDGETS": {
+      "ITEMS": "Articoli",
+      "ADDRESSES": "Indirizzi",
+      "ATTACHMENTS": "Allegati",
+      "PROPERTIES": "Proprietà",
+      "CHANGES": "Modifiche",
+      "CONFIGURATION": "Configurazione"
+    },
+    "TOOLBAR": {
+      "REFRESH": "Aggiorna",
+      "DELETE": "Elimina",
+      "SAVE": "Salva",
+      "RESET": "Ripristina",
+      "APPLY": "OK",
+      "ADD": "Aggiungi",
+      "SUBMIT_PROPOSAL": "Invia proposta",
+      "PLACE_ON_HOLD": "Sospendi",
+      "RELEASE_HOLD": "Riattiva",
+      "CANCEL_DOCUMENT": "Annulla documento",
+      "ADD_ITEM": "Aggiungi articolo",
+      "REMOVE": "Rimuovi",
+      "ADD_SELECTED": "Aggiungi selezionati",
+      "EDIT_STATUSES": "Modifica stati"
+    },
+    "PAGES": {
+      "LIST": {
+        "TITLE": "Preventivi",
+        "EMPTY": "Ancora nessun preventivo",
+        "COLUMNS": {
+          "NUMBER": "N. preventivo",
+          "STATUS": "Stato",
+          "ITEMS": "Numero articoli",
+          "CUSTOMER": "Cliente",
+          "CREATED": "Creato"
+        }
+      },
+      "DETAILS": {
+        "TITLE": "Preventivo",
+        "ON_HOLD": "Sospeso",
+        "FIELDS": {
+          "CUSTOMER": "Cliente",
+          "ORGANIZATION": "Azienda del cliente",
+          "NOT_DEFINED": "Non definito",
+          "CREATED": "Creato",
+          "MODIFIED": "Ultimo aggiornamento",
+          "STATUS": "Stato",
+          "EXPIRATION": "Data di scadenza",
+          "REMINDER": "Data promemoria",
+          "EMPLOYEE": "Assegnato a",
+          "EMPLOYEE_PLACEHOLDER": "Seleziona...",
+          "STORE": "Richiesta di preventivo da",
+          "STORE_PLACEHOLDER": "Seleziona negozio...",
+          "COMMENT": "Commento generale",
+          "COMMENT_PLACEHOLDER": "Commento pubblico",
+          "INNER_COMMENT": "Commento interno"
+        },
+        "TOTALS": {
+          "TITLE": "Totali",
+          "EDIT_ITEMS": "Articoli",
+          "SUBTOTAL": "Subtotale",
+          "SHIPPING": "Spedizione",
+          "DISCOUNT": "Sconto",
+          "GRAND_TOTAL": "Totale generale"
+        }
+      },
+      "ITEMS": {
+        "TITLE": "Articoli del preventivo {number}",
+        "EMPTY": "Ancora nessun articolo",
+        "LIST_PRICE": "Prezzo di listino",
+        "SALE_PRICE": "Prezzo di vendita",
+        "COMMENT": "Commento sul prodotto",
+        "COMMENT_PLACEHOLDER": "Inserisci un commento",
+        "SKU": "SKU",
+        "QUANTITY": "Quantità",
+        "PRICE": "Prezzo proposto",
+        "MARGIN": "Margine (GP)",
+        "SELECTED_TIER": "Usa questa fascia",
+        "ADD_TIER": "Aggiungi fascia",
+        "REMOVE_TIER": "Rimuovi la fascia selezionata",
+        "SELECT_ITEM": "Seleziona articolo",
+        "DETAILS": "Dettagli",
+        "DISCOUNT_TITLE": "Sconto e spedizione",
+        "NEW_SUBTOTAL": "Nuovo subtotale",
+        "RELATIVE_DISCOUNT": "Sconto relativo, %",
+        "ENTER_RELATIVE": "Inserisci lo sconto relativo",
+        "ENTER_SUBTOTAL": "Inserisci il nuovo subtotale",
+        "SHIPPING_METHOD": "Metodo di spedizione",
+        "SHIPPING_METHOD_PLACEHOLDER": "Seleziona...",
+        "MANUAL_SHIPPING": "Totale spedizione (manuale)",
+        "TOTALS": {
+          "TITLE": "Totali",
+          "ORIGINAL_SUBTOTAL": "Subtotale (richiesto)",
+          "ADJUSTMENT": "Rettifica",
+          "SUBTOTAL": "Subtotale",
+          "SHIPPING": "Spedizione",
+          "DISCOUNT": "Sconto",
+          "GRAND_TOTAL": "Totale generale",
+          "TAXES": "Tasse",
+          "GRAND_TOTAL_INCL_TAX": "Totale generale (tasse incluse)"
+        }
+      },
+      "ITEM": {
+        "PRODUCT": "Nome del prodotto",
+        "COMMENT": "Commento sul prodotto"
+      },
+      "PICKER": {
+        "TITLE": "Aggiungi articolo al preventivo",
+        "SEARCH": "Cerca prodotti",
+        "COLUMNS": {
+          "IMAGE": "Immagine",
+          "NAME": "Nome",
+          "CODE": "SKU"
+        }
+      },
+      "CONFIGURATION": {
+        "PRODUCTS": "Prodotti della configurazione",
+        "TEXTS": "Testi della configurazione",
+        "FILES": "File della configurazione",
+        "NAME": "Nome del prodotto",
+        "IMAGE": "Immagine",
+        "QUANTITY": "Quantità",
+        "TEXT": "Testo",
+        "FILE_NAME": "Nome file",
+        "CONTENT_TYPE": "Tipo di file",
+        "SIZE": "Dimensione file",
+        "NO_PRODUCTS": "Questa configurazione non contiene ancora prodotti.",
+        "NO_TEXTS": "Questa configurazione non contiene ancora testi.",
+        "NO_FILES": "Questa configurazione non contiene ancora file."
+      },
+      "ADDRESSES": {
+        "TITLE": "Indirizzo",
+        "NEW_TITLE": "Nuovo indirizzo",
+        "EMPTY": "Ancora nessun indirizzo",
+        "ADDRESS": "Indirizzo",
+        "DEFAULT": "Predefinito",
+        "TYPE": "Tipo di indirizzo",
+        "PERSON": "Nome",
+        "DESCRIPTION": "Descrizione",
+        "FIRST_NAME": "Nome",
+        "MIDDLE_NAME": "Secondo nome",
+        "LAST_NAME": "Cognome",
+        "COUNTRY": "Paese",
+        "REGION": "Regione",
+        "CITY": "Città",
+        "LINE1": "Indirizzo, riga 1",
+        "LINE2": "Indirizzo, riga 2",
+        "POSTAL_CODE": "CAP",
+        "EMAIL": "E-mail",
+        "PHONE": "Telefono"
+      },
+      "ATTACHMENTS": {
+        "EMPTY": "Ancora nessun allegato",
+        "SELECT_FILES": "Seleziona file",
+        "TYPE": "Tipo",
+        "NAME": "Nome",
+        "REMOVE": "Rimuovi",
+        "COPY_LINK": "Copia link",
+        "NOT_CONFIGURED": "L'ambito di caricamento file non è configurato",
+        "DUPLICATE_NAME": "Esiste già un file con lo stesso nome",
+        "INVALID_SIZE": "La dimensione del file supera {parameter} byte",
+        "INVALID_EXTENSION": "Il tipo di file non è tra i tipi consentiti ({parameter})",
+        "UNKNOWN_ERROR": "Errore sconosciuto: {parameter}",
+        "ERROR": "{fileName}: {message}"
+      },
+      "PROPERTIES": {
+        "EMPTY": "Nessuna proprietà dinamica definita per i preventivi",
+        "LANGUAGE": "Lingua"
+      },
+      "CHANGES": {
+        "EMPTY": "Ancora nessuna modifica",
+        "DATE": "Data",
+        "TYPE": "Operazione",
+        "USER": "Utente",
+        "DETAIL": "Dettaglio"
+      }
+    },
+    "CANCEL": {
+      "TITLE": "Annulla preventivo",
+      "MESSAGE": "Annullare questo preventivo?",
+      "REASON": "Motivo",
+      "REASON_PLACEHOLDER": "Inserire il motivo qui...",
+      "CONFIRM": "Conferma",
+      "BACK": "Annulla"
+    },
+    "ALERTS": {
+      "DELETE_SELECTED": "Eliminare le richieste di preventivo selezionate?",
+      "DELETE": "Eliminare questo preventivo?",
+      "CLOSE_CONFIRMATION": "Il preventivo è stato modificato. Chiudere senza salvare?",
+      "PROPOSAL_SUBMIT": "Una volta inviata la proposta, alcune parti del preventivo verranno bloccate e non potranno essere modificate. Procedere?",
+      "PROPOSAL_SUBMIT_WARNING": "Attenzione: l'offerta è mancante o il totale è zero. Verificare che tutti gli articoli siano elencati e abbiano il prezzo corretto prima di procedere. Procedere comunque?",
+      "HOLD_PLACE": "Sospendere questo preventivo?",
+      "HOLD_RELEASE": "Riattivare questo preventivo?",
+      "DELETE_ADDRESS": "Eliminare questo indirizzo?",
+      "COPIED": "Copiato: {text}",
+      "MEMBER_NOT_FOUND": "Account del cliente non trovato",
+      "MEMBER_UNAVAILABLE": "I dettagli del cliente non sono disponibili in questo host",
+      "PRODUCT_UNAVAILABLE": "I dettagli del prodotto non sono disponibili in questo host"
+    }
+  }
+}

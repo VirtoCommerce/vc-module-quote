@@ -1,0 +1,206 @@
+{
+  "QUOTES": {
+    "MENU": {
+      "TITLE": "見積書",
+      "COUNTER": "提案待ちの見積書: {count} 件"
+    },
+    "WIDGETS": {
+      "ITEMS": "項目",
+      "ADDRESSES": "住所",
+      "ATTACHMENTS": "添付ファイル",
+      "PROPERTIES": "プロパティ",
+      "CHANGES": "変更履歴",
+      "CONFIGURATION": "構成"
+    },
+    "TOOLBAR": {
+      "REFRESH": "更新",
+      "DELETE": "削除",
+      "SAVE": "保存",
+      "RESET": "リセット",
+      "APPLY": "OK",
+      "ADD": "追加",
+      "SUBMIT_PROPOSAL": "提案を送信",
+      "PLACE_ON_HOLD": "保留にする",
+      "RELEASE_HOLD": "再アクティブ化",
+      "CANCEL_DOCUMENT": "文書をキャンセル",
+      "ADD_ITEM": "項目を追加",
+      "REMOVE": "削除",
+      "ADD_SELECTED": "選択項目を追加",
+      "EDIT_STATUSES": "ステータスを編集"
+    },
+    "PAGES": {
+      "LIST": {
+        "TITLE": "見積書",
+        "EMPTY": "見積書はまだありません",
+        "COLUMNS": {
+          "NUMBER": "見積番号",
+          "STATUS": "ステータス",
+          "ITEMS": "項目数",
+          "CUSTOMER": "顧客",
+          "CREATED": "作成日"
+        }
+      },
+      "DETAILS": {
+        "TITLE": "見積書",
+        "ON_HOLD": "保留中",
+        "FIELDS": {
+          "CUSTOMER": "顧客",
+          "ORGANIZATION": "顧客の会社",
+          "NOT_DEFINED": "未定義",
+          "CREATED": "作成日",
+          "MODIFIED": "最終更新日",
+          "STATUS": "ステータス",
+          "EXPIRATION": "有効期限",
+          "REMINDER": "リマインダー日",
+          "EMPLOYEE": "担当者",
+          "EMPLOYEE_PLACEHOLDER": "選択...",
+          "STORE": "見積依頼元",
+          "STORE_PLACEHOLDER": "ストアを選択...",
+          "COMMENT": "一般コメント",
+          "COMMENT_PLACEHOLDER": "公開コメント",
+          "INNER_COMMENT": "内部コメント"
+        },
+        "TOTALS": {
+          "TITLE": "合計",
+          "EDIT_ITEMS": "項目",
+          "SUBTOTAL": "小計",
+          "SHIPPING": "配送料",
+          "DISCOUNT": "割引",
+          "GRAND_TOTAL": "合計"
+        }
+      },
+      "ITEMS": {
+        "TITLE": "{number} の項目",
+        "EMPTY": "項目はまだありません",
+        "LIST_PRICE": "定価",
+        "SALE_PRICE": "販売価格",
+        "COMMENT": "商品コメント",
+        "COMMENT_PLACEHOLDER": "コメントを入力",
+        "SKU": "SKU",
+        "QUANTITY": "数量",
+        "PRICE": "提案価格",
+        "MARGIN": "利益率（GP）",
+        "SELECTED_TIER": "この価格段階を使用",
+        "ADD_TIER": "価格段階を追加",
+        "REMOVE_TIER": "選択した価格段階を削除",
+        "SELECT_ITEM": "項目を選択",
+        "DETAILS": "詳細",
+        "DISCOUNT_TITLE": "割引と配送",
+        "NEW_SUBTOTAL": "新しい小計",
+        "RELATIVE_DISCOUNT": "相対割引（%）",
+        "ENTER_RELATIVE": "相対割引を入力",
+        "ENTER_SUBTOTAL": "新しい小計を入力",
+        "SHIPPING_METHOD": "配送方法",
+        "SHIPPING_METHOD_PLACEHOLDER": "選択...",
+        "MANUAL_SHIPPING": "配送料合計（手動）",
+        "TOTALS": {
+          "TITLE": "合計",
+          "ORIGINAL_SUBTOTAL": "小計（依頼時）",
+          "ADJUSTMENT": "調整",
+          "SUBTOTAL": "小計",
+          "SHIPPING": "配送料",
+          "DISCOUNT": "割引",
+          "GRAND_TOTAL": "合計",
+          "TAXES": "税金",
+          "GRAND_TOTAL_INCL_TAX": "合計（税込）"
+        }
+      },
+      "ITEM": {
+        "PRODUCT": "商品名",
+        "COMMENT": "商品コメント"
+      },
+      "PICKER": {
+        "TITLE": "見積書に項目を追加",
+        "SEARCH": "商品を検索",
+        "COLUMNS": {
+          "IMAGE": "画像",
+          "NAME": "名前",
+          "CODE": "SKU"
+        }
+      },
+      "CONFIGURATION": {
+        "PRODUCTS": "構成商品",
+        "TEXTS": "構成テキスト",
+        "FILES": "構成ファイル",
+        "NAME": "商品名",
+        "IMAGE": "画像",
+        "QUANTITY": "数量",
+        "TEXT": "テキスト",
+        "FILE_NAME": "ファイル名",
+        "CONTENT_TYPE": "ファイル形式",
+        "SIZE": "ファイルサイズ",
+        "NO_PRODUCTS": "この構成にはまだ商品がありません。",
+        "NO_TEXTS": "この構成にはまだテキストがありません。",
+        "NO_FILES": "この構成にはまだファイルがありません。"
+      },
+      "ADDRESSES": {
+        "TITLE": "住所",
+        "NEW_TITLE": "新しい住所",
+        "EMPTY": "住所はまだありません",
+        "ADDRESS": "住所",
+        "DEFAULT": "既定",
+        "TYPE": "住所の種類",
+        "PERSON": "氏名",
+        "DESCRIPTION": "説明",
+        "FIRST_NAME": "名",
+        "MIDDLE_NAME": "ミドルネーム",
+        "LAST_NAME": "姓",
+        "COUNTRY": "国",
+        "REGION": "地域",
+        "CITY": "市区町村",
+        "LINE1": "住所1行目",
+        "LINE2": "住所2行目",
+        "POSTAL_CODE": "郵便番号",
+        "EMAIL": "メールアドレス",
+        "PHONE": "電話番号"
+      },
+      "ATTACHMENTS": {
+        "EMPTY": "添付ファイルはまだありません",
+        "SELECT_FILES": "ファイルを選択",
+        "TYPE": "種類",
+        "NAME": "名前",
+        "REMOVE": "削除",
+        "COPY_LINK": "リンクをコピー",
+        "NOT_CONFIGURED": "ファイルアップロードのスコープが設定されていません",
+        "DUPLICATE_NAME": "同じ名前のファイルが既に存在します",
+        "INVALID_SIZE": "ファイルサイズが {parameter} バイトを超えています",
+        "INVALID_EXTENSION": "ファイル形式が許可されている形式（{parameter}）ではありません",
+        "UNKNOWN_ERROR": "不明なエラー: {parameter}",
+        "ERROR": "{fileName}: {message}"
+      },
+      "PROPERTIES": {
+        "EMPTY": "見積書に定義された動的プロパティはありません",
+        "LANGUAGE": "言語"
+      },
+      "CHANGES": {
+        "EMPTY": "変更履歴はまだありません",
+        "DATE": "日付",
+        "TYPE": "操作",
+        "USER": "ユーザー",
+        "DETAIL": "詳細"
+      }
+    },
+    "CANCEL": {
+      "TITLE": "見積書をキャンセル",
+      "MESSAGE": "この見積書をキャンセルしてもよろしいですか？",
+      "REASON": "理由",
+      "REASON_PLACEHOLDER": "理由を入力してください...",
+      "CONFIRM": "確認",
+      "BACK": "キャンセル"
+    },
+    "ALERTS": {
+      "DELETE_SELECTED": "選択した見積依頼を削除してもよろしいですか？",
+      "DELETE": "この見積書を削除してもよろしいですか？",
+      "CLOSE_CONFIRMATION": "見積書が変更されています。保存せずに閉じますか？",
+      "PROPOSAL_SUBMIT": "提案を送信すると、見積書の一部がロックされ、変更できなくなります。続行してもよろしいですか？",
+      "PROPOSAL_SUBMIT_WARNING": "警告: オファーがないか、合計がゼロです。続行する前に、すべての項目が記載され、正しく価格設定されていることを確認してください。続行してもよろしいですか？",
+      "HOLD_PLACE": "この見積書を保留にしてもよろしいですか？",
+      "HOLD_RELEASE": "この見積書を再アクティブ化してもよろしいですか？",
+      "DELETE_ADDRESS": "この住所を削除してもよろしいですか？",
+      "COPIED": "コピーしました: {text}",
+      "MEMBER_NOT_FOUND": "顧客のアカウントが見つかりません",
+      "MEMBER_UNAVAILABLE": "このホストでは顧客の詳細を表示できません",
+      "PRODUCT_UNAVAILABLE": "このホストでは商品の詳細を表示できません"
+    }
+  }
+}

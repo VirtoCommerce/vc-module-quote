@@ -1,0 +1,206 @@
+{
+  "QUOTES": {
+    "MENU": {
+      "TITLE": "Devis",
+      "COUNTER": "En attente de proposition : {count}"
+    },
+    "WIDGETS": {
+      "ITEMS": "Articles",
+      "ADDRESSES": "Adresses",
+      "ATTACHMENTS": "Pièces jointes",
+      "PROPERTIES": "Propriétés",
+      "CHANGES": "Modifications",
+      "CONFIGURATION": "Configuration"
+    },
+    "TOOLBAR": {
+      "REFRESH": "Actualiser",
+      "DELETE": "Supprimer",
+      "SAVE": "Enregistrer",
+      "RESET": "Réinitialiser",
+      "APPLY": "OK",
+      "ADD": "Ajouter",
+      "SUBMIT_PROPOSAL": "Soumettre la proposition",
+      "PLACE_ON_HOLD": "Mettre en attente",
+      "RELEASE_HOLD": "Réactiver",
+      "CANCEL_DOCUMENT": "Annuler le document",
+      "ADD_ITEM": "Ajouter un article",
+      "REMOVE": "Retirer",
+      "ADD_SELECTED": "Ajouter la sélection",
+      "EDIT_STATUSES": "Modifier les statuts"
+    },
+    "PAGES": {
+      "LIST": {
+        "TITLE": "Devis",
+        "EMPTY": "Aucun devis pour le moment",
+        "COLUMNS": {
+          "NUMBER": "N° de devis",
+          "STATUS": "Statut",
+          "ITEMS": "Nombre d'articles",
+          "CUSTOMER": "Client",
+          "CREATED": "Créé le"
+        }
+      },
+      "DETAILS": {
+        "TITLE": "Devis",
+        "ON_HOLD": "En attente",
+        "FIELDS": {
+          "CUSTOMER": "Client",
+          "ORGANIZATION": "Entreprise du client",
+          "NOT_DEFINED": "Non défini",
+          "CREATED": "Créé le",
+          "MODIFIED": "Dernière mise à jour",
+          "STATUS": "Statut",
+          "EXPIRATION": "Date d'expiration",
+          "REMINDER": "Date de rappel",
+          "EMPLOYEE": "Assigné à",
+          "EMPLOYEE_PLACEHOLDER": "Sélectionner...",
+          "STORE": "Demande de devis de",
+          "STORE_PLACEHOLDER": "Sélectionner un magasin...",
+          "COMMENT": "Commentaire général",
+          "COMMENT_PLACEHOLDER": "Commentaire public",
+          "INNER_COMMENT": "Commentaire interne"
+        },
+        "TOTALS": {
+          "TITLE": "Totaux",
+          "EDIT_ITEMS": "Articles",
+          "SUBTOTAL": "Sous-total",
+          "SHIPPING": "Expédition",
+          "DISCOUNT": "Remise",
+          "GRAND_TOTAL": "Total général"
+        }
+      },
+      "ITEMS": {
+        "TITLE": "Articles du devis {number}",
+        "EMPTY": "Aucun article pour le moment",
+        "LIST_PRICE": "Prix catalogue",
+        "SALE_PRICE": "Prix de vente",
+        "COMMENT": "Commentaire sur le produit",
+        "COMMENT_PLACEHOLDER": "Saisir un commentaire",
+        "SKU": "SKU",
+        "QUANTITY": "Quantité",
+        "PRICE": "Prix proposé",
+        "MARGIN": "Marge (MB)",
+        "SELECTED_TIER": "Utiliser ce palier",
+        "ADD_TIER": "Ajouter un palier",
+        "REMOVE_TIER": "Retirer le palier sélectionné",
+        "SELECT_ITEM": "Sélectionner l'article",
+        "DETAILS": "Détails",
+        "DISCOUNT_TITLE": "Remise et expédition",
+        "NEW_SUBTOTAL": "Nouveau sous-total",
+        "RELATIVE_DISCOUNT": "Remise relative, %",
+        "ENTER_RELATIVE": "Saisir la remise relative",
+        "ENTER_SUBTOTAL": "Saisir le nouveau sous-total",
+        "SHIPPING_METHOD": "Mode d'expédition",
+        "SHIPPING_METHOD_PLACEHOLDER": "Sélectionner...",
+        "MANUAL_SHIPPING": "Total d'expédition (manuel)",
+        "TOTALS": {
+          "TITLE": "Totaux",
+          "ORIGINAL_SUBTOTAL": "Sous-total (demandé)",
+          "ADJUSTMENT": "Ajustement",
+          "SUBTOTAL": "Sous-total",
+          "SHIPPING": "Expédition",
+          "DISCOUNT": "Remise",
+          "GRAND_TOTAL": "Total général",
+          "TAXES": "Taxes",
+          "GRAND_TOTAL_INCL_TAX": "Total général (taxes incluses)"
+        }
+      },
+      "ITEM": {
+        "PRODUCT": "Nom du produit",
+        "COMMENT": "Commentaire sur le produit"
+      },
+      "PICKER": {
+        "TITLE": "Ajouter un article au devis",
+        "SEARCH": "Rechercher des produits",
+        "COLUMNS": {
+          "IMAGE": "Image",
+          "NAME": "Nom",
+          "CODE": "SKU"
+        }
+      },
+      "CONFIGURATION": {
+        "PRODUCTS": "Produits de la configuration",
+        "TEXTS": "Textes de la configuration",
+        "FILES": "Fichiers de la configuration",
+        "NAME": "Nom du produit",
+        "IMAGE": "Image",
+        "QUANTITY": "Quantité",
+        "TEXT": "Texte",
+        "FILE_NAME": "Nom du fichier",
+        "CONTENT_TYPE": "Type de fichier",
+        "SIZE": "Taille du fichier",
+        "NO_PRODUCTS": "Cette configuration ne contient encore aucun produit.",
+        "NO_TEXTS": "Cette configuration ne contient encore aucun texte.",
+        "NO_FILES": "Cette configuration ne contient encore aucun fichier."
+      },
+      "ADDRESSES": {
+        "TITLE": "Adresse",
+        "NEW_TITLE": "Nouvelle adresse",
+        "EMPTY": "Aucune adresse pour le moment",
+        "ADDRESS": "Adresse",
+        "DEFAULT": "Par défaut",
+        "TYPE": "Type d'adresse",
+        "PERSON": "Nom",
+        "DESCRIPTION": "Description",
+        "FIRST_NAME": "Prénom",
+        "MIDDLE_NAME": "Deuxième prénom",
+        "LAST_NAME": "Nom de famille",
+        "COUNTRY": "Pays",
+        "REGION": "Région",
+        "CITY": "Ville",
+        "LINE1": "Adresse, ligne 1",
+        "LINE2": "Adresse, ligne 2",
+        "POSTAL_CODE": "Code postal",
+        "EMAIL": "E-mail",
+        "PHONE": "Téléphone"
+      },
+      "ATTACHMENTS": {
+        "EMPTY": "Aucune pièce jointe pour le moment",
+        "SELECT_FILES": "Sélectionner des fichiers",
+        "TYPE": "Type",
+        "NAME": "Nom",
+        "REMOVE": "Retirer",
+        "COPY_LINK": "Copier le lien",
+        "NOT_CONFIGURED": "La portée du téléversement de fichiers n'est pas configurée",
+        "DUPLICATE_NAME": "Un fichier portant le même nom existe déjà",
+        "INVALID_SIZE": "La taille du fichier dépasse {parameter} octets",
+        "INVALID_EXTENSION": "Le type de fichier ne fait pas partie des types autorisés ({parameter})",
+        "UNKNOWN_ERROR": "Erreur inconnue : {parameter}",
+        "ERROR": "{fileName} : {message}"
+      },
+      "PROPERTIES": {
+        "EMPTY": "Aucune propriété dynamique n'est définie pour les devis",
+        "LANGUAGE": "Langue"
+      },
+      "CHANGES": {
+        "EMPTY": "Aucune modification pour le moment",
+        "DATE": "Date",
+        "TYPE": "Opération",
+        "USER": "Utilisateur",
+        "DETAIL": "Détail"
+      }
+    },
+    "CANCEL": {
+      "TITLE": "Annuler le devis",
+      "MESSAGE": "Voulez-vous vraiment annuler ce devis ?",
+      "REASON": "Motif",
+      "REASON_PLACEHOLDER": "Saisissez le motif ici...",
+      "CONFIRM": "Confirmer",
+      "BACK": "Annuler"
+    },
+    "ALERTS": {
+      "DELETE_SELECTED": "Voulez-vous vraiment supprimer la ou les demandes de devis sélectionnées ?",
+      "DELETE": "Voulez-vous vraiment supprimer ce devis ?",
+      "CLOSE_CONFIRMATION": "Le devis a été modifié. Fermer sans enregistrer ?",
+      "PROPOSAL_SUBMIT": "Une fois votre proposition soumise, certaines parties du devis seront verrouillées et ne pourront plus être modifiées. Voulez-vous vraiment continuer ?",
+      "PROPOSAL_SUBMIT_WARNING": "Avertissement : l'offre est manquante ou son total est nul. Veuillez vérifier que tous les articles sont listés et correctement tarifés avant de continuer. Voulez-vous vraiment continuer ?",
+      "HOLD_PLACE": "Voulez-vous vraiment mettre ce devis en attente ?",
+      "HOLD_RELEASE": "Voulez-vous vraiment réactiver ce devis ?",
+      "DELETE_ADDRESS": "Voulez-vous vraiment supprimer cette adresse ?",
+      "COPIED": "Copié : {text}",
+      "MEMBER_NOT_FOUND": "Le compte du client est introuvable",
+      "MEMBER_UNAVAILABLE": "Les détails du client ne sont pas disponibles dans cet hôte",
+      "PRODUCT_UNAVAILABLE": "Les détails du produit ne sont pas disponibles dans cet hôte"
+    }
+  }
+}
