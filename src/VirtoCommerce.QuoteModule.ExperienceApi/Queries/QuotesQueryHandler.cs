@@ -44,18 +44,24 @@ public class QuotesQueryHandler : IQueryHandler<QuotesQuery, QuoteAggregateSearc
     protected virtual QuoteRequestSearchCriteria GetSearchCriteria(QuotesQuery request)
     {
         var criteria = request.GetSearchCriteria<QuoteRequestSearchCriteria>();
+
+        // parse Filter argument
+        if (!string.IsNullOrEmpty(request.Filter))
+        {
+            ApplyFilter(criteria, request.Filter);
+        }
+
         criteria.StoreId = request.StoreId;
         criteria.CustomerId = request.UserId;
         criteria.Currency = request.CurrencyCode;
         criteria.OrganizationId = request.OrganizationId;
 
-        // parse Filter argument
-        if (string.IsNullOrEmpty(request.Filter))
-        {
-            return criteria;
-        }
+        return criteria;
+    }
 
-        var parseResult = _phraseParser.Parse(request.Filter);
+    protected virtual void ApplyFilter(QuoteRequestSearchCriteria criteria, string filter)
+    {
+        var parseResult = _phraseParser.Parse(filter);
 
         // search keyword only in number
         criteria.NumberKeyword = parseResult.Keyword;
@@ -80,7 +86,5 @@ public class QuotesQueryHandler : IQueryHandler<QuotesQuery, QuoteAggregateSearc
                 criteria.EndDate = endDate;
             }
         }
-
-        return criteria;
     }
 }
