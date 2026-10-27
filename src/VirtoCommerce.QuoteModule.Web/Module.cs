@@ -14,6 +14,7 @@ using VirtoCommerce.Platform.Core.Common;
 using VirtoCommerce.Platform.Core.DynamicProperties;
 using VirtoCommerce.Platform.Core.Events;
 using VirtoCommerce.Platform.Core.ExportImport;
+using VirtoCommerce.Platform.Core.Jobs;
 using VirtoCommerce.Platform.Core.Modularity;
 using VirtoCommerce.Platform.Core.Security;
 using VirtoCommerce.Platform.Core.Settings;
@@ -27,6 +28,7 @@ using VirtoCommerce.QuoteModule.Core.Events;
 using VirtoCommerce.QuoteModule.Core.Models;
 using VirtoCommerce.QuoteModule.Core.Services;
 using VirtoCommerce.QuoteModule.Data.Handlers;
+using VirtoCommerce.QuoteModule.Data.Jobs;
 using VirtoCommerce.QuoteModule.Data.MySql;
 using VirtoCommerce.QuoteModule.Data.PostgreSql;
 using VirtoCommerce.QuoteModule.Data.Repositories;
@@ -80,6 +82,8 @@ namespace VirtoCommerce.QuoteModule.Web
             serviceCollection.AddTransient<IQuoteTotalsCalculator, DefaultQuoteTotalsCalculator>();
             serviceCollection.AddTransient<QuoteExportImport>();
             serviceCollection.AddTransient<LogChangesEventHandler>();
+            // Not triggerable by name: this job writes audit-log rows, so a caller-supplied payload must never reach it.
+            serviceCollection.AddBackgroundJob<LogEntityChangesJobHandler, LogEntityChangesJobPayload>(triggerable: false);
             serviceCollection.AddTransient<CancelQuoteEventHandler>();
 
             // GraphQL
