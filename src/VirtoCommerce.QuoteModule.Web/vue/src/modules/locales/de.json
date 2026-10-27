@@ -1,0 +1,206 @@
+{
+  "QUOTES": {
+    "MENU": {
+      "TITLE": "Angebote",
+      "COUNTER": "Anfragen ohne Angebot: {count}"
+    },
+    "WIDGETS": {
+      "ITEMS": "Positionen",
+      "ADDRESSES": "Adressen",
+      "ATTACHMENTS": "Anhänge",
+      "PROPERTIES": "Eigenschaften",
+      "CHANGES": "Änderungen",
+      "CONFIGURATION": "Konfiguration"
+    },
+    "TOOLBAR": {
+      "REFRESH": "Aktualisieren",
+      "DELETE": "Löschen",
+      "SAVE": "Speichern",
+      "RESET": "Zurücksetzen",
+      "APPLY": "OK",
+      "ADD": "Hinzufügen",
+      "SUBMIT_PROPOSAL": "Angebot einreichen",
+      "PLACE_ON_HOLD": "Anhalten",
+      "RELEASE_HOLD": "Reaktivieren",
+      "CANCEL_DOCUMENT": "Dokument stornieren",
+      "ADD_ITEM": "Artikel hinzufügen",
+      "REMOVE": "Entfernen",
+      "ADD_SELECTED": "Ausgewählte hinzufügen",
+      "EDIT_STATUSES": "Status bearbeiten"
+    },
+    "PAGES": {
+      "LIST": {
+        "TITLE": "Angebote",
+        "EMPTY": "Noch keine Angebote",
+        "COLUMNS": {
+          "NUMBER": "Angebotsnummer",
+          "STATUS": "Status",
+          "ITEMS": "Artikelanzahl",
+          "CUSTOMER": "Kunde",
+          "CREATED": "Erstellt"
+        }
+      },
+      "DETAILS": {
+        "TITLE": "Angebot",
+        "ON_HOLD": "Angehalten",
+        "FIELDS": {
+          "CUSTOMER": "Kunde",
+          "ORGANIZATION": "Kundenunternehmen",
+          "NOT_DEFINED": "Nicht definiert",
+          "CREATED": "Erstellt",
+          "MODIFIED": "Zuletzt aktualisiert",
+          "STATUS": "Status",
+          "EXPIRATION": "Ablaufdatum",
+          "REMINDER": "Erinnerungsdatum",
+          "EMPLOYEE": "Zugewiesen an",
+          "EMPLOYEE_PLACEHOLDER": "Auswählen...",
+          "STORE": "Anfrage von",
+          "STORE_PLACEHOLDER": "Shop auswählen...",
+          "COMMENT": "Allgemeiner Kommentar",
+          "COMMENT_PLACEHOLDER": "Öffentlicher Kommentar",
+          "INNER_COMMENT": "Interner Kommentar"
+        },
+        "TOTALS": {
+          "TITLE": "Summen",
+          "EDIT_ITEMS": "Positionen",
+          "SUBTOTAL": "Zwischensumme",
+          "SHIPPING": "Versand",
+          "DISCOUNT": "Rabatt",
+          "GRAND_TOTAL": "Gesamtsumme"
+        }
+      },
+      "ITEMS": {
+        "TITLE": "Positionen von {number}",
+        "EMPTY": "Noch keine Positionen",
+        "LIST_PRICE": "Listenpreis",
+        "SALE_PRICE": "Verkaufspreis",
+        "COMMENT": "Produktkommentar",
+        "COMMENT_PLACEHOLDER": "Kommentar eingeben",
+        "SKU": "SKU",
+        "QUANTITY": "Menge",
+        "PRICE": "Vorgeschlagener Preis",
+        "MARGIN": "Marge (GP)",
+        "SELECTED_TIER": "Diese Staffel verwenden",
+        "ADD_TIER": "Staffel hinzufügen",
+        "REMOVE_TIER": "Ausgewählte Staffel entfernen",
+        "SELECT_ITEM": "Position auswählen",
+        "DETAILS": "Details",
+        "DISCOUNT_TITLE": "Rabatt und Versand",
+        "NEW_SUBTOTAL": "Neue Zwischensumme",
+        "RELATIVE_DISCOUNT": "Relativer Rabatt, %",
+        "ENTER_RELATIVE": "Relativen Rabatt eingeben",
+        "ENTER_SUBTOTAL": "Neue Zwischensumme eingeben",
+        "SHIPPING_METHOD": "Versandmethode",
+        "SHIPPING_METHOD_PLACEHOLDER": "Auswählen...",
+        "MANUAL_SHIPPING": "Versandkosten gesamt (manuell)",
+        "TOTALS": {
+          "TITLE": "Summen",
+          "ORIGINAL_SUBTOTAL": "Zwischensumme (angefragt)",
+          "ADJUSTMENT": "Anpassung",
+          "SUBTOTAL": "Zwischensumme",
+          "SHIPPING": "Versand",
+          "DISCOUNT": "Rabatt",
+          "GRAND_TOTAL": "Gesamtsumme",
+          "TAXES": "Steuern",
+          "GRAND_TOTAL_INCL_TAX": "Gesamtsumme (inkl. Steuern)"
+        }
+      },
+      "ITEM": {
+        "PRODUCT": "Produktname",
+        "COMMENT": "Produktkommentar"
+      },
+      "PICKER": {
+        "TITLE": "Artikel zum Angebot hinzufügen",
+        "SEARCH": "Produkte suchen",
+        "COLUMNS": {
+          "IMAGE": "Bild",
+          "NAME": "Name",
+          "CODE": "SKU"
+        }
+      },
+      "CONFIGURATION": {
+        "PRODUCTS": "Konfigurationsprodukte",
+        "TEXTS": "Konfigurationstexte",
+        "FILES": "Konfigurationsdateien",
+        "NAME": "Produktname",
+        "IMAGE": "Bild",
+        "QUANTITY": "Menge",
+        "TEXT": "Text",
+        "FILE_NAME": "Dateiname",
+        "CONTENT_TYPE": "Dateityp",
+        "SIZE": "Dateigröße",
+        "NO_PRODUCTS": "Diese Konfiguration enthält noch keine Produkte.",
+        "NO_TEXTS": "Diese Konfiguration enthält noch keine Texte.",
+        "NO_FILES": "Diese Konfiguration enthält noch keine Dateien."
+      },
+      "ADDRESSES": {
+        "TITLE": "Adresse",
+        "NEW_TITLE": "Neue Adresse",
+        "EMPTY": "Noch keine Adressen",
+        "ADDRESS": "Adresse",
+        "DEFAULT": "Standard",
+        "TYPE": "Adresstyp",
+        "PERSON": "Name",
+        "DESCRIPTION": "Beschreibung",
+        "FIRST_NAME": "Vorname",
+        "MIDDLE_NAME": "Zweiter Vorname",
+        "LAST_NAME": "Nachname",
+        "COUNTRY": "Land",
+        "REGION": "Region",
+        "CITY": "Stadt",
+        "LINE1": "Adresszeile 1",
+        "LINE2": "Adresszeile 2",
+        "POSTAL_CODE": "Postleitzahl",
+        "EMAIL": "E-Mail",
+        "PHONE": "Telefon"
+      },
+      "ATTACHMENTS": {
+        "EMPTY": "Noch keine Anhänge",
+        "SELECT_FILES": "Dateien auswählen",
+        "TYPE": "Typ",
+        "NAME": "Name",
+        "REMOVE": "Entfernen",
+        "COPY_LINK": "Link kopieren",
+        "NOT_CONFIGURED": "Der Datei-Upload-Bereich ist nicht konfiguriert",
+        "DUPLICATE_NAME": "Eine Datei mit demselben Namen existiert bereits",
+        "INVALID_SIZE": "Die Dateigröße überschreitet {parameter} Bytes",
+        "INVALID_EXTENSION": "Der Dateityp gehört nicht zu den zulässigen Typen ({parameter})",
+        "UNKNOWN_ERROR": "Unbekannter Fehler: {parameter}",
+        "ERROR": "{fileName}: {message}"
+      },
+      "PROPERTIES": {
+        "EMPTY": "Für Angebote sind keine dynamischen Eigenschaften definiert",
+        "LANGUAGE": "Sprache"
+      },
+      "CHANGES": {
+        "EMPTY": "Noch keine Änderungen",
+        "DATE": "Datum",
+        "TYPE": "Vorgang",
+        "USER": "Benutzer",
+        "DETAIL": "Details"
+      }
+    },
+    "CANCEL": {
+      "TITLE": "Angebot stornieren",
+      "MESSAGE": "Sind Sie sicher, dass Sie dieses Angebot stornieren möchten?",
+      "REASON": "Grund",
+      "REASON_PLACEHOLDER": "Grund hier eingeben...",
+      "CONFIRM": "Bestätigen",
+      "BACK": "Abbrechen"
+    },
+    "ALERTS": {
+      "DELETE_SELECTED": "Sind Sie sicher, dass Sie die ausgewählte(n) Angebotsanfrage(n) löschen möchten?",
+      "DELETE": "Sind Sie sicher, dass Sie dieses Angebot löschen möchten?",
+      "CLOSE_CONFIRMATION": "Das Angebot wurde geändert. Ohne Speichern schließen?",
+      "PROPOSAL_SUBMIT": "Sobald Sie Ihr Angebot eingereicht haben, werden bestimmte Teile des Angebots gesperrt und können nicht mehr geändert werden. Sind Sie sicher, dass Sie fortfahren möchten?",
+      "PROPOSAL_SUBMIT_WARNING": "Warnung: Das Angebot fehlt oder die Summe ist null. Bitte stellen Sie sicher, dass alle Artikel aufgeführt und korrekt bepreist sind, bevor Sie fortfahren. Sind Sie sicher, dass Sie fortfahren möchten?",
+      "HOLD_PLACE": "Sind Sie sicher, dass Sie dieses Angebot anhalten möchten?",
+      "HOLD_RELEASE": "Sind Sie sicher, dass Sie dieses Angebot reaktivieren möchten?",
+      "DELETE_ADDRESS": "Sind Sie sicher, dass Sie diese Adresse löschen möchten?",
+      "COPIED": "Kopiert: {text}",
+      "MEMBER_NOT_FOUND": "Das Konto des Kunden wurde nicht gefunden",
+      "MEMBER_UNAVAILABLE": "Kundendetails sind in diesem Host nicht verfügbar",
+      "PRODUCT_UNAVAILABLE": "Produktdetails sind in diesem Host nicht verfügbar"
+    }
+  }
+}

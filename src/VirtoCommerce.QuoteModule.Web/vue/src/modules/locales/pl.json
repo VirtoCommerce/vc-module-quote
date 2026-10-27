@@ -1,0 +1,206 @@
+{
+  "QUOTES": {
+    "MENU": {
+      "TITLE": "Oferty",
+      "COUNTER": "Oczekujące na propozycję: {count}"
+    },
+    "WIDGETS": {
+      "ITEMS": "Pozycje",
+      "ADDRESSES": "Adresy",
+      "ATTACHMENTS": "Załączniki",
+      "PROPERTIES": "Właściwości",
+      "CHANGES": "Zmiany",
+      "CONFIGURATION": "Konfiguracja"
+    },
+    "TOOLBAR": {
+      "REFRESH": "Odśwież",
+      "DELETE": "Usuń",
+      "SAVE": "Zapisz",
+      "RESET": "Resetuj",
+      "APPLY": "OK",
+      "ADD": "Dodaj",
+      "SUBMIT_PROPOSAL": "Prześlij propozycję",
+      "PLACE_ON_HOLD": "Wstrzymaj",
+      "RELEASE_HOLD": "Ponownie aktywuj",
+      "CANCEL_DOCUMENT": "Anuluj dokument",
+      "ADD_ITEM": "Dodaj pozycję",
+      "REMOVE": "Usuń",
+      "ADD_SELECTED": "Dodaj wybrane",
+      "EDIT_STATUSES": "Edytuj statusy"
+    },
+    "PAGES": {
+      "LIST": {
+        "TITLE": "Oferty",
+        "EMPTY": "Brak ofert",
+        "COLUMNS": {
+          "NUMBER": "Nr oferty",
+          "STATUS": "Status",
+          "ITEMS": "Liczba pozycji",
+          "CUSTOMER": "Klient",
+          "CREATED": "Utworzono"
+        }
+      },
+      "DETAILS": {
+        "TITLE": "Oferta",
+        "ON_HOLD": "Wstrzymana",
+        "FIELDS": {
+          "CUSTOMER": "Klient",
+          "ORGANIZATION": "Firma klienta",
+          "NOT_DEFINED": "Nieokreślono",
+          "CREATED": "Utworzono",
+          "MODIFIED": "Ostatnia aktualizacja",
+          "STATUS": "Status",
+          "EXPIRATION": "Data ważności",
+          "REMINDER": "Data przypomnienia",
+          "EMPLOYEE": "Przypisano do",
+          "EMPLOYEE_PLACEHOLDER": "Wybierz...",
+          "STORE": "Zapytanie ofertowe od",
+          "STORE_PLACEHOLDER": "Wybierz sklep...",
+          "COMMENT": "Komentarz ogólny",
+          "COMMENT_PLACEHOLDER": "Komentarz publiczny",
+          "INNER_COMMENT": "Komentarz wewnętrzny"
+        },
+        "TOTALS": {
+          "TITLE": "Sumy",
+          "EDIT_ITEMS": "Pozycje",
+          "SUBTOTAL": "Suma częściowa",
+          "SHIPPING": "Wysyłka",
+          "DISCOUNT": "Rabat",
+          "GRAND_TOTAL": "Suma całkowita"
+        }
+      },
+      "ITEMS": {
+        "TITLE": "Pozycje oferty {number}",
+        "EMPTY": "Brak pozycji",
+        "LIST_PRICE": "Cena katalogowa",
+        "SALE_PRICE": "Cena sprzedaży",
+        "COMMENT": "Komentarz do produktu",
+        "COMMENT_PLACEHOLDER": "Wprowadź komentarz",
+        "SKU": "SKU",
+        "QUANTITY": "Ilość",
+        "PRICE": "Proponowana cena",
+        "MARGIN": "Marża (MB)",
+        "SELECTED_TIER": "Użyj tego progu",
+        "ADD_TIER": "Dodaj próg",
+        "REMOVE_TIER": "Usuń wybrany próg",
+        "SELECT_ITEM": "Wybierz pozycję",
+        "DETAILS": "Szczegóły",
+        "DISCOUNT_TITLE": "Rabat i wysyłka",
+        "NEW_SUBTOTAL": "Nowa suma częściowa",
+        "RELATIVE_DISCOUNT": "Rabat względny, %",
+        "ENTER_RELATIVE": "Wprowadź rabat względny",
+        "ENTER_SUBTOTAL": "Wprowadź nową sumę częściową",
+        "SHIPPING_METHOD": "Metoda wysyłki",
+        "SHIPPING_METHOD_PLACEHOLDER": "Wybierz...",
+        "MANUAL_SHIPPING": "Suma wysyłki (ręcznie)",
+        "TOTALS": {
+          "TITLE": "Sumy",
+          "ORIGINAL_SUBTOTAL": "Suma częściowa (w zapytaniu)",
+          "ADJUSTMENT": "Korekta",
+          "SUBTOTAL": "Suma częściowa",
+          "SHIPPING": "Wysyłka",
+          "DISCOUNT": "Rabat",
+          "GRAND_TOTAL": "Suma całkowita",
+          "TAXES": "Podatki",
+          "GRAND_TOTAL_INCL_TAX": "Suma całkowita (z podatkami)"
+        }
+      },
+      "ITEM": {
+        "PRODUCT": "Nazwa produktu",
+        "COMMENT": "Komentarz do produktu"
+      },
+      "PICKER": {
+        "TITLE": "Dodaj pozycję do oferty",
+        "SEARCH": "Szukaj produktów",
+        "COLUMNS": {
+          "IMAGE": "Obraz",
+          "NAME": "Nazwa",
+          "CODE": "SKU"
+        }
+      },
+      "CONFIGURATION": {
+        "PRODUCTS": "Produkty konfiguracji",
+        "TEXTS": "Teksty konfiguracji",
+        "FILES": "Pliki konfiguracji",
+        "NAME": "Nazwa produktu",
+        "IMAGE": "Obraz",
+        "QUANTITY": "Ilość",
+        "TEXT": "Tekst",
+        "FILE_NAME": "Nazwa pliku",
+        "CONTENT_TYPE": "Typ pliku",
+        "SIZE": "Rozmiar pliku",
+        "NO_PRODUCTS": "Ta konfiguracja nie zawiera jeszcze żadnych produktów.",
+        "NO_TEXTS": "Ta konfiguracja nie zawiera jeszcze żadnych tekstów.",
+        "NO_FILES": "Ta konfiguracja nie zawiera jeszcze żadnych plików."
+      },
+      "ADDRESSES": {
+        "TITLE": "Adres",
+        "NEW_TITLE": "Nowy adres",
+        "EMPTY": "Brak adresów",
+        "ADDRESS": "Adres",
+        "DEFAULT": "Domyślny",
+        "TYPE": "Typ adresu",
+        "PERSON": "Imię i nazwisko",
+        "DESCRIPTION": "Opis",
+        "FIRST_NAME": "Imię",
+        "MIDDLE_NAME": "Drugie imię",
+        "LAST_NAME": "Nazwisko",
+        "COUNTRY": "Kraj",
+        "REGION": "Region",
+        "CITY": "Miasto",
+        "LINE1": "Adres – wiersz 1",
+        "LINE2": "Adres – wiersz 2",
+        "POSTAL_CODE": "Kod pocztowy",
+        "EMAIL": "E-mail",
+        "PHONE": "Telefon"
+      },
+      "ATTACHMENTS": {
+        "EMPTY": "Brak załączników",
+        "SELECT_FILES": "Wybierz pliki",
+        "TYPE": "Typ",
+        "NAME": "Nazwa",
+        "REMOVE": "Usuń",
+        "COPY_LINK": "Kopiuj link",
+        "NOT_CONFIGURED": "Zakres przesyłania plików nie jest skonfigurowany",
+        "DUPLICATE_NAME": "Plik o tej samej nazwie już istnieje",
+        "INVALID_SIZE": "Rozmiar pliku przekracza {parameter} bajtów",
+        "INVALID_EXTENSION": "Typ pliku nie należy do dozwolonych typów ({parameter})",
+        "UNKNOWN_ERROR": "Nieznany błąd: {parameter}",
+        "ERROR": "{fileName}: {message}"
+      },
+      "PROPERTIES": {
+        "EMPTY": "Dla ofert nie zdefiniowano właściwości dynamicznych",
+        "LANGUAGE": "Język"
+      },
+      "CHANGES": {
+        "EMPTY": "Brak zmian",
+        "DATE": "Data",
+        "TYPE": "Operacja",
+        "USER": "Użytkownik",
+        "DETAIL": "Szczegóły"
+      }
+    },
+    "CANCEL": {
+      "TITLE": "Anuluj ofertę",
+      "MESSAGE": "Czy na pewno chcesz anulować tę ofertę?",
+      "REASON": "Powód",
+      "REASON_PLACEHOLDER": "Wprowadź powód...",
+      "CONFIRM": "Potwierdź",
+      "BACK": "Anuluj"
+    },
+    "ALERTS": {
+      "DELETE_SELECTED": "Czy na pewno chcesz usunąć wybrane zapytania ofertowe?",
+      "DELETE": "Czy na pewno chcesz usunąć tę ofertę?",
+      "CLOSE_CONFIRMATION": "Oferta została zmodyfikowana. Zamknąć bez zapisywania?",
+      "PROPOSAL_SUBMIT": "Po przesłaniu propozycji niektóre części oferty zostaną zablokowane i nie będzie można ich modyfikować. Czy na pewno chcesz kontynuować?",
+      "PROPOSAL_SUBMIT_WARNING": "Ostrzeżenie: brak oferty lub suma wynosi zero. Przed kontynuowaniem upewnij się, że wszystkie pozycje są uwzględnione i mają prawidłowe ceny. Czy na pewno chcesz kontynuować?",
+      "HOLD_PLACE": "Czy na pewno chcesz wstrzymać tę ofertę?",
+      "HOLD_RELEASE": "Czy na pewno chcesz ponownie aktywować tę ofertę?",
+      "DELETE_ADDRESS": "Czy na pewno chcesz usunąć ten adres?",
+      "COPIED": "Skopiowano: {text}",
+      "MEMBER_NOT_FOUND": "Nie znaleziono konta klienta",
+      "MEMBER_UNAVAILABLE": "Szczegóły klienta nie są dostępne w tym hoście",
+      "PRODUCT_UNAVAILABLE": "Szczegóły produktu nie są dostępne w tym hoście"
+    }
+  }
+}

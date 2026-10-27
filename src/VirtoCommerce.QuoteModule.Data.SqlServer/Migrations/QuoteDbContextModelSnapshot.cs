@@ -17,7 +17,7 @@ namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.11")
+                .HasAnnotation("ProductVersion", "10.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -54,6 +54,9 @@ namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
                     b.Property<string>("FirstName")
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
+
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .HasMaxLength(128)
@@ -154,7 +157,7 @@ namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
                     b.ToTable("QuoteAttachment", (string)null);
                 });
 
-            modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.ConfigurationItemEntity", b =>
+            modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.QuoteConfigurationItemEntity", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -223,7 +226,7 @@ namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
                     b.ToTable("QuoteConfigurationItem", (string)null);
                 });
 
-            modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.ConfigurationItemFileEntity", b =>
+            modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.QuoteConfigurationItemFileEntity", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -567,6 +570,9 @@ namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
+                    b.Property<bool>("IsSelected")
+                        .HasColumnType("bit");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("Money");
 
@@ -606,7 +612,7 @@ namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
                     b.Navigation("QuoteRequest");
                 });
 
-            modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.ConfigurationItemEntity", b =>
+            modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.QuoteConfigurationItemEntity", b =>
                 {
                     b.HasOne("VirtoCommerce.QuoteModule.Data.Model.QuoteItemEntity", "QuoteItem")
                         .WithMany("ConfigurationItems")
@@ -617,9 +623,9 @@ namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
                     b.Navigation("QuoteItem");
                 });
 
-            modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.ConfigurationItemFileEntity", b =>
+            modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.QuoteConfigurationItemFileEntity", b =>
                 {
-                    b.HasOne("VirtoCommerce.QuoteModule.Data.Model.ConfigurationItemEntity", "ConfigurationItem")
+                    b.HasOne("VirtoCommerce.QuoteModule.Data.Model.QuoteConfigurationItemEntity", "ConfigurationItem")
                         .WithMany("Files")
                         .HasForeignKey("ConfigurationItemId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -660,7 +666,7 @@ namespace VirtoCommerce.QuoteModule.Data.SqlServer.Migrations
                     b.Navigation("QuoteItem");
                 });
 
-            modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.ConfigurationItemEntity", b =>
+            modelBuilder.Entity("VirtoCommerce.QuoteModule.Data.Model.QuoteConfigurationItemEntity", b =>
                 {
                     b.Navigation("Files");
                 });

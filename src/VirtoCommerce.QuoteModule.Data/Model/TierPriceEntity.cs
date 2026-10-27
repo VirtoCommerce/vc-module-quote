@@ -12,6 +12,11 @@ namespace VirtoCommerce.QuoteModule.Data.Model
 
         public long Quantity { get; set; }
 
+        /// <summary>
+        /// The tier is the quote item's SelectedTierPrice
+        /// </summary>
+        public bool IsSelected { get; set; }
+
         #region Navigation Properties
 
         public virtual QuoteItemEntity QuoteItem { get; set; }
@@ -48,6 +53,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
         {
             target.Price = Price;
             target.Quantity = Quantity;
+            target.IsSelected = IsSelected;
         }
     }
 }

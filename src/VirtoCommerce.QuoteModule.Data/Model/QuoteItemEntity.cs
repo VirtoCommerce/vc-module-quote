@@ -87,6 +87,8 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             target.Quantity = _.Quantity;
             target.IsConfigured = _.IsConfigured;
             target.ProposalPrices = ProposalPrices.Select(x => x.ToModel(AbstractTypeFactory<TierPrice>.TryCreateInstance())).ToList();
+            // the same instance as in ProposalPrices: callers change the selected tier in place
+            target.SelectedTierPrice = target.ProposalPrices.Zip(ProposalPrices).FirstOrDefault(x => x.Second.IsSelected).First;
             target.ConfigurationItems = ConfigurationItems.Select(x => x.ToModel(AbstractTypeFactory<QuoteConfigurationItem>.TryCreateInstance())).ToList();
 
             return target;
@@ -118,7 +120,12 @@ namespace VirtoCommerce.QuoteModule.Data.Model
 
             if (_.ProposalPrices != null)
             {
-                ProposalPrices = new ObservableCollection<TierPriceEntity>(_.ProposalPrices.Select(x => AbstractTypeFactory<TierPriceEntity>.TryCreateInstance().FromModel(x)));
+                ProposalPrices = new ObservableCollection<TierPriceEntity>(_.ProposalPrices.Select(x =>
+                {
+                    var tierPrice = AbstractTypeFactory<TierPriceEntity>.TryCreateInstance().FromModel(x);
+                    tierPrice.IsSelected = x.Equals(_.SelectedTierPrice);
+                    return tierPrice;
+                }));
             }
 
             if (_.ConfigurationItems != null)
@@ -152,7 +159,7 @@ namespace VirtoCommerce.QuoteModule.Data.Model
             if (!ProposalPrices.IsNullCollection())
             {
                 var tierPriceComparer = AnonymousComparer.Create((TierPriceEntity x) => x.Quantity + "-" + x.Price);
-                ProposalPrices.Patch(target.ProposalPrices, tierPriceComparer, (sourceTierPrice, targetTierPrice) => { });
+                ProposalPrices.Patch(target.ProposalPrices, tierPriceComparer, (sourceTierPrice, targetTierPrice) => sourceTierPrice.Patch(targetTierPrice));
             }
 
             if (!ConfigurationItems.IsNullCollection())

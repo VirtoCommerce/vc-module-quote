@@ -1,0 +1,206 @@
+{
+  "QUOTES": {
+    "MENU": {
+      "TITLE": "Cotizaciones",
+      "COUNTER": "En espera de propuesta: {count}"
+    },
+    "WIDGETS": {
+      "ITEMS": "Artículos",
+      "ADDRESSES": "Direcciones",
+      "ATTACHMENTS": "Archivos adjuntos",
+      "PROPERTIES": "Propiedades",
+      "CHANGES": "Cambios",
+      "CONFIGURATION": "Configuración"
+    },
+    "TOOLBAR": {
+      "REFRESH": "Actualizar",
+      "DELETE": "Eliminar",
+      "SAVE": "Guardar",
+      "RESET": "Restablecer",
+      "APPLY": "Aceptar",
+      "ADD": "Agregar",
+      "SUBMIT_PROPOSAL": "Enviar propuesta",
+      "PLACE_ON_HOLD": "Poner en espera",
+      "RELEASE_HOLD": "Reactivar",
+      "CANCEL_DOCUMENT": "Cancelar documento",
+      "ADD_ITEM": "Agregar artículo",
+      "REMOVE": "Quitar",
+      "ADD_SELECTED": "Agregar seleccionados",
+      "EDIT_STATUSES": "Editar estados"
+    },
+    "PAGES": {
+      "LIST": {
+        "TITLE": "Cotizaciones",
+        "EMPTY": "Aún no hay cotizaciones",
+        "COLUMNS": {
+          "NUMBER": "N.º de cotización",
+          "STATUS": "Estado",
+          "ITEMS": "Cantidad de artículos",
+          "CUSTOMER": "Cliente",
+          "CREATED": "Creado"
+        }
+      },
+      "DETAILS": {
+        "TITLE": "Cotización",
+        "ON_HOLD": "En espera",
+        "FIELDS": {
+          "CUSTOMER": "Cliente",
+          "ORGANIZATION": "Empresa del cliente",
+          "NOT_DEFINED": "No definido",
+          "CREATED": "Creado",
+          "MODIFIED": "Última actualización",
+          "STATUS": "Estado",
+          "EXPIRATION": "Fecha de vencimiento",
+          "REMINDER": "Fecha de recordatorio",
+          "EMPLOYEE": "Asignado a",
+          "EMPLOYEE_PLACEHOLDER": "Seleccionar...",
+          "STORE": "Solicitud de cotización de",
+          "STORE_PLACEHOLDER": "Seleccionar tienda...",
+          "COMMENT": "Comentario general",
+          "COMMENT_PLACEHOLDER": "Comentario público",
+          "INNER_COMMENT": "Comentario interno"
+        },
+        "TOTALS": {
+          "TITLE": "Totales",
+          "EDIT_ITEMS": "Artículos",
+          "SUBTOTAL": "Subtotal",
+          "SHIPPING": "Envío",
+          "DISCOUNT": "Descuento",
+          "GRAND_TOTAL": "Total general"
+        }
+      },
+      "ITEMS": {
+        "TITLE": "Artículos de {number}",
+        "EMPTY": "Aún no hay artículos",
+        "LIST_PRICE": "Precio de lista",
+        "SALE_PRICE": "Precio de venta",
+        "COMMENT": "Comentario del producto",
+        "COMMENT_PLACEHOLDER": "Introducir comentario",
+        "SKU": "SKU",
+        "QUANTITY": "Cantidad",
+        "PRICE": "Precio propuesto",
+        "MARGIN": "Margen (MB)",
+        "SELECTED_TIER": "Usar este nivel",
+        "ADD_TIER": "Agregar nivel",
+        "REMOVE_TIER": "Quitar el nivel seleccionado",
+        "SELECT_ITEM": "Seleccionar artículo",
+        "DETAILS": "Detalles",
+        "DISCOUNT_TITLE": "Descuento y envío",
+        "NEW_SUBTOTAL": "Nuevo subtotal",
+        "RELATIVE_DISCOUNT": "Descuento relativo, %",
+        "ENTER_RELATIVE": "Introducir descuento relativo",
+        "ENTER_SUBTOTAL": "Introducir nuevo subtotal",
+        "SHIPPING_METHOD": "Método de envío",
+        "SHIPPING_METHOD_PLACEHOLDER": "Seleccionar...",
+        "MANUAL_SHIPPING": "Total de envío (manual)",
+        "TOTALS": {
+          "TITLE": "Totales",
+          "ORIGINAL_SUBTOTAL": "Subtotal (solicitado)",
+          "ADJUSTMENT": "Ajuste",
+          "SUBTOTAL": "Subtotal",
+          "SHIPPING": "Envío",
+          "DISCOUNT": "Descuento",
+          "GRAND_TOTAL": "Total general",
+          "TAXES": "Impuestos",
+          "GRAND_TOTAL_INCL_TAX": "Total general (impuestos incluidos)"
+        }
+      },
+      "ITEM": {
+        "PRODUCT": "Nombre del producto",
+        "COMMENT": "Comentario del producto"
+      },
+      "PICKER": {
+        "TITLE": "Agregar artículo a la cotización",
+        "SEARCH": "Buscar productos",
+        "COLUMNS": {
+          "IMAGE": "Imagen",
+          "NAME": "Nombre",
+          "CODE": "SKU"
+        }
+      },
+      "CONFIGURATION": {
+        "PRODUCTS": "Productos de la configuración",
+        "TEXTS": "Textos de la configuración",
+        "FILES": "Archivos de la configuración",
+        "NAME": "Nombre del producto",
+        "IMAGE": "Imagen",
+        "QUANTITY": "Cantidad",
+        "TEXT": "Texto",
+        "FILE_NAME": "Nombre del archivo",
+        "CONTENT_TYPE": "Tipo de archivo",
+        "SIZE": "Tamaño del archivo",
+        "NO_PRODUCTS": "Esta configuración aún no tiene productos.",
+        "NO_TEXTS": "Esta configuración aún no tiene textos.",
+        "NO_FILES": "Esta configuración aún no tiene archivos."
+      },
+      "ADDRESSES": {
+        "TITLE": "Dirección",
+        "NEW_TITLE": "Nueva dirección",
+        "EMPTY": "Aún no hay direcciones",
+        "ADDRESS": "Dirección",
+        "DEFAULT": "Predeterminada",
+        "TYPE": "Tipo de dirección",
+        "PERSON": "Nombre",
+        "DESCRIPTION": "Descripción",
+        "FIRST_NAME": "Nombre",
+        "MIDDLE_NAME": "Segundo nombre",
+        "LAST_NAME": "Apellido",
+        "COUNTRY": "País",
+        "REGION": "Región",
+        "CITY": "Ciudad",
+        "LINE1": "Dirección, línea 1",
+        "LINE2": "Dirección, línea 2",
+        "POSTAL_CODE": "Código postal",
+        "EMAIL": "Correo electrónico",
+        "PHONE": "Teléfono"
+      },
+      "ATTACHMENTS": {
+        "EMPTY": "Aún no hay archivos adjuntos",
+        "SELECT_FILES": "Seleccionar archivos",
+        "TYPE": "Tipo",
+        "NAME": "Nombre",
+        "REMOVE": "Quitar",
+        "COPY_LINK": "Copiar enlace",
+        "NOT_CONFIGURED": "El ámbito de carga de archivos no está configurado",
+        "DUPLICATE_NAME": "Ya existe un archivo con el mismo nombre",
+        "INVALID_SIZE": "El tamaño del archivo supera los {parameter} bytes",
+        "INVALID_EXTENSION": "El tipo de archivo no es uno de los tipos permitidos ({parameter})",
+        "UNKNOWN_ERROR": "Error desconocido: {parameter}",
+        "ERROR": "{fileName}: {message}"
+      },
+      "PROPERTIES": {
+        "EMPTY": "No hay propiedades dinámicas definidas para las cotizaciones",
+        "LANGUAGE": "Idioma"
+      },
+      "CHANGES": {
+        "EMPTY": "Aún no hay cambios",
+        "DATE": "Fecha",
+        "TYPE": "Operación",
+        "USER": "Usuario",
+        "DETAIL": "Detalle"
+      }
+    },
+    "CANCEL": {
+      "TITLE": "Cancelar cotización",
+      "MESSAGE": "¿Está seguro de que desea cancelar esta cotización?",
+      "REASON": "Motivo",
+      "REASON_PLACEHOLDER": "Introduzca el motivo aquí...",
+      "CONFIRM": "Confirmar",
+      "BACK": "Cancelar"
+    },
+    "ALERTS": {
+      "DELETE_SELECTED": "¿Está seguro de que desea eliminar las solicitudes de cotización seleccionadas?",
+      "DELETE": "¿Está seguro de que desea eliminar esta cotización?",
+      "CLOSE_CONFIRMATION": "La cotización se ha modificado. ¿Desea cerrarla sin guardar?",
+      "PROPOSAL_SUBMIT": "Una vez enviada la propuesta, ciertas partes de la cotización se bloquearán y no podrán modificarse. ¿Está seguro de que desea continuar?",
+      "PROPOSAL_SUBMIT_WARNING": "Advertencia: falta la oferta o el total es cero. Asegúrese de que todos los artículos estén incluidos y tengan el precio correcto antes de continuar. ¿Está seguro de que desea continuar?",
+      "HOLD_PLACE": "¿Está seguro de que desea poner esta cotización en espera?",
+      "HOLD_RELEASE": "¿Está seguro de que desea reactivar esta cotización?",
+      "DELETE_ADDRESS": "¿Está seguro de que desea eliminar esta dirección?",
+      "COPIED": "Copiado: {text}",
+      "MEMBER_NOT_FOUND": "No se encontró la cuenta del cliente",
+      "MEMBER_UNAVAILABLE": "Los detalles del cliente no están disponibles en este host",
+      "PRODUCT_UNAVAILABLE": "Los detalles del producto no están disponibles en este host"
+    }
+  }
+}

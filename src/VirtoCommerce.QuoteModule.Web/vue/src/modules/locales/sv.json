@@ -1,0 +1,206 @@
+{
+  "QUOTES": {
+    "MENU": {
+      "TITLE": "Offerter",
+      "COUNTER": "Väntar på förslag: {count}"
+    },
+    "WIDGETS": {
+      "ITEMS": "Radartiklar",
+      "ADDRESSES": "Adresser",
+      "ATTACHMENTS": "Bilagor",
+      "PROPERTIES": "Egenskaper",
+      "CHANGES": "Ändringar",
+      "CONFIGURATION": "Konfiguration"
+    },
+    "TOOLBAR": {
+      "REFRESH": "Uppdatera",
+      "DELETE": "Radera",
+      "SAVE": "Spara",
+      "RESET": "Återställ",
+      "APPLY": "OK",
+      "ADD": "Lägg till",
+      "SUBMIT_PROPOSAL": "Skicka förslag",
+      "PLACE_ON_HOLD": "Pausa",
+      "RELEASE_HOLD": "Återaktivera",
+      "CANCEL_DOCUMENT": "Annullera dokument",
+      "ADD_ITEM": "Lägg till artikel",
+      "REMOVE": "Ta bort",
+      "ADD_SELECTED": "Lägg till valda",
+      "EDIT_STATUSES": "Redigera statusar"
+    },
+    "PAGES": {
+      "LIST": {
+        "TITLE": "Offerter",
+        "EMPTY": "Inga offerter ännu",
+        "COLUMNS": {
+          "NUMBER": "Offertnr",
+          "STATUS": "Status",
+          "ITEMS": "Antal artiklar",
+          "CUSTOMER": "Kund",
+          "CREATED": "Skapad"
+        }
+      },
+      "DETAILS": {
+        "TITLE": "Offert",
+        "ON_HOLD": "Pausad",
+        "FIELDS": {
+          "CUSTOMER": "Kund",
+          "ORGANIZATION": "Kundens företag",
+          "NOT_DEFINED": "Ej definierad",
+          "CREATED": "Skapad",
+          "MODIFIED": "Senast uppdaterad",
+          "STATUS": "Status",
+          "EXPIRATION": "Utgångsdatum",
+          "REMINDER": "Påminnelsedatum",
+          "EMPLOYEE": "Tilldelad till",
+          "EMPLOYEE_PLACEHOLDER": "Välj...",
+          "STORE": "Offertförfrågan från",
+          "STORE_PLACEHOLDER": "Välj butik...",
+          "COMMENT": "Allmän kommentar",
+          "COMMENT_PLACEHOLDER": "Offentlig kommentar",
+          "INNER_COMMENT": "Intern kommentar"
+        },
+        "TOTALS": {
+          "TITLE": "Summor",
+          "EDIT_ITEMS": "Radartiklar",
+          "SUBTOTAL": "Delsumma",
+          "SHIPPING": "Frakt",
+          "DISCOUNT": "Rabatt",
+          "GRAND_TOTAL": "Totalsumma"
+        }
+      },
+      "ITEMS": {
+        "TITLE": "Radartiklar i {number}",
+        "EMPTY": "Inga radartiklar ännu",
+        "LIST_PRICE": "Listpris",
+        "SALE_PRICE": "Försäljningspris",
+        "COMMENT": "Produktkommentar",
+        "COMMENT_PLACEHOLDER": "Ange kommentar",
+        "SKU": "SKU",
+        "QUANTITY": "Antal",
+        "PRICE": "Föreslaget pris",
+        "MARGIN": "Marginal (GP)",
+        "SELECTED_TIER": "Använd denna nivå",
+        "ADD_TIER": "Lägg till nivå",
+        "REMOVE_TIER": "Ta bort vald nivå",
+        "SELECT_ITEM": "Välj artikel",
+        "DETAILS": "Detaljer",
+        "DISCOUNT_TITLE": "Rabatt och frakt",
+        "NEW_SUBTOTAL": "Ny delsumma",
+        "RELATIVE_DISCOUNT": "Relativ rabatt, %",
+        "ENTER_RELATIVE": "Ange relativ rabatt",
+        "ENTER_SUBTOTAL": "Ange ny delsumma",
+        "SHIPPING_METHOD": "Fraktsätt",
+        "SHIPPING_METHOD_PLACEHOLDER": "Välj...",
+        "MANUAL_SHIPPING": "Total frakt (manuell)",
+        "TOTALS": {
+          "TITLE": "Summor",
+          "ORIGINAL_SUBTOTAL": "Delsumma (begärd)",
+          "ADJUSTMENT": "Justering",
+          "SUBTOTAL": "Delsumma",
+          "SHIPPING": "Frakt",
+          "DISCOUNT": "Rabatt",
+          "GRAND_TOTAL": "Totalsumma",
+          "TAXES": "Skatter",
+          "GRAND_TOTAL_INCL_TAX": "Totalsumma (inkl. skatter)"
+        }
+      },
+      "ITEM": {
+        "PRODUCT": "Produktnamn",
+        "COMMENT": "Produktkommentar"
+      },
+      "PICKER": {
+        "TITLE": "Lägg till artikel i offerten",
+        "SEARCH": "Sök produkter",
+        "COLUMNS": {
+          "IMAGE": "Bild",
+          "NAME": "Namn",
+          "CODE": "SKU"
+        }
+      },
+      "CONFIGURATION": {
+        "PRODUCTS": "Konfigurationsprodukter",
+        "TEXTS": "Konfigurationstexter",
+        "FILES": "Konfigurationsfiler",
+        "NAME": "Produktnamn",
+        "IMAGE": "Bild",
+        "QUANTITY": "Antal",
+        "TEXT": "Text",
+        "FILE_NAME": "Filnamn",
+        "CONTENT_TYPE": "Filtyp",
+        "SIZE": "Filstorlek",
+        "NO_PRODUCTS": "Denna konfiguration har inga produkter ännu.",
+        "NO_TEXTS": "Denna konfiguration har inga texter ännu.",
+        "NO_FILES": "Denna konfiguration har inga filer ännu."
+      },
+      "ADDRESSES": {
+        "TITLE": "Adress",
+        "NEW_TITLE": "Ny adress",
+        "EMPTY": "Inga adresser ännu",
+        "ADDRESS": "Adress",
+        "DEFAULT": "Standard",
+        "TYPE": "Adresstyp",
+        "PERSON": "Namn",
+        "DESCRIPTION": "Beskrivning",
+        "FIRST_NAME": "Förnamn",
+        "MIDDLE_NAME": "Mellannamn",
+        "LAST_NAME": "Efternamn",
+        "COUNTRY": "Land",
+        "REGION": "Region",
+        "CITY": "Ort",
+        "LINE1": "Adressrad 1",
+        "LINE2": "Adressrad 2",
+        "POSTAL_CODE": "Postnummer",
+        "EMAIL": "E-post",
+        "PHONE": "Telefon"
+      },
+      "ATTACHMENTS": {
+        "EMPTY": "Inga bilagor ännu",
+        "SELECT_FILES": "Välj filer",
+        "TYPE": "Typ",
+        "NAME": "Namn",
+        "REMOVE": "Ta bort",
+        "COPY_LINK": "Kopiera länk",
+        "NOT_CONFIGURED": "Omfånget för filuppladdning är inte konfigurerat",
+        "DUPLICATE_NAME": "Det finns redan en fil med samma namn",
+        "INVALID_SIZE": "Filstorleken överstiger {parameter} byte",
+        "INVALID_EXTENSION": "Filtypen är inte en av de tillåtna typerna ({parameter})",
+        "UNKNOWN_ERROR": "Okänt fel: {parameter}",
+        "ERROR": "{fileName}: {message}"
+      },
+      "PROPERTIES": {
+        "EMPTY": "Inga dynamiska egenskaper har definierats för offerter",
+        "LANGUAGE": "Språk"
+      },
+      "CHANGES": {
+        "EMPTY": "Inga ändringar ännu",
+        "DATE": "Datum",
+        "TYPE": "Åtgärd",
+        "USER": "Användare",
+        "DETAIL": "Detaljer"
+      }
+    },
+    "CANCEL": {
+      "TITLE": "Annullera offert",
+      "MESSAGE": "Är du säker på att du vill annullera denna offert?",
+      "REASON": "Orsak",
+      "REASON_PLACEHOLDER": "Ange orsak här...",
+      "CONFIRM": "Bekräfta",
+      "BACK": "Avbryt"
+    },
+    "ALERTS": {
+      "DELETE_SELECTED": "Är du säker på att du vill radera de valda offertförfrågningarna?",
+      "DELETE": "Är du säker på att du vill radera denna offert?",
+      "CLOSE_CONFIRMATION": "Offerten har ändrats. Stäng utan att spara?",
+      "PROPOSAL_SUBMIT": "När du har skickat förslaget låses vissa delar av offerten och kan inte längre ändras. Är du säker på att du vill fortsätta?",
+      "PROPOSAL_SUBMIT_WARNING": "Varning: Erbjudandet saknas eller totalsumman är noll. Kontrollera att alla artiklar finns med och är korrekt prissatta innan du fortsätter. Är du säker på att du vill fortsätta?",
+      "HOLD_PLACE": "Är du säker på att du vill pausa denna offert?",
+      "HOLD_RELEASE": "Är du säker på att du vill återaktivera denna offert?",
+      "DELETE_ADDRESS": "Är du säker på att du vill radera denna adress?",
+      "COPIED": "Kopierat: {text}",
+      "MEMBER_NOT_FOUND": "Kundens konto hittades inte",
+      "MEMBER_UNAVAILABLE": "Kunduppgifter är inte tillgängliga i denna värd",
+      "PRODUCT_UNAVAILABLE": "Produktuppgifter är inte tillgängliga i denna värd"
+    }
+  }
+}

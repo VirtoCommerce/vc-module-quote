@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using VirtoCommerce.CatalogModule.Core.Model;
 using VirtoCommerce.Platform.Core.Common;
 
@@ -40,6 +41,10 @@ namespace VirtoCommerce.QuoteModule.Core.Models
         public bool IsConfigured { get; set; }
 
         private TierPrice _selectedTierPrice;
+
+        // The getter falls back to the first tier itself, so Newtonsoft (reusing a non-null value by default) would
+        // write a posted selectedTierPrice into that tier when proposalPrices comes first in the JSON, overwriting it.
+        [JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
         public TierPrice SelectedTierPrice
         {
             get

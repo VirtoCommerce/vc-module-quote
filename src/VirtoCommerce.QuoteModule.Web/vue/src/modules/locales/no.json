@@ -1,0 +1,206 @@
+{
+  "QUOTES": {
+    "MENU": {
+      "TITLE": "Tilbud",
+      "COUNTER": "Venter på forslag: {count}"
+    },
+    "WIDGETS": {
+      "ITEMS": "Linjeposter",
+      "ADDRESSES": "Adresser",
+      "ATTACHMENTS": "Vedlegg",
+      "PROPERTIES": "Egenskaper",
+      "CHANGES": "Endringer",
+      "CONFIGURATION": "Konfigurasjon"
+    },
+    "TOOLBAR": {
+      "REFRESH": "Oppdater",
+      "DELETE": "Slett",
+      "SAVE": "Lagre",
+      "RESET": "Tilbakestill",
+      "APPLY": "OK",
+      "ADD": "Legg til",
+      "SUBMIT_PROPOSAL": "Send inn forslag",
+      "PLACE_ON_HOLD": "Sett på vent",
+      "RELEASE_HOLD": "Reaktiver",
+      "CANCEL_DOCUMENT": "Kanseller dokument",
+      "ADD_ITEM": "Legg til vare",
+      "REMOVE": "Fjern",
+      "ADD_SELECTED": "Legg til valgte",
+      "EDIT_STATUSES": "Rediger statuser"
+    },
+    "PAGES": {
+      "LIST": {
+        "TITLE": "Tilbud",
+        "EMPTY": "Ingen tilbud ennå",
+        "COLUMNS": {
+          "NUMBER": "Tilbudsnr.",
+          "STATUS": "Status",
+          "ITEMS": "Antall poster",
+          "CUSTOMER": "Kunde",
+          "CREATED": "Opprettet"
+        }
+      },
+      "DETAILS": {
+        "TITLE": "Tilbud",
+        "ON_HOLD": "På vent",
+        "FIELDS": {
+          "CUSTOMER": "Kunde",
+          "ORGANIZATION": "Kundens selskap",
+          "NOT_DEFINED": "Ikke definert",
+          "CREATED": "Opprettet",
+          "MODIFIED": "Sist oppdatert",
+          "STATUS": "Status",
+          "EXPIRATION": "Utløpsdato",
+          "REMINDER": "Påminnelsesdato",
+          "EMPLOYEE": "Tildelt til",
+          "EMPLOYEE_PLACEHOLDER": "Velg...",
+          "STORE": "Tilbudsforespørsel fra",
+          "STORE_PLACEHOLDER": "Velg butikk...",
+          "COMMENT": "Generell kommentar",
+          "COMMENT_PLACEHOLDER": "Offentlig kommentar",
+          "INNER_COMMENT": "Intern kommentar"
+        },
+        "TOTALS": {
+          "TITLE": "Summer",
+          "EDIT_ITEMS": "Linjeposter",
+          "SUBTOTAL": "Delsum",
+          "SHIPPING": "Frakt",
+          "DISCOUNT": "Rabatt",
+          "GRAND_TOTAL": "Totalsum"
+        }
+      },
+      "ITEMS": {
+        "TITLE": "Linjeposter i {number}",
+        "EMPTY": "Ingen linjeposter ennå",
+        "LIST_PRICE": "Listepris",
+        "SALE_PRICE": "Salgspris",
+        "COMMENT": "Produktkommentar",
+        "COMMENT_PLACEHOLDER": "Skriv inn kommentar",
+        "SKU": "SKU",
+        "QUANTITY": "Antall",
+        "PRICE": "Foreslått pris",
+        "MARGIN": "Margin (GP)",
+        "SELECTED_TIER": "Bruk dette trinnet",
+        "ADD_TIER": "Legg til trinn",
+        "REMOVE_TIER": "Fjern valgt trinn",
+        "SELECT_ITEM": "Velg post",
+        "DETAILS": "Detaljer",
+        "DISCOUNT_TITLE": "Rabatt og frakt",
+        "NEW_SUBTOTAL": "Ny delsum",
+        "RELATIVE_DISCOUNT": "Relativ rabatt, %",
+        "ENTER_RELATIVE": "Skriv inn relativ rabatt",
+        "ENTER_SUBTOTAL": "Skriv inn ny delsum",
+        "SHIPPING_METHOD": "Fraktmetode",
+        "SHIPPING_METHOD_PLACEHOLDER": "Velg...",
+        "MANUAL_SHIPPING": "Total frakt (manuell)",
+        "TOTALS": {
+          "TITLE": "Summer",
+          "ORIGINAL_SUBTOTAL": "Delsum (forespurt)",
+          "ADJUSTMENT": "Justering",
+          "SUBTOTAL": "Delsum",
+          "SHIPPING": "Frakt",
+          "DISCOUNT": "Rabatt",
+          "GRAND_TOTAL": "Totalsum",
+          "TAXES": "Skatter",
+          "GRAND_TOTAL_INCL_TAX": "Totalsum (inkl. skatter)"
+        }
+      },
+      "ITEM": {
+        "PRODUCT": "Produktnavn",
+        "COMMENT": "Produktkommentar"
+      },
+      "PICKER": {
+        "TITLE": "Legg til vare i tilbudet",
+        "SEARCH": "Søk etter produkter",
+        "COLUMNS": {
+          "IMAGE": "Bilde",
+          "NAME": "Navn",
+          "CODE": "SKU"
+        }
+      },
+      "CONFIGURATION": {
+        "PRODUCTS": "Konfigurasjonsprodukter",
+        "TEXTS": "Konfigurasjonstekster",
+        "FILES": "Konfigurasjonsfiler",
+        "NAME": "Produktnavn",
+        "IMAGE": "Bilde",
+        "QUANTITY": "Antall",
+        "TEXT": "Tekst",
+        "FILE_NAME": "Filnavn",
+        "CONTENT_TYPE": "Filtype",
+        "SIZE": "Filstørrelse",
+        "NO_PRODUCTS": "Denne konfigurasjonen har ingen produkter ennå.",
+        "NO_TEXTS": "Denne konfigurasjonen har ingen tekster ennå.",
+        "NO_FILES": "Denne konfigurasjonen har ingen filer ennå."
+      },
+      "ADDRESSES": {
+        "TITLE": "Adresse",
+        "NEW_TITLE": "Ny adresse",
+        "EMPTY": "Ingen adresser ennå",
+        "ADDRESS": "Adresse",
+        "DEFAULT": "Standard",
+        "TYPE": "Adressetype",
+        "PERSON": "Navn",
+        "DESCRIPTION": "Beskrivelse",
+        "FIRST_NAME": "Fornavn",
+        "MIDDLE_NAME": "Mellomnavn",
+        "LAST_NAME": "Etternavn",
+        "COUNTRY": "Land",
+        "REGION": "Region",
+        "CITY": "Sted",
+        "LINE1": "Adresselinje 1",
+        "LINE2": "Adresselinje 2",
+        "POSTAL_CODE": "Postnummer",
+        "EMAIL": "E-post",
+        "PHONE": "Telefon"
+      },
+      "ATTACHMENTS": {
+        "EMPTY": "Ingen vedlegg ennå",
+        "SELECT_FILES": "Velg filer",
+        "TYPE": "Type",
+        "NAME": "Navn",
+        "REMOVE": "Fjern",
+        "COPY_LINK": "Kopier lenke",
+        "NOT_CONFIGURED": "Omfanget for filopplasting er ikke konfigurert",
+        "DUPLICATE_NAME": "Det finnes allerede en fil med samme navn",
+        "INVALID_SIZE": "Filstørrelsen overstiger {parameter} byte",
+        "INVALID_EXTENSION": "Filtypen er ikke blant de tillatte typene ({parameter})",
+        "UNKNOWN_ERROR": "Ukjent feil: {parameter}",
+        "ERROR": "{fileName}: {message}"
+      },
+      "PROPERTIES": {
+        "EMPTY": "Ingen dynamiske egenskaper er definert for tilbud",
+        "LANGUAGE": "Språk"
+      },
+      "CHANGES": {
+        "EMPTY": "Ingen endringer ennå",
+        "DATE": "Dato",
+        "TYPE": "Operasjon",
+        "USER": "Bruker",
+        "DETAIL": "Detaljer"
+      }
+    },
+    "CANCEL": {
+      "TITLE": "Kanseller tilbud",
+      "MESSAGE": "Er du sikker på at du vil kansellere dette tilbudet?",
+      "REASON": "Årsak",
+      "REASON_PLACEHOLDER": "Skriv inn årsak her...",
+      "CONFIRM": "Bekreft",
+      "BACK": "Avbryt"
+    },
+    "ALERTS": {
+      "DELETE_SELECTED": "Er du sikker på at du vil slette de valgte tilbudsforespørslene?",
+      "DELETE": "Er du sikker på at du vil slette dette tilbudet?",
+      "CLOSE_CONFIRMATION": "Tilbudet er endret. Vil du lukke uten å lagre?",
+      "PROPOSAL_SUBMIT": "Når forslaget er sendt inn, blir visse deler av tilbudet låst og kan ikke endres. Er du sikker på at du vil fortsette?",
+      "PROPOSAL_SUBMIT_WARNING": "Advarsel: Tilbudet mangler, eller totalsummen er null. Kontroller at alle poster er oppført og riktig priset før du fortsetter. Er du sikker på at du vil fortsette?",
+      "HOLD_PLACE": "Er du sikker på at du vil sette dette tilbudet på vent?",
+      "HOLD_RELEASE": "Er du sikker på at du vil reaktivere dette tilbudet?",
+      "DELETE_ADDRESS": "Er du sikker på at du vil slette denne adressen?",
+      "COPIED": "Kopiert: {text}",
+      "MEMBER_NOT_FOUND": "Kundens konto ble ikke funnet",
+      "MEMBER_UNAVAILABLE": "Kundedetaljer er ikke tilgjengelige i denne verten",
+      "PRODUCT_UNAVAILABLE": "Produktdetaljer er ikke tilgjengelige i denne verten"
+    }
+  }
+}
