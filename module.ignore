@@ -1,5 +1,3 @@
-AutoMapper.dll
-AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 GraphQL.dll
 GraphQL.Authorization.dll
 GraphQL.DataLoader.dll

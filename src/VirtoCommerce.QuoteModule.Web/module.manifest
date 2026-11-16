@@ -4,21 +4,21 @@
   <version>3.1008.0</version>
   <version-tag />
 
-  <platformVersion>3.1091.0</platformVersion>
+  <platformVersion>3.1097.0</platformVersion>
   <dependencies>
     <dependency id="VirtoCommerce.Assets" version="3.1000.0" />
-    <dependency id="VirtoCommerce.Cart" version="3.1000.0" />
-    <dependency id="VirtoCommerce.Catalog" version="3.1000.0" />
-    <dependency id="VirtoCommerce.Core" version="3.1007.0" />
+    <dependency id="VirtoCommerce.Cart" version="3.1014.0" />
+    <dependency id="VirtoCommerce.Catalog" version="3.1048.0" />
+    <dependency id="VirtoCommerce.Core" version="3.1012.0" />
     <dependency id="VirtoCommerce.Customer" version="3.1028.0" />
-    <dependency id="VirtoCommerce.FileExperienceApi" version="3.1008.0" />
+    <dependency id="VirtoCommerce.FileExperienceApi" version="3.1009.0" />
     <dependency id="VirtoCommerce.Orders" version="3.1000.0" />
-    <dependency id="VirtoCommerce.Shipping" version="3.1000.0" />
-    <dependency id="VirtoCommerce.Store" version="3.1006.0" />
-    <dependency id="VirtoCommerce.Tax" version="3.1003.0" />
-    <dependency id="VirtoCommerce.Xapi" version="3.1026.0" />
-    <dependency id="VirtoCommerce.XCart" version="3.1042.0" />
-    <dependency id="VirtoCommerce.XCatalog" version="3.1023.0" />
+    <dependency id="VirtoCommerce.Shipping" version="3.1009.0" />
+    <dependency id="VirtoCommerce.Store" version="3.1009.0" />
+    <dependency id="VirtoCommerce.Tax" version="3.1007.0" />
+    <dependency id="VirtoCommerce.Xapi" version="3.1031.0" />
+    <dependency id="VirtoCommerce.XCart" version="3.1047.0" />
+    <dependency id="VirtoCommerce.XCatalog" version="3.1025.0" />
   </dependencies>
 
   <title>Quotes</title>
