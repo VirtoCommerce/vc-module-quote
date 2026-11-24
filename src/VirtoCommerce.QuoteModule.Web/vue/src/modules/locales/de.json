@@ -32,6 +32,12 @@
       "LIST": {
         "TITLE": "Angebote",
         "EMPTY": "Noch keine Angebote",
+        "FILTERS": {
+          "STORE": "Shop"
+        },
+        "VIEWS": {
+          "WAITING": "Warten auf ein Angebot"
+        },
         "COLUMNS": {
           "NUMBER": "Angebotsnummer",
           "STATUS": "Status",

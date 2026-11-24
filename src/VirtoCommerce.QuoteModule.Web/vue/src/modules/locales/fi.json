@@ -32,6 +32,12 @@
       "LIST": {
         "TITLE": "Tarjoukset",
         "EMPTY": "Ei vielä tarjouksia",
+        "FILTERS": {
+          "STORE": "Kauppa"
+        },
+        "VIEWS": {
+          "WAITING": "Odottaa tarjousta"
+        },
         "COLUMNS": {
           "NUMBER": "Tarjouksen nro",
           "STATUS": "Tila",

@@ -32,6 +32,12 @@
       "LIST": {
         "TITLE": "Devis",
         "EMPTY": "Aucun devis pour le moment",
+        "FILTERS": {
+          "STORE": "Boutique"
+        },
+        "VIEWS": {
+          "WAITING": "En attente d’une proposition"
+        },
         "COLUMNS": {
           "NUMBER": "N° de devis",
           "STATUS": "Statut",

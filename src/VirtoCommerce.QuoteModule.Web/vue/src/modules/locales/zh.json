@@ -32,6 +32,12 @@
       "LIST": {
         "TITLE": "报价单",
         "EMPTY": "暂无报价单",
+        "FILTERS": {
+          "STORE": "商店"
+        },
+        "VIEWS": {
+          "WAITING": "等待报价"
+        },
         "COLUMNS": {
           "NUMBER": "报价单号",
           "STATUS": "状态",

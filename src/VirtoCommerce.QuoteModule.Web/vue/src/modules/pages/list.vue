@@ -15,7 +15,10 @@
       :total-count="totalCount"
       :pagination="pagination"
       :searchable="true"
+      search-bar
       state-key="QUOTES"
+      :global-filters="globalFilters"
+      :search-views="searchViews"
       :active-item-id="activeChildParam"
       :show-all-columns="!activeChildParam"
       :row-actions="rowActions"
@@ -24,6 +27,7 @@
       :empty-state="{ icon: 'lucide-file-question', title: $t('QUOTES.PAGES.LIST.EMPTY') }"
       @row-click="(e: { data: QuoteRequest }) => openDetails(e.data)"
       @pagination-click="pagination.goToPage"
+      @filter="onFilter"
     >
       <VcColumn
         id="number"
@@ -90,12 +94,15 @@ import {
   usePermissions,
   usePopup,
   useTableSearch,
+  type GlobalFilterConfig,
   type IBladeToolbar,
+  type SearchBarView,
 } from "@vc-shell/framework";
 import { VcBlade, VcColumn, VcDataTable, VcStatus } from "@vc-shell/framework/ui";
-import { computed, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { QuoteModuleClient, type QuoteRequest } from "../../api_client/virtocommerce.quote";
+import { searchStores, settingValues } from "../api";
 import { statusVariant } from "../utils";
 
 defineBlade({
@@ -130,11 +137,67 @@ const { sortField, sortOrder, sortExpression } = useDataTableSort({
 const { searchValue } = useTableSearch({ stateKey: "QUOTES" });
 const pagination = useDataTablePagination({ stateKey: "QUOTES", pageSize: PAGE_SIZE, totalCount });
 
+// A sales rep works the quotes by status (the menu counter's "waiting for a proposal" is Processing),
+// by store in a multi-store setup, and by when the request came in.
+const statuses = ref<string[]>([]);
+const stores = ref<{ id?: string; name?: string }[]>([]);
+const globalFilters = computed<GlobalFilterConfig[]>(() => [
+  {
+    id: "statuses",
+    label: t("QUOTES.PAGES.LIST.COLUMNS.STATUS"),
+    filter: { options: statuses.value.map((x) => ({ value: x, label: x })), multiple: true },
+  },
+  {
+    id: "storeId",
+    label: t("QUOTES.PAGES.LIST.FILTERS.STORE"),
+    filter: { options: stores.value.map((x) => ({ value: x.id!, label: x.name ?? x.id! })) },
+  },
+  {
+    id: "createdDate",
+    label: t("QUOTES.PAGES.LIST.COLUMNS.CREATED"),
+    filter: { range: ["startDate", "endDate"] },
+  },
+]);
+const searchViews = computed<SearchBarView[]>(() => [
+  { id: "waiting", name: t("QUOTES.PAGES.LIST.VIEWS.WAITING"), values: { statuses: ["Processing"] } },
+]);
+
+const filters = ref<{ statuses?: string[]; storeId?: string; startDate?: Date; endDate?: Date }>({});
+// the search bar sends days (YYYY-MM-DD, both ends included); the API compares times, so the end is that day's last moment
+const localDay = (ymd: unknown, endOfDay = false) => {
+  if (typeof ymd !== "string" || !ymd) return undefined;
+  const day = new Date(`${ymd}T00:00`);
+  return endOfDay ? new Date(day.getFullYear(), day.getMonth(), day.getDate() + 1, 0, 0, 0, -1) : day;
+};
+
+function onFilter(event: { filters: Record<string, unknown> }) {
+  const picked = ([] as string[]).concat((event.filters.statuses as string | string[] | undefined) ?? []);
+  filters.value = {
+    statuses: picked.length ? picked : undefined,
+    storeId: (event.filters.storeId as string) || undefined,
+    startDate: localDay(event.filters.startDate),
+    endDate: localDay(event.filters.endDate, true),
+  };
+  // from page 2 setPage(1) triggers the skip watcher, which loads
+  if (pagination.skip) pagination.setPage(1);
+  else load();
+}
+
+async function loadFilterOptions() {
+  const [statusValues, storeResult] = await Promise.all([
+    settingValues("Quotes.Status").catch(() => [] as string[]),
+    searchStores(undefined, 0, undefined, 100).catch(() => ({ results: [] })),
+  ]);
+  statuses.value = statusValues;
+  stores.value = storeResult.results ?? [];
+}
+
 const { loading: searchLoading, action: load } = useAsync(async () => {
   const result = await (
     await getApiClient()
   ).search({
     keyword: searchValue.value || undefined,
+    ...filters.value,
     sort: sortExpression.value,
     skip: pagination.skip,
     take: PAGE_SIZE,
@@ -148,7 +211,11 @@ const { loading: deleteLoading, action: remove } = useAsync<string[]>(async (ids
 });
 const loading = useLoading(searchLoading, deleteLoading);
 
-load();
+onMounted(() => {
+  load();
+  // the filters' options; without them the filters just have none to offer
+  loadFilterOptions();
+});
 watch(searchValue, () => pagination.setPage(1));
 watch([sortExpression, searchValue, () => pagination.skip], debounce(load, 300));
 
