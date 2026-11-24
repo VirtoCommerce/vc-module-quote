@@ -32,6 +32,12 @@
       "LIST": {
         "TITLE": "見積書",
         "EMPTY": "見積書はまだありません",
+        "FILTERS": {
+          "STORE": "ストア"
+        },
+        "VIEWS": {
+          "WAITING": "提案待ち"
+        },
         "COLUMNS": {
           "NUMBER": "見積番号",
           "STATUS": "ステータス",

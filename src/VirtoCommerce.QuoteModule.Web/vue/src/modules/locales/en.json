@@ -32,6 +32,12 @@
       "LIST": {
         "TITLE": "Quotes",
         "EMPTY": "No quotes yet",
+        "FILTERS": {
+          "STORE": "Store"
+        },
+        "VIEWS": {
+          "WAITING": "Waiting for a proposal"
+        },
         "COLUMNS": {
           "NUMBER": "Quote #",
           "STATUS": "Status",

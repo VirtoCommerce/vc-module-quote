@@ -32,6 +32,12 @@
       "LIST": {
         "TITLE": "Tilbud",
         "EMPTY": "Ingen tilbud ennå",
+        "FILTERS": {
+          "STORE": "Butikk"
+        },
+        "VIEWS": {
+          "WAITING": "Venter på et forslag"
+        },
         "COLUMNS": {
           "NUMBER": "Tilbudsnr.",
           "STATUS": "Status",

@@ -32,6 +32,12 @@
       "LIST": {
         "TITLE": "Preventivi",
         "EMPTY": "Ancora nessun preventivo",
+        "FILTERS": {
+          "STORE": "Negozio"
+        },
+        "VIEWS": {
+          "WAITING": "In attesa di una proposta"
+        },
         "COLUMNS": {
           "NUMBER": "N. preventivo",
           "STATUS": "Stato",

@@ -32,6 +32,12 @@
       "LIST": {
         "TITLE": "Offerter",
         "EMPTY": "Inga offerter ännu",
+        "FILTERS": {
+          "STORE": "Butik"
+        },
+        "VIEWS": {
+          "WAITING": "Väntar på ett förslag"
+        },
         "COLUMNS": {
           "NUMBER": "Offertnr",
           "STATUS": "Status",

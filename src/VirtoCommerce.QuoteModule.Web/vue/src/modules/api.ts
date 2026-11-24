@@ -76,12 +76,12 @@ export const getMemberByUserId = (userId: string) =>
   request<NamedEntity>("GET", `/api/members/accounts/${encodeURIComponent(userId)}`);
 
 /** VcSelect async options: the quote's store resolves by id, the rest pages on demand */
-export const searchStores = (keyword?: string, skip?: number, ids?: string[]) =>
+export const searchStores = (keyword?: string, skip?: number, ids?: string[], take = 20) =>
   request<SearchResult<NamedEntity>>("POST", "/api/stores/search", {
     keyword: ids?.length ? undefined : keyword,
     objectIds: ids?.length ? ids : undefined,
     skip: skip ?? 0,
-    take: ids?.length || 20,
+    take: ids?.length || take,
   });
 
 // settings/values/{name} needs only a signed-in user (legacy settings.getValues)

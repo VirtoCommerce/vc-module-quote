@@ -32,6 +32,12 @@
       "LIST": {
         "TITLE": "Cotações",
         "EMPTY": "Ainda não há cotações",
+        "FILTERS": {
+          "STORE": "Loja"
+        },
+        "VIEWS": {
+          "WAITING": "Aguardando uma proposta"
+        },
         "COLUMNS": {
           "NUMBER": "N.º da cotação",
           "STATUS": "Status",

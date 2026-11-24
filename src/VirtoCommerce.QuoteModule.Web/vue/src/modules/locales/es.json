@@ -32,6 +32,12 @@
       "LIST": {
         "TITLE": "Cotizaciones",
         "EMPTY": "Aún no hay cotizaciones",
+        "FILTERS": {
+          "STORE": "Tienda"
+        },
+        "VIEWS": {
+          "WAITING": "Esperando una propuesta"
+        },
         "COLUMNS": {
           "NUMBER": "N.º de cotización",
           "STATUS": "Estado",
